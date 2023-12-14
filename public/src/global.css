@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Uber+Move+Text:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Helvetica:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,400;0,500;0,600;0,700;1,100&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+body {
+  margin: 0;
+  line-height: normal;
+}
+:root {
+  /* fonts */
+  --body-large-semibold: Poppins;
+  --paragraph-small: "Uber Move Text";
+  --font-lexend: Lexend;
+  --font-helvetica: Helvetica;
+  --font-inter: Inter;
+  --font-urbanist: Urbanist;
+
+  /* font sizes */
+  --body-large-semibold-size: 1rem; /* Equivalent to 16px */
+  --heading-size: 1.75rem; /* Equivalent to 28px */
+  --font-size-37xl: 3.5rem; /* Equivalent to 56px */
+  --paragraph-small-size: 0.875rem; /* Equivalent to 14px */
+  --other-other-regular-size: 0.75rem; /* Equivalent to 12px */
+  --font-size-lg: 1.125rem; /* Equivalent to 18px */
+  --font-size-6xl: 1.5625rem; /* Equivalent to 25px */
+  --h2-title-size: 1.25rem; /* Equivalent to 20px */
+  --font-size-mini: 0.9375rem; /* Equivalent to 15px */
+  --font-size-2xs: 0.6875rem; /* Equivalent to 11px */
+  --font-size-5xl: 1.5rem; /* Equivalent to 24px */
+  --font-size-3xs: 0.625rem; /* Equivalent to 10px */
+  --font-size-11xl: 1.875rem; /* Equivalent to 30px */
+  --font-size-181xl: 12.5rem; /* Equivalent to 200px */
+
+  /* Colors */
+  --background-backgroundprimary: #fff;
+  --color-red-100: #ff0000;
+  --color-red: #fa0000;
+  --text-tertiary: #bebebf;
+  --primary-weak: #e0effe;
+  --primary: #5570f1;
+  --primary1: #007dfa;
+  --color-dimgray-100: #716a6a;
+  --content-contenttertiary: #5e5e5e;
+  --text-secondary: #5a5a5d;
+  --color-dimgray-200: #4b5563;
+  --content-contentsecondary: #545454;
+  --color-gray-100: #818187;
+  --black-2: #141736;
+  --color-gray-200: #1a1a21;
+  --color-gray-400: #111827;
+  --text-primary: #101012;
+  --color-gray-300: rgba(0, 0, 0, 0);
+  --content-contentprimary: #000;
+  --color-gainsboro-200: #e5e7eb;
+  --color-gainsboro-300: #e7e7e7;
+  --color-gainsboro-400: #e4e4e4;
+  --boder: #dddedf;
+  --color-gainsboro-100: #dcdcdc;
+  --color-gainsboro-500: #dadada;
+  --color-gainsboro-600: #d8d8d8;
+  --color-orangered-100: #d1110b;
+  --color-orangered-200: rgba(209, 17, 11, 0.16);
+  --color-lavenderblush: #fff3f3;
+  --color-whitesmoke-200: #f3f4f6;
+  --color-whitesmoke-100: #ebebeb;
+  --color-darkgray: #a3a3a6;
+  --color-darkgray-100: #9ca3af;
+  --color-darkslategray-100: #414141;
+  --color-darkslategray-400: #374151;
+  --color-darkslategray-200: #3d3c3c;
+  --color-darkslategray-300: #373d3f;
+  --color-darkslategray-500: #2e2e2e;
+  --color-slategray: #6b7280;
+  --color-crimson-100: #ef4444;
+  --color-steelblue-100: #606d93;
+  --color-steelblue-200: #435c9a;
+  --color-lightgray-100: #d6d6d6;
+  --color-lightgray-200: #d1d5db;
+  --color-mediumseagreen-100: #75c88c;
+  --gray-2: #7d8da6;
+  --color-salmon-100: #fe6470;
+  --color-salmon-200: #ec5757;
+  --gray: #a5b4cb;
+  --color-lightsteelblue-100: rgba(165, 180, 203, 0.4);
+  --color-blueviolet: #9747ff;
+
+ /* Gaps converted to rem */
+  --gap-xl: 1.25rem; /* Equivalent to 20px */
+  --gap-13xl: 2rem; /* Equivalent to 32px */
+  --gap-5xl: 1.5rem; /* Equivalent to 24px */
+  --gap-5xs: 0.5rem; /* Equivalent to 8px */
+  --gap-xs: 0.75rem; /* Equivalent to 12px */
+  --gap-base: 1rem; /* Equivalent to 16px */
+  --gap-3xs: 0.625rem; /* Equivalent to 10px */
+  --gap-8xs: 0.3125rem; /* Equivalent to 5px */
+  --gap-9xs: 0.25rem; /* Equivalent to 4px */
+  --gap-36xl: 3.4375rem; /* Equivalent to 55px */
+  --gap-73xl: 5.75rem; /* Equivalent to 92px */
+  --gap-mini: 0.9375rem; /* Equivalent to 15px */
+  --gap-lg: 1.125rem; /* Equivalent to 18px */
+
+  /* Paddings converted to rem */
+  --padding-60xl: 4.9375rem; /* Equivalent to 79px */
+  --padding-137xl: 9.75rem; /* Equivalent to 156px */
+  --padding-base: 1rem; /* Equivalent to 16px */
+  --padding-9xs: 0.25rem; /* Equivalent to 4px */
+  --padding-16xl: 2.1875rem; /* Equivalent to 35px */
+  --padding-3xs: 0.625rem; /* Equivalent to 10px */
+  --padding-xs: 0.75rem; /* Equivalent to 12px */
+  --padding-17xl: 2.25rem; /* Equivalent to 36px */
+  --padding-13xl: 2rem; /* Equivalent to 32px */
+  --padding-14xl: 2.0625rem; /* Equivalent to 33px */
+  --padding-2xs: 0.6875rem; /* Equivalent to 11px */
+  --padding-12xl: 1.9375rem; /* Equivalent to 31px */
+  --padding-11xs: 0.125rem; /* Equivalent to 2px */
+
+  /* Border radiuses converted to rem */
+  --br-3xs: 0.625rem; /* Equivalent to 10px */
+  --br-5xs: 0.5rem; /* Equivalent to 8px */
+  --br-base: 1rem; /* Equivalent to 16px */
+  --br-xs: 0.75rem; /* Equivalent to 12px */
+  --br-9xs: 0.25rem; /* Equivalent to 4px */
+  --br-6xs: 0.4375rem; /* Equivalent to 7px */
+  --br-9980xl: 625rem; /* Equivalent to 9999px */
+  --br-81xl: 6.25rem; /* Equivalent to 100px */
+  --br-7xs: 0.375rem; /* Equivalent to 6px */
+  --br-smi: 0.8125rem; /* Equivalent to 13px */
+  --br-8xs: 0.3125rem; /* Equivalent to 5px */
+}
+

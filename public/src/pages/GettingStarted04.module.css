@@ -1,0 +1,241 @@
+.iconlytwoTonearrowLeft21,
+.iphoneXOrNewer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 44px;
+}
+.iconlytwoTonearrowLeft21 {
+  height: 100%;
+  width: 100%;
+  right: 0;
+  bottom: 0;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.iconly,
+.iconlytwoTonearrowLeft2 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+}
+.iconlytwoTonearrowLeft2 {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.iconly {
+  top: 69px;
+  left: 25px;
+  width: 20px;
+  height: 20px;
+}
+.heresWhatYou,
+.requiredSteps {
+  position: relative;
+  text-transform: capitalize;
+}
+.heresWhatYou {
+  font-size: var(--other-other-regular-size);
+  display: inline-block;
+  width: 342px;
+}
+.requiredStepsParent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-mini);
+}
+.component47Icon {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.personalInformation {
+  position: relative;
+  font-size: var(--body-large-semibold-size);
+  text-transform: capitalize;
+  font-weight: 500;
+  font-family: var(--body-large-semibold);
+  color: var(--color-darkslategray-500);
+  text-align: center;
+}
+.component47Parent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-mini);
+}
+.arrowLeftIcon {
+  position: relative;
+  width: 18px;
+  height: 18px;
+}
+.frameContainer {
+  width: 342px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 var(--padding-12xl) 0 0;
+  box-sizing: border-box;
+  gap: var(--gap-73xl);
+}
+.approved {
+  position: relative;
+  font-size: var(--other-other-regular-size);
+  text-transform: capitalize;
+  font-family: var(--body-large-semibold);
+  color: var(--color-dimgray-100);
+  text-align: left;
+  display: none;
+}
+.frameChild {
+  position: relative;
+  border-top: 1px solid var(--color-gainsboro-500);
+  box-sizing: border-box;
+  width: 289px;
+  height: 1px;
+}
+.approvedParent,
+.frameGroup {
+  display: flex;
+  flex-direction: column;
+}
+.approvedParent {
+  width: 264px;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--padding-2xs) 0;
+  box-sizing: border-box;
+}
+.frameGroup {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  align-items: center;
+  justify-content: flex-start;
+}
+.frameDiv,
+.frameParent10,
+.frameParent12,
+.frameParent14,
+.frameParent2,
+.frameParent4,
+.frameParent6,
+.frameParent8 {
+  width: 342px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 var(--padding-12xl) 0 0;
+  box-sizing: border-box;
+  gap: 103px;
+}
+.frameParent10,
+.frameParent12,
+.frameParent14,
+.frameParent2,
+.frameParent4,
+.frameParent6,
+.frameParent8 {
+  gap: 99px;
+}
+.frameParent10,
+.frameParent12,
+.frameParent14,
+.frameParent4,
+.frameParent6,
+.frameParent8 {
+  gap: 140px;
+}
+.frameParent10,
+.frameParent12,
+.frameParent14,
+.frameParent6,
+.frameParent8 {
+  gap: 134px;
+}
+.frameParent10,
+.frameParent12,
+.frameParent14,
+.frameParent8 {
+  gap: 145px;
+}
+.frameParent10,
+.frameParent12,
+.frameParent14 {
+  gap: 11px;
+}
+.frameParent12,
+.frameParent14 {
+  gap: 117px;
+}
+.frameParent14 {
+  gap: 78px;
+}
+.frameParent,
+.instanceParent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.instanceParent {
+  gap: var(--gap-xl);
+}
+.frameParent {
+  position: absolute;
+  top: 94px;
+  left: calc(50% - 171px);
+  gap: 50px;
+}
+.homeIndicator {
+  position: absolute;
+  bottom: 8px;
+  left: calc(50% - 67px);
+  border-radius: var(--br-81xl);
+  background-color: var(--color-steelblue-100);
+  width: 134px;
+  height: 5px;
+}
+.homeindicator1 {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.homeindicator {
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 195px);
+  width: 390px;
+  height: 34px;
+}
+.gettingStarted04 {
+  position: relative;
+  background-color: var(--background-backgroundprimary);
+  width: 100%;
+  height: 844px;
+  overflow: hidden;
+  text-align: center;
+  font-size: var(--h2-title-size);
+  color: var(--color-darkslategray-500);
+  font-family: var(--body-large-semibold);
+}

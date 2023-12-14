@@ -1,0 +1,7 @@
+.leadsList {
+  font-size: var(--h2-title-size);
+  font-weight: 600;
+  font-family: var(--font-urbanist);
+  color: var(--black-2);
+  text-align: left;
+}
