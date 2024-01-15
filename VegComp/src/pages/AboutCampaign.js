@@ -72,19 +72,7 @@ const AboutCampaign = () => {
           alt=""
           src="/image-vector1.svg"
         />
-        <div className={styles.getExclusiveEarlyAccessToParent}>
-          <div className={styles.getExclusiveEarly}>
-            Get exclusive early access to our upcoming features! Join the beta
-            test now and share your feedback to shape the future of our product.
-          </div>
-          <a className={styles.requestAccess}>Request Access</a>
-          <img
-            className={styles.image7AdobeExpress1}
-            alt=""
-            src="/image-7-adobe-express-11.svg"
-          />
-        </div>
-        <div className={styles.cantWait}>Can’t wait ?</div>
+        
       </div>
       <div className={styles.navbar}>
         <div className={styles.divlogo}>

@@ -203,3 +203,15 @@
   color: var(--text-secondary);
   font-family: var(--body-large-semibold);
 }
+
+
+/* For the initial desktop design */
+.bg {
+  width: 573px;
+  }
+
+
+/* For responsiveness in .bg */
+.bg {
+  width: calc((573px * 100vw) / 1440); /* Responsive width based on the viewport */
+}

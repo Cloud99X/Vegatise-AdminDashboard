@@ -109,7 +109,7 @@
 .divheaderAction {
   position: absolute;
   top: calc(50% - 26px);
-  right: 40.34px;
+  right: 80px;
   background-color: var(--color-gray-300);
   display: flex;
   flex-direction: row;
@@ -484,7 +484,7 @@
 .div3 {
   font-weight: 500;
   color: var(--color-darkslategray-400);
-  width: 96.33px;
+  width: 150.33px;
 }
 .location {
   width: 56.9px;

@@ -1,7 +1,7 @@
 .divheaderWrapperIcon {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 30px;
   width: 972.66px;
   height: 65px;
 }
@@ -146,7 +146,7 @@
 .analytics1 {
   margin: 0;
   top: 114px;
-  left: 60px;
+  left: 30px;
   font-size: var(--font-size-5xl);
   font-weight: 700;
   font-family: inherit;
@@ -769,7 +769,6 @@
 }
 .headerheaderParent {
   background-color: var(--background-backgroundprimary);
-  width: 1192px;
   height: 1794px;
   left: 250px;
 }

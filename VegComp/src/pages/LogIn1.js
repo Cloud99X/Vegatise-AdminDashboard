@@ -13,7 +13,7 @@ const LogIn = () => {
   };
 
   const onButtonsClick = useCallback(() => {
-    navigate("/getting-started-04");
+    navigate("/setting");
   }, [navigate]);
 
   const onSignUpClick = useCallback(() => {
@@ -27,7 +27,19 @@ const LogIn = () => {
           <span className={styles.welcomeStartYourContainer1}>
             <p className={styles.welcome}>Welcome.</p>
             <p className={styles.welcome}>
-              Start your journey now with our management system!
+              Start your    
+            </p>
+            <p className={styles.welcome}>
+            journey now with
+            </p>
+            <p className={styles.welcome}>
+            our
+            </p>
+            <p className={styles.welcome}>
+            management
+            </p>
+            <p className={styles.welcome}>
+            system!
             </p>
           </span>
         </i>
