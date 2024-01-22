@@ -154,6 +154,14 @@ const DriverProfileDetail = () => {
         <div className={styles.dateCreated04032023}>
           Date created 04.03.2023
         </div>
+        <a href="/about-campaign">
+        <button className={styles.rectangleContainermap} onClick={onComponent11Click}>
+        <div className={styles.mapgroupItem} />
+        <div className={styles.map}>Map</div>
+        </button>
+        </a>
+        
+
         <button className={styles.rectangleGroup}>
           <div className={styles.groupChild} />
           <div className={styles.editParent}>

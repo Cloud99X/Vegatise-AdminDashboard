@@ -105,7 +105,7 @@
 }
 .group {
   top: 288px;
-  width: 91px;
+  width: 150px;
   height: 50px;
   color: var(--color-darkslategray-400);
 }
@@ -120,7 +120,7 @@
   position: absolute;
   top: 360px;
   left: 0;
-  width: 100px;
+  width: 150px;
   height: 50px;
 }
 .groupParent {
@@ -157,7 +157,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 257px;
+  width: 100%;
   height: 60px;
 }
 .mainRoadAthidiyaDehiwalaGroup {
@@ -171,7 +171,7 @@
 }
 .kmParent {
   top: 144px;
-  width: 236px;
+  width: 250px;
   height: 50px;
 }
 .colombo {
@@ -186,7 +186,7 @@
   position: absolute;
   top: 216px;
   left: 0;
-  width: 274px;
+  width: 300px;
   height: 50px;
 }
 .groupContainer,
@@ -196,7 +196,7 @@
 }
 .groupContainer {
   top: 56px;
-  width: 274px;
+  width: 290px;
   height: 338px;
   color: var(--color-darkslategray-400);
 }
@@ -229,7 +229,7 @@
   position: absolute;
   top: 288px;
   left: 0;
-  width: 110px;
+  width: 150px;
   height: 50px;
   color: var(--color-slategray);
 }
@@ -240,19 +240,19 @@
   position: absolute;
   top: 216px;
   left: 0;
-  width: 100px;
+  width: 150px;
   height: 50px;
 }
 .container,
 .lkParent,
 .n455346Parent {
   top: 0;
-  width: 137px;
+  width: 150px;
 }
 .lkParent,
 .n455346Parent {
   top: 72px;
-  width: 122px;
+  width: 150px;
 }
 .lkParent {
   top: 144px;
@@ -294,6 +294,32 @@
   line-height: 21px;
   font-weight: 500;
   color: var(--color-slategray);
+}
+.rectangleContainermap {
+  position: absolute;
+  top: 120px;
+  left: 900px;
+}
+.mapgroupItem {
+  top: 0;
+  left: 0;
+  border-radius: var(--br-6xs);
+  background-color: #ea5d58;
+  border: 2px solid var(--color-lightgray-100);
+  box-sizing: border-box;
+  width: 65px;
+}
+.map {
+  position: absolute;
+  top: 11px;
+  left: 14px;
+  font-size: var(--font-size-mini);
+  line-height: 21px;
+  text-transform: capitalize;
+  font-weight: 600;
+  font-family: var(--font-urbanist);
+  color: var(--background-backgroundprimary);
+  text-align: center;
 }
 .edit,
 .groupChild {
@@ -338,6 +364,7 @@
   height: 21px;
 }
 .groupItem,
+.mapgroupItem,
 .rectangleGroup {
   position: absolute;
   height: 44px;
@@ -887,7 +914,7 @@
 .spanbadgeDot {
   position: absolute;
   top: 6.5px;
-  left: 308.58px;
+  left: 318.58px;
   border-radius: var(--br-9980xl);
   background-color: #10b981;
   width: 8px;
@@ -898,7 +925,7 @@
   top: 2px;
   left: 407.14px;
   line-height: 21px;
-  width: 63.78px;
+  width: 100%;
 }
 .approved4,
 .pm,
@@ -910,7 +937,7 @@
 .approved4 {
   position: absolute;
   top: 2px;
-  left: 320.58px;
+  left: 330.58px;
   line-height: 21px;
   font-weight: 600;
   font-family: var(--font-urbanist);
@@ -918,8 +945,8 @@
   width: 74.55px;
 }
 .statusTo {
-  left: 246.43px;
-  width: 58.16px;
+  left: 256.43px;
+  width: 100%;
 }
 .carolynPerkins,
 .hasChange,
@@ -930,7 +957,7 @@
   line-height: 21px;
 }
 .passport {
-  left: 189px;
+  left: 195px;
   font-weight: 600;
   font-family: var(--font-urbanist);
   color: var(--color-gray-400);
@@ -940,7 +967,7 @@
   left: 107px;
   display: flex;
   align-items: center;
-  width: 76.29px;
+  width: 100%;
   height: 16.67px;
 }
 .carolynPerkins {
@@ -1008,7 +1035,7 @@
 }
 .pm1 {
   left: 242.61px;
-  width: 63.9px;
+  width: 100%;
 }
 .commentOnYour,
 .pm1,
@@ -1021,15 +1048,15 @@
   height: 16.67px;
 }
 .post {
-  left: 200.2px;
+  left: 205.2px;
   font-weight: 600;
   font-family: var(--font-urbanist);
   color: var(--color-gray-400);
-  width: 30.42px;
+  width: 100%;
 }
 .commentOnYour {
   left: 80.61px;
-  width: 115.58px;
+  width: 100%;
 }
 .p1,
 .ronVargas {
@@ -1044,13 +1071,13 @@
   color: var(--color-gray-400);
   display: flex;
   align-items: center;
-  width: 76.61px;
+  width: 100%;
   height: 16.67px;
 }
 .p1 {
   top: 0;
   background-color: var(--color-gray-300);
-  width: 674.53px;
+  width: 100%;
   height: 21px;
 }
 .fineJavaMightContainer1 {
@@ -1064,7 +1091,7 @@
   line-height: 21px;
   display: flex;
   align-items: center;
-  width: 627.96px;
+  width: 100%;
   height: 37.67px;
 }
 .divcard,
@@ -1211,12 +1238,12 @@
   font-family: var(--font-inter);
   display: flex;
   align-items: center;
-  width: 60.38px;
+  width: 100%;
   height: 16.67px;
 }
 .addedTags {
   left: 106.82px;
-  width: 74.9px;
+  width: 100%;
 }
 .divflex,
 .divtimelineItemWrapper2 {
@@ -1256,11 +1283,11 @@
 .pd1092,
 .spanfontSemibold2 {
   position: absolute;
-  width: 59.52px;
+  width: 65.52px;
 }
 .pd1092 {
   top: 2px;
-  left: 0;
+  left: 05px;
   line-height: 21px;
   font-weight: 600;
   display: flex;
@@ -1285,12 +1312,12 @@
   line-height: 21px;
   display: flex;
   align-items: center;
-  width: 64.02px;
+  width: 100%;
   height: 16.67px;
 }
 .toTicket {
   left: 221.95px;
-  width: 54.07px;
+  width: 100%;
 }
 .added,
 .documentcsv,
@@ -1334,15 +1361,15 @@
 .post1 {
   position: absolute;
   top: 2px;
-  left: 330.93px;
+  left: 335.93px;
   line-height: 21px;
   display: flex;
   align-items: center;
-  width: 63.86px;
+  width: 100%;
   height: 16.67px;
 }
 .post1 {
-  left: 288.51px;
+  left: 295.51px;
   font-weight: 600;
   font-family: var(--font-urbanist);
   color: var(--color-gray-400);
@@ -1351,7 +1378,7 @@
 .mentionedYouIn {
   top: 2px;
   left: 93.08px;
-  width: 191.43px;
+  width: 100%;
 }
 .carolyn,
 .hadNoWay,
@@ -1376,14 +1403,14 @@
 .hadNoWay,
 .oneOfThe {
   top: 22px;
-  left: 87.76px;
-  width: 554.29px;
+  left: 95.76px;
+  width: 100%;
 }
 .carolyn,
 .hadNoWay {
   top: 43px;
   left: 20px;
-  width: 443.19px;
+  width: 100%;
 }
 .carolyn {
   top: 22px;
@@ -1466,7 +1493,7 @@
   line-height: 21px;
   display: flex;
   align-items: center;
-  width: 62.29px;
+  width: 100%;
   height: 16.67px;
 }
 .to {
@@ -1484,7 +1511,7 @@
   height: 16.67px;
 }
 .pd10921 {
-  left: 192.91px;
+  left: 197.91px;
   font-weight: 600;
   width: 59.52px;
 }
@@ -1492,7 +1519,7 @@
   left: 88.77px;
   font-family: var(--font-inter);
   color: var(--color-slategray);
-  width: 100.14px;
+  width: 100%;
 }
 .divflex2 {
   position: absolute;
