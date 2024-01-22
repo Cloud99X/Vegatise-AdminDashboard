@@ -2,17 +2,41 @@ import { useState, useCallback } from "react";
 import { TextField, InputAdornment, Icon, IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import styles from "./Signup.module.css";
+import { createUserWithEmailAndPassword, getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import firebaseApp from './firebase';  // Import the initialized Firebase app
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const auth = getAuth(firebaseApp);
+  const googleProvider = new GoogleAuthProvider();
+
   const handleShowPasswordClick = () => {
     setShowPassword(!showPassword);
   };
 
-  const onButtonsClick = useCallback(() => {
-    navigate("/setting");
-  }, [navigate]);
+
+
+  const onButtonsClick = useCallback(async () => {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      navigate("/getting-started-04");
+    } catch (error) {
+      console.error('Error signing up:', error.message);
+    }
+  }, [auth, email, password, navigate]);
+
+  const onGoogleSignInClick = useCallback(async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      navigate("/getting-started-04");
+    } catch (error) {
+      console.error('Error signing in with Google:', error.message);
+    }
+  }, [auth, googleProvider, navigate]);
 
   const onLogInClick = useCallback(() => {
     navigate("/log-in");
@@ -25,19 +49,19 @@ const Signup = () => {
           <span className={styles.welcomeStartYourContainer1}>
             <p className={styles.welcome}>Welcome.</p>
             <p className={styles.welcome}>
-              Start your    
+              Start your
             </p>
             <p className={styles.welcome}>
-            journey now with
+              journey now with
             </p>
             <p className={styles.welcome}>
-            our
+              our
             </p>
             <p className={styles.welcome}>
-            management
+              management
             </p>
             <p className={styles.welcome}>
-            system!
+              system!
             </p>
           </span>
         </i>
@@ -59,6 +83,8 @@ const Signup = () => {
                   color="primary"
                   placeholder="balamia@gmail.com"
                   variant="outlined"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className={styles.frameGroup}>
@@ -87,6 +113,8 @@ const Signup = () => {
                       </InputAdornment>
                     ),
                   }}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
@@ -94,7 +122,7 @@ const Signup = () => {
               <button className={styles.buttons} onClick={onButtonsClick}>
                 <div className={styles.loginNow}>Create account</div>
               </button>
-              <button className={styles.buttons1}>
+              <button className={styles.buttons1} onClick={onGoogleSignInClick}>
                 <img
                   className={styles.icongoogleOriginal}
                   alt=""
