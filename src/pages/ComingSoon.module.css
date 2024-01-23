@@ -321,14 +321,7 @@
 .estherHoward {
   top: 560px;
 }
-.nameParent,
-.vectorIcon7 {
-  position: absolute;
-  top: 277px;
-  left: 131px;
-  width: 189px;
-  height: 579px;
-}
+
 .vectorIcon7 {
   height: 2.78%;
   width: 2.1%;
@@ -415,13 +408,7 @@
   font-weight: 500;
   color: var(--background-backgroundprimary);
 }
-.inProgressParent {
-  position: absolute;
-  top: 277px;
-  left: 710px;
-  width: 111px;
-  height: 579px;
-}
+
 .div11 {
   position: absolute;
   top: 561px;
@@ -678,3 +665,23 @@
   color: var(--black-2);
   font-family: var(--font-urbanist);
 }
+
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 250px;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
