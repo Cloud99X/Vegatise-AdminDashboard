@@ -48,25 +48,26 @@ const ComingSoon = () => {
   useEffect(() => {
     const fetchPersonalInfo = async () => {
       try {
-        const db = getFirestore(firebaseApp)
+        const db = getFirestore(firebaseApp);
         const personalInfoCollection = collection(db, 'PersonalInfomation');
         const querySnapshot = await getDocs(personalInfoCollection);
-        // Assuming there is only one document, use .docs[0] to get it
-        const doc = querySnapshot.docs[0];
-        if (doc.exists()) {
-          // Extract data from the document
-          const data = doc.data();
-          setPersonalInfo(data);
-        } else {
-          console.log('No such document!');
-        }
+
+        const data = [];
+        querySnapshot.forEach((doc) => {
+          // Iterate over all documents and extract data
+          const docData = doc.data();
+          data.push(docData);
+        });
+
+        setPersonalInfo(data);
       } catch (error) {
         console.error('Error fetching personal information:', error);
       }
     };
 
     fetchPersonalInfo();
-  }, []);
+  }, {}); // Provide an empty object as a default value
+
 
   return (
     <div className={styles.comingSoon}>
@@ -203,20 +204,27 @@ const ComingSoon = () => {
           </tr>
          </thead>
          <tbody>
-            {personalInfo && (
-          <tr>
-           <td>
-            <div className={styles.nameParent}>
-                  <div className={styles.jacobJones} >{personalInfo.name}</div>
-            </div>
-           </td>
-              <td className={styles.jacksongrahamexamplecomParent}> <div className={styles.jacksongrahamexamplecom}>{personalInfo.email}</div>
-           </td>
-           <td className={styles.parent}><div className={styles.inProgress}>(225) 555-0118</div></td>
-           <td className={styles.inProgressParent}><div className={styles.inProgress}>In Progress</div></td>
-           <td className={styles.nov5202043543Parent}><div className={styles.inProgress}>Nov 5, 2020, 4:35:43</div></td>
-          </tr> 
-            )}
+            {Array.isArray(personalInfo) && personalInfo.map((info, index) => (
+              <tr key={index}>
+                <td>
+                  <div className={styles.nameParent}>
+                    <div className={styles.jacobJones}>{info.name}</div>
+                  </div>
+                </td>
+                <td className={styles.jacksongrahamexamplecomParent}>
+                  <div className={styles.jacksongrahamexamplecom}>{info.email}</div>
+                </td>
+                <td className={styles.parent}>
+                  <div className={styles.inProgress}>{info.phoneNumber}</div>
+                </td>
+                <td className={styles.inProgressParent}>
+                  <div className={styles.inProgress}>{info.status}</div>
+                </td>
+                <td className={styles.nov5202043543Parent}>
+                  <div className={styles.inProgress}>{info.dateModified}</div>
+                </td>
+              </tr>
+            ))}
           
          </tbody>
         </table>  
