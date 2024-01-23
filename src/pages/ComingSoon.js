@@ -9,7 +9,7 @@ import styles from "./ComingSoon.module.css";
 import { useState, useEffect } from "react";
 
 import { collection, getDocs } from 'firebase/firestore';
-import firebaseApp from './firebase'; // Adjust the path based on your file structure
+import firebaseApp from './firebase';
 import { getFirestore } from "firebase/firestore";
 
 
@@ -54,7 +54,7 @@ const ComingSoon = () => {
 
         const data = [];
         querySnapshot.forEach((doc) => {
-          // Iterate over all documents and extract data
+          
           const docData = doc.data();
           data.push(docData);
         });
@@ -66,7 +66,7 @@ const ComingSoon = () => {
     };
 
     fetchPersonalInfo();
-  }, {}); // Provide an empty object as a default value
+  }, {}); 
 
 
   return (
