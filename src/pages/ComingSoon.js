@@ -124,36 +124,7 @@ const ComingSoon = () => {
             <DownOutlined />
           </Button>
         </Dropdown>
-        
-        <div className={styles.rectangleParent}>
-          <div className={styles.frameInner}><a  onClick={() => navigate("/driver-profile-detail")}><div className={styles.rectangleDiv} /></a></div> 
-          <img className={styles.vectorIcon} alt="" src="/vector53@2x.png" />
-        </div>
-        <div className={styles.rectangleGroup}>
-          <div className={styles.frameInner}><a  onClick={() => navigate("/driver-profile-detail")}><div className={styles.rectangleDiv} /></a></div> 
-          <img className={styles.vectorIcon} alt="" src="/vector54@2x.png" />
-        </div>
-        <div className={styles.rectangleContainer}>
-          <div className={styles.frameInner}><a  onClick={() => navigate("/driver-profile-detail")}><div className={styles.rectangleDiv} /></a></div> 
-          <img className={styles.vectorIcon} alt="" src="/vector55@2x.png" />
-        </div>
-        <div className={styles.frameDiv}>
-          <div className={styles.frameInner}><a  onClick={() => navigate("/driver-profile-detail")}><div className={styles.rectangleDiv} /></a></div> 
-          <img className={styles.vectorIcon} alt="" src="/vector56@2x.png" />
-        </div>
-        <div className={styles.rectangleParent1}>
-          <div className={styles.frameInner}><a  onClick={() => navigate("/driver-profile-detail")}><div className={styles.rectangleDiv} /></a></div> 
-          <img className={styles.vectorIcon} alt="" src="/vector57@2x.png" />
-        </div>
-        <div className={styles.rectangleParent2}>
-          <div className={styles.frameInner}><a  onClick={() => navigate("/driver-profile-detail")}><div className={styles.rectangleDiv} /></a></div> 
-          <img className={styles.vectorIcon} alt="" src="/vector53@2x.png" />
-        </div>
-        <div className={styles.rectangleParent3}>
-          <div className={styles.frameInner}><a  onClick={() => navigate("/driver-profile-detail")}><div className={styles.rectangleDiv} /></a></div> 
-          <img className={styles.vectorIcon} alt="" src="/vector58@2x.png" />
-        </div>
-       
+              
         <table >
          
 
@@ -169,19 +140,14 @@ const ComingSoon = () => {
           </tr>
          </thead>
          <tbody>
+          
           <tr>
            <td>
-            <div className={styles.nameParent}>
-              <div className={styles.jacobJones} >Jacob Jones</div>
+            <div className={styles.rectangleParent}>
+             <div className={styles.frameInner}><a  onClick={() => navigate("/driver-profile-detail")}><div className={styles.rectangleDiv} /></a></div> 
+             <img className={styles.vectorIcon} alt="" src="/vector53@2x.png" />
             </div>
            </td>
-           <td className={styles.jacksongrahamexamplecomParent}> <div className={styles.jacksongrahamexamplecom}>jackson.graham@example.com</div>
-           </td>
-           <td className={styles.parent}><div className={styles.inProgress}>(225) 555-0118</div></td>
-           <td className={styles.inProgressParent}><div className={styles.inProgress}>In Progress</div></td>
-           <td className={styles.nov5202043543Parent}><div className={styles.inProgress}>Nov 5, 2020, 4:35:43</div></td>
-          </tr> 
-          <tr>
            <td>
             <div className={styles.nameParent}>
               <div className={styles.eleanorPena}>Eleanor Pena</div>
@@ -195,6 +161,12 @@ const ComingSoon = () => {
           </tr>
           <tr>
            <td>
+            <div className={styles.rectangleParent}>
+             <div className={styles.frameInner}><a  onClick={() => navigate("/driver-profile-detail")}><div className={styles.rectangleDiv} /></a></div> 
+             <img className={styles.vectorIcon} alt="" src="/vector53@2x.png" />
+            </div>
+           </td>             
+           <td>
             <div className={styles.nameParent}>
               <div className={styles.brooklynSimmons}>Brooklyn Simmons</div>
             </div>
@@ -205,6 +177,12 @@ const ComingSoon = () => {
            <td className={styles.nov5202043543Parent}><div className={styles.saracruzexamplecom}>Jan 21, 2021, 13:34:30</div></td>
           </tr>
           <tr>
+           <td>
+            <div className={styles.rectangleGroup}>
+             <div className={styles.frameInner}><a  onClick={() => navigate("/driver-profile-detail")}><div className={styles.rectangleDiv} /></a></div> 
+             <img className={styles.vectorIcon} alt="" src="/vector54@2x.png" />
+            </div>
+           </td>
            <td>
             <div className={styles.nameParent}>
               <div className={styles.annetteBlack}>Annette Black</div>
@@ -218,6 +196,12 @@ const ComingSoon = () => {
           </tr>
           <tr>
           <td>
+           <div className={styles.rectangleContainer}>
+            <div className={styles.frameInner}><a  onClick={() => navigate("/driver-profile-detail")}><div className={styles.rectangleDiv} /></a></div> 
+             <img className={styles.vectorIcon} alt="" src="/vector55@2x.png" />
+           </div>
+          </td>
+          <td>
             <div className={styles.nameParent}>
               <div className={styles.darleneRobertson}>Darlene Robertson</div>
             </div>
@@ -229,6 +213,12 @@ const ComingSoon = () => {
            <td className={styles.nov5202043543Parent}><div className={styles.doloreschambersexamplecom}>Nov 5, 2020, 4:35:43</div></td>
           </tr>
           <tr>
+          <td>
+           <div className={styles.frameDiv}>
+            <div className={styles.frameInner}><a  onClick={() => navigate("/driver-profile-detail")}><div className={styles.rectangleDiv} /></a></div> 
+            <img className={styles.vectorIcon} alt="" src="/vector56@2x.png" />
+           </div>
+          </td>
           <td>
             <div className={styles.nameParent}>
               <div className={styles.robertFox}>Robert Fox</div>
@@ -242,6 +232,12 @@ const ComingSoon = () => {
           </tr>
           <tr>
           <td>
+           <div className={styles.rectangleParent1}>
+            <div className={styles.frameInner}><a  onClick={() => navigate("/driver-profile-detail")}><div className={styles.rectangleDiv} /></a></div> 
+            <img className={styles.vectorIcon} alt="" src="/vector57@2x.png" />
+           </div>
+          </td>
+          <td>
             <div className={styles.nameParent}>
               <div className={styles.theresaWebb}>Theresa Webb</div>
             </div>
@@ -254,6 +250,12 @@ const ComingSoon = () => {
           </tr>
           <tr>
           <td>
+           <div className={styles.rectangleParent2}>
+            <div className={styles.frameInner}><a  onClick={() => navigate("/driver-profile-detail")}><div className={styles.rectangleDiv} /></a></div> 
+            <img className={styles.vectorIcon} alt="" src="/vector53@2x.png" />
+           </div>
+          </td>
+          <td>
             <div className={styles.nameParent}>
               <div className={styles.floydMiles}>Floyd Miles</div>
             </div>
@@ -265,6 +267,12 @@ const ComingSoon = () => {
            <td className={styles.nov5202043543Parent}><div className={styles.deannacurtisexamplecom}>Jan 21, 2021, 13:34:30</div></td>
           </tr>
           <tr>
+          <td>
+           <div className={styles.rectangleParent3}>
+            <div className={styles.frameInner}><a  onClick={() => navigate("/driver-profile-detail")}><div className={styles.rectangleDiv} /></a></div> 
+            <img className={styles.vectorIcon} alt="" src="/vector58@2x.png" />
+        </div>
+          </td>
           <td>
             <div className={styles.nameParent}>
               <div className={styles.courtneyHenry}>Courtney Henry</div>
