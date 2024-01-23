@@ -6,9 +6,16 @@ import { Dropdown, Menu, Button } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import styles from "./ComingSoon.module.css";
+import { useState, useEffect } from "react";
+
+import { collection, getDocs } from 'firebase/firestore';
+import firebaseApp from './firebase'; // Adjust the path based on your file structure
+import { getFirestore } from "firebase/firestore";
+
 
 const ComingSoon = () => {
   const navigate = useNavigate();
+  const [personalInfo, setPersonalInfo] = useState(null);
 
   const onRectangleButtonClick = useCallback(() => {
     navigate("/driver-profile-detail");
@@ -37,6 +44,29 @@ const ComingSoon = () => {
   const onFrameButton1Click = useCallback(() => {
     navigate("/log-in");
   }, [navigate]);
+
+  useEffect(() => {
+    const fetchPersonalInfo = async () => {
+      try {
+        const db = getFirestore(firebaseApp)
+        const personalInfoCollection = collection(db, 'PersonalInfomation');
+        const querySnapshot = await getDocs(personalInfoCollection);
+        // Assuming there is only one document, use .docs[0] to get it
+        const doc = querySnapshot.docs[0];
+        if (doc.exists()) {
+          // Extract data from the document
+          const data = doc.data();
+          setPersonalInfo(data);
+        } else {
+          console.log('No such document!');
+        }
+      } catch (error) {
+        console.error('Error fetching personal information:', error);
+      }
+    };
+
+    fetchPersonalInfo();
+  }, []);
 
   return (
     <div className={styles.comingSoon}>
@@ -173,125 +203,21 @@ const ComingSoon = () => {
           </tr>
          </thead>
          <tbody>
+            {personalInfo && (
           <tr>
            <td>
             <div className={styles.nameParent}>
-              <div className={styles.jacobJones} >Jacob Jones</div>
+                  <div className={styles.jacobJones} >{personalInfo.name}</div>
             </div>
            </td>
-           <td className={styles.jacksongrahamexamplecomParent}> <div className={styles.jacksongrahamexamplecom}>jackson.graham@example.com</div>
+              <td className={styles.jacksongrahamexamplecomParent}> <div className={styles.jacksongrahamexamplecom}>{personalInfo.email}</div>
            </td>
            <td className={styles.parent}><div className={styles.inProgress}>(225) 555-0118</div></td>
            <td className={styles.inProgressParent}><div className={styles.inProgress}>In Progress</div></td>
            <td className={styles.nov5202043543Parent}><div className={styles.inProgress}>Nov 5, 2020, 4:35:43</div></td>
           </tr> 
-          <tr>
-           <td>
-            <div className={styles.nameParent}>
-              <div className={styles.eleanorPena}>Eleanor Pena</div>
-            </div>
-           </td>
-           <td className={styles.jacksongrahamexamplecomParent}> <div className={styles.georgiayoungexamplecom}>georgia.young@example.com</div>
-           </td>
-           <td className={styles.parent}><div className={styles.georgiayoungexamplecom}>(308) 555-0121</div></td>
-           <td className={styles.inProgressParent}><div className={styles.georgiayoungexamplecom}>New</div></td>
-           <td className={styles.nov5202043543Parent}><div className={styles.georgiayoungexamplecom}>Jan 21, 2021, 13:34:30</div></td>
-          </tr>
-          <tr>
-           <td>
-            <div className={styles.nameParent}>
-              <div className={styles.brooklynSimmons}>Brooklyn Simmons</div>
-            </div>
-           </td>            
-           <td className={styles.jacksongrahamexamplecomParent}><div className={styles.saracruzexamplecom}>sara.cruz@example.com</div></td>
-           <td className={styles.parent}><div className={styles.saracruzexamplecom}>(207) 555-0119</div></td>
-           <td className={styles.inProgressParent}><div className={styles.saracruzexamplecom}>New</div></td>
-           <td className={styles.nov5202043543Parent}><div className={styles.saracruzexamplecom}>Jan 21, 2021, 13:34:30</div></td>
-          </tr>
-          <tr>
-           <td>
-            <div className={styles.nameParent}>
-              <div className={styles.annetteBlack}>Annette Black</div>
-            </div>
-           </td>              
-           <td className={styles.jacksongrahamexamplecomParent}><div className={styles.curtisweaverexamplecom}>curtis.weaver@example.com</div>
-           </td>
-           <td className={styles.parent}><div className={styles.curtisweaverexamplecom}>(405) 555-0128</div></td>
-           <td className={styles.inProgressParent}><div className={styles.curtisweaverexamplecom}>New</div></td>
-           <td className={styles.nov5202043543Parent}><div className={styles.curtisweaverexamplecom}>Nov 5, 2020, 4:35:43</div></td>
-          </tr>
-          <tr>
-          <td>
-            <div className={styles.nameParent}>
-              <div className={styles.darleneRobertson}>Darlene Robertson</div>
-            </div>
-           </td>              
-           <td className={styles.jacksongrahamexamplecomParent}> <div className={styles.doloreschambersexamplecom}>dolores.chambers@example.com</div>
-           </td>
-           <td className={styles.parent}><div className={styles.doloreschambersexamplecom}>(406) 555-0120</div></td>
-           <td className={styles.inProgressParent}><div className={styles.doloreschambersexamplecom}>In Progress</div></td>
-           <td className={styles.nov5202043543Parent}><div className={styles.doloreschambersexamplecom}>Nov 5, 2020, 4:35:43</div></td>
-          </tr>
-          <tr>
-          <td>
-            <div className={styles.nameParent}>
-              <div className={styles.robertFox}>Robert Fox</div>
-            </div>
-           </td>              
-           <td className={styles.jacksongrahamexamplecomParent}> <div className={styles.debbiebakerexamplecom}>debbie.baker@example.com</div>
-           </td>
-           <td className={styles.parent}> <div className={styles.debbiebakerexamplecom}>(629) 555-0129</div></td>
-           <td className={styles.inProgressParent}><div className={styles.debbiebakerexamplecom}>New</div></td>
-           <td className={styles.nov5202043543Parent}><div className={styles.debbiebakerexamplecom}>Nov 5, 2020, 4:35:43</div></td>
-          </tr>
-          <tr>
-          <td>
-            <div className={styles.nameParent}>
-              <div className={styles.theresaWebb}>Theresa Webb</div>
-            </div>
-           </td>              
-           <td className={styles.jacksongrahamexamplecomParent}><div className={styles.jessicahansonexamplecom}>jessica.hanson@example.com</div>
-           </td>
-           <td className={styles.parent}><div className={styles.jessicahansonexamplecom}>(480) 555-0103</div></td>
-           <td className={styles.inProgressParent}><div className={styles.jessicahansonexamplecom}>In Progress</div></td>
-           <td className={styles.nov5202043543Parent}><div className={styles.jessicahansonexamplecom}>Nov 5, 2020, 4:35:43</div></td>
-          </tr>
-          <tr>
-          <td>
-            <div className={styles.nameParent}>
-              <div className={styles.floydMiles}>Floyd Miles</div>
-            </div>
-           </td>              
-           <td className={styles.jacksongrahamexamplecomParent}><div className={styles.deannacurtisexamplecom}>deanna.curtis@example.com</div>
-           </td>
-           <td className={styles.parent}><div className={styles.deannacurtisexamplecom}>(808) 555-0111</div></td>
-           <td className={styles.inProgressParent}><div className={styles.deannacurtisexamplecom}>New</div></td>
-           <td className={styles.nov5202043543Parent}><div className={styles.deannacurtisexamplecom}>Jan 21, 2021, 13:34:30</div></td>
-          </tr>
-          <tr>
-          <td>
-            <div className={styles.nameParent}>
-              <div className={styles.courtneyHenry}>Courtney Henry</div>
-            </div>
-           </td>              
-           <td className={styles.jacksongrahamexamplecomParent}><div className={styles.michaelmitcexamplecom}>michael.mitc@example.com</div>
-           </td>
-           <td className={styles.parent}><div className={styles.michaelmitcexamplecom}>(270) 555-0117</div></td>
-           <td className={styles.inProgressParent}><div className={styles.michaelmitcexamplecom}>Undergraduate</div></td>
-           <td className={styles.nov5202043543Parent}><div className={styles.michaelmitcexamplecom}>{`Jan 21, 2021, 13:34:30 `}</div> </td>
-          </tr>
-          <tr>
-          <td>
-            <div className={styles.nameParent}>
-              <div className={styles.estherHoward}> <a  onClick={() => navigate("/driver-profile-detail")}>Esther Howard</a></div>
-            </div>
-           </td>              
-           <td className={styles.jacksongrahamexamplecomParent}><div className={styles.tanyahillexamplecom}>tanya.hill@example.com</div>
-           </td>
-           <td className={styles.parent}> <div className={styles.tanyahillexamplecom}>(907) 555-0101</div></td>
-           <td className={styles.inProgressParent}><div className={styles.tanyahillexamplecom}>Diploma</div></td>
-           <td className={styles.nov5202043543Parent}><div className={styles.tanyahillexamplecom}>16/08/2013</div></td>
-          </tr>
+            )}
+          
          </tbody>
         </table>  
         

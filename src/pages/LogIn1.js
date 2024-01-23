@@ -1,20 +1,31 @@
-import { useState, useCallback } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState, useCallback } from "react";
 import { Form } from "react-bootstrap";
 import { TextField, InputAdornment, Icon, IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import firebaseApp from './firebase'; // Import the initialized Firebase app
 import styles from "./LogIn1.module.css";
 
 const LogIn = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const auth = getAuth(firebaseApp); // Pass the initialized Firebase app to getAuth
+
   const handleShowPasswordClick = () => {
     setShowPassword(!showPassword);
   };
 
-  const onButtonsClick = useCallback(() => {
-    navigate("/setting");
-  }, [navigate]);
+  const onButtonsClick = useCallback(async () => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate("/coming-soon");
+    } catch (error) {
+      console.error('Error signing in:', error.message);
+      window.alert('Wrong email or password. Please try again.');
+    }
+  }, [auth, email, password, navigate]);
 
   const onSignUpClick = useCallback(() => {
     navigate("/");
@@ -27,19 +38,7 @@ const LogIn = () => {
           <span className={styles.welcomeStartYourContainer1}>
             <p className={styles.welcome}>Welcome.</p>
             <p className={styles.welcome}>
-              Start your    
-            </p>
-            <p className={styles.welcome}>
-            journey now with
-            </p>
-            <p className={styles.welcome}>
-            our
-            </p>
-            <p className={styles.welcome}>
-            management
-            </p>
-            <p className={styles.welcome}>
-            system!
+              Start your journey now with our management system!
             </p>
           </span>
         </i>
@@ -60,7 +59,11 @@ const LogIn = () => {
           <div className={styles.frameParent}>
             <Form className={styles.emailParent}>
               <Form.Label>Email</Form.Label>
-              <Form.Control type="text" placeholder="balamia@gmail.com" />
+              <Form.Control
+                type="text"
+                placeholder="balamia@gmail.com"
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </Form>
             <div className={styles.frameGroup}>
               <div className={styles.passwordParent}>
@@ -88,6 +91,7 @@ const LogIn = () => {
                       </InputAdornment>
                     ),
                   }}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
