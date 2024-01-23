@@ -49,7 +49,7 @@ const ComingSoon = () => {
         const personalInfoCollection = collection(db, 'PersonalInfomation');
         const querySnapshot = await getDocs(personalInfoCollection);
 
-        // Convert the QuerySnapshot to an array of documents
+
         const personalInfoArray = querySnapshot.docs.map(doc => doc.data());
 
         setPersonalInfo(personalInfoArray);
