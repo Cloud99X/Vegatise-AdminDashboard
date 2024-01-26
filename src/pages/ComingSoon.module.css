@@ -389,14 +389,7 @@
 .tanyahillexamplecom {
   top: 560px;
 }
-.jacksongrahamexamplecomParent,
-.parent {
-  position: absolute;
-  top: 277px;
-  left: 330px;
-  width: 237px;
-  height: 579px;
-}
+
 .parent {
   left: 580px;
   width: 115px;
@@ -415,21 +408,9 @@
   left: 54px;
   font-weight: 500;
 }
-.groupIcon,
-.nov5202043543Parent {
-  position: absolute;
-  top: 276px;
-  left: 850px;
-  width: 170px;
-  height: 580px;
-}
-.groupIcon {
-  top: 326px;
-  left: 1098px;
-  width: 5px;
-  height: 518px;
-}
-.asset84xIcon,
+
+
+
 .headerheaderParent {
   position: absolute;
   top: 0;

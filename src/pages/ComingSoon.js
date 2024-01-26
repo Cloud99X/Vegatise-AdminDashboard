@@ -42,6 +42,10 @@ const ComingSoon = () => {
     navigate("/log-in");
   }, [navigate]);
 
+  const onTableRowClick = useCallback(() => {
+    navigate(`/driver-profile-detail`);
+  }, [navigate]);
+
   useEffect(() => {
     const fetchPersonalInfo = async () => {
       try {
@@ -150,30 +154,29 @@ const ComingSoon = () => {
         </Dropdown>
               
         <table>
-        <thead>
-          <tr className={styles.name}>
-           <th></th>
-           <th className={styles.nameParent}>Name</th>
-           <th className={styles.jacksongrahamexamplecomParent}>Email</th>
-           <th className={styles.parent}>Phone number</th>
-           <th className={styles.inProgressParent}>Status</th>
-           <th className={styles.nov5202043543Parent}>Date modified</th>
-          </tr>
-         </thead>
+          <thead>            
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone number</th>
+              <th>Status</th>
+              <th>Date Modified</th>
+            </tr>
+          </thead>
           <tbody>
 
             {personalInfo.map((driver, index) => (
-              <tr key={index}>
+              <tr key={index} onClick={() => onTableRowClick(driver.id)}>
                 <td>{driver.name}</td>
                 <td>{driver.email}</td>
-                <td>{driver.phoneNumber}</td>
+                <td>{driver.mobileNumber}</td>
                 <td>{driver.status}</td>
-                <td>{driver.dateModified}</td>
+                <td>{driver.timestamp ? driver.timestamp.toDate().toString() : ""}</td>
               </tr>
             ))}
           </tbody>
         </table>
-        <img className={styles.groupIcon} alt="" src="/group-1898.svg" />
+
       </div>
       <div className={styles.navbar}>
         <div className={styles.divlogo}>
