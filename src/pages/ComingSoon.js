@@ -7,7 +7,7 @@ import { DownOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import styles from "./ComingSoon.module.css";
 import { collection, documentId, getDocs } from 'firebase/firestore';
-import firebaseApp from './firebase'; // Adjust the path based on your file structure
+import firebaseApp from './firebase';
 import { getFirestore } from "firebase/firestore"
 
 
@@ -58,7 +58,7 @@ const ComingSoon = () => {
         const querySnapshot = await getDocs(personalInfoCollection);
 
         const personalInfoArray = querySnapshot.docs.map(doc => ({
-          documentId: doc.id, // Include the documentId along with the data
+          documentId: doc.id,
           ...doc.data(),
         }));
 

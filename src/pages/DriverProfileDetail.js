@@ -7,7 +7,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import { collection, getDoc, doc, onSnapshot, docSnapshot, } from 'firebase/firestore';
 import { getFirestore } from 'firebase/firestore';
-import firebaseApp from './firebase'; // Adjust the path based on your file structure
+import firebaseApp from './firebase'; 
 
 
 const DriverProfileDetail = () => {
@@ -48,12 +48,12 @@ const DriverProfileDetail = () => {
       try {
         const db = getFirestore(firebaseApp);
 
-        // Fetch data from PersonalInformation collection
+
         const personalInfoCollection = collection(db, 'PersonalInfomation');
         const personalInfoDocRef = doc(personalInfoCollection, documentId);
         const personalInfoDocSnapshot = await getDoc(personalInfoDocRef);
 
-        // Fetch data from NICNumber collection
+
         const nicNumberCollection = collection(db, 'NIC Number');
         const nicNumberDocRef = doc(nicNumberCollection, documentId);
         const nicNumberDocSnapshot = await getDoc(nicNumberDocRef);
@@ -62,13 +62,13 @@ const DriverProfileDetail = () => {
           const personalInfoData = personalInfoDocSnapshot.data();
           const nicNumberData = nicNumberDocSnapshot.data();
 
-          // Merge data from both collections or handle as needed
+
           const mergedData = { ...personalInfoData, ...nicNumberData };
 
           setDriverInfo(mergedData);
         } else {
           console.error('Document not found for ID:', documentId);
-          setDriverInfo(null); // or handle the missing document in another way
+          setDriverInfo(null); 
         }
       } catch (error) {
         console.error('Error fetching driver information for ID:', documentId, error);
