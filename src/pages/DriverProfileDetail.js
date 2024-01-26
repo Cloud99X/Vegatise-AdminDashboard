@@ -1,10 +1,21 @@
 import { useCallback } from "react";
 import { Input } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+
 import styles from "./DriverProfileDetail.module.css";
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+
+import { collection, getDoc, doc, onSnapshot, docSnapshot, } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
+import firebaseApp from './firebase'; // Adjust the path based on your file structure
+
 
 const DriverProfileDetail = () => {
+  const { documentId } = useParams();
   const navigate = useNavigate();
+  const [driverInfo, setDriverInfo] = useState(null);
+
+
 
   const onComponent1Click = useCallback(() => {
     navigate("/analytics");
@@ -30,6 +41,43 @@ const DriverProfileDetail = () => {
     navigate("/log-in");
   }, [navigate]);
 
+
+
+  useEffect(() => {
+    const fetchDriverInfo = async () => {
+      try {
+        const db = getFirestore(firebaseApp);
+
+        // Fetch data from PersonalInformation collection
+        const personalInfoCollection = collection(db, 'PersonalInfomation');
+        const personalInfoDocRef = doc(personalInfoCollection, documentId);
+        const personalInfoDocSnapshot = await getDoc(personalInfoDocRef);
+
+        // Fetch data from NICNumber collection
+        const nicNumberCollection = collection(db, 'NIC Number');
+        const nicNumberDocRef = doc(nicNumberCollection, documentId);
+        const nicNumberDocSnapshot = await getDoc(nicNumberDocRef);
+
+        if (personalInfoDocSnapshot.exists() && nicNumberDocSnapshot.exists()) {
+          const personalInfoData = personalInfoDocSnapshot.data();
+          const nicNumberData = nicNumberDocSnapshot.data();
+
+          // Merge data from both collections or handle as needed
+          const mergedData = { ...personalInfoData, ...nicNumberData };
+
+          setDriverInfo(mergedData);
+        } else {
+          console.error('Document not found for ID:', documentId);
+          setDriverInfo(null); // or handle the missing document in another way
+        }
+      } catch (error) {
+        console.error('Error fetching driver information for ID:', documentId, error);
+      }
+    };
+
+    fetchDriverInfo();
+  }, [documentId]);
+
   return (
     <div className={styles.driverProfileDetail}>
       <div className={styles.rectangleParent}>
@@ -44,30 +92,30 @@ const DriverProfileDetail = () => {
                 <div className={styles.fullNameParent}>
                   <div className={styles.fullName}>Full Name</div>
                   <div className={styles.charinduUdanthaEdirisuriya}>
-                    Charindu Udantha Edirisuriya
+                    {driverInfo && driverInfo.name}
                   </div>
                 </div>
                 <div className={styles.fullNameWithInitialsParent}>
                   <div className={styles.fullName}>Full Name with Initials</div>
-                  <div className={styles.cuEdirisuriya}>C.U Edirisuriya</div>
+                  <div className={styles.cuEdirisuriya}>{/*Need to Add */}</div>
                 </div>
                 <div className={styles.udantha15gmailcomParent}>
                   <div className={styles.udantha15gmailcom}>
-                    udantha15@gmail.com
+                    {driverInfo && driverInfo.email}
                   </div>
                   <div className={styles.email}>Email</div>
                 </div>
                 <div className={styles.parent}>
-                  <div className={styles.udantha15gmailcom}>+94775248346</div>
+                  <div className={styles.udantha15gmailcom}>{driverInfo && driverInfo.mobileNumber}</div>
                   <div className={styles.email}>Phone</div>
                 </div>
                 <div className={styles.group}>
-                  <div className={styles.udantha15gmailcom}>1999-08-14</div>
+                  <div className={styles.udantha15gmailcom}>{driverInfo && driverInfo.dateOfBirth}</div>
                   <div className={styles.email}>Date of birth</div>
                 </div>
                 <div className={styles.ageCategoryParent}>
                   <div className={styles.ageCategory}>age category</div>
-                  <div className={styles.cuEdirisuriya}>20 - 25</div>
+                  <div className={styles.cuEdirisuriya}>{/*Need to Add */}</div>
                 </div>
               </div>
             </div>
@@ -119,22 +167,22 @@ const DriverProfileDetail = () => {
           <div className={styles.groupParent2}>
             <div className={styles.educationLevelParent}>
               <div className={styles.ageCategory}>education level</div>
-              <div className={styles.cuEdirisuriya}>Diploma</div>
+              <div className={styles.cuEdirisuriya}>{/*Need to Add */}</div>
             </div>
             <div className={styles.singleParent}>
-              <div className={styles.colombo}>single</div>
+              <div className={styles.colombo}>{/*Need to Add */}</div>
               <div className={styles.email}>Marital Status</div>
             </div>
             <div className={styles.container}>
-              <div className={styles.udantha15gmailcom}>199922810193</div>
+              <div className={styles.udantha15gmailcom}>{driverInfo && driverInfo.NICNumber}</div>
               <div className={styles.email}>National Id Number</div>
             </div>
             <div className={styles.n455346Parent}>
-              <div className={styles.udantha15gmailcom}>N455346</div>
+              <div className={styles.udantha15gmailcom}>{/*Need to Add */}</div>
               <div className={styles.email}>Passport Number</div>
             </div>
             <div className={styles.lkParent}>
-              <div className={styles.udantha15gmailcom}>LK</div>
+              <div className={styles.udantha15gmailcom}>{/*Need to Add */}</div>
               <div className={styles.email}>Nationality</div>
             </div>
             <div className={styles.mainRoadAthidiyaDehiwalaContainer}>

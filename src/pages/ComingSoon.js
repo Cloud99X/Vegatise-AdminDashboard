@@ -6,9 +6,11 @@ import { Dropdown, Menu, Button } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import styles from "./ComingSoon.module.css";
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, documentId, getDocs } from 'firebase/firestore';
 import firebaseApp from './firebase'; // Adjust the path based on your file structure
 import { getFirestore } from "firebase/firestore"
+
+
 
 const ComingSoon = () => {
   const navigate = useNavigate();
@@ -42,9 +44,11 @@ const ComingSoon = () => {
     navigate("/log-in");
   }, [navigate]);
 
-  const onTableRowClick = useCallback(() => {
-    navigate(`/driver-profile-detail`);
+  const onTableRowClick = useCallback((documentId) => {
+    navigate(`/driver-profile-detail/${documentId}`);
   }, [navigate]);
+
+
 
   useEffect(() => {
     const fetchPersonalInfo = async () => {
@@ -53,8 +57,10 @@ const ComingSoon = () => {
         const personalInfoCollection = collection(db, 'PersonalInfomation');
         const querySnapshot = await getDocs(personalInfoCollection);
 
-
-        const personalInfoArray = querySnapshot.docs.map(doc => doc.data());
+        const personalInfoArray = querySnapshot.docs.map(doc => ({
+          documentId: doc.id, // Include the documentId along with the data
+          ...doc.data(),
+        }));
 
         setPersonalInfo(personalInfoArray);
       } catch (error) {
@@ -64,6 +70,10 @@ const ComingSoon = () => {
 
     fetchPersonalInfo();
   }, []);
+
+
+  
+
 
 
   return (
@@ -154,7 +164,7 @@ const ComingSoon = () => {
         </Dropdown>
               
         <table>
-          <thead>            
+          <thead>
             <tr>
               <th>Name</th>
               <th>Email</th>
@@ -164,9 +174,8 @@ const ComingSoon = () => {
             </tr>
           </thead>
           <tbody>
-
-            {personalInfo.map((driver, index) => (
-              <tr key={index} onClick={() => onTableRowClick(driver.id)}>
+          {personalInfo.map((driver, index) => (
+            <tr key={index} onClick={() => onTableRowClick(driver.documentId)}>
                 <td>{driver.name}</td>
                 <td>{driver.email}</td>
                 <td>{driver.mobileNumber}</td>

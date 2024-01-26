@@ -1,10 +1,5 @@
-import { useEffect } from "react";
-import {
-  Routes,
-  Route,
-  useNavigationType,
-  useLocation,
-} from "react-router-dom";
+import React, { useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Signup from "./pages/Signup";
 import Analytics from "./pages/Analytics";
 import LogIn from "./pages/LogIn1";
@@ -19,15 +14,12 @@ import Attribution from "./pages/Attribution";
 import AboutCampaign from "./pages/AboutCampaign";
 
 function App() {
-  const action = useNavigationType();
   const location = useLocation();
   const pathname = location.pathname;
 
   useEffect(() => {
-    if (action !== "POP") {
-      window.scrollTo(0, 0);
-    }
-  }, [action, pathname]);
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   useEffect(() => {
     let title = "";
@@ -82,6 +74,9 @@ function App() {
         title = "";
         metaDescription = "";
         break;
+      default:
+        // Default values if no match
+        break;
     }
 
     if (title) {
@@ -104,7 +99,7 @@ function App() {
       <Route path="/analytics" element={<Analytics />} />
       <Route path="/log-in" element={<LogIn />} />
       <Route path="/getting-started-04" element={<GettingStarted04 />} />
-      <Route path="/driver-profile-detail" element={<DriverProfileDetail />} />
+      <Route path="/driver-profile-detail/:documentId" element={<DriverProfileDetail />} />
       <Route path="/billing-invoice" element={<BillingInvoice />} />
       <Route path="/billing" element={<Billing />} />
       <Route path="/retargetting" element={<Retargetting />} />
@@ -115,4 +110,5 @@ function App() {
     </Routes>
   );
 }
+
 export default App;
