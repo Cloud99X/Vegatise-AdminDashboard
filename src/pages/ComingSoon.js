@@ -150,16 +150,16 @@ const ComingSoon = () => {
         </Dropdown>
               
         <table>
-          <thead>
-
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone number</th>
-              <th>Status</th>
-              <th>Date Modified</th>
-            </tr>
-          </thead>
+        <thead>
+          <tr className={styles.name}>
+           <th></th>
+           <th className={styles.nameParent}>Name</th>
+           <th className={styles.jacksongrahamexamplecomParent}>Email</th>
+           <th className={styles.parent}>Phone number</th>
+           <th className={styles.inProgressParent}>Status</th>
+           <th className={styles.nov5202043543Parent}>Date modified</th>
+          </tr>
+         </thead>
           <tbody>
 
             {personalInfo.map((driver, index) => (
