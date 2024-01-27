@@ -166,6 +166,7 @@ const ComingSoon = () => {
         <table>
           <thead>
             <tr>
+              <th className={styles.icontd}></th>
               <th>Name</th>
               <th>Email</th>
               <th>Phone number</th>
@@ -176,6 +177,7 @@ const ComingSoon = () => {
           <tbody>
           {personalInfo.map((driver, index) => (
             <tr key={index} onClick={() => onTableRowClick(driver.documentId)}>
+                <td className={styles.icontd}><img className={styles.icon} src="/vector53@2x.png" /></td>
                 <td>{driver.name}</td>
                 <td>{driver.email}</td>
                 <td>{driver.mobileNumber}</td>
