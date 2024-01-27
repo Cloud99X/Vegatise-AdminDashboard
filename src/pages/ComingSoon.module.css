@@ -203,18 +203,10 @@
   height: 18px;
 }
 .vectorIcon {
-  position: absolute;
-  height: 50%;
-  width: 2.46%;
-  top: 24%;
-  right: 90.94%;
-  bottom: 26%;
-  left: 6.6%;
-  border-radius: var(--br-9xs);
-  max-width: 100%;
-  overflow: hidden;
-  max-height: 100%;
-  object-fit: cover;
+ 
+  height: 18px;
+  width: 18px;
+  
 }
 .rectangleGroup,
 .rectangleParent {
@@ -650,19 +642,36 @@
 
 
 table {
-  width: 100%;
+  left: 50%; /* Center horizontally */
+  transform: translateX(+5%); /* Adjust to center */
+ 
   border-collapse: collapse;
   margin-top: 250px;
 }
 
 th,
 td {
-  border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
+  font-family: var(--font-inter);
+  font-size: var(--paragraph-small-size);
+  border:none;
 }
 
 th {
-  background-color: #f2f2f2;
+  width: 170px; 
+  border:none;
+  color: var(--gray-2);
 }
-
+td {
+  width: 170px; 
+  font-weight: 600;
+  word-wrap: break-word;
+}
+.icontd{
+  width: 100px; 
+}
+.icon{
+  width: 25px; 
+  height: 25px;
+}
