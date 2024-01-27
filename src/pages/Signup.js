@@ -46,10 +46,22 @@ const Signup = () => {
     <div className={styles.signup}>
       <div className={styles.bg}>
         <i className={styles.welcomeStartYourContainer}>
-          <span className={styles.welcomeStartYourContainer1}>
+        <span className={styles.welcomeStartYourContainer1}>
             <p className={styles.welcome}>Welcome.</p>
             <p className={styles.welcome}>
-              Start your journey now with our management system!
+              Start your    
+            </p>
+            <p className={styles.welcome}>
+            journey now with
+            </p>
+            <p className={styles.welcome}>
+            our
+            </p>
+            <p className={styles.welcome}>
+            management
+            </p>
+            <p className={styles.welcome}>
+            system!
             </p>
           </span>
         </i>
