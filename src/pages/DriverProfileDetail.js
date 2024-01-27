@@ -1,21 +1,17 @@
 import { useCallback } from "react";
 import { Input } from "@chakra-ui/react";
-
 import styles from "./DriverProfileDetail.module.css";
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
-import { collection, getDoc, doc, onSnapshot, docSnapshot, } from 'firebase/firestore';
+import { collection, getDoc, doc } from 'firebase/firestore';
 import { getFirestore } from 'firebase/firestore';
-import firebaseApp from './firebase'; 
-
+import firebaseApp from './firebase';
+import { getStorage, ref, listAll, getDownloadURL } from 'firebase/storage';
 
 const DriverProfileDetail = () => {
   const { documentId } = useParams();
   const navigate = useNavigate();
   const [driverInfo, setDriverInfo] = useState(null);
-
-
 
   const onComponent1Click = useCallback(() => {
     navigate("/analytics");
@@ -41,34 +37,42 @@ const DriverProfileDetail = () => {
     navigate("/log-in");
   }, [navigate]);
 
-
-
   useEffect(() => {
     const fetchDriverInfo = async () => {
       try {
         const db = getFirestore(firebaseApp);
 
-
         const personalInfoCollection = collection(db, 'PersonalInfomation');
         const personalInfoDocRef = doc(personalInfoCollection, documentId);
         const personalInfoDocSnapshot = await getDoc(personalInfoDocRef);
-
 
         const nicNumberCollection = collection(db, 'NIC Number');
         const nicNumberDocRef = doc(nicNumberCollection, documentId);
         const nicNumberDocSnapshot = await getDoc(nicNumberDocRef);
 
-        if (personalInfoDocSnapshot.exists() && nicNumberDocSnapshot.exists()) {
+        const addressAndRoutesCollection = collection(db, 'AddressAndRoutes');
+        const addressAndRoutesDocRef = doc(addressAndRoutesCollection, documentId);
+        const addressAndRoutesDocSnapshot = await getDoc(addressAndRoutesDocRef);
+
+        if (
+          personalInfoDocSnapshot.exists() &&
+          nicNumberDocSnapshot.exists() &&
+          addressAndRoutesDocSnapshot.exists()
+        ) {
           const personalInfoData = personalInfoDocSnapshot.data();
           const nicNumberData = nicNumberDocSnapshot.data();
+          const addressAndRoutesData = addressAndRoutesDocSnapshot.data();
 
-
-          const mergedData = { ...personalInfoData, ...nicNumberData };
+          const mergedData = {
+            ...personalInfoData,
+            ...nicNumberData,
+            ...addressAndRoutesData,
+          };
 
           setDriverInfo(mergedData);
         } else {
           console.error('Document not found for ID:', documentId);
-          setDriverInfo(null); 
+          setDriverInfo(null);
         }
       } catch (error) {
         console.error('Error fetching driver information for ID:', documentId, error);
@@ -77,6 +81,58 @@ const DriverProfileDetail = () => {
 
     fetchDriverInfo();
   }, [documentId]);
+
+  const onNICImagesButtonClick = useCallback(async () => {
+    try {
+      const storage = getStorage();
+      const nicImagesFolder = `${documentId}/NIC Images`;
+      const folderRef = ref(storage, nicImagesFolder);
+      const items = await listAll(folderRef);
+      if (items && items.items.length > 0) {
+        const firstItemUrl = await getDownloadURL(items.items[0]);
+        window.open(firstItemUrl, '_blank');
+      } else {
+        console.error('No items found in the folder.');
+      }
+    } catch (error) {
+      console.error('Error retrieving images:', error);
+    }
+  }, [documentId]);
+
+  const onInsuranceImagesButtonClick = useCallback(async () => {
+    try {
+      const storage = getStorage();
+      const nicImagesFolder = `${documentId}/vehicle Insurance Documents`;
+      const folderRef = ref(storage, nicImagesFolder);
+      const items = await listAll(folderRef);
+      if (items && items.items.length > 0) {
+        const firstItemUrl = await getDownloadURL(items.items[0]);
+        window.open(firstItemUrl, '_blank');
+      } else {
+        console.error('No items found in the folder.');
+      }
+    } catch (error) {
+      console.error('Error retrieving images:', error);
+    }
+  }, [documentId]);
+
+  const onVehicleImagesButtonClick = useCallback(async () => {
+    try {
+      const storage = getStorage();
+      const nicImagesFolder = `${documentId}/Vehicle Images`;
+      const folderRef = ref(storage, nicImagesFolder);
+      const items = await listAll(folderRef);
+      if (items && items.items.length > 0) {
+        const firstItemUrl = await getDownloadURL(items.items[0]);
+        window.open(firstItemUrl, '_blank');
+      } else {
+        console.error('No items found in the folder.');
+      }
+    } catch (error) {
+      console.error('Error retrieving images:', error);
+    }
+  }, [documentId]);
+
 
   return (
     <div className={styles.driverProfileDetail}>
@@ -127,36 +183,34 @@ const DriverProfileDetail = () => {
                 <div className={styles.mainRoadAthidiyaDehiwalaParent}>
                   <div className={styles.mainRoadAthidiyaContainer}>
                     <p className={styles.mainRoadAthidiya}>
-                      143, Main Road, Athidiya, Dehiwala,
+                      {driverInfo && driverInfo.Add1}
                     </p>
-                    <p className={styles.mainRoadAthidiya}>
-                      Colombo, Western, 10350
-                    </p>
+
                   </div>
                   <div className={styles.email}>Address line 1</div>
                 </div>
                 <div className={styles.mainRoadAthidiyaDehiwalaGroup}>
                   <div className={styles.udantha15gmailcom}>
-                    143, Main Road, Athidiya, Dehiwala,
+                    {driverInfo && driverInfo.Add2}
                   </div>
                   <div className={styles.email}>Address line 2</div>
                 </div>
                 <div className={styles.kmParent}>
                   <div className={styles.udantha15gmailcom}>
-                    100,000 - 150,000 KM
+                    {driverInfo && driverInfo.AvgKM}
                   </div>
                   <div className={styles.email}>
                     Average kilometers (KM) per day
                   </div>
                 </div>
                 <div className={styles.colomboParent}>
-                  <div className={styles.colombo}>Colombo</div>
+                  <div className={styles.colombo}>{/*Need to add */}</div>
                   <div className={styles.email}>
                     on average which routes do you travel
                   </div>
                 </div>
                 <div className={styles.technologyParent}>
-                  <div className={styles.colombo}>technology</div>
+                  <div className={styles.colombo}>{/*Need to add */}</div>
                   <div className={styles.email}>Occupation</div>
                 </div>
               </div>
@@ -188,11 +242,9 @@ const DriverProfileDetail = () => {
             <div className={styles.mainRoadAthidiyaDehiwalaContainer}>
               <div className={styles.udantha15gmailcom}>
                 <p className={styles.mainRoadAthidiya}>
-                  143, Main Road, Athidiya, Dehiwala,
+                  {/*Need to add */}
                 </p>
-                <p className={styles.mainRoadAthidiya}>
-                  Colombo, Western, 10350
-                </p>
+
               </div>
               <div className={styles.email}>Home Address</div>
             </div>
@@ -203,12 +255,12 @@ const DriverProfileDetail = () => {
           Date created 04.03.2023
         </div>
         <a href="/about-campaign">
-        <button className={styles.rectangleContainermap} onClick={onComponent11Click}>
-        <div className={styles.mapgroupItem} />
-        <div className={styles.map}>Map</div>
-        </button>
+          <button className={styles.rectangleContainermap} onClick={onComponent11Click}>
+            <div className={styles.mapgroupItem} />
+            <div className={styles.map}>Map</div>
+          </button>
         </a>
-        
+
 
         <button className={styles.rectangleGroup}>
           <div className={styles.groupChild} />
@@ -303,7 +355,7 @@ const DriverProfileDetail = () => {
                 <div className={styles.open}>Open</div>
               </div>
             </div>
-            <div className={styles.spanbadgeWrapper2}>
+            <button className={styles.spanbadgeWrapper2} onClick={onInsuranceImagesButtonClick}>
               <img
                 className={styles.spanavatarIcon}
                 alt=""
@@ -312,8 +364,8 @@ const DriverProfileDetail = () => {
               <div className={styles.spanbadge}>
                 <div className={styles.open}>Open</div>
               </div>
-            </div>
-            <div className={styles.spanbadgeWrapper3}>
+            </button>
+            <button className={styles.spanbadgeWrapper3} onClick={onNICImagesButtonClick}>
               <img
                 className={styles.spanavatarIcon}
                 alt=""
@@ -322,8 +374,9 @@ const DriverProfileDetail = () => {
               <div className={styles.spanbadge}>
                 <div className={styles.open}>Open</div>
               </div>
-            </div>
-            <div className={styles.spanbadgeWrapper4}>
+            </button>
+
+            <button className={styles.spanbadgeWrapper4} onClick={onVehicleImagesButtonClick}>
               <img
                 className={styles.spanavatarIcon}
                 alt=""
@@ -332,7 +385,7 @@ const DriverProfileDetail = () => {
               <div className={styles.spanbadge}>
                 <div className={styles.open}>Open</div>
               </div>
-            </div>
+            </button>
           </div>
           <div className={styles.divParent}>
             <div className={styles.div4}>
@@ -430,7 +483,7 @@ const DriverProfileDetail = () => {
         <div className={styles.document}>Document</div>
         <div className={styles.status}>Status</div>
         <div className={styles.frameChild2} />
-        
+
       </div>
       <div className={styles.navbar}>
         <div className={styles.divlogo}>
