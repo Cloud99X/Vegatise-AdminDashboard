@@ -178,7 +178,7 @@ const AboutCampaign = () => {
               <div className={styles.logout1}>Logout</div>
             </button>
           </div>
-          <img className={styles.groupChild} alt="" src="/ellipse-1@2x.png" />
+          <img className={styles.groupChildp} alt="" src="/ellipse-1@2x.png" />
         </div>
       </div>
     </div>
