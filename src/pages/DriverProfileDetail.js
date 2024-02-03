@@ -3,7 +3,7 @@ import { Input } from "@chakra-ui/react";
 import styles from "./DriverProfileDetail.module.css";
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { collection, getDoc, doc } from 'firebase/firestore';
+import { collection, getDoc, doc, updateDoc } from 'firebase/firestore';
 import { getFirestore } from 'firebase/firestore';
 import firebaseApp from './firebase';
 import { getStorage, ref, listAll, getDownloadURL } from 'firebase/storage';
@@ -12,6 +12,8 @@ const DriverProfileDetail = () => {
   const { documentId } = useParams();
   const navigate = useNavigate();
   const [driverInfo, setDriverInfo] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedDriverInfo, setEditedDriverInfo] = useState(null);
 
   const onComponent1Click = useCallback(() => {
     navigate("/analytics");
@@ -36,6 +38,17 @@ const DriverProfileDetail = () => {
   const onFrameButton1Click = useCallback(() => {
     navigate("/log-in");
   }, [navigate]);
+
+  const toggleEdit = () => {
+    setIsEditing((prev) => !prev);
+    if (!isEditing) {
+      setEditedDriverInfo({ ...driverInfo });
+    }
+  };
+
+  const handleEditChange = (field, value) => {
+    setEditedDriverInfo((prev) => ({ ...prev, [field]: value }));
+  };
 
   useEffect(() => {
     const fetchDriverInfo = async () => {
@@ -81,6 +94,49 @@ const DriverProfileDetail = () => {
 
     fetchDriverInfo();
   }, [documentId]);
+
+  const saveChanges = async () => {
+    try {
+      const db = getFirestore(firebaseApp);
+
+      const personalInfoCollection = collection(db, 'PersonalInfomation');
+      const personalInfoDocRef = doc(personalInfoCollection, documentId);
+      const timestamp = new Date();
+
+      const nicNumberCollection = collection(db, 'NIC Number');
+      const nicNumberDocRef = doc(nicNumberCollection, documentId);
+
+      const addressAndRoutesCollection = collection(db, 'AddressAndRoutes');
+      const addressAndRoutesDocRef = doc(addressAndRoutesCollection, documentId);
+
+      await updateDoc(personalInfoDocRef, {
+        name: editedDriverInfo.name,
+        email: editedDriverInfo.email,
+        mobileNumber: editedDriverInfo.mobileNumber,
+        dateOfBirth: editedDriverInfo.dateOfBirth,
+        timestamp: timestamp,
+
+      });
+
+      await updateDoc(nicNumberDocRef, { NICNumber: editedDriverInfo.NICNumber });
+
+      await updateDoc(addressAndRoutesDocRef, {
+        Add1: editedDriverInfo.Add1,
+        Add2: editedDriverInfo.Add2,
+        AvgKM: editedDriverInfo.AvgKM,
+
+      });
+
+      setDriverInfo(editedDriverInfo);
+
+      setIsEditing(false);
+      window.alert('Changes saved successfully!');
+    } catch (error) {
+      console.error('Error saving changes:', error);
+      window.alert('Error saving changes. Please try again.');
+    }
+  };
+
 
   const onNICImagesButtonClick = useCallback(async () => {
     try {
@@ -148,7 +204,14 @@ const DriverProfileDetail = () => {
                 <div className={styles.fullNameParent}>
                   <div className={styles.fullName}>Full Name</div>
                   <div className={styles.charinduUdanthaEdirisuriya}>
-                    {driverInfo && driverInfo.name}
+                    {isEditing ? (
+                      <Input
+                        value={editedDriverInfo && editedDriverInfo.name}
+                        onChange={(e) => handleEditChange('name', e.target.value)}
+                      />
+                    ) : (
+                      driverInfo && driverInfo.name
+                    )}
                   </div>
                 </div>
                 <div className={styles.fullNameWithInitialsParent}>
@@ -157,16 +220,38 @@ const DriverProfileDetail = () => {
                 </div>
                 <div className={styles.udantha15gmailcomParent}>
                   <div className={styles.udantha15gmailcom}>
-                    {driverInfo && driverInfo.email}
+                    {isEditing ? (
+                      <Input
+                        value={editedDriverInfo && editedDriverInfo.email}
+                        onChange={(e) => handleEditChange('email', e.target.value)}
+                      />
+                    ) : (
+                      driverInfo && driverInfo.email
+                    )}
                   </div>
                   <div className={styles.email}>Email</div>
                 </div>
                 <div className={styles.parent}>
-                  <div className={styles.udantha15gmailcom}>{driverInfo && driverInfo.mobileNumber}</div>
+                  <div className={styles.udantha15gmailcom}>{isEditing ? (
+                    <Input
+                      value={editedDriverInfo && editedDriverInfo.mobileNumber}
+                      onChange={(e) => handleEditChange('mobileNumber', e.target.value)}
+                    />
+                  ) : (
+                    driverInfo && driverInfo.mobileNumber
+                  )}</div>
                   <div className={styles.email}>Phone</div>
                 </div>
                 <div className={styles.group}>
-                  <div className={styles.udantha15gmailcom}>{driverInfo && driverInfo.dateOfBirth}</div>
+                  <div className={styles.udantha15gmailcom}>
+                  {isEditing ? (
+                    <Input
+                      value={editedDriverInfo && editedDriverInfo.dateOfBirth}
+                      onChange={(e) => handleEditChange('dateOfBirth', e.target.value)}
+                    />
+                  ) : (
+                      driverInfo && driverInfo.dateOfBirth
+                  )}</div>
                   <div className={styles.email}>Date of birth</div>
                 </div>
                 <div className={styles.ageCategoryParent}>
@@ -183,7 +268,14 @@ const DriverProfileDetail = () => {
                 <div className={styles.mainRoadAthidiyaDehiwalaParent}>
                   <div className={styles.mainRoadAthidiyaContainer}>
                     <p className={styles.mainRoadAthidiya}>
-                      {driverInfo && driverInfo.Add1}
+                        {isEditing ? (
+                          <Input
+                            value={editedDriverInfo && editedDriverInfo.Add1}
+                            onChange={(e) => handleEditChange('Add1', e.target.value)}
+                          />
+                        ) : (
+                          driverInfo && driverInfo.Add1
+                        )}
                     </p>
 
                   </div>
@@ -191,13 +283,27 @@ const DriverProfileDetail = () => {
                 </div>
                 <div className={styles.mainRoadAthidiyaDehiwalaGroup}>
                   <div className={styles.udantha15gmailcom}>
-                    {driverInfo && driverInfo.Add2}
+                      {isEditing ? (
+                        <Input
+                          value={editedDriverInfo && editedDriverInfo.Add2}
+                          onChange={(e) => handleEditChange('Add2', e.target.value)}
+                        />
+                      ) : (
+                        driverInfo && driverInfo.Add2
+                      )}
                   </div>
                   <div className={styles.email}>Address line 2</div>
                 </div>
                 <div className={styles.kmParent}>
                   <div className={styles.udantha15gmailcom}>
-                    {driverInfo && driverInfo.AvgKM}
+                      {isEditing ? (
+                        <Input
+                          value={editedDriverInfo && editedDriverInfo.AvgKM}
+                          onChange={(e) => handleEditChange('AvgKM', e.target.value)}
+                        />
+                      ) : (
+                        driverInfo && driverInfo.AvgKM
+                      )}
                   </div>
                   <div className={styles.email}>
                     Average kilometers (KM) per day
@@ -228,7 +334,14 @@ const DriverProfileDetail = () => {
               <div className={styles.email}>Marital Status</div>
             </div>
             <div className={styles.container}>
-              <div className={styles.udantha15gmailcom}>{driverInfo && driverInfo.NICNumber}</div>
+              <div className={styles.udantha15gmailcom}>{isEditing ? (
+                <Input
+                  value={editedDriverInfo && editedDriverInfo.NICNumber}
+                  onChange={(e) => handleEditChange('NICNumber', e.target.value)}
+                />
+              ) : (
+                driverInfo && driverInfo.NICNumber
+              )}</div>
               <div className={styles.email}>National Id Number</div>
             </div>
             <div className={styles.n455346Parent}>
@@ -262,7 +375,7 @@ const DriverProfileDetail = () => {
         </a>
 
 
-        <button className={styles.rectangleGroup}>
+        <button className={styles.rectangleGroup} onClick={toggleEdit}>
           <div className={styles.groupChild} />
           <div className={styles.editParent}>
             <div className={styles.edit}>Edit</div>
@@ -273,7 +386,7 @@ const DriverProfileDetail = () => {
             />
           </div>
         </button>
-        <button className={styles.rectangleContainer}>
+        <button className={styles.rectangleContainer} onClick={saveChanges}>
           <div className={styles.groupItem} />
           <div className={styles.saveChanges}>Save changes</div>
         </button>
