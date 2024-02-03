@@ -15,6 +15,11 @@ import { getFirestore } from "firebase/firestore"
 const ComingSoon = () => {
   const navigate = useNavigate();
   const [personalInfo, setPersonalInfo] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   const onRectangleButtonClick = useCallback(() => {
     navigate("/driver-profile-detail");
@@ -48,7 +53,10 @@ const ComingSoon = () => {
     navigate(`/driver-profile-detail/${documentId}`);
   }, [navigate]);
 
-
+  const filteredPersonalInfo = personalInfo.filter((driver) => {
+    const fullName = `${driver.name} ${driver.surname}`.toLowerCase();
+    return fullName.includes(searchTerm.toLowerCase());
+  });
 
   useEffect(() => {
     const fetchPersonalInfo = async () => {
@@ -120,7 +128,13 @@ const ComingSoon = () => {
             pointerEvents="none"
             children={<SearchIcon color="gray.300" />}
           />
-          <Input variant="outline" placeholder="Search" size="sm" />
+          <Input
+            variant="outline"
+            placeholder="Search"
+            size="sm"
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
         </InputGroup>
         <Dropdown
           className={styles.searchbar2Fig41}
@@ -175,7 +189,7 @@ const ComingSoon = () => {
             </tr>
           </thead>
           <tbody>
-          {personalInfo.map((driver, index) => (
+            {filteredPersonalInfo.map((driver, index) => (
             <tr key={index} onClick={() => onTableRowClick(driver.documentId)}>
                 <td className={styles.icontd}><img className={styles.icon} src="/vector53@2x.png" /></td>
                 <td>{driver.name}</td>
