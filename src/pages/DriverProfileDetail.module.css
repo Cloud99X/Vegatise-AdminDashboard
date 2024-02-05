@@ -465,12 +465,12 @@
 .iconnotificationBing {
   position: absolute;
   top: 26px;
-  left: 1018px;
+  left: 955px;
   width: 24px;
   height: 24px;
 }
 .iconmessages2 {
-  left: 1063px;
+  left: 1000px;
 }
 .searchbar2Fig4 {
   background-color: transparent;
@@ -494,7 +494,7 @@
 .avatar1 {
   position: absolute;
   top: 22px;
-  left: 1114px;
+  left: 1045px;
   border-radius: 201.88px;
   background-color: var(--background-backgroundprimary);
   width: 32px;
@@ -518,7 +518,7 @@
   font-weight: 600;
 }
 .activityLog {
-  top: 1355px;
+  top: 1250px;
 }
 .frameItem {
   position: absolute;
@@ -559,15 +559,30 @@
   width: 16px;
   height: 16px;
 }
-.drivingLisence {
+.infotype {
   position: absolute;
-  top: 29px;
-  left: 46px;
+  top: 20px;
+  left: 80px;
   font-weight: 600;
+}
+.status {
+  position: absolute;
+  font-size: var(--paragraph-small-size);
+  color: var(--gray-2);
+  top: 40px;
+  left: 80px;
 }
 .frameDiv {
   position: absolute;
   top: 936px;
+  left: 60px;
+  width: 747px;
+  height: 76px;
+  overflow: hidden;
+}
+.frameDiv2 {
+  position: absolute;
+  top: 1325px;
   left: 60px;
   width: 747px;
   height: 76px;
@@ -588,6 +603,13 @@
   width: 747px;
   height: 76px;
 }
+.rectangleParent22 {
+  position: absolute;
+  top: 1414px;
+  left: 60px;
+  width: 747px;
+  height: 76px;
+}
 .nic {
   position: absolute;
   top: 29px;
@@ -601,20 +623,27 @@
   width: 747px;
   height: 76px;
 }
+.rectangleParent32 {
+  position: absolute;
+  top: 1504px;
+  left: 60px;
+  width: 747px;
+  height: 76px;
+}
+.rectangleParent321 {
+  position: absolute;
+  top: 1594px;
+  left: 60px;
+  width: 747px;
+  height: 76px;
+}
 .vehicleImage {
   position: absolute;
   top: 28px;
   left: 46px;
   font-weight: 600;
 }
-.spanavatarIcon {
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-radius: var(--br-7xs);
-  width: 40px;
-  height: 40px;
-}
+
 .open {
   position: absolute;
   top: 2.67px;
@@ -634,28 +663,22 @@
   width: 46.47px;
   height: 20px;
 }
-.spanbadgeWrapper1,
-.spanbadgeWrapper2,
-.spanbadgeWrapper3,
-.spanbadgeWrapper4 {
+.spanbadgeWrapper1{
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  background-color: var(--color-gray-300);
+  width: 30px;
+  height: 30px;
+}
+
+.spanavatarIcon {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: var(--color-gray-300);
-  width: 40px;
-  height: 40px;
-}
-.spanbadgeWrapper2,
-.spanbadgeWrapper3,
-.spanbadgeWrapper4 {
-  top: 91px;
-}
-.spanbadgeWrapper3,
-.spanbadgeWrapper4 {
-  top: 183px;
-}
-.spanbadgeWrapper4 {
-  top: 276px;
+  border-radius: var(--br-7xs);
+  width: 30px;
+  height: 30px;
 }
 .spanbadgeWrapperParent {
   position: absolute;
@@ -665,6 +688,29 @@
   height: 316px;
   font-size: var(--other-other-regular-size);
   color: var(--background-backgroundprimary);
+}
+.spanbadgeWrapper122,
+.spanbadgeWrapper22,
+.spanbadgeWrapper32,
+.spanbadgeWrapper42 {
+  position: absolute;
+  top: 0;
+  left: 50px;
+  background-color: var(--color-gray-300);
+  width: 40px;
+  height: 40px;
+}
+.spanbadgeWrapper22,
+.spanbadgeWrapper32,
+.spanbadgeWrapper42 {
+  top: 91px;
+}
+.spanbadgeWrapper32,
+.spanbadgeWrapper42 {
+  top: 183px;
+}
+.spanbadgeWrapper42 {
+  top: 276px;
 }
 .approved,
 .spantextLgIcon {
@@ -803,6 +849,9 @@
 .div6 {
   top: 181px;
 }
+.div62{
+  top: 250px;
+}
 .div6,
 .div7,
 .divParent {
@@ -827,22 +876,15 @@
   width: 747px;
   height: 76px;
 }
-.document,
-.documentType,
-.status {
+
+.rectangleParent42 {
   position: absolute;
-  top: 906px;
-  left: 106px;
-  font-size: var(--paragraph-small-size);
-  color: var(--gray-2);
+  top: 1600px;
+  left: 60px;
+  width: 747px;
+  height: 76px;
 }
-.document,
-.status {
-  left: 331px;
-}
-.status {
-  left: 647px;
-}
+
 .frameChild2 {
   position: absolute;
   top: 1414px;

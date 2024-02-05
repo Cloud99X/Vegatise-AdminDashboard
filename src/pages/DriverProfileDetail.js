@@ -367,12 +367,7 @@ const DriverProfileDetail = () => {
         <div className={styles.dateCreated04032023}>
           Date created 04.03.2023
         </div>
-        <a href="/about-campaign">
-          <button className={styles.rectangleContainermap} onClick={onComponent11Click}>
-            <div className={styles.mapgroupItem} />
-            <div className={styles.map}>Map</div>
-          </button>
-        </a>
+        
 
 
         <button className={styles.rectangleGroup} onClick={toggleEdit}>
@@ -398,11 +393,7 @@ const DriverProfileDetail = () => {
             alt=""
             src="/iconsearchnormal.svg"
           />
-          <div className={styles.avatar}>
-            <img className={styles.image53Icon} alt="" src="/image-53@2x.png" />
-            <img className={styles.image55Icon} alt="" src="/image-55@2x.png" />
-            <img className={styles.image56Icon} alt="" src="/image-56@2x.png" />
-          </div>
+          
           <img
             className={styles.iconnotificationBing}
             alt=""
@@ -416,22 +407,30 @@ const DriverProfileDetail = () => {
           <Input className={styles.searchbar2Fig4} width="639px" w="639px" />
           <div className={styles.avatar1}>
             <img className={styles.image54Icon} alt="" src="/image-54@2x.png" />
-            <img
-              className={styles.image55Icon1}
-              alt=""
-              src="/image-551@2x.png"
-            />
+            
           </div>
         </div>
-        <div className={styles.attachedDocuments}>Attached Documents</div>
-        <div className={styles.activityLog}>Activity Log</div>
+        <div className={styles.attachedDocuments}>Information</div>
+        <div className={styles.activityLog}>Attached Documents</div>
         <div className={styles.frameDiv}>
           <div className={styles.frameItem} />
           <div className={styles.d}>
             <div className={styles.checklistDesignChallengeV2} />
           </div>
           <img className={styles.iconstar} alt="" src="/svgjsline10698.svg" />
-          <div className={styles.drivingLisence}>Driving lisence</div>
+          <div className={styles.infotype}>Personal Information</div>
+          <div className={styles.status}>Approved</div>
+          
+
+          <div className={styles.spanbadgeWrapper1}>
+              <img
+                className={styles.spanavatarIcon}
+                alt=""
+                src="/component-471.svg"
+              />
+          </div>
+
+          
         </div>
         <div className={styles.rectangleParent2}>
           <div className={styles.frameItem} />
@@ -439,8 +438,17 @@ const DriverProfileDetail = () => {
             <div className={styles.checklistDesignChallengeV2} />
           </div>
           <img className={styles.iconstar} alt="" src="/svgjsline10698.svg" />
-          <div className={styles.drivingLisence}>Insurance lisence</div>
-          <div className={styles.spanbadgeWrapper} />
+          <div className={styles.infotype}>Vehicle Information</div>
+          <div className={styles.status}>Rejected</div>
+
+          <div className={styles.spanbadgeWrapper1}>
+              <img
+                className={styles.spanavatarIcon}
+                alt=""
+                src="/component-472.svg"
+              />
+          </div>
+
         </div>
         <div className={styles.rectangleParent3}>
           <div className={styles.frameItem} />
@@ -448,58 +456,22 @@ const DriverProfileDetail = () => {
             <div className={styles.checklistDesignChallengeV2} />
           </div>
           <img className={styles.iconstar} alt="" src="/svgjsline10698.svg" />
-          <div className={styles.nic}>NIC</div>
+          <div className={styles.infotype}>Address And Routes</div>
+          <div className={styles.status}>In Review</div>
+
+          <div className={styles.spanbadgeWrapper1}>
+              <img
+                className={styles.spanavatarIcon}
+                alt=""
+                src="/component-473.svg"
+              />
+          </div>
+
+
         </div>
         <div className={styles.rectangleParent4}>
-          <div className={styles.frameItem} />
-          <div className={styles.d}>
-            <div className={styles.checklistDesignChallengeV2} />
-          </div>
-          <img className={styles.iconstar} alt="" src="/svgjsline10698.svg" />
-          <div className={styles.vehicleImage}>Vehicle image</div>
-          <div className={styles.spanbadgeWrapperParent}>
-            <div className={styles.spanbadgeWrapper1}>
-              <img
-                className={styles.spanavatarIcon}
-                alt=""
-                src="/spanavatar1.svg"
-              />
-              <div className={styles.spanbadge}>
-                <div className={styles.open}>Open</div>
-              </div>
-            </div>
-            <button className={styles.spanbadgeWrapper2} onClick={onInsuranceImagesButtonClick}>
-              <img
-                className={styles.spanavatarIcon}
-                alt=""
-                src="/spanavatar1.svg"
-              />
-              <div className={styles.spanbadge}>
-                <div className={styles.open}>Open</div>
-              </div>
-            </button>
-            <button className={styles.spanbadgeWrapper3} onClick={onNICImagesButtonClick}>
-              <img
-                className={styles.spanavatarIcon}
-                alt=""
-                src="/spanavatar1.svg"
-              />
-              <div className={styles.spanbadge}>
-                <div className={styles.open}>Open</div>
-              </div>
-            </button>
-
-            <button className={styles.spanbadgeWrapper4} onClick={onVehicleImagesButtonClick}>
-              <img
-                className={styles.spanavatarIcon}
-                alt=""
-                src="/spanavatar1.svg"
-              />
-              <div className={styles.spanbadge}>
-                <div className={styles.open}>Open</div>
-              </div>
-            </button>
-          </div>
+          
+          
           <div className={styles.divParent}>
             <div className={styles.div4}>
               <button className={styles.buttonbutton}>
@@ -520,6 +492,202 @@ const DriverProfileDetail = () => {
                     src="/spantextlg1.svg"
                   />
                   <div className={styles.reject}>Reject</div>
+                  <img
+                    className={styles.spantextLgIcon1}
+                    alt=""
+                    src="/spantextlg1.svg"
+                  />
+                  <div className={styles.reject}>Reject</div>
+                </div>
+              </button>
+            </div>
+            <div className={styles.div5}>
+              <button className={styles.buttonbutton}>
+                <div className={styles.spanflex}>
+                  <img
+                    className={styles.spantextLgIcon}
+                    alt=""
+                    src="/spantextlg.svg"
+                  />
+                  <b className={styles.approved}>Approved</b>
+                </div>
+              </button>
+              <button className={styles.buttonbutton1}>
+                <div className={styles.spanflex3} />
+                <img
+                  className={styles.spantextLgIcon4}
+                  alt=""
+                  src="/spantextlg1.svg"
+                />
+                <div className={styles.reject2}>Reject</div>
+              </button>
+            </div>
+            <div className={styles.div6}>
+              <button className={styles.buttonbutton}>
+                <div className={styles.spanflex}>
+                  <img
+                    className={styles.spantextLgIcon}
+                    alt=""
+                    src="/spantextlg.svg"
+                  />
+                  <b className={styles.approved}>Approved</b>
+                </div>
+              </button>
+              <button className={styles.buttonbutton1}>
+                <img
+                  className={styles.spantextLgIcon4}
+                  alt=""
+                  src="/spantextlg1.svg"
+                />
+                <div className={styles.reject2}>Reject</div>
+              </button>
+            </div>
+            
+          </div>
+        </div>
+        
+       
+        
+
+
+
+
+        <div className={styles.frameDiv2}>
+          <div className={styles.frameItem} />
+          <div className={styles.d}>
+            <div className={styles.checklistDesignChallengeV2} />
+          </div>
+          <img className={styles.iconstar} alt="" src="/svgjsline10698.svg" />
+          <div className={styles.infotype}>Driving lisence</div>
+          <div className={styles.status}>Approved</div>
+          
+
+          <div className={styles.spanbadgeWrapper1}>
+              <img
+                className={styles.spanavatarIcon}
+                alt=""
+                src="/component-471.svg"
+              />
+          </div>
+
+          
+        </div>
+        <div className={styles.rectangleParent22}>
+          <div className={styles.frameItem} />
+          <div className={styles.d}>
+            <div className={styles.checklistDesignChallengeV2} />
+          </div>
+          <img className={styles.iconstar} alt="" src="/svgjsline10698.svg" />
+          <div className={styles.infotype}>Insurance lisence</div>
+          <div className={styles.status}>Rejected</div>
+
+          <div className={styles.spanbadgeWrapper1}>
+              <img
+                className={styles.spanavatarIcon}
+                alt=""
+                src="/component-472.svg"
+              />
+          </div>
+
+        </div>
+        <div className={styles.rectangleParent32}>
+          <div className={styles.frameItem} />
+          <div className={styles.d}>
+            <div className={styles.checklistDesignChallengeV2} />
+          </div>
+          <img className={styles.iconstar} alt="" src="/svgjsline10698.svg" />
+          <div className={styles.infotype}>NIC</div>
+          <div className={styles.status}>In Review</div>
+
+          <div className={styles.spanbadgeWrapper1}>
+              <img
+                className={styles.spanavatarIcon}
+                alt=""
+                src="/component-473.svg"
+              />
+          </div>
+
+
+        </div>
+        <div className={styles.rectangleParent321}>
+          <div className={styles.frameItem} />
+          <div className={styles.d}>
+            <div className={styles.checklistDesignChallengeV2} />
+          </div>
+          <img className={styles.iconstar} alt="" src="/svgjsline10698.svg" />
+          <div className={styles.infotype}>Vehicle image</div>
+          <div className={styles.status}>Pending</div>
+
+          <div className={styles.spanbadgeWrapper1}>
+              <img
+                className={styles.spanavatarIcon}
+                alt=""
+                src="/component-474.svg"
+              />
+          </div>
+
+
+        </div>
+        <div className={styles.rectangleParent42}>
+        <div className={styles.spanbadgeWrapperParent}>
+            <button className={styles.spanbadgeWrapper122}>
+              <img
+                className={styles.spanavatarIcon}
+                alt=""
+                src="/spanavatar1.svg"
+              />
+              <div className={styles.spanbadge}>
+                <div className={styles.open}>Open</div>
+              </div>
+            </button>
+            <button className={styles.spanbadgeWrapper22} onClick={onInsuranceImagesButtonClick}>
+              <img
+                className={styles.spanavatarIcon}
+                alt=""
+                src="/spanavatar1.svg"
+              />
+              <div className={styles.spanbadge}>
+                <div className={styles.open}>Open</div>
+              </div>
+            </button>
+            <button className={styles.spanbadgeWrapper32} onClick={onNICImagesButtonClick}>
+              <img
+                className={styles.spanavatarIcon}
+                alt=""
+                src="/spanavatar1.svg"
+              />
+              <div className={styles.spanbadge}>
+                <div className={styles.open}>Open</div>
+              </div>
+            </button>
+
+            <button className={styles.spanbadgeWrapper42} onClick={onVehicleImagesButtonClick}>
+              <img
+                className={styles.spanavatarIcon}
+                alt=""
+                src="/spanavatar1.svg"
+              />
+              <div className={styles.spanbadge}>
+                <div className={styles.open}>Open</div>
+              </div>
+            </button>
+          </div>
+          
+          <div className={styles.divParent}>
+            <div className={styles.div4}>
+              <button className={styles.buttonbutton}>
+                <div className={styles.spanflex}>
+                  <img
+                    className={styles.spantextLgIcon}
+                    alt=""
+                    src="/spantextlg.svg"
+                  />
+                  <b className={styles.approved}>Approved</b>
+                </div>
+              </button>
+              <button className={styles.buttonbutton1}>
+                <div className={styles.spanflex1}>
+                 
                   <img
                     className={styles.spantextLgIcon1}
                     alt=""
@@ -592,10 +760,14 @@ const DriverProfileDetail = () => {
             </div>
           </div>
         </div>
-        <div className={styles.documentType}>Document Type</div>
-        <div className={styles.document}>Document</div>
-        <div className={styles.status}>Status</div>
-        <div className={styles.frameChild2} />
+
+
+
+
+
+
+
+
 
       </div>
       <div className={styles.navbar}>
