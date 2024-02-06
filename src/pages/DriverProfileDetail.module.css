@@ -8,6 +8,7 @@
   left: 0;
   background-color: rgba(245, 245, 245, 0.9);
 }
+
 .driverProfile {
   position: absolute;
   top: 116px;
@@ -15,12 +16,14 @@
   font-size: var(--h2-title-size);
   font-weight: 600;
 }
+
 .personalInfo,
 .profileChild {
   position: absolute;
   top: 0;
   left: 0;
 }
+
 .profileChild {
   border-radius: var(--br-smi);
   background-color: var(--background-backgroundprimary);
@@ -28,10 +31,12 @@
   width: 1039px;
   height: 643px;
 }
+
 .personalInfo {
   line-height: 21px;
   text-transform: uppercase;
 }
+
 .charinduUdanthaEdirisuriya,
 .fullName {
   position: absolute;
@@ -40,12 +45,14 @@
   line-height: 21px;
   font-weight: 500;
 }
+
 .charinduUdanthaEdirisuriya {
   top: 29px;
   font-weight: 600;
   color: #3f3f3f;
   text-align: left;
 }
+
 .fullNameParent {
   position: absolute;
   top: 0;
@@ -54,6 +61,7 @@
   height: 50px;
   text-align: center;
 }
+
 .cuEdirisuriya {
   position: absolute;
   top: 29px;
@@ -62,6 +70,7 @@
   font-weight: 600;
   color: var(--color-darkslategray-400);
 }
+
 .fullNameWithInitialsParent {
   position: absolute;
   top: 72px;
@@ -69,6 +78,7 @@
   width: 155px;
   height: 50px;
 }
+
 .email,
 .udantha15gmailcom {
   position: absolute;
@@ -77,44 +87,52 @@
   line-height: 21px;
   font-weight: 600;
 }
+
 .email {
   top: 0;
   font-weight: 500;
   color: var(--color-slategray);
 }
+
 .parent,
 .udantha15gmailcomParent {
   height: 50px;
   color: var(--color-darkslategray-400);
 }
+
 .udantha15gmailcomParent {
   position: absolute;
   top: 144px;
   left: 0;
   width: 166px;
 }
+
 .parent {
   top: 216px;
   width: 106px;
 }
+
 .ageCategory,
 .group,
 .parent {
   position: absolute;
   left: 0;
 }
+
 .group {
   top: 288px;
   width: 150px;
   height: 50px;
   color: var(--color-darkslategray-400);
 }
+
 .ageCategory {
   top: 0;
   line-height: 21px;
   text-transform: capitalize;
   font-weight: 500;
 }
+
 .ageCategoryParent,
 .groupParent {
   position: absolute;
@@ -123,12 +141,14 @@
   width: 150px;
   height: 50px;
 }
+
 .groupParent {
   top: 56px;
   width: 218px;
   height: 410px;
   color: var(--color-slategray);
 }
+
 .personalInfoParent,
 .profileInner {
   position: absolute;
@@ -137,13 +157,16 @@
   width: 218px;
   height: 466px;
 }
+
 .profileInner {
   top: 32px;
   left: 68px;
 }
+
 .mainRoadAthidiya {
   margin: 0;
 }
+
 .mainRoadAthidiyaContainer {
   position: absolute;
   top: 18px;
@@ -152,6 +175,7 @@
   text-transform: capitalize;
   font-weight: 600;
 }
+
 .mainRoadAthidiyaDehiwalaGroup,
 .mainRoadAthidiyaDehiwalaParent {
   position: absolute;
@@ -160,26 +184,31 @@
   width: 100%;
   height: 60px;
 }
+
 .mainRoadAthidiyaDehiwalaGroup {
   top: 72px;
   height: 50px;
 }
+
 .colombo,
 .kmParent {
   position: absolute;
   left: 0;
 }
+
 .kmParent {
   top: 144px;
   width: 250px;
   height: 50px;
 }
+
 .colombo {
   top: 29px;
   line-height: 21px;
   text-transform: capitalize;
   font-weight: 600;
 }
+
 .colomboParent,
 .groupContainer,
 .technologyParent {
@@ -189,17 +218,20 @@
   width: 300px;
   height: 50px;
 }
+
 .groupContainer,
 .technologyParent {
   top: 288px;
   width: 84px;
 }
+
 .groupContainer {
   top: 56px;
   width: 290px;
   height: 338px;
   color: var(--color-darkslategray-400);
 }
+
 .groupDiv,
 .profile,
 .routeInfoParent {
@@ -209,11 +241,13 @@
   width: 274px;
   height: 394px;
 }
+
 .groupDiv,
 .profile {
   top: 32px;
   left: 687px;
 }
+
 .profile {
   top: 206px;
   left: 60px;
@@ -225,6 +259,7 @@
   overflow: hidden;
   color: var(--color-steelblue-200);
 }
+
 .educationLevelParent {
   position: absolute;
   top: 288px;
@@ -233,6 +268,7 @@
   height: 50px;
   color: var(--color-slategray);
 }
+
 .container,
 .lkParent,
 .n455346Parent,
@@ -243,21 +279,25 @@
   width: 150px;
   height: 50px;
 }
+
 .container,
 .lkParent,
 .n455346Parent {
   top: 0;
   width: 150px;
 }
+
 .lkParent,
 .n455346Parent {
   top: 72px;
   width: 150px;
 }
+
 .lkParent {
   top: 144px;
   width: 76px;
 }
+
 .groupParent2,
 .mainRoadAthidiyaDehiwalaContainer {
   position: absolute;
@@ -266,10 +306,12 @@
   width: 252px;
   height: 71px;
 }
+
 .groupParent2 {
   top: 56px;
   height: 431px;
 }
+
 .vehicleInfo {
   position: absolute;
   top: 0;
@@ -278,6 +320,7 @@
   text-transform: uppercase;
   color: var(--color-steelblue-200);
 }
+
 .groupParent1 {
   position: absolute;
   top: 238px;
@@ -286,6 +329,7 @@
   height: 487px;
   color: var(--color-darkslategray-400);
 }
+
 .dateCreated04032023 {
   position: absolute;
   top: 145px;
@@ -295,11 +339,13 @@
   font-weight: 500;
   color: var(--color-slategray);
 }
+
 .rectangleContainermap {
   position: absolute;
   top: 120px;
   left: 900px;
 }
+
 .mapgroupItem {
   top: 0;
   left: 0;
@@ -309,6 +355,7 @@
   box-sizing: border-box;
   width: 65px;
 }
+
 .map {
   position: absolute;
   top: 11px;
@@ -321,12 +368,14 @@
   color: var(--background-backgroundprimary);
   text-align: center;
 }
+
 .edit,
 .groupChild {
   position: absolute;
   top: 0;
   left: 0;
 }
+
 .groupChild {
   border-radius: var(--br-6xs);
   background-color: var(--background-backgroundprimary);
@@ -335,6 +384,7 @@
   width: 98px;
   height: 44px;
 }
+
 .edit {
   font-size: var(--body-large-semibold-size);
   line-height: 21px;
@@ -344,6 +394,7 @@
   color: var(--color-darkslategray-400);
   text-align: left;
 }
+
 .notepencilIcon {
   position: absolute;
   height: 83.05%;
@@ -356,6 +407,7 @@
   overflow: hidden;
   max-height: 100%;
 }
+
 .editParent {
   position: absolute;
   top: 11px;
@@ -363,12 +415,14 @@
   width: 52px;
   height: 21px;
 }
+
 .groupItem,
 .mapgroupItem,
 .rectangleGroup {
   position: absolute;
   height: 44px;
 }
+
 .rectangleGroup {
   cursor: pointer;
   border: 0;
@@ -378,6 +432,7 @@
   left: 851px;
   width: 98px;
 }
+
 .groupItem {
   top: 0;
   left: 0;
@@ -387,6 +442,7 @@
   box-sizing: border-box;
   width: 128px;
 }
+
 .saveChanges {
   position: absolute;
   top: 11px;
@@ -399,6 +455,7 @@
   color: var(--background-backgroundprimary);
   text-align: left;
 }
+
 .rectangleContainer {
   cursor: pointer;
   border: 0;
@@ -410,6 +467,7 @@
   width: 128px;
   height: 44px;
 }
+
 .groupInner {
   position: absolute;
   top: 0;
@@ -419,12 +477,14 @@
   width: 1180px;
   height: 76px;
 }
+
 .search {
   position: absolute;
   top: 29px;
   left: 68px;
   font-weight: 100;
 }
+
 .iconsearchNormal {
   position: absolute;
   top: 28px;
@@ -432,6 +492,7 @@
   width: 20px;
   height: 20px;
 }
+
 .image53Icon,
 .image55Icon,
 .image56Icon {
@@ -442,15 +503,18 @@
   height: 32px;
   object-fit: cover;
 }
+
 .image55Icon,
 .image56Icon {
   width: 40px;
   height: 42px;
 }
+
 .image56Icon {
   width: 60px;
   height: 63px;
 }
+
 .avatar {
   position: absolute;
   top: 22px;
@@ -461,6 +525,7 @@
   height: 32px;
   overflow: hidden;
 }
+
 .iconmessages2,
 .iconnotificationBing {
   position: absolute;
@@ -469,15 +534,18 @@
   width: 24px;
   height: 24px;
 }
+
 .iconmessages2 {
   left: 1000px;
 }
+
 .searchbar2Fig4 {
   background-color: transparent;
   position: absolute;
   top: 18px;
   left: 30px;
 }
+
 .image54Icon,
 .image55Icon1 {
   position: absolute;
@@ -487,10 +555,12 @@
   height: 49px;
   object-fit: cover;
 }
+
 .image55Icon1 {
   width: 35px;
   height: 36px;
 }
+
 .avatar1 {
   position: absolute;
   top: 22px;
@@ -501,6 +571,7 @@
   height: 32px;
   overflow: hidden;
 }
+
 .rectangleParent1 {
   position: absolute;
   top: 0;
@@ -509,6 +580,7 @@
   height: 76px;
   color: var(--gray);
 }
+
 .activityLog,
 .attachedDocuments {
   position: absolute;
@@ -517,9 +589,11 @@
   font-size: var(--h2-title-size);
   font-weight: 600;
 }
+
 .activityLog {
   top: 1250px;
 }
+
 .frameItem {
   position: absolute;
   height: 100%;
@@ -533,6 +607,7 @@
   border: 1px solid var(--color-gainsboro-600);
   box-sizing: border-box;
 }
+
 .checklistDesignChallengeV2 {
   position: absolute;
   top: -1px;
@@ -541,10 +616,12 @@
   height: 49px;
   overflow: hidden;
 }
+
 .d,
 .iconstar {
   position: absolute;
 }
+
 .d {
   top: 15px;
   left: 56px;
@@ -553,18 +630,21 @@
   height: 46px;
   overflow: hidden;
 }
+
 .iconstar {
   top: 28px;
   left: 530px;
   width: 16px;
   height: 16px;
 }
+
 .infotype {
   position: absolute;
   top: 20px;
   left: 80px;
   font-weight: 600;
 }
+
 .status {
   position: absolute;
   font-size: var(--paragraph-small-size);
@@ -572,6 +652,7 @@
   top: 40px;
   left: 80px;
 }
+
 .frameDiv {
   position: absolute;
   top: 936px;
@@ -580,6 +661,7 @@
   height: 76px;
   overflow: hidden;
 }
+
 .frameDiv2 {
   position: absolute;
   top: 1325px;
@@ -588,6 +670,7 @@
   height: 76px;
   overflow: hidden;
 }
+
 .spanbadgeWrapper {
   position: absolute;
   top: 18px;
@@ -596,6 +679,7 @@
   width: 40px;
   height: 40px;
 }
+
 .rectangleParent2 {
   position: absolute;
   top: 1027px;
@@ -603,6 +687,7 @@
   width: 747px;
   height: 76px;
 }
+
 .rectangleParent22 {
   position: absolute;
   top: 1414px;
@@ -610,12 +695,14 @@
   width: 747px;
   height: 76px;
 }
+
 .nic {
   position: absolute;
   top: 29px;
   left: 47px;
   font-weight: 600;
 }
+
 .rectangleParent3 {
   position: absolute;
   top: 1118px;
@@ -623,6 +710,7 @@
   width: 747px;
   height: 76px;
 }
+
 .rectangleParent32 {
   position: absolute;
   top: 1504px;
@@ -630,6 +718,7 @@
   width: 747px;
   height: 76px;
 }
+
 .rectangleParent321 {
   position: absolute;
   top: 1594px;
@@ -646,6 +735,21 @@
   height: 76px;
 }
 
+.rectangleParent3211 {
+  position: absolute;
+  top: 1775px;
+  left: 60px;
+  width: 747px;
+  height: 76px;
+}
+
+.rectangleParent3212 {
+  position: absolute;
+  top: 1865px;
+  left: 60px;
+  width: 747px;
+  height: 76px;
+}
 
 .vehicleImage {
   position: absolute;
@@ -664,6 +768,7 @@
   width: 30.47px;
   height: 14px;
 }
+
 .spanbadge {
   position: absolute;
   top: -10px;
@@ -673,7 +778,8 @@
   width: 46.47px;
   height: 20px;
 }
-.spanbadgeWrapper1{
+
+.spanbadgeWrapper1 {
   position: absolute;
   top: 25px;
   left: 25px;
@@ -690,6 +796,7 @@
   width: 30px;
   height: 30px;
 }
+
 .spanbadgeWrapperParent {
   position: absolute;
   top: -255px;
@@ -699,11 +806,14 @@
   font-size: var(--other-other-regular-size);
   color: var(--background-backgroundprimary);
 }
+
 .spanbadgeWrapper122,
 .spanbadgeWrapper22,
 .spanbadgeWrapper32,
 .spanbadgeWrapper42,
-.spanbadgeWrapper421 {
+.spanbadgeWrapper421,
+.spanbadgeWrapper422,
+.spanbadgeWrapper423 {
   position: absolute;
   top: 0;
   left: 50px;
@@ -711,21 +821,34 @@
   width: 40px;
   height: 40px;
 }
+
 .spanbadgeWrapper22,
 .spanbadgeWrapper32,
 .spanbadgeWrapper42 {
   top: 91px;
 }
+
 .spanbadgeWrapper32,
 .spanbadgeWrapper42 {
   top: 183px;
 }
+
 .spanbadgeWrapper42 {
   top: 276px;
 }
+
 .spanbadgeWrapper421 {
   top: 368px;
 }
+
+.spanbadgeWrapper422 {
+  top: 450px;
+}
+
+.spanbadgeWrapper423 {
+  top: 540px;
+}
+
 .approved,
 .spantextLgIcon {
   position: absolute;
@@ -734,6 +857,7 @@
   width: 18px;
   height: 18px;
 }
+
 .approved {
   top: 1.67px;
   left: 22px;
@@ -748,6 +872,7 @@
   width: 56.6px;
   height: 14px;
 }
+
 .buttonbutton,
 .spanflex {
   position: absolute;
@@ -757,6 +882,7 @@
   width: 78.6px;
   height: 18px;
 }
+
 .buttonbutton {
   cursor: pointer;
   border: 0;
@@ -768,6 +894,7 @@
   width: 102.6px;
   height: 28px;
 }
+
 .reject,
 .spantextLgIcon1 {
   position: absolute;
@@ -776,6 +903,7 @@
   width: 18px;
   height: 18px;
 }
+
 .reject {
   top: 2px;
   left: 25.4px;
@@ -791,6 +919,7 @@
   width: 30px;
   height: 14px;
 }
+
 .buttonbutton1,
 .spanflex1 {
   position: absolute;
@@ -800,6 +929,7 @@
   width: 58.56px;
   height: 18px;
 }
+
 .buttonbutton1 {
   cursor: pointer;
   border: 0;
@@ -811,6 +941,7 @@
   width: 82.56px;
   height: 28px;
 }
+
 .div4,
 .spanflex3 {
   position: absolute;
@@ -820,12 +951,14 @@
   width: 201.17px;
   height: 36px;
 }
+
 .spanflex3 {
   top: 5px;
   left: 12px;
   width: 58.56px;
   height: 18px;
 }
+
 .reject2,
 .spantextLgIcon4 {
   position: absolute;
@@ -834,6 +967,7 @@
   width: 18px;
   height: 18px;
 }
+
 .reject2 {
   top: 7px;
   left: 37.79px;
@@ -849,30 +983,38 @@
   width: 30px;
   height: 14px;
 }
+
 .div5,
 .div6 {
   left: 0;
   background-color: var(--color-gray-300);
   height: 36px;
 }
+
 .div5 {
   position: absolute;
   top: 89px;
   width: 201.17px;
 }
+
 .div6 {
   top: 181px;
 }
-.div62{
+
+.div62 {
   top: 250px;
 }
+
 .div6,
 .div7,
 .div8,
+.div999,
+.div100,
 .divParent {
   position: absolute;
   width: 201.17px;
 }
+
 .div7 {
   top: 269px;
   left: 0;
@@ -887,11 +1029,26 @@
   height: 36px;
 }
 
+.div999 {
+  top: 445px;
+  left: 0;
+  background-color: var(--color-gray-300);
+  height: 36px;
+}
+
+.div100 {
+  top: 535px;
+  left: 0;
+  background-color: var(--color-gray-300);
+  height: 36px;
+}
+
 .divParent {
   top: -248px;
   left: 515px;
   height: 305px;
 }
+
 .rectangleParent4 {
   position: absolute;
   top: 1209px;
@@ -919,6 +1076,7 @@
   width: 841px;
   height: 747px;
 }
+
 .sunday06March {
   position: absolute;
   top: 2px;
@@ -931,6 +1089,7 @@
   width: 139.43px;
   height: 16.67px;
 }
+
 .div11 {
   top: 0;
   left: 0;
@@ -938,11 +1097,13 @@
   width: 720.53px;
   height: 21px;
 }
+
 .cp,
 .div11,
 .spanavatar {
   position: absolute;
 }
+
 .cp {
   top: 8px;
   left: 6.82px;
@@ -952,6 +1113,7 @@
   width: 16.35px;
   height: 14px;
 }
+
 .spanavatar {
   top: 4px;
   left: 0;
@@ -960,6 +1122,7 @@
   width: 30px;
   height: 30px;
 }
+
 .divtimelineConnect {
   position: absolute;
   top: 43.67px;
@@ -968,6 +1131,7 @@
   width: 2px;
   height: 26.33px;
 }
+
 .divtimelineItemMedia {
   position: absolute;
   top: 0;
@@ -976,6 +1140,7 @@
   width: 30px;
   height: 70px;
 }
+
 .spanbadgeDot {
   position: absolute;
   top: 6.5px;
@@ -985,6 +1150,7 @@
   width: 8px;
   height: 8px;
 }
+
 .pm {
   position: absolute;
   top: 2px;
@@ -992,6 +1158,7 @@
   line-height: 21px;
   width: 100%;
 }
+
 .approved4,
 .pm,
 .statusTo {
@@ -999,6 +1166,7 @@
   align-items: center;
   height: 16.67px;
 }
+
 .approved4 {
   position: absolute;
   top: 2px;
@@ -1009,10 +1177,12 @@
   color: var(--color-gray-400);
   width: 74.55px;
 }
+
 .statusTo {
   left: 256.43px;
   width: 100%;
 }
+
 .carolynPerkins,
 .hasChange,
 .passport,
@@ -1021,12 +1191,14 @@
   top: 2px;
   line-height: 21px;
 }
+
 .passport {
   left: 195px;
   font-weight: 600;
   font-family: var(--font-urbanist);
   color: var(--color-gray-400);
 }
+
 .carolynPerkins,
 .hasChange {
   left: 107px;
@@ -1035,6 +1207,7 @@
   width: 100%;
   height: 16.67px;
 }
+
 .carolynPerkins {
   left: 0;
   font-weight: 600;
@@ -1042,6 +1215,7 @@
   color: var(--color-gray-400);
   width: 106.51px;
 }
+
 .divtimelineItemWrapper,
 .p {
   position: absolute;
@@ -1053,6 +1227,7 @@
   font-size: var(--paragraph-small-size);
   color: var(--color-slategray);
 }
+
 .divtimelineItemWrapper {
   top: 0;
   left: 0;
@@ -1061,10 +1236,12 @@
   font-size: var(--other-other-regular-size);
   color: var(--color-whitesmoke-200);
 }
+
 .imgavatarImgIcon {
   top: 0;
   object-fit: cover;
 }
+
 .imgavatarImgIcon,
 .imgavatarImgIcon1,
 .spanavatar1 {
@@ -1074,14 +1251,17 @@
   width: 30px;
   height: 30px;
 }
+
 .imgavatarImgIcon1 {
   top: 0.33px;
   object-fit: cover;
 }
+
 .spanavatar1 {
   top: 4px;
   background-color: var(--color-darkgray-100);
 }
+
 .divtimelineConnect1 {
   position: absolute;
   top: 43.67px;
@@ -1090,6 +1270,7 @@
   width: 2px;
   height: 106.67px;
 }
+
 .divtimelineItemMedia1 {
   position: absolute;
   top: 0;
@@ -1098,10 +1279,12 @@
   width: 30px;
   height: 150.33px;
 }
+
 .pm1 {
   left: 242.61px;
   width: 100%;
 }
+
 .commentOnYour,
 .pm1,
 .post {
@@ -1112,6 +1295,7 @@
   align-items: center;
   height: 16.67px;
 }
+
 .post {
   left: 205.2px;
   font-weight: 600;
@@ -1119,15 +1303,18 @@
   color: var(--color-gray-400);
   width: 100%;
 }
+
 .commentOnYour {
   left: 80.61px;
   width: 100%;
 }
+
 .p1,
 .ronVargas {
   position: absolute;
   left: 0;
 }
+
 .ronVargas {
   top: 2px;
   line-height: 21px;
@@ -1139,16 +1326,19 @@
   width: 100%;
   height: 16.67px;
 }
+
 .p1 {
   top: 0;
   background-color: var(--color-gray-300);
   width: 100%;
   height: 21px;
 }
+
 .fineJavaMightContainer1 {
   line-break: anywhere;
   width: 100%;
 }
+
 .fineJavaMightContainer {
   position: absolute;
   top: 22px;
@@ -1159,6 +1349,7 @@
   width: 100%;
   height: 37.67px;
 }
+
 .divcard,
 .divcardBody {
   position: absolute;
@@ -1168,6 +1359,7 @@
   width: 673.2px;
   height: 82px;
 }
+
 .divcard {
   top: 37px;
   left: 0;
@@ -1178,6 +1370,7 @@
   width: 674.53px;
   height: 83.33px;
 }
+
 .div12,
 .divtimelineItemWrapper1 {
   position: absolute;
@@ -1187,12 +1380,14 @@
   width: 674.53px;
   height: 120.33px;
 }
+
 .divtimelineItemWrapper1 {
   top: 70px;
   left: 0;
   width: 720.53px;
   height: 150.33px;
 }
+
 .spanavatarIcon4 {
   position: absolute;
   top: 4px;
@@ -1201,6 +1396,7 @@
   width: 30px;
   height: 30px;
 }
+
 .divtimelineConnect2 {
   position: absolute;
   top: 38px;
@@ -1209,12 +1405,14 @@
   width: 2px;
   height: 32px;
 }
+
 .joyceFreeman,
 .spanfontSemibold {
   position: absolute;
   left: 0;
   width: 102.82px;
 }
+
 .joyceFreeman {
   top: 2px;
   line-height: 21px;
@@ -1223,12 +1421,14 @@
   align-items: center;
   height: 16.67px;
 }
+
 .spanfontSemibold {
   top: 2.17px;
   background-color: var(--color-gray-300);
   height: 21px;
   color: var(--color-gray-400);
 }
+
 .spantagAffix {
   position: absolute;
   top: 8.67px;
@@ -1238,6 +1438,7 @@
   width: 8px;
   height: 8px;
 }
+
 .liveIssue {
   position: absolute;
   top: 5.33px;
@@ -1249,11 +1450,13 @@
   width: 57.59px;
   height: 14px;
 }
+
 .divtag,
 .spantagAffix1 {
   position: absolute;
   border-radius: var(--br-9980xl);
 }
+
 .divtag {
   top: 0;
   left: 189.72px;
@@ -1264,6 +1467,7 @@
   height: 25.33px;
   font-size: var(--other-other-regular-size);
 }
+
 .spantagAffix1 {
   top: 8.67px;
   left: 10.67px;
@@ -1271,6 +1475,7 @@
   width: 8px;
   height: 8px;
 }
+
 .backend {
   position: absolute;
   top: 5.33px;
@@ -1282,6 +1487,7 @@
   width: 50.26px;
   height: 14px;
 }
+
 .divtag1 {
   position: absolute;
   top: 0;
@@ -1294,6 +1500,7 @@
   height: 25.33px;
   font-size: var(--other-other-regular-size);
 }
+
 .addedTags,
 .pm2 {
   position: absolute;
@@ -1306,10 +1513,12 @@
   width: 100%;
   height: 16.67px;
 }
+
 .addedTags {
   left: 106.82px;
   width: 100%;
 }
+
 .divflex,
 .divtimelineItemWrapper2 {
   position: absolute;
@@ -1319,6 +1528,7 @@
   width: 674.53px;
   height: 25.33px;
 }
+
 .divtimelineItemWrapper2 {
   top: 220.33px;
   left: 0;
@@ -1326,12 +1536,14 @@
   height: 70px;
   font-family: var(--font-urbanist);
 }
+
 .lukeCook,
 .spanfontSemibold1 {
   position: absolute;
   left: 0;
   width: 71.26px;
 }
+
 .lukeCook {
   top: 2px;
   line-height: 21px;
@@ -1340,16 +1552,19 @@
   align-items: center;
   height: 16.67px;
 }
+
 .spanfontSemibold1 {
   top: 0;
   background-color: var(--color-gray-300);
   height: 21px;
 }
+
 .pd1092,
 .spanfontSemibold2 {
   position: absolute;
   width: 65.52px;
 }
+
 .pd1092 {
   top: 2px;
   left: 05px;
@@ -1359,17 +1574,20 @@
   align-items: center;
   height: 16.67px;
 }
+
 .spanfontSemibold2 {
   top: 0;
   left: 280.02px;
   background-color: var(--color-gray-300);
   height: 21px;
 }
+
 .pm3,
 .toTicket {
   font-family: var(--font-inter);
   color: var(--color-slategray);
 }
+
 .pm3 {
   position: absolute;
   top: 2px;
@@ -1380,10 +1598,12 @@
   width: 100%;
   height: 16.67px;
 }
+
 .toTicket {
   left: 221.95px;
   width: 100%;
 }
+
 .added,
 .documentcsv,
 .toTicket {
@@ -1394,17 +1614,20 @@
   align-items: center;
   height: 16.67px;
 }
+
 .documentcsv {
   left: 121.39px;
   font-weight: 600;
   width: 96.56px;
 }
+
 .added {
   left: 75.26px;
   font-family: var(--font-inter);
   color: var(--color-slategray);
   width: 42.13px;
 }
+
 .divflex1,
 .divtimelineItemWrapper3 {
   position: absolute;
@@ -1414,6 +1637,7 @@
   width: 674.53px;
   height: 21px;
 }
+
 .divtimelineItemWrapper3 {
   top: 290.33px;
   left: 0;
@@ -1422,6 +1646,7 @@
   color: var(--color-gray-400);
   font-family: var(--font-urbanist);
 }
+
 .pm4,
 .post1 {
   position: absolute;
@@ -1433,6 +1658,7 @@
   width: 100%;
   height: 16.67px;
 }
+
 .post1 {
   left: 295.51px;
   font-weight: 600;
@@ -1440,11 +1666,13 @@
   color: var(--color-gray-400);
   width: 30.42px;
 }
+
 .mentionedYouIn {
   top: 2px;
   left: 93.08px;
   width: 100%;
 }
+
 .carolyn,
 .hadNoWay,
 .mentionedYouIn,
@@ -1456,6 +1684,7 @@
   align-items: center;
   height: 16.67px;
 }
+
 .taraFletcher {
   top: 2px;
   left: 0;
@@ -1464,6 +1693,7 @@
   color: var(--color-gray-400);
   width: 89.08px;
 }
+
 .carolyn,
 .hadNoWay,
 .oneOfThe {
@@ -1471,16 +1701,19 @@
   left: 95.76px;
   width: 100%;
 }
+
 .carolyn,
 .hadNoWay {
   top: 43px;
   left: 20px;
   width: 100%;
 }
+
 .carolyn {
   top: 22px;
   width: 67.75px;
 }
+
 .divtimelineItemWrapper4 {
   position: absolute;
   top: 360.33px;
@@ -1489,6 +1722,7 @@
   width: 720.53px;
   height: 150.33px;
 }
+
 .lw {
   position: absolute;
   top: 8px;
@@ -1499,6 +1733,7 @@
   width: 18.15px;
   height: 14px;
 }
+
 .spanavatar3 {
   position: absolute;
   top: 4px;
@@ -1508,12 +1743,14 @@
   width: 30px;
   height: 30px;
 }
+
 .leeWheeler,
 .spanfontSemibold3 {
   position: absolute;
   left: 0;
   width: 84.77px;
 }
+
 .leeWheeler {
   top: 2px;
   line-height: 21px;
@@ -1522,11 +1759,13 @@
   align-items: center;
   height: 16.67px;
 }
+
 .spanfontSemibold3 {
   top: 0;
   background-color: var(--color-gray-300);
   height: 21px;
 }
+
 .gailBarnes {
   position: absolute;
   top: 2px;
@@ -1538,6 +1777,7 @@
   width: 76.71px;
   height: 16.67px;
 }
+
 .spanfontSemibold4 {
   position: absolute;
   top: 0;
@@ -1546,11 +1786,13 @@
   width: 76.71px;
   height: 21px;
 }
+
 .pm5,
 .to {
   font-family: var(--font-inter);
   color: var(--color-slategray);
 }
+
 .pm5 {
   position: absolute;
   top: 2px;
@@ -1561,10 +1803,12 @@
   width: 100%;
   height: 16.67px;
 }
+
 .to {
   left: 256.43px;
   width: 13.36px;
 }
+
 .assignedTicket,
 .pd10921,
 .to {
@@ -1575,17 +1819,20 @@
   align-items: center;
   height: 16.67px;
 }
+
 .pd10921 {
   left: 197.91px;
   font-weight: 600;
   width: 59.52px;
 }
+
 .assignedTicket {
   left: 88.77px;
   font-family: var(--font-inter);
   color: var(--color-slategray);
   width: 100%;
 }
+
 .divflex2 {
   position: absolute;
   top: 6px;
@@ -1597,12 +1844,14 @@
   color: var(--color-gray-400);
   font-family: var(--font-urbanist);
 }
+
 .divtimelineItemWrapper5 {
   top: 510.67px;
   height: 43.67px;
   font-size: var(--other-other-regular-size);
   color: var(--color-whitesmoke-200);
 }
+
 .div10,
 .divtimelineItemWrapper5,
 .ultimeline {
@@ -1611,15 +1860,18 @@
   background-color: var(--color-gray-300);
   width: 720.53px;
 }
+
 .ultimeline {
   top: 37px;
   height: 554.33px;
   font-family: var(--font-inter);
 }
+
 .div10 {
   top: 0;
   height: 591.33px;
 }
+
 .loadMore {
   position: absolute;
   top: 13.5px;
@@ -1632,6 +1884,7 @@
   width: 71.52px;
   height: 16.67px;
 }
+
 .buttonbutton8 {
   position: absolute;
   top: 1652px;
@@ -1645,6 +1898,7 @@
   text-align: center;
   color: var(--color-dimgray-200);
 }
+
 .div9 {
   position: absolute;
   top: 56px;
@@ -1653,6 +1907,7 @@
   width: 721px;
   height: 623px;
 }
+
 /* .div8 {
   top: 1400px;
   left: 126px;
@@ -1668,6 +1923,7 @@
   width: 1180px;
   height: 2211px;
 }
+
 .asset84xIcon {
   height: 100%;
   width: 100%;
@@ -1679,6 +1935,7 @@
   max-height: 100%;
   object-fit: cover;
 }
+
 .divlogo,
 .logo {
   position: absolute;
@@ -1687,6 +1944,7 @@
   width: 175px;
   height: 35px;
 }
+
 .divlogo {
   top: 25px;
   left: 0;
@@ -1694,6 +1952,7 @@
   width: 250px;
   height: 64px;
 }
+
 .growthIcon {
   position: relative;
   width: 18px;
@@ -1701,6 +1960,7 @@
   overflow: hidden;
   flex-shrink: 0;
 }
+
 .myGroup {
   position: relative;
   font-size: var(--paragraph-small-size);
@@ -1711,6 +1971,7 @@
   color: var(--color-gray-100);
   text-align: left;
 }
+
 .component1 {
   cursor: pointer;
   border: 0;
@@ -1724,6 +1985,7 @@
   box-sizing: border-box;
   gap: var(--gap-5xs);
 }
+
 .component1Wrapper {
   align-self: stretch;
   display: flex;
@@ -1731,6 +1993,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .analytics {
   position: relative;
   font-size: var(--paragraph-small-size);
@@ -1741,6 +2004,7 @@
   color: var(--color-red-100);
   text-align: left;
 }
+
 .rocketlaunchParent {
   cursor: pointer;
   border: 0;
@@ -1757,6 +2021,7 @@
   gap: var(--gap-5xs);
   z-index: 0;
 }
+
 .frameChild3 {
   position: absolute;
   margin: 0 !important;
@@ -1768,11 +2033,13 @@
   height: 32px;
   z-index: 1;
 }
+
 .frameParent,
 .menuItem {
   display: flex;
   flex-direction: column;
 }
+
 .frameParent {
   align-self: stretch;
   align-items: center;
@@ -1780,6 +2047,7 @@
   position: relative;
   gap: var(--gap-36xl);
 }
+
 .menuItem {
   position: absolute;
   top: 158px;
@@ -1789,20 +2057,24 @@
   justify-content: flex-start;
   gap: var(--gap-5xs);
 }
+
 .influencer,
 .theresaMilly {
   position: relative;
   line-height: 137.1%;
 }
+
 .theresaMilly {
   letter-spacing: 0.02em;
   font-weight: 500;
 }
+
 .influencer {
   font-size: var(--other-other-regular-size);
   letter-spacing: 0.01em;
   color: var(--color-gray-100);
 }
+
 .theresaMillyParent {
   align-self: stretch;
   display: flex;
@@ -1810,6 +2082,7 @@
   align-items: center;
   justify-content: flex-start;
 }
+
 .logout1 {
   position: relative;
   font-size: var(--paragraph-small-size);
@@ -1820,11 +2093,13 @@
   color: var(--color-orangered-100);
   text-align: left;
 }
+
 .logout,
 .logoutGroup {
   display: flex;
   justify-content: center;
 }
+
 .logoutGroup {
   cursor: pointer;
   border: 0;
@@ -1836,6 +2111,7 @@
   align-items: center;
   gap: var(--gap-9xs);
 }
+
 .logout {
   position: absolute;
   top: 30px;
@@ -1851,6 +2127,7 @@
   padding: var(--padding-17xl) var(--padding-base) var(--padding-base);
   gap: var(--gap-xs);
 }
+
 .ellipseIcon {
   position: absolute;
   top: 0;
@@ -1860,6 +2137,7 @@
   height: 60px;
   object-fit: cover;
 }
+
 .logoutParent {
   position: absolute;
   top: 672px;
@@ -1867,12 +2145,14 @@
   width: 202px;
   height: 178px;
 }
+
 .driverProfileDetail,
 .navbar {
   background-color: var(--background-backgroundprimary);
   height: 2211px;
   overflow: hidden;
 }
+
 .navbar {
   position: absolute;
   top: 0;
@@ -1884,6 +2164,7 @@
   color: var(--color-gray-200);
   font-family: var(--font-lexend);
 }
+
 .driverProfileDetail {
   position: relative;
   width: 100%;

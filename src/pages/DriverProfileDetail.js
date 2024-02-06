@@ -1,12 +1,12 @@
 import { useCallback } from "react";
 import { Input } from "@chakra-ui/react";
 import styles from "./DriverProfileDetail.module.css";
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { collection, getDoc, doc, updateDoc } from 'firebase/firestore';
-import { getFirestore } from 'firebase/firestore';
-import firebaseApp from './firebase';
-import { getStorage, ref, listAll, getDownloadURL } from 'firebase/storage';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { collection, getDoc, doc, updateDoc } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
+import firebaseApp from "./firebase";
+import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
 
 const DriverProfileDetail = () => {
   const { documentId } = useParams();
@@ -55,17 +55,22 @@ const DriverProfileDetail = () => {
       try {
         const db = getFirestore(firebaseApp);
 
-        const personalInfoCollection = collection(db, 'PersonalInfomation');
+        const personalInfoCollection = collection(db, "PersonalInfomation");
         const personalInfoDocRef = doc(personalInfoCollection, documentId);
         const personalInfoDocSnapshot = await getDoc(personalInfoDocRef);
 
-        const nicNumberCollection = collection(db, 'NIC Number');
+        const nicNumberCollection = collection(db, "NIC Number");
         const nicNumberDocRef = doc(nicNumberCollection, documentId);
         const nicNumberDocSnapshot = await getDoc(nicNumberDocRef);
 
-        const addressAndRoutesCollection = collection(db, 'AddressAndRoutes');
-        const addressAndRoutesDocRef = doc(addressAndRoutesCollection, documentId);
-        const addressAndRoutesDocSnapshot = await getDoc(addressAndRoutesDocRef);
+        const addressAndRoutesCollection = collection(db, "AddressAndRoutes");
+        const addressAndRoutesDocRef = doc(
+          addressAndRoutesCollection,
+          documentId
+        );
+        const addressAndRoutesDocSnapshot = await getDoc(
+          addressAndRoutesDocRef
+        );
 
         if (
           personalInfoDocSnapshot.exists() &&
@@ -84,11 +89,15 @@ const DriverProfileDetail = () => {
 
           setDriverInfo(mergedData);
         } else {
-          console.error('Document not found for ID:', documentId);
+          console.error("Document not found for ID:", documentId);
           setDriverInfo(null);
         }
       } catch (error) {
-        console.error('Error fetching driver information for ID:', documentId, error);
+        console.error(
+          "Error fetching driver information for ID:",
+          documentId,
+          error
+        );
       }
     };
 
@@ -99,15 +108,18 @@ const DriverProfileDetail = () => {
     try {
       const db = getFirestore(firebaseApp);
 
-      const personalInfoCollection = collection(db, 'PersonalInfomation');
+      const personalInfoCollection = collection(db, "PersonalInfomation");
       const personalInfoDocRef = doc(personalInfoCollection, documentId);
       const timestamp = new Date();
 
-      const nicNumberCollection = collection(db, 'NIC Number');
+      const nicNumberCollection = collection(db, "NIC Number");
       const nicNumberDocRef = doc(nicNumberCollection, documentId);
 
-      const addressAndRoutesCollection = collection(db, 'AddressAndRoutes');
-      const addressAndRoutesDocRef = doc(addressAndRoutesCollection, documentId);
+      const addressAndRoutesCollection = collection(db, "AddressAndRoutes");
+      const addressAndRoutesDocRef = doc(
+        addressAndRoutesCollection,
+        documentId
+      );
 
       await updateDoc(personalInfoDocRef, {
         name: editedDriverInfo.name,
@@ -115,28 +127,27 @@ const DriverProfileDetail = () => {
         mobileNumber: editedDriverInfo.mobileNumber,
         dateOfBirth: editedDriverInfo.dateOfBirth,
         timestamp: timestamp,
-
       });
 
-      await updateDoc(nicNumberDocRef, { NICNumber: editedDriverInfo.NICNumber });
+      await updateDoc(nicNumberDocRef, {
+        NICNumber: editedDriverInfo.NICNumber,
+      });
 
       await updateDoc(addressAndRoutesDocRef, {
         Add1: editedDriverInfo.Add1,
         Add2: editedDriverInfo.Add2,
         AvgKM: editedDriverInfo.AvgKM,
-
       });
 
       setDriverInfo(editedDriverInfo);
 
       setIsEditing(false);
-      window.alert('Changes saved successfully!');
+      window.alert("Changes saved successfully!");
     } catch (error) {
-      console.error('Error saving changes:', error);
-      window.alert('Error saving changes. Please try again.');
+      console.error("Error saving changes:", error);
+      window.alert("Error saving changes. Please try again.");
     }
   };
-
 
   const onNICImagesButtonClick = useCallback(async () => {
     try {
@@ -146,12 +157,12 @@ const DriverProfileDetail = () => {
       const items = await listAll(folderRef);
       if (items && items.items.length > 0) {
         const firstItemUrl = await getDownloadURL(items.items[0]);
-        window.open(firstItemUrl, '_blank');
+        window.open(firstItemUrl, "_blank");
       } else {
-        console.error('No items found in the folder.');
+        console.error("No items found in the folder.");
       }
     } catch (error) {
-      console.error('Error retrieving images:', error);
+      console.error("Error retrieving images:", error);
     }
   }, [documentId]);
 
@@ -163,12 +174,12 @@ const DriverProfileDetail = () => {
       const items = await listAll(folderRef);
       if (items && items.items.length > 0) {
         const firstItemUrl = await getDownloadURL(items.items[0]);
-        window.open(firstItemUrl, '_blank');
+        window.open(firstItemUrl, "_blank");
       } else {
-        console.error('No items found in the folder.');
+        console.error("No items found in the folder.");
       }
     } catch (error) {
-      console.error('Error retrieving images:', error);
+      console.error("Error retrieving images:", error);
     }
   }, [documentId]);
 
@@ -180,15 +191,57 @@ const DriverProfileDetail = () => {
       const items = await listAll(folderRef);
       if (items && items.items.length > 0) {
         const firstItemUrl = await getDownloadURL(items.items[0]);
-        window.open(firstItemUrl, '_blank');
+        window.open(firstItemUrl, "_blank");
       } else {
-        console.error('No items found in the folder.');
+        console.error("No items found in the folder.");
       }
     } catch (error) {
-      console.error('Error retrieving images:', error);
+      console.error("Error retrieving images:", error);
     }
   }, [documentId]);
 
+  const onVehicleRegistrationButtonClick = useCallback(async () => {
+    try {
+      const storage = getStorage();
+      const nicImagesFolder = `${documentId}/Vehicle Registration Documents`;
+      const folderRef = ref(storage, nicImagesFolder);
+      const items = await listAll(folderRef);
+      if (items && items.items.length > 0) {
+        const firstItemUrl = await getDownloadURL(items.items[0]);
+        window.open(firstItemUrl, "_blank");
+      } else {
+        console.error("No items found in the folder.");
+      }
+    } catch (error) {
+      console.error("Error retrieving images:", error);
+    }
+  }, [documentId]);
+
+  const onBillingProofButtonClick = useCallback(async () => {
+    try {
+      const storage = getStorage();
+      const utilityFolder = `${documentId}/BillingProofDocuments/Utility Bill`;
+      const bankFolder = `${documentId}/BillingProofDocuments/Bank Statements`;
+      const folderRef = ref(storage, utilityFolder);
+      const folderRef1 = ref(storage, bankFolder);
+      const items = await listAll(folderRef);
+      const items1 = await listAll(folderRef1);
+      if (items && items.items.length > 0) {
+        const firstItemUrl = await getDownloadURL(items.items[0]);
+        window.open(firstItemUrl, "_blank");
+      } else {
+        console.error("No items found in the folder.");
+      }
+      if (items1 && items1.items.length > 0) {
+        const firstItemUrl = await getDownloadURL(items1.items[0]);
+        window.open(firstItemUrl, "_blank");
+      } else {
+        console.error("No items found in the folder.");
+      }
+    } catch (error) {
+      console.error("Error retrieving images:", error);
+    }
+  }, [documentId]);
 
   return (
     <div className={styles.driverProfileDetail}>
@@ -207,7 +260,9 @@ const DriverProfileDetail = () => {
                     {isEditing ? (
                       <Input
                         value={editedDriverInfo && editedDriverInfo.name}
-                        onChange={(e) => handleEditChange('name', e.target.value)}
+                        onChange={(e) =>
+                          handleEditChange("name", e.target.value)
+                        }
                       />
                     ) : (
                       driverInfo && driverInfo.name
@@ -223,7 +278,9 @@ const DriverProfileDetail = () => {
                     {isEditing ? (
                       <Input
                         value={editedDriverInfo && editedDriverInfo.email}
-                        onChange={(e) => handleEditChange('email', e.target.value)}
+                        onChange={(e) =>
+                          handleEditChange("email", e.target.value)
+                        }
                       />
                     ) : (
                       driverInfo && driverInfo.email
@@ -232,26 +289,35 @@ const DriverProfileDetail = () => {
                   <div className={styles.email}>Email</div>
                 </div>
                 <div className={styles.parent}>
-                  <div className={styles.udantha15gmailcom}>{isEditing ? (
-                    <Input
-                      value={editedDriverInfo && editedDriverInfo.mobileNumber}
-                      onChange={(e) => handleEditChange('mobileNumber', e.target.value)}
-                    />
-                  ) : (
-                    driverInfo && driverInfo.mobileNumber
-                  )}</div>
+                  <div className={styles.udantha15gmailcom}>
+                    {isEditing ? (
+                      <Input
+                        value={
+                          editedDriverInfo && editedDriverInfo.mobileNumber
+                        }
+                        onChange={(e) =>
+                          handleEditChange("mobileNumber", e.target.value)
+                        }
+                      />
+                    ) : (
+                      driverInfo && driverInfo.mobileNumber
+                    )}
+                  </div>
                   <div className={styles.email}>Phone</div>
                 </div>
                 <div className={styles.group}>
                   <div className={styles.udantha15gmailcom}>
-                  {isEditing ? (
-                    <Input
-                      value={editedDriverInfo && editedDriverInfo.dateOfBirth}
-                      onChange={(e) => handleEditChange('dateOfBirth', e.target.value)}
-                    />
-                  ) : (
+                    {isEditing ? (
+                      <Input
+                        value={editedDriverInfo && editedDriverInfo.dateOfBirth}
+                        onChange={(e) =>
+                          handleEditChange("dateOfBirth", e.target.value)
+                        }
+                      />
+                    ) : (
                       driverInfo && driverInfo.dateOfBirth
-                  )}</div>
+                    )}
+                  </div>
                   <div className={styles.email}>Date of birth</div>
                 </div>
                 <div className={styles.ageCategoryParent}>
@@ -268,42 +334,47 @@ const DriverProfileDetail = () => {
                 <div className={styles.mainRoadAthidiyaDehiwalaParent}>
                   <div className={styles.mainRoadAthidiyaContainer}>
                     <p className={styles.mainRoadAthidiya}>
-                        {isEditing ? (
-                          <Input
-                            value={editedDriverInfo && editedDriverInfo.Add1}
-                            onChange={(e) => handleEditChange('Add1', e.target.value)}
-                          />
-                        ) : (
-                          driverInfo && driverInfo.Add1
-                        )}
+                      {isEditing ? (
+                        <Input
+                          value={editedDriverInfo && editedDriverInfo.Add1}
+                          onChange={(e) =>
+                            handleEditChange("Add1", e.target.value)
+                          }
+                        />
+                      ) : (
+                        driverInfo && driverInfo.Add1
+                      )}
                     </p>
-
                   </div>
                   <div className={styles.email}>Address line 1</div>
                 </div>
                 <div className={styles.mainRoadAthidiyaDehiwalaGroup}>
                   <div className={styles.udantha15gmailcom}>
-                      {isEditing ? (
-                        <Input
-                          value={editedDriverInfo && editedDriverInfo.Add2}
-                          onChange={(e) => handleEditChange('Add2', e.target.value)}
-                        />
-                      ) : (
-                        driverInfo && driverInfo.Add2
-                      )}
+                    {isEditing ? (
+                      <Input
+                        value={editedDriverInfo && editedDriverInfo.Add2}
+                        onChange={(e) =>
+                          handleEditChange("Add2", e.target.value)
+                        }
+                      />
+                    ) : (
+                      driverInfo && driverInfo.Add2
+                    )}
                   </div>
                   <div className={styles.email}>Address line 2</div>
                 </div>
                 <div className={styles.kmParent}>
                   <div className={styles.udantha15gmailcom}>
-                      {isEditing ? (
-                        <Input
-                          value={editedDriverInfo && editedDriverInfo.AvgKM}
-                          onChange={(e) => handleEditChange('AvgKM', e.target.value)}
-                        />
-                      ) : (
-                        driverInfo && driverInfo.AvgKM
-                      )}
+                    {isEditing ? (
+                      <Input
+                        value={editedDriverInfo && editedDriverInfo.AvgKM}
+                        onChange={(e) =>
+                          handleEditChange("AvgKM", e.target.value)
+                        }
+                      />
+                    ) : (
+                      driverInfo && driverInfo.AvgKM
+                    )}
                   </div>
                   <div className={styles.email}>
                     Average kilometers (KM) per day
@@ -334,14 +405,18 @@ const DriverProfileDetail = () => {
               <div className={styles.email}>Marital Status</div>
             </div>
             <div className={styles.container}>
-              <div className={styles.udantha15gmailcom}>{isEditing ? (
-                <Input
-                  value={editedDriverInfo && editedDriverInfo.NICNumber}
-                  onChange={(e) => handleEditChange('NICNumber', e.target.value)}
-                />
-              ) : (
-                driverInfo && driverInfo.NICNumber
-              )}</div>
+              <div className={styles.udantha15gmailcom}>
+                {isEditing ? (
+                  <Input
+                    value={editedDriverInfo && editedDriverInfo.NICNumber}
+                    onChange={(e) =>
+                      handleEditChange("NICNumber", e.target.value)
+                    }
+                  />
+                ) : (
+                  driverInfo && driverInfo.NICNumber
+                )}
+              </div>
               <div className={styles.email}>National Id Number</div>
             </div>
             <div className={styles.n455346Parent}>
@@ -354,10 +429,7 @@ const DriverProfileDetail = () => {
             </div>
             <div className={styles.mainRoadAthidiyaDehiwalaContainer}>
               <div className={styles.udantha15gmailcom}>
-                <p className={styles.mainRoadAthidiya}>
-                  {/*Need to add */}
-                </p>
-
+                <p className={styles.mainRoadAthidiya}>{/*Need to add */}</p>
               </div>
               <div className={styles.email}>Home Address</div>
             </div>
@@ -367,8 +439,6 @@ const DriverProfileDetail = () => {
         <div className={styles.dateCreated04032023}>
           Date created 04.03.2023
         </div>
-        
-
 
         <button className={styles.rectangleGroup} onClick={toggleEdit}>
           <div className={styles.groupChild} />
@@ -393,7 +463,7 @@ const DriverProfileDetail = () => {
             alt=""
             src="/iconsearchnormal.svg"
           />
-          
+
           <img
             className={styles.iconnotificationBing}
             alt=""
@@ -407,7 +477,6 @@ const DriverProfileDetail = () => {
           <Input className={styles.searchbar2Fig4} width="639px" w="639px" />
           <div className={styles.avatar1}>
             <img className={styles.image54Icon} alt="" src="/image-54@2x.png" />
-            
           </div>
         </div>
         <div className={styles.attachedDocuments}>Information</div>
@@ -420,17 +489,14 @@ const DriverProfileDetail = () => {
           <img className={styles.iconstar} alt="" src="/svgjsline10698.svg" />
           <div className={styles.infotype}>Personal Information</div>
           <div className={styles.status}>Approved</div>
-          
 
           <div className={styles.spanbadgeWrapper1}>
-              <img
-                className={styles.spanavatarIcon}
-                alt=""
-                src="/component-471.svg"
-              />
+            <img
+              className={styles.spanavatarIcon}
+              alt=""
+              src="/component-471.svg"
+            />
           </div>
-
-          
         </div>
         <div className={styles.rectangleParent2}>
           <div className={styles.frameItem} />
@@ -442,13 +508,12 @@ const DriverProfileDetail = () => {
           <div className={styles.status}>Rejected</div>
 
           <div className={styles.spanbadgeWrapper1}>
-              <img
-                className={styles.spanavatarIcon}
-                alt=""
-                src="/component-472.svg"
-              />
+            <img
+              className={styles.spanavatarIcon}
+              alt=""
+              src="/component-472.svg"
+            />
           </div>
-
         </div>
         <div className={styles.rectangleParent3}>
           <div className={styles.frameItem} />
@@ -460,18 +525,14 @@ const DriverProfileDetail = () => {
           <div className={styles.status}>In Review</div>
 
           <div className={styles.spanbadgeWrapper1}>
-              <img
-                className={styles.spanavatarIcon}
-                alt=""
-                src="/component-473.svg"
-              />
+            <img
+              className={styles.spanavatarIcon}
+              alt=""
+              src="/component-473.svg"
+            />
           </div>
-
-
         </div>
         <div className={styles.rectangleParent4}>
-          
-          
           <div className={styles.divParent}>
             <div className={styles.div4}>
               <button className={styles.buttonbutton}>
@@ -542,15 +603,8 @@ const DriverProfileDetail = () => {
                 <div className={styles.reject2}>Reject</div>
               </button>
             </div>
-            
           </div>
         </div>
-        
-       
-        
-
-
-
 
         <div className={styles.frameDiv2}>
           <div className={styles.frameItem} />
@@ -558,19 +612,16 @@ const DriverProfileDetail = () => {
             <div className={styles.checklistDesignChallengeV2} />
           </div>
           <img className={styles.iconstar} alt="" src="/svgjsline10698.svg" />
-          <div className={styles.infotype}>Driving lisence</div>
+          <div className={styles.infotype}>Driving Lisence</div>
           <div className={styles.status}>Approved</div>
-          
 
           <div className={styles.spanbadgeWrapper1}>
-              <img
-                className={styles.spanavatarIcon}
-                alt=""
-                src="/component-471.svg"
-              />
+            <img
+              className={styles.spanavatarIcon}
+              alt=""
+              src="/component-471.svg"
+            />
           </div>
-
-          
         </div>
         <div className={styles.rectangleParent22}>
           <div className={styles.frameItem} />
@@ -578,17 +629,16 @@ const DriverProfileDetail = () => {
             <div className={styles.checklistDesignChallengeV2} />
           </div>
           <img className={styles.iconstar} alt="" src="/svgjsline10698.svg" />
-          <div className={styles.infotype}>Insurance lisence</div>
+          <div className={styles.infotype}>Vehicle Insurance Lisence</div>
           <div className={styles.status}>Rejected</div>
 
           <div className={styles.spanbadgeWrapper1}>
-              <img
-                className={styles.spanavatarIcon}
-                alt=""
-                src="/component-472.svg"
-              />
+            <img
+              className={styles.spanavatarIcon}
+              alt=""
+              src="/component-472.svg"
+            />
           </div>
-
         </div>
         <div className={styles.rectangleParent32}>
           <div className={styles.frameItem} />
@@ -600,18 +650,13 @@ const DriverProfileDetail = () => {
           <div className={styles.status}>In Review</div>
 
           <div className={styles.spanbadgeWrapper1}>
-              <img
-                className={styles.spanavatarIcon}
-                alt=""
-                src="/component-473.svg"
-              />
+            <img
+              className={styles.spanavatarIcon}
+              alt=""
+              src="/component-473.svg"
+            />
           </div>
-
-
         </div>
-
-
-
 
         <div className={styles.rectangleParent321}>
           <div className={styles.frameItem} />
@@ -619,18 +664,16 @@ const DriverProfileDetail = () => {
             <div className={styles.checklistDesignChallengeV2} />
           </div>
           <img className={styles.iconstar} alt="" src="/svgjsline10698.svg" />
-          <div className={styles.infotype}>Vehicle image</div>
+          <div className={styles.infotype}>Vehicle Image</div>
           <div className={styles.status}>Pending</div>
 
           <div className={styles.spanbadgeWrapper1}>
-              <img
-                className={styles.spanavatarIcon}
-                alt=""
-                src="/component-474.svg"
-              />
+            <img
+              className={styles.spanavatarIcon}
+              alt=""
+              src="/component-474.svg"
+            />
           </div>
-
-
         </div>
 
         <div className={styles.rectangleParent3210}>
@@ -643,28 +686,52 @@ const DriverProfileDetail = () => {
           <div className={styles.status}>Pending</div>
 
           <div className={styles.spanbadgeWrapper1}>
-              <img
-                className={styles.spanavatarIcon}
-                alt=""
-                src="/component-474.svg"
-              />
+            <img
+              className={styles.spanavatarIcon}
+              alt=""
+              src="/component-474.svg"
+            />
           </div>
-
-
         </div>
 
+        <div className={styles.rectangleParent3211}>
+          <div className={styles.frameItem} />
+          <div className={styles.d}>
+            <div className={styles.checklistDesignChallengeV2} />
+          </div>
+          <img className={styles.iconstar} alt="" src="/svgjsline10698.svg" />
+          <div className={styles.infotype}>Vehicle Registration Document</div>
+          <div className={styles.status}>Pending</div>
 
+          <div className={styles.spanbadgeWrapper1}>
+            <img
+              className={styles.spanavatarIcon}
+              alt=""
+              src="/component-474.svg"
+            />
+          </div>
+        </div>
 
+        <div className={styles.rectangleParent3212}>
+          <div className={styles.frameItem} />
+          <div className={styles.d}>
+            <div className={styles.checklistDesignChallengeV2} />
+          </div>
+          <img className={styles.iconstar} alt="" src="/svgjsline10698.svg" />
+          <div className={styles.infotype}>Billing Proof (Optional)</div>
+          <div className={styles.status}>Pending</div>
 
+          <div className={styles.spanbadgeWrapper1}>
+            <img
+              className={styles.spanavatarIcon}
+              alt=""
+              src="/component-474.svg"
+            />
+          </div>
+        </div>
 
-
-
-
-
-
-        
         <div className={styles.rectangleParent42}>
-        <div className={styles.spanbadgeWrapperParent}>
+          <div className={styles.spanbadgeWrapperParent}>
             <button className={styles.spanbadgeWrapper122}>
               <img
                 className={styles.spanavatarIcon}
@@ -675,7 +742,10 @@ const DriverProfileDetail = () => {
                 <div className={styles.open}>Open</div>
               </div>
             </button>
-            <button className={styles.spanbadgeWrapper22} onClick={onInsuranceImagesButtonClick}>
+            <button
+              className={styles.spanbadgeWrapper22}
+              onClick={onInsuranceImagesButtonClick}
+            >
               <img
                 className={styles.spanavatarIcon}
                 alt=""
@@ -685,7 +755,10 @@ const DriverProfileDetail = () => {
                 <div className={styles.open}>Open</div>
               </div>
             </button>
-            <button className={styles.spanbadgeWrapper32} onClick={onNICImagesButtonClick}>
+            <button
+              className={styles.spanbadgeWrapper32}
+              onClick={onNICImagesButtonClick}
+            >
               <img
                 className={styles.spanavatarIcon}
                 alt=""
@@ -696,8 +769,10 @@ const DriverProfileDetail = () => {
               </div>
             </button>
 
-
-            <button className={styles.spanbadgeWrapper421} onClick={onVehicleImagesButtonClick}>
+            <button
+              className={styles.spanbadgeWrapper421}
+              onClick={onVehicleImagesButtonClick}
+            >
               <img
                 className={styles.spanavatarIcon}
                 alt=""
@@ -708,10 +783,37 @@ const DriverProfileDetail = () => {
               </div>
             </button>
 
+            <button
+              className={styles.spanbadgeWrapper42}
+              onClick={onVehicleImagesButtonClick}
+            >
+              <img
+                className={styles.spanavatarIcon}
+                alt=""
+                src="/spanavatar1.svg"
+              />
+              <div className={styles.spanbadge}>
+                <div className={styles.open}>Open</div>
+              </div>
+            </button>
 
-
-
-            <button className={styles.spanbadgeWrapper42} onClick={onVehicleImagesButtonClick}>
+            <button
+              className={styles.spanbadgeWrapper422}
+              onClick={onVehicleRegistrationButtonClick}
+            >
+              <img
+                className={styles.spanavatarIcon}
+                alt=""
+                src="/spanavatar1.svg"
+              />
+              <div className={styles.spanbadge}>
+                <div className={styles.open}>Open</div>
+              </div>
+            </button>
+            <button
+              className={styles.spanbadgeWrapper423}
+              onClick={onBillingProofButtonClick}
+            >
               <img
                 className={styles.spanavatarIcon}
                 alt=""
@@ -722,7 +824,7 @@ const DriverProfileDetail = () => {
               </div>
             </button>
           </div>
-          
+
           <div className={styles.divParent}>
             <div className={styles.div4}>
               <button className={styles.buttonbutton}>
@@ -737,7 +839,6 @@ const DriverProfileDetail = () => {
               </button>
               <button className={styles.buttonbutton1}>
                 <div className={styles.spanflex1}>
-                 
                   <img
                     className={styles.spantextLgIcon1}
                     alt=""
@@ -809,9 +910,6 @@ const DriverProfileDetail = () => {
               </button>
             </div>
 
-
-
-
             <div className={styles.div8}>
               <button className={styles.buttonbutton}>
                 <div className={styles.spanflex}>
@@ -833,24 +931,50 @@ const DriverProfileDetail = () => {
               </button>
             </div>
 
+            <div className={styles.div999}>
+              <button className={styles.buttonbutton}>
+                <div className={styles.spanflex}>
+                  <img
+                    className={styles.spantextLgIcon}
+                    alt=""
+                    src="/spantextlg.svg"
+                  />
+                  <b className={styles.approved}>Approved</b>
+                </div>
+              </button>
+              <button className={styles.buttonbutton1}>
+                <img
+                  className={styles.spantextLgIcon4}
+                  alt=""
+                  src="/spantextlg1.svg"
+                />
+                <div className={styles.reject2}>Reject</div>
+              </button>
+            </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <div className={styles.div100}>
+              <button className={styles.buttonbutton}>
+                <div className={styles.spanflex}>
+                  <img
+                    className={styles.spantextLgIcon}
+                    alt=""
+                    src="/spantextlg.svg"
+                  />
+                  <b className={styles.approved}>Approved</b>
+                </div>
+              </button>
+              <button className={styles.buttonbutton1}>
+                <img
+                  className={styles.spantextLgIcon4}
+                  alt=""
+                  src="/spantextlg1.svg"
+                />
+                <div className={styles.reject2}>Reject</div>
+              </button>
+            </div>
           </div>
         </div>
       </div>
-
 
       <div className={styles.navbar}>
         <div className={styles.divlogo}>
