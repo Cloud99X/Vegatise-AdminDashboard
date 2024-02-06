@@ -609,6 +609,10 @@ const DriverProfileDetail = () => {
 
 
         </div>
+
+
+
+
         <div className={styles.rectangleParent321}>
           <div className={styles.frameItem} />
           <div className={styles.d}>
@@ -628,6 +632,37 @@ const DriverProfileDetail = () => {
 
 
         </div>
+
+        <div className={styles.rectangleParent3210}>
+          <div className={styles.frameItem} />
+          <div className={styles.d}>
+            <div className={styles.checklistDesignChallengeV2} />
+          </div>
+          <img className={styles.iconstar} alt="" src="/svgjsline10698.svg" />
+          <div className={styles.infotype}>Revenue License</div>
+          <div className={styles.status}>Pending</div>
+
+          <div className={styles.spanbadgeWrapper1}>
+              <img
+                className={styles.spanavatarIcon}
+                alt=""
+                src="/component-474.svg"
+              />
+          </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+        
         <div className={styles.rectangleParent42}>
         <div className={styles.spanbadgeWrapperParent}>
             <button className={styles.spanbadgeWrapper122}>
@@ -660,6 +695,21 @@ const DriverProfileDetail = () => {
                 <div className={styles.open}>Open</div>
               </div>
             </button>
+
+
+            <button className={styles.spanbadgeWrapper421} onClick={onVehicleImagesButtonClick}>
+              <img
+                className={styles.spanavatarIcon}
+                alt=""
+                src="/spanavatar1.svg"
+              />
+              <div className={styles.spanbadge}>
+                <div className={styles.open}>Open</div>
+              </div>
+            </button>
+
+
+
 
             <button className={styles.spanbadgeWrapper42} onClick={onVehicleImagesButtonClick}>
               <img
@@ -758,18 +808,50 @@ const DriverProfileDetail = () => {
                 <div className={styles.reject2}>Reject</div>
               </button>
             </div>
+
+
+
+
+            <div className={styles.div8}>
+              <button className={styles.buttonbutton}>
+                <div className={styles.spanflex}>
+                  <img
+                    className={styles.spantextLgIcon}
+                    alt=""
+                    src="/spantextlg.svg"
+                  />
+                  <b className={styles.approved}>Approved</b>
+                </div>
+              </button>
+              <button className={styles.buttonbutton1}>
+                <img
+                  className={styles.spantextLgIcon4}
+                  alt=""
+                  src="/spantextlg1.svg"
+                />
+                <div className={styles.reject2}>Reject</div>
+              </button>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           </div>
         </div>
-
-
-
-
-
-
-
-
-
       </div>
+
+
       <div className={styles.navbar}>
         <div className={styles.divlogo}>
           <div className={styles.logo}>

@@ -637,6 +637,16 @@
   width: 747px;
   height: 76px;
 }
+
+.rectangleParent3210 {
+  position: absolute;
+  top: 1684px;
+  left: 60px;
+  width: 747px;
+  height: 76px;
+}
+
+
 .vehicleImage {
   position: absolute;
   top: 28px;
@@ -692,7 +702,8 @@
 .spanbadgeWrapper122,
 .spanbadgeWrapper22,
 .spanbadgeWrapper32,
-.spanbadgeWrapper42 {
+.spanbadgeWrapper42,
+.spanbadgeWrapper421 {
   position: absolute;
   top: 0;
   left: 50px;
@@ -711,6 +722,9 @@
 }
 .spanbadgeWrapper42 {
   top: 276px;
+}
+.spanbadgeWrapper421 {
+  top: 368px;
 }
 .approved,
 .spantextLgIcon {
@@ -854,6 +868,7 @@
 }
 .div6,
 .div7,
+.div8,
 .divParent {
   position: absolute;
   width: 201.17px;
@@ -864,6 +879,14 @@
   background-color: var(--color-gray-300);
   height: 36px;
 }
+
+.div8 {
+  top: 357px;
+  left: 0;
+  background-color: var(--color-gray-300);
+  height: 36px;
+}
+
 .divParent {
   top: -248px;
   left: 515px;
@@ -1622,7 +1645,6 @@
   text-align: center;
   color: var(--color-dimgray-200);
 }
-.div8,
 .div9 {
   position: absolute;
   top: 56px;
@@ -1631,13 +1653,13 @@
   width: 721px;
   height: 623px;
 }
-.div8 {
+/* .div8 {
   top: 1400px;
   left: 126px;
   height: 647px;
   font-size: var(--paragraph-small-size);
   color: var(--color-slategray);
-}
+} */
 .asset84xIcon,
 .rectangleParent {
   position: absolute;
