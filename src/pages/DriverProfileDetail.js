@@ -18,6 +18,46 @@ const DriverProfileDetail = () => {
   const [status2, setStatus2] = useState('In Review');
   const [status3, setStatus3] = useState('In Review');
   const [image, setImage] = useState('/component-473.svg');
+//
+const [DLStatus, setDLStatus] = useState("Pending");
+const [ILStatus, setILStatus] = useState("Pending");
+const [NICStatus, setNICStatus] = useState("Pending");
+const [vehicleImageStatus, setVehicleImageStatus] = useState("Pending");
+
+const handleDLStatusChange = (newStatus) => {
+  setDLStatus(newStatus);
+};
+
+const handleILStatusChange = (newStatus) => {
+  setILStatus(newStatus);
+};
+
+const handleNICStatusChange = (newStatus) => {
+  setNICStatus(newStatus);
+};
+
+const handleVehicleImageStatusChange = (newStatus) => {
+  setVehicleImageStatus(newStatus);
+};
+
+
+
+const getIconForStatus = (status) => {
+  switch (status) {
+    case "Approved":
+      return "471"; // Use the appropriate component number for the 'Approved' status
+    case "Rejected":
+      return "472"; // Use the appropriate component number for the 'Rejected' status
+    case "In Review":
+      return "473"; // Use the appropriate component number for the 'In Review' status
+    case "Pending":
+      return "474"; // Use the appropriate component number for the 'In Review' status
+      default:
+      return ""; // Return an empty string or default icon number for other cases
+  }
+};
+
+//
 
   const onComponent1Click = useCallback(() => {
     navigate("/analytics");
@@ -176,7 +216,24 @@ const DriverProfileDetail = () => {
       window.alert("Error saving changes. Please try again.");
     }
   };
-
+//
+  const onDLImagesButtonClick = useCallback(async () => {
+    try {
+      const storage = getStorage();
+      const nicImagesFolder = `${documentId}/Driving Lisenceeee`;
+      const folderRef = ref(storage, nicImagesFolder);
+      const items = await listAll(folderRef);
+      if (items && items.items.length > 0) {
+        const firstItemUrl = await getDownloadURL(items.items[0]);
+        window.open(firstItemUrl, "_blank");
+      } else {
+        console.error("No items found in the folder.");
+      }
+    } catch (error) {
+      console.error("Error retrieving images:", error);
+    }
+  }, [documentId]);
+//
   const onNICImagesButtonClick = useCallback(async () => {
     try {
       const storage = getStorage();
@@ -633,16 +690,18 @@ const DriverProfileDetail = () => {
             <div className={styles.checklistDesignChallengeV2} />
           </div>
           <img className={styles.iconstar} alt="" src="/svgjsline10698.svg" />
-          <div className={styles.infotype}>Driving Lisence</div>
-          <div className={styles.status}>Approved</div>
+          <div className={styles.infotype}>Driving lisence</div>
+          <div className={styles.status}>{DLStatus}</div>
 
           <div className={styles.spanbadgeWrapper1}>
-            <img
-              className={styles.spanavatarIcon}
-              alt=""
-              src="/component-471.svg"
-            />
+              <img
+                className={styles.spanavatarIcon}
+                alt=""
+                src={`/component-${getIconForStatus(DLStatus)}.svg`} 
+              />
           </div>
+
+          
         </div>
         <div className={styles.rectangleParent22}>
           <div className={styles.frameItem} />
@@ -650,16 +709,17 @@ const DriverProfileDetail = () => {
             <div className={styles.checklistDesignChallengeV2} />
           </div>
           <img className={styles.iconstar} alt="" src="/svgjsline10698.svg" />
-          <div className={styles.infotype}>Vehicle Insurance Lisence</div>
-          <div className={styles.status}>Rejected</div>
+          <div className={styles.infotype}>Insurance lisence</div>
+          <div className={styles.status}>{ILStatus}</div>
 
           <div className={styles.spanbadgeWrapper1}>
-            <img
-              className={styles.spanavatarIcon}
-              alt=""
-              src="/component-472.svg"
-            />
+              <img
+                className={styles.spanavatarIcon}
+                alt=""
+                src={`/component-${getIconForStatus(ILStatus)}.svg`} 
+              />
           </div>
+
         </div>
         <div className={styles.rectangleParent32}>
           <div className={styles.frameItem} />
@@ -668,32 +728,33 @@ const DriverProfileDetail = () => {
           </div>
           <img className={styles.iconstar} alt="" src="/svgjsline10698.svg" />
           <div className={styles.infotype}>NIC</div>
-          <div className={styles.status}>In Review</div>
+          <div className={styles.status}>{NICStatus}</div>
 
           <div className={styles.spanbadgeWrapper1}>
-            <img
-              className={styles.spanavatarIcon}
-              alt=""
-              src="/component-473.svg"
-            />
+              <img
+                className={styles.spanavatarIcon}
+                alt=""
+                src={`/component-${getIconForStatus(NICStatus)}.svg`} 
+              />
           </div>
-        </div>
 
+
+        </div>
         <div className={styles.rectangleParent321}>
           <div className={styles.frameItem} />
           <div className={styles.d}>
             <div className={styles.checklistDesignChallengeV2} />
           </div>
           <img className={styles.iconstar} alt="" src="/svgjsline10698.svg" />
-          <div className={styles.infotype}>Vehicle Image</div>
-          <div className={styles.status}>Pending</div>
+          <div className={styles.infotype}>Vehicle image</div>
+          <div className={styles.status}>{vehicleImageStatus}</div>
 
           <div className={styles.spanbadgeWrapper1}>
-            <img
-              className={styles.spanavatarIcon}
-              alt=""
-              src="/component-474.svg"
-            />
+              <img
+                className={styles.spanavatarIcon}
+                alt=""
+                src={`/component-${getIconForStatus(vehicleImageStatus)}.svg`} 
+              />
           </div>
         </div>
 
@@ -753,7 +814,10 @@ const DriverProfileDetail = () => {
 
         <div className={styles.rectangleParent42}>
           <div className={styles.spanbadgeWrapperParent}>
-            <button className={styles.spanbadgeWrapper122}>
+            <button 
+              className={styles.spanbadgeWrapper122}
+              onClick={onDLImagesButtonClick}
+              >
               <img
                 className={styles.spanavatarIcon}
                 alt=""
@@ -846,9 +910,14 @@ const DriverProfileDetail = () => {
             </button>
           </div>
 
+
+
           <div className={styles.divParent}>
             <div className={styles.div4}>
-              <button className={styles.buttonbutton}>
+              <button 
+              className={styles.buttonbutton}
+              onClick={() => handleDLStatusChange("Approved")}
+              >
                 <div className={styles.spanflex}>
                   <img
                     className={styles.spantextLgIcon}
@@ -858,8 +927,12 @@ const DriverProfileDetail = () => {
                   <b className={styles.approved}>Approved</b>
                 </div>
               </button>
-              <button className={styles.buttonbutton1}>
+              <button 
+              className={styles.buttonbutton1}
+              onClick={() => handleDLStatusChange("Rejected")}
+              >
                 <div className={styles.spanflex1}>
+                 
                   <img
                     className={styles.spantextLgIcon1}
                     alt=""
@@ -870,7 +943,10 @@ const DriverProfileDetail = () => {
               </button>
             </div>
             <div className={styles.div5}>
-              <button className={styles.buttonbutton}>
+              <button 
+              className={styles.buttonbutton}
+              onClick={() => handleILStatusChange("Approved")}
+              >
                 <div className={styles.spanflex}>
                   <img
                     className={styles.spantextLgIcon}
@@ -880,7 +956,10 @@ const DriverProfileDetail = () => {
                   <b className={styles.approved}>Approved</b>
                 </div>
               </button>
-              <button className={styles.buttonbutton1}>
+              <button 
+              className={styles.buttonbutton1}
+              onClick={() => handleILStatusChange("Rejected")}
+              >
                 <div className={styles.spanflex3} />
                 <img
                   className={styles.spantextLgIcon4}
@@ -891,7 +970,10 @@ const DriverProfileDetail = () => {
               </button>
             </div>
             <div className={styles.div6}>
-              <button className={styles.buttonbutton}>
+              <button 
+              className={styles.buttonbutton}
+              onClick={() => handleNICStatusChange("Approved")}
+              >
                 <div className={styles.spanflex}>
                   <img
                     className={styles.spantextLgIcon}
@@ -901,7 +983,10 @@ const DriverProfileDetail = () => {
                   <b className={styles.approved}>Approved</b>
                 </div>
               </button>
-              <button className={styles.buttonbutton1}>
+              <button 
+              className={styles.buttonbutton1}
+              onClick={() => handleNICStatusChange("Rejected")}
+              >
                 <img
                   className={styles.spantextLgIcon4}
                   alt=""
@@ -911,7 +996,10 @@ const DriverProfileDetail = () => {
               </button>
             </div>
             <div className={styles.div7}>
-              <button className={styles.buttonbutton}>
+              <button 
+              className={styles.buttonbutton}
+              onClick={() => handleVehicleImageStatusChange("Approved")}
+              >
                 <div className={styles.spanflex}>
                   <img
                     className={styles.spantextLgIcon}
@@ -921,7 +1009,10 @@ const DriverProfileDetail = () => {
                   <b className={styles.approved}>Approved</b>
                 </div>
               </button>
-              <button className={styles.buttonbutton1}>
+              <button 
+              className={styles.buttonbutton1}
+              onClick={() => handleVehicleImageStatusChange("Rejected")}
+              >
                 <img
                   className={styles.spantextLgIcon4}
                   alt=""
@@ -930,6 +1021,9 @@ const DriverProfileDetail = () => {
                 <div className={styles.reject2}>Reject</div>
               </button>
             </div>
+
+
+
 
             <div className={styles.div8}>
               <button className={styles.buttonbutton}>
