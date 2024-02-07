@@ -14,6 +14,10 @@ const DriverProfileDetail = () => {
   const [driverInfo, setDriverInfo] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [editedDriverInfo, setEditedDriverInfo] = useState(null);
+  const [status1, setStatus1] = useState('In Review');
+  const [status2, setStatus2] = useState('In Review');
+  const [status3, setStatus3] = useState('In Review');
+  const [image, setImage] = useState('/component-473.svg');
 
   const onComponent1Click = useCallback(() => {
     navigate("/analytics");
@@ -48,6 +52,30 @@ const DriverProfileDetail = () => {
 
   const handleEditChange = (field, value) => {
     setEditedDriverInfo((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleApprovedClick1 = () => {
+    setStatus1('Approved'); // Update status state to 'Approved'
+  };
+
+  const handleRejectClick1 = () => {
+    setStatus1('Rejected'); // Update status state to 'Rejected'
+  };
+
+  const handleApprovedClick2 = () => {
+    setStatus2('Approved');
+  };
+
+  const handleRejectClick2 = () => {
+    setStatus2('Rejected');
+  };
+
+  const handleApprovedClick3 = () => {
+    setStatus3('Approved');
+  };
+
+  const handleRejectClick3 = () => {
+    setStatus3('Rejected');
   };
 
   useEffect(() => {
@@ -488,14 +516,12 @@ const DriverProfileDetail = () => {
           </div>
           <img className={styles.iconstar} alt="" src="/svgjsline10698.svg" />
           <div className={styles.infotype}>Personal Information</div>
-          <div className={styles.status}>Approved</div>
+          <div className={styles.status}>{status1}</div>
 
           <div className={styles.spanbadgeWrapper1}>
-            <img
-              className={styles.spanavatarIcon}
-              alt=""
-              src="/component-471.svg"
-            />
+          {status1 === 'Approved' && <img className={styles.spanavatarIcon} alt="" src="/component-471.svg" />}
+          {status1 === 'Rejected' && <img className={styles.spanavatarIcon} alt="" src="/component-472.svg" />}
+          {status1 === 'In Review' && <img className={styles.spanavatarIcon} alt="" src="/component-473.svg" />}
           </div>
         </div>
         <div className={styles.rectangleParent2}>
@@ -505,14 +531,12 @@ const DriverProfileDetail = () => {
           </div>
           <img className={styles.iconstar} alt="" src="/svgjsline10698.svg" />
           <div className={styles.infotype}>Vehicle Information</div>
-          <div className={styles.status}>Rejected</div>
+          <div className={styles.status}>{status2}</div>
 
           <div className={styles.spanbadgeWrapper1}>
-            <img
-              className={styles.spanavatarIcon}
-              alt=""
-              src="/component-472.svg"
-            />
+          {status2 === 'Approved' && <img className={styles.spanavatarIcon} alt="" src="/component-471.svg" />}
+          {status2 === 'Rejected' && <img className={styles.spanavatarIcon} alt="" src="/component-472.svg" />}
+          {status2 === 'In Review' && <img className={styles.spanavatarIcon} alt="" src="/component-473.svg"/>}
           </div>
         </div>
         <div className={styles.rectangleParent3}>
@@ -522,20 +546,17 @@ const DriverProfileDetail = () => {
           </div>
           <img className={styles.iconstar} alt="" src="/svgjsline10698.svg" />
           <div className={styles.infotype}>Address And Routes</div>
-          <div className={styles.status}>In Review</div>
-
+          <div className={styles.status}>{status3}</div>
           <div className={styles.spanbadgeWrapper1}>
-            <img
-              className={styles.spanavatarIcon}
-              alt=""
-              src="/component-473.svg"
-            />
+          {status3 === 'Approved' && <img className={styles.spanavatarIcon} alt="" src="/component-471.svg" />}
+          {status3 === 'Rejected' && <img className={styles.spanavatarIcon} alt="" src="/component-472.svg" />}
+          {status3 === 'In Review' && <img className={styles.spanavatarIcon} alt="" src="/component-473.svg" />}
           </div>
         </div>
         <div className={styles.rectangleParent4}>
           <div className={styles.divParent}>
             <div className={styles.div4}>
-              <button className={styles.buttonbutton}>
+              <button className={styles.buttonbutton} onClick={handleApprovedClick1}>{/*personal info*/}
                 <div className={styles.spanflex}>
                   <img
                     className={styles.spantextLgIcon}
@@ -545,7 +566,7 @@ const DriverProfileDetail = () => {
                   <b className={styles.approved}>Approved</b>
                 </div>
               </button>
-              <button className={styles.buttonbutton1}>
+              <button className={styles.buttonbutton1} onClick={handleRejectClick1}>
                 <div className={styles.spanflex1}>
                   <img
                     className={styles.spantextLgIcon1}
@@ -558,12 +579,12 @@ const DriverProfileDetail = () => {
                     alt=""
                     src="/spantextlg1.svg"
                   />
-                  <div className={styles.reject}>Reject</div>
+                  {/* <div className={styles.reject}>Reject</div> */}
                 </div>
               </button>
             </div>
             <div className={styles.div5}>
-              <button className={styles.buttonbutton}>
+              <button className={styles.buttonbutton} onClick={handleApprovedClick2}>{/* Vehicle Info */}
                 <div className={styles.spanflex}>
                   <img
                     className={styles.spantextLgIcon}
@@ -573,7 +594,7 @@ const DriverProfileDetail = () => {
                   <b className={styles.approved}>Approved</b>
                 </div>
               </button>
-              <button className={styles.buttonbutton1}>
+              <button className={styles.buttonbutton1} onClick={handleRejectClick2}>
                 <div className={styles.spanflex3} />
                 <img
                   className={styles.spantextLgIcon4}
@@ -584,7 +605,7 @@ const DriverProfileDetail = () => {
               </button>
             </div>
             <div className={styles.div6}>
-              <button className={styles.buttonbutton}>
+              <button className={styles.buttonbutton} onClick={handleApprovedClick3}>{/*Address and Routes */}
                 <div className={styles.spanflex}>
                   <img
                     className={styles.spantextLgIcon}
@@ -594,7 +615,7 @@ const DriverProfileDetail = () => {
                   <b className={styles.approved}>Approved</b>
                 </div>
               </button>
-              <button className={styles.buttonbutton1}>
+              <button className={styles.buttonbutton1} onClick={handleRejectClick3}>
                 <img
                   className={styles.spantextLgIcon4}
                   alt=""
