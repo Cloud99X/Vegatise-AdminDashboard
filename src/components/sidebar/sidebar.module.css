@@ -110,11 +110,13 @@
   margin-left: 25px;
   margin-right: 25px;
   border-radius: 16px;
+  font-family: 'Poppins', 'sans-serif';
 }
 
 .companyImage {
   margin-top: -40px;
   width: 80px;
+
 }
 
 .companyText {
@@ -141,4 +143,5 @@
   gap: 5px;
   justify-content: center;
   margin-bottom: 15px;
+  cursor: pointer;
 }

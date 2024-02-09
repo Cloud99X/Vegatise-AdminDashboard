@@ -1,4 +1,90 @@
-.divheaderWrapperIcon {
+.pageLayout {
+  flex-grow: 1;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  font-family: 'Poppins', 'sans-serif';
+}
+
+.header {
+  display: flex;
+  gap: 20px;
+}
+
+.headerImage {
+  cursor: pointer;
+}
+
+.adminContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.admin {
+  font-size: 12px;
+}
+
+.adminName {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.driverListContainer {
+  padding-top: 3%;
+  font-family: 'Poppins', 'sans-serif';
+  margin-left: 3%;
+}
+
+.driverList {
+  font-size: var(--h2-title-size);
+  font-weight: 600;
+  color: var(--color-orangered-100);
+}
+
+.manageYourDrivers {
+  font-size: var(--font-size-mini);
+  color: #4c4f69;
+  margin-top: -1%;
+}
+
+.inputContainer {
+  display: flex;
+  gap: 15px;
+  margin-top: 2%;
+}
+
+.icontd {
+  width: 100px;
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+}
+
+thead {
+  margin-bottom: 10px;
+}
+
+table {
+  margin-top: 50px;
+  width: 90%;
+}
+
+td,
+th {
+  padding-bottom: 20px;
+
+}
+
+/* .divheaderWrapperIcon {
   position: absolute;
   top: 0;
   left: 0;
@@ -642,8 +728,8 @@
 
 
 table {
-  left: 50%; /* Center horizontally */
-  transform: translateX(+5%); /* Adjust to center */
+  left: 50%; 
+  transform: translateX(+5%); 
  
   border-collapse: collapse;
   margin-top: 250px;
@@ -674,4 +760,4 @@ td {
 .icon{
   width: 25px; 
   height: 25px;
-}
+} */

@@ -15,6 +15,7 @@ const ComingSoon = () => {
   const navigate = useNavigate();
   const [personalInfo, setPersonalInfo] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [userWatching, setUserWatching] = useState("alldrivers");
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -73,6 +74,8 @@ const ComingSoon = () => {
         }));
 
         setPersonalInfo(personalInfoArray);
+
+        console.log(personalInfo);
       } catch (error) {
         console.error("Error fetching personal information:", error);
       }
@@ -81,12 +84,154 @@ const ComingSoon = () => {
     fetchPersonalInfo();
   }, []);
 
+  const formatDate = (timestamp) => {
+    const date = new Date(timestamp);
+
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Month starts from 0
+    const day = date.getDate().toString().padStart(2, "0");
+
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    const seconds = date.getSeconds().toString().padStart(2, "0");
+
+    const formattedDate = `${year}-${month}-${day}`;
+    const formattedTime = `${hours}:${minutes}:${seconds}`;
+
+    return { date: formattedDate, time: formattedTime };
+  };
+
   return (
     <PageLayout activeSidebarItem="Drivers Information">
       {/* add the content that need to display right side of the side bar */}
-      <>
-        <p>Drivers Information</p>
-      </>
+      <section className={styles.pageLayout}>
+        <div className={styles.headerContainer}>
+          <img alt="" src="/menu.svg" className={styles.headerImage} />
+          <div className={styles.header}>
+            <img
+              alt=""
+              src="/span_badge-wrapper.svg"
+              className={styles.headerImage}
+            />
+            <img alt="" src="/settingsSVG.svg" className={styles.headerImage} />
+            <div className={styles.adminContainer}>
+              <img alt="" src="/spanavatar9.svg" />
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <span className={styles.admin}>Admin</span>
+                <span className={styles.adminName}>Abdurrahman</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.driverListContainer}>
+          <p className={styles.driverList}>Driver List</p>
+          <p className={styles.manageYourDrivers}>
+            Manage your Driver’s list easily and safely
+          </p>
+          <div className={styles.inputContainer}>
+            <InputGroup className={styles.searchbar2Fig4} width="250px">
+              <InputLeftElement
+                pointerEvents="none"
+                children={<SearchIcon color="gray.300" />}
+              />
+              <Input
+                variant="outline"
+                placeholder="Search"
+                size="sm"
+                value={searchTerm}
+                onChange={handleSearchChange}
+              />
+            </InputGroup>
+            <Dropdown
+              className={styles.searchbar2Fig41}
+              overlay={
+                <Menu>
+                  {[].map((option, index) => (
+                    <Menu.Item key={index}>
+                      <a onClick={(e) => e.preventDefault()}>
+                        {option.value || ""}
+                      </a>
+                    </Menu.Item>
+                  ))}
+                </Menu>
+              }
+              trigger={["hover"]}
+            >
+              <Button onClick={(e) => e.preventDefault()}>
+                {`Filter `}
+                <DownOutlined />
+              </Button>
+            </Dropdown>
+            <Dropdown
+              className={styles.searchbar2Fig42}
+              overlay={
+                <Menu>
+                  {[].map((option, index) => (
+                    <Menu.Item key={index}>
+                      <a onClick={(e) => e.preventDefault()}>
+                        {option.value || ""}
+                      </a>
+                    </Menu.Item>
+                  ))}
+                </Menu>
+              }
+              trigger={["hover"]}
+            >
+              <Button onClick={(e) => e.preventDefault()}>
+                {`View all leads `}
+                <DownOutlined />
+              </Button>
+            </Dropdown>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th className={styles.icontd}></th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone number</th>
+                <th>Status</th>
+                <th>Date Modified</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredPersonalInfo.map((driver, index) => (
+                <tr
+                  key={index}
+                  onClick={() => onTableRowClick(driver.documentId)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <td className={styles.icontd}>
+                    <img className={styles.icon} src="/vector53@2x.png" />
+                  </td>
+                  <td
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "20px",
+                    }}
+                  >
+                    <img className={styles.icon} src="/vector53@2x.png" />
+                    {driver.name}
+                  </td>
+                  <td>{driver.email}</td>
+                  <td>{driver.mobileNumber}</td>
+                  <td>{driver.status}</td>
+                  <td>
+                    {driver.timestamp
+                      ? `${
+                          formatDate(driver.timestamp.toDate().getTime()).date
+                        } ${
+                          formatDate(driver.timestamp.toDate().getTime()).time
+                        }`
+                      : ""}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
     </PageLayout>
     // <div className={styles.comingSoon}>
     //   <div className={styles.headerheaderParent}>

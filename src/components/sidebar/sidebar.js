@@ -58,9 +58,10 @@ const Sidebar = ({ activeItem }) => {
     "setting",
   ];
 
-  const onLogoutClick = useCallback(() => {
+  const onLogoutClick = () => {
     navigate("/log-in");
-  }, [navigate]);
+  };
+
   //
   return (
     <div className={styles.sidebar}>
