@@ -406,6 +406,42 @@ const DriverProfileDetail = () => {
           {currentTab === "Personal Info" && (
             <div className={styles.renderContent}>
               <p className={styles.contentTitle}>Personal info</p>
+              <div className={styles.ContentV}>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Full Name</div>
+                  <div className={styles.ContentB}>Charindu Udantha Edirisuriya</div>
+                </div>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Date of birth</div>
+                  <div className={styles.ContentB}>1999-08-14</div>
+                </div>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Email </div>
+                  <div className={styles.ContentB}>udantha15@gmail.com</div>
+                </div>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>National Id Number</div>
+                  <div className={styles.ContentB}>199922810193</div>
+                </div>
+              </div>
+              <div className={styles.ContentV}>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Full Name with Initials</div>
+                  <div className={styles.ContentB}>C.U Edirisuriya</div>
+                </div>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Gender</div>
+                  <div className={styles.ContentB}>Male</div>
+                </div>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Phone</div>
+                  <div className={styles.ContentB}>+94775248346</div>
+                </div>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Age category</div>
+                  <div className={styles.ContentB}>20 - 25</div>
+                </div>
+              </div>
             </div>
           )}
           {currentTab === "Vehicle Info" && (
