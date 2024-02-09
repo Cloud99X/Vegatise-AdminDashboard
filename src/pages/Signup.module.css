@@ -1,4 +1,122 @@
-.welcome {
+.Signup {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
+
+}
+
+.section1 {
+  background: linear-gradient(180deg, rgba(218, 34, 34, 0.88), rgba(218, 89, 34, 0.85));
+  width: calc((1/3) * 100%);
+}
+
+.welcomeStartYourContainer1 {
+  line-break: anywhere;
+  width: 100%;
+
+}
+
+.welcomeStartYourContainer {
+  line-height: 120%;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #fff, rgba(255, 255, 255, 0.44));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 56px;
+  position: fixed;
+  bottom: 0;
+  margin-left: 20px;
+}
+
+.section2 {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section2Container {
+  display: flex;
+  flex-direction: column;
+  gap: 10rem;
+}
+
+.createAnAccountContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.createAnAccount {
+  font-size: var(--heading-size);
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 28px;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+.inputContainer {}
+
+.inputLabel {
+  text-transform: capitalize;
+  font-family: 'Poppins', sans-serif;
+}
+
+.input {
+  width: 400px;
+  font-family: 'Poppins', sans-serif;
+  height: 48px;
+  border-width: 1px;
+  border-radius: 8px;
+
+}
+
+.buttonsParent {
+  width: 400px;
+  height: 48px;
+  background-color: #FA0000;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.googleButton {
+  width: 400px;
+  height: 48px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  font-family: 'Poppins', sans-serif;
+  background-color: #E0EFFE;
+  color: #4285F4;
+  font-weight: 600;
+}
+
+.haveAcc {
+  color: gray;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.haveAcc span {
+  color: #FA0000;
+  cursor: pointer;
+}
+
+/* Media query for small devices */
+@media (max-width: 768px) {}
+
+/* .welcome {
   margin: 0;
 }
 .welcomeStartYourContainer1 {
@@ -237,4 +355,4 @@
   text-align: left;
   font-size: var(--font-size-37xl);
   font-family: var(--body-large-semibold);
-}
+} */
