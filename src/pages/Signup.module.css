@@ -31,10 +31,12 @@
 }
 
 .section2 {
-  flex-grow: 1;
+  flex: 1;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  flex-direction: column;
+  padding: 10vh 0;
 }
 
 .section2Container {
@@ -46,9 +48,9 @@
 .createAnAccountContainer {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  justify-content: space-between;
+  gap: 2vh;
 }
-
 
 .createAnAccount {
   font-size: var(--heading-size);
@@ -59,7 +61,6 @@
   text-align: center;
 }
 
-.inputContainer {}
 
 .inputLabel {
   text-transform: capitalize;

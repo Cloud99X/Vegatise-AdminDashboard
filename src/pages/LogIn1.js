@@ -46,62 +46,59 @@ const LogIn = () => {
         </i>
       </div>
       <div className={styles.section2}>
-        <div className={styles.section2Container}>
-          <img src="/asset-84x@2x.png" alt="" />
-          <div className={styles.createAnAccountContainer}>
-            <div>
-              <p className={styles.welcomeBack}>Welcome back</p>
-              <p className={styles.createAnAccount}>Login to your account</p>
-            </div>
-            <div className={styles.inputContainer}>
-              <p className={styles.inputLabel}>Email</p>
-              <TextField
-                className={styles.input}
-                color="primary"
-                placeholder="balamia@gmail.com"
-                variant="outlined"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className={styles.inputContainer}>
-              <div className={styles.labelContainer}>
-                <p className={styles.inputLabel}>Password</p>
-                <p className={styles.forgotLabel}>Forgot?</p>
-              </div>
-              <TextField
-                className={styles.input}
-                color="primary"
-                placeholder="Enter your password"
-                required={true}
-                variant="outlined"
-                type={showPassword ? "text" : "password"}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        onClick={handleShowPasswordClick}
-                        aria-label="toggle password visibility"
-                      >
-                        <Icon>
-                          {showPassword ? "visibility" : "visibility_off"}
-                        </Icon>
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <button className={styles.buttonsParent} onClick={onCreateAccClick}>
-              Login now
-            </button>
-            <p className={styles.haveAcc}>
-              Don't Have An Account?{" "}
-              <span onClick={onSignUpClick}>Sign Up</span>
-            </p>
+        <img src="/asset-84x@2x.png" alt="" />
+        <div className={styles.createAnAccountContainer}>
+          <div>
+            <p className={styles.welcomeBack}>Welcome back</p>
+            <p className={styles.createAnAccount}>Login to your account</p>
           </div>
+          <div className={styles.inputContainer}>
+            <p className={styles.inputLabel}>Email</p>
+            <TextField
+              className={styles.input}
+              color="primary"
+              placeholder="balamia@gmail.com"
+              variant="outlined"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className={styles.inputContainer}>
+            <div className={styles.labelContainer}>
+              <p className={styles.inputLabel}>Password</p>
+              <p className={styles.forgotLabel}>Forgot?</p>
+            </div>
+            <TextField
+              className={styles.input}
+              color="primary"
+              placeholder="Enter your password"
+              required={true}
+              variant="outlined"
+              type={showPassword ? "text" : "password"}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={handleShowPasswordClick}
+                      aria-label="toggle password visibility"
+                    >
+                      <Icon>
+                        {showPassword ? "visibility" : "visibility_off"}
+                      </Icon>
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button className={styles.buttonsParent} onClick={onCreateAccClick}>
+            Login now
+          </button>
+          <p className={styles.haveAcc}>
+            Don't Have An Account? <span onClick={onSignUpClick}>Sign Up</span>
+          </p>
         </div>
       </div>
     </div>

@@ -62,63 +62,57 @@ const Signup = () => {
         </i>
       </div>
       <div className={styles.section2}>
-        <div className={styles.section2Container}>
-          <img src="/asset-84x@2x.png" alt="" />
-          <div className={styles.createAnAccountContainer}>
-            <p className={styles.createAnAccount}>Create an account</p>
-            <div className={styles.inputContainer}>
-              <p className={styles.inputLabel}>Email</p>
-              <TextField
-                className={styles.input}
-                color="primary"
-                placeholder="balamia@gmail.com"
-                variant="outlined"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className={styles.inputContainer}>
-              <p className={styles.inputLabel}>Password</p>
-              <TextField
-                className={styles.input}
-                color="primary"
-                placeholder="Enter your password"
-                required={true}
-                variant="outlined"
-                type={showPassword ? "text" : "password"}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        onClick={handleShowPasswordClick}
-                        aria-label="toggle password visibility"
-                      >
-                        <Icon>
-                          {showPassword ? "visibility" : "visibility_off"}
-                        </Icon>
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <button className={styles.buttonsParent} onClick={onCreateAccClick}>
-              Create account
-            </button>
-            <button
-              className={styles.googleButton}
-              onClick={onGoogleSignInClick}
-            >
-              <img alt="" src="/icongoogle--original2.svg" />
-              <div>Continue with Google</div>
-            </button>
-            <p className={styles.haveAcc}>
-              Already Have An Account?{" "}
-              <span onClick={onLogInClick}>Log In</span>
-            </p>
+        <img src="/asset-84x@2x.png" alt="" />
+        <div className={styles.createAnAccountContainer}>
+          <p className={styles.createAnAccount}>Create an account</p>
+          <div className={styles.inputContainer}>
+            <p className={styles.inputLabel}>Email</p>
+            <TextField
+              className={styles.input}
+              color="primary"
+              placeholder="balamia@gmail.com"
+              variant="outlined"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
+          <div className={styles.inputContainer}>
+            <p className={styles.inputLabel}>Password</p>
+            <TextField
+              className={styles.input}
+              color="primary"
+              placeholder="Enter your password"
+              required={true}
+              variant="outlined"
+              type={showPassword ? "text" : "password"}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={handleShowPasswordClick}
+                      aria-label="toggle password visibility"
+                    >
+                      <Icon>
+                        {showPassword ? "visibility" : "visibility_off"}
+                      </Icon>
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button className={styles.buttonsParent} onClick={onCreateAccClick}>
+            Create account
+          </button>
+          <button className={styles.googleButton} onClick={onGoogleSignInClick}>
+            <img alt="" src="/icongoogle--original2.svg" />
+            <div>Continue with Google</div>
+          </button>
+          <p className={styles.haveAcc}>
+            Already Have An Account? <span onClick={onLogInClick}>Log In</span>
+          </p>
         </div>
       </div>
     </div>
