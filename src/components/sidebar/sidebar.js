@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styles from "./sidebar.module.css";
 import { useNavigate } from "react-router-dom";
 
