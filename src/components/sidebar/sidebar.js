@@ -1,6 +1,18 @@
 import React, { useCallback } from "react";
 import styles from "./sidebar.module.css";
 import { useNavigate } from "react-router-dom";
+import GrowthIcon from "../../icons/growth3.svg";
+import GrowthIconActive from "../../icons/growth.svg";
+import CarIcon from "../../icons/carprofile.svg";
+import CarIconActive from "../../icons/carprofile1.svg";
+import RocketIcon from "../../icons/rocketlaunch.svg";
+import RocketIconActive from "../../icons/rocketlaunch1.svg";
+import RefreshIcon from "../../icons/arrowscounterclockwise.svg";
+import RefreshIconActive from "../../icons/arrowscounterclockwise1.svg";
+import DollerIcon from "../../icons/dollar-coin.svg";
+import DollerIconActive from "../../icons/dollar-coin1.svg";
+import SettingIcon from "../../icons/setting.svg";
+import SettingIconActive from "../../icons/setting1.svg";
 
 const Sidebar = ({ activeItem }) => {
   const navigate = useNavigate();
@@ -12,38 +24,38 @@ const Sidebar = ({ activeItem }) => {
   const sidebarItems = [
     {
       name: "Analytics",
-      icon: "./growth3.svg",
-      activeIcon: "/growth.svg",
+      icon: GrowthIcon,
+      activeIcon: GrowthIconActive,
     },
     {
       name: "About Campaign",
-      icon: "./carprofile.svg",
-      activeIcon: "/carprofile1.svg",
+      icon: CarIcon,
+      activeIcon: CarIconActive,
     },
     {
       name: "Attribution",
-      icon: "./rocketlaunch.svg",
-      activeIcon: "/rocketlaunch1.svg",
+      icon: RocketIcon,
+      activeIcon: RocketIconActive,
     },
     {
       name: "Drivers Information",
-      icon: "./rocketlaunch.svg",
-      activeIcon: "/rocketlaunch1.svg",
+      icon: RocketIcon,
+      activeIcon: RocketIconActive,
     },
     {
       name: "Retargeting",
-      icon: "/arrowscounterclockwise.svg",
-      activeIcon: "/arrowscounterclockwise1.svg",
+      icon: RefreshIcon,
+      activeIcon: RefreshIconActive,
     },
     {
       name: "Billing",
-      icon: "./dollar-coin.svg",
-      activeIcon: "/dollar-coin1.svg",
+      icon: DollerIcon,
+      activeIcon: DollerIconActive,
     },
     {
       name: "Settings",
-      icon: "./setting.svg",
-      activeIcon: "/setting1.svg",
+      icon: SettingIcon,
+      activeIcon: SettingIconActive,
     },
   ];
 
