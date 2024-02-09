@@ -494,6 +494,46 @@ const DriverProfileDetail = () => {
               </div>
             </div>
           )}
+
+          {currentTab === "Address & Routes" && (
+            <div className={styles.renderContent}>
+              <p className={styles.contentTitle}>ADDRESS & ROUTES INFO</p>
+              <div className={styles.ContentV}>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Address line 1</div>
+                  <div className={styles.ContentB}>12/5, Balapokuna Vihara Mawatha, Colombo 6</div>
+                </div>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Word address</div>
+                  <div className={styles.ContentB}>Dehiwalla</div>
+                </div>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Province</div>
+                  <div className={styles.ContentB}>Western</div>
+                </div>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Avg travel route</div>
+                  <div className={styles.ContentB}>Colombo 6 - Colombo 5</div>
+                </div>
+              </div>
+              <div className={styles.ContentV}>
+                <div className={styles.Content0}>
+                  <div className={styles.ContentG}>Address line 2</div>
+                  <div className={styles.ContentB}>12/5, Purana Vihara Road, Colombo 6</div>
+                </div>
+                <div className={styles.Contenttwo}>
+                  <div className={styles.ContentG}>City</div>
+                  <div className={styles.ContentB}>Colombo</div>
+                </div>
+                <div className={styles.Contentthree}>
+                  <div className={styles.ContentG}>Avg Drive KM</div>
+                  <div className={styles.ContentB}>118 km</div>
+                </div>
+                
+              </div>
+            </div>
+          )}
+
           {currentTab === "Billing Info" && (
             <div className={styles.renderContent}>
               <p className={styles.contentTitle}>Billing info</p>
@@ -548,6 +588,14 @@ const DriverProfileDetail = () => {
           )}
         </div>
       </section>
+      <div className={styles.prof}>
+      <img className={styles.Icon} alt="" src="/1.png" />
+        <button><img className={styles.Icon2} alt="" src="/notepencil.svg" /></button>
+      <div className={styles.headtext}>
+        <div className={styles.b}>abdullah ihthisham</div>
+        <div className={styles.a}>#100485A</div>
+      </div>
+    </div>
     </PageLayout>
     // <div className={styles.driverProfileDetail}>
     //   <div className={styles.rectangleParent}>
