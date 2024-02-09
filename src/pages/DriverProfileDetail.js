@@ -408,6 +408,47 @@ const DriverProfileDetail = () => {
               <p className={styles.contentTitle}>Personal info</p>
             </div>
           )}
+          {currentTab === "Vehicle Info" && (
+            <div className={styles.renderContent}>
+              <p className={styles.contentTitle}>Vehicle Info</p>
+              <div className={styles.ContentV}>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Car Type</div>
+                  <div className={styles.ContentB}>SUV</div>
+                </div>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Car Model</div>
+                  <div className={styles.ContentB}>Carrens</div>
+                </div>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Year Of Making Car</div>
+                  <div className={styles.ContentB}>udantha15@gmail.com</div>
+                </div>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Identity</div>
+                  <div className={styles.ContentB}>I am the owner and the driver of this car</div>
+                </div>
+              </div>
+              <div className={styles.ContentV}>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Car Brand</div>
+                  <div className={styles.ContentB}>KIA</div>
+                </div>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Car Number Plate</div>
+                  <div className={styles.ContentB}>Ka-0678</div>
+                </div>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Car Color</div>
+                  <div className={styles.ContentB}>Gold</div>
+                </div>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Car Usage</div>
+                  <div className={styles.ContentB}>Private</div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </PageLayout>

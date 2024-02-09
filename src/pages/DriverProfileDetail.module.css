@@ -258,7 +258,30 @@
 }
 
 .contentTitle {
-  text-transform: uppercase
+  text-transform: uppercase;
+  color: #435C9A ;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.ContentV{
+  display: flex;
+  flex-direction: row;
+}
+
+.ContentOne{
+  width: 291px;
+  height: 90px;
+}
+
+.ContentG{
+  color: #6B7280;
+  font-weight: 400;
+}
+
+.ContentB{
+  color: #3F3F3F;
+  font-weight: 500;
 }
 
 /* .frameChild {
