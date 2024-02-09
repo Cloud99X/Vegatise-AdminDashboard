@@ -130,6 +130,14 @@ const DriverProfileDetail = () => {
     setStatus3("Rejected");
   };
 
+  const getInitials = (fullName) => {
+    if (!fullName) return '';
+    const names = fullName.split(' ');
+    const firstNameInitial = names[0].charAt(0).toUpperCase();
+    const lastName = names.length > 1 ? names[names.length - 1] : '';
+    return `${firstNameInitial}.${lastName}`;
+  };
+
   useEffect(() => {
     const fetchDriverInfo = async () => {
       try {
@@ -418,25 +426,81 @@ const DriverProfileDetail = () => {
               <div className={styles.ContentV}>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Full Name</div>
-                  <div className={styles.ContentB}>Charindu Udantha Edirisuriya</div>
+                  <div className={styles.name}>
+                    {isEditing ? (
+                        <Input
+                          value={editedDriverInfo && editedDriverInfo.name}
+                          onChange={(e) =>
+                            handleEditChange("name", e.target.value)
+                          }
+                        />
+                      ) : (
+                        driverInfo && driverInfo.name
+                      )}
+                  </div>
                 </div>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Date of birth</div>
-                  <div className={styles.ContentB}>1999-08-14</div>
+                  <div className={styles.dob}>
+                    {isEditing ? (
+                        <Input
+                          value={editedDriverInfo && editedDriverInfo.dateOfBirth}
+                          onChange={(e) =>
+                            handleEditChange("dateOfBirth", e.target.value)
+                          }
+                        />
+                      ) : (
+                        driverInfo && driverInfo.dateOfBirth
+                      )}
+                    </div>
+
                 </div>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Email </div>
-                  <div className={styles.ContentB}>udantha15@gmail.com</div>
+                  <div className={styles.mailInput}>
+                    {isEditing ? (
+                      <Input
+                        value={editedDriverInfo && editedDriverInfo.email}
+                        onChange={(e) =>
+                          handleEditChange("email", e.target.value)
+                        }
+                      />
+                    ) : (
+                      driverInfo && driverInfo.email
+                    )}
+                  </div>
                 </div>
+                
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>National Id Number</div>
-                  <div className={styles.ContentB}>199922810193</div>
+                  <div className={styles.nic}>
+                    {isEditing ? (
+                    <Input
+                      value={editedDriverInfo && editedDriverInfo.NICNumber}
+                      onChange={(e) =>
+                        handleEditChange("NICNumber", e.target.value)
+                      }
+                    />
+                  ) : (
+                    driverInfo && driverInfo.NICNumber
+                  )}
+                  </div>
                 </div>
               </div>
               <div className={styles.ContentV}>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Full Name with Initials</div>
-                  <div className={styles.ContentB}>C.U Edirisuriya</div>
+                  
+                  <div className={styles.name}>
+                    {isEditing ? (
+                      <Input
+                        value={editedDriverInfo && editedDriverInfo.name}
+                        onChange={(e) => handleEditChange("name", e.target.value)}
+                      />
+                    ) : (
+                      <span>{getInitials(driverInfo && driverInfo.name)}</span>
+                    )}
+                  </div>
                 </div>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Gender</div>
@@ -444,7 +508,20 @@ const DriverProfileDetail = () => {
                 </div>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Phone</div>
-                  <div className={styles.ContentB}>+94775248346</div>
+                  <div className={styles.phno}>
+                    {isEditing ? (
+                        <Input
+                          value={
+                            editedDriverInfo && editedDriverInfo.mobileNumber
+                          }
+                          onChange={(e) =>
+                            handleEditChange("mobileNumber", e.target.value)
+                          }
+                        />
+                      ) : (
+                        driverInfo && driverInfo.mobileNumber
+                      )}
+                  </div>
                 </div>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Age category</div>
@@ -547,7 +624,23 @@ const DriverProfileDetail = () => {
             </div>
           )}
         </div>
+        <button className={styles.rectangleGroup} onClick={toggleEdit}>
+          <div className={styles.groupChild} />
+          <div className={styles.editParent}>
+            <div className={styles.edit}>Edit</div>
+            <img
+              className={styles.notepencilIcon}
+              alt=""
+              src="/notepencil.svg"
+            />
+          </div>
+        </button>
+        <button className={styles.rectangleContainer} onClick={saveChanges}>
+          <div className={styles.groupItem} />
+          <div className={styles.saveChanges}>Save changes</div>
+        </button>
       </section>
+      
     </PageLayout>
     // <div className={styles.driverProfileDetail}>
     //   <div className={styles.rectangleParent}>

@@ -310,7 +310,116 @@
   opacity: 0.7; /* Adjust opacity for inactive buttons */
 }
 
+.groupItem,
+.mapgroupItem,
+.rectangleGroup {
+  position: absolute;
+  height: 44px;
+}
 
+.rectangleGroup {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  top: 545px;
+  left: 1130px;
+  width: 98px;
+}
+
+.groupItem {
+  top: 0;
+  left: 0;
+  border-radius: var(--br-6xs);
+  background-color: #ea5858;
+  border: 2px solid var(--color-lightgray-100);
+  box-sizing: border-box;
+  width: 128px;
+}
+
+.saveChanges {
+  position: absolute;
+  top: 11px;
+  left: 14px;
+  font-size: var(--font-size-mini);
+  line-height: 21px;
+  text-transform: capitalize;
+  font-weight: 600;
+  font-family: var(--font-urbanist);
+  color: var(--background-backgroundprimary);
+  text-align: left;
+}
+
+.rectangleContainer {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 545px;
+  left: 1250px;
+  width: 128px;
+  height: 44px;
+}
+
+.edit,
+.groupChild {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.groupChild {
+  border-radius: var(--br-6xs);
+  background-color: var(--background-backgroundprimary);
+  border: 2px solid var(--color-lightgray-100);
+  box-sizing: border-box;
+  width: 98px;
+  height: 44px;
+}
+
+.notepencilIcon {
+  position: absolute;
+  height: 83.05%;
+  width: 34.62%;
+  top: 12.42%;
+  right: 0;
+  bottom: 4.53%;
+  left: 65.38%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+
+.editParent {
+  position: absolute;
+  top: 11px;
+  left: 22px;
+  width: 52px;
+  height: 21px;
+}
+
+.mailInput {
+
+  width: 256px;
+  right: -400px;
+}
+
+.name {
+  width: 200px;
+}
+
+.dob {
+  width: 160px
+}
+
+.phno {
+  width: 160px
+}
+
+.nic {
+  width: 140px;
+}
 /* .frameChild {
   position: absolute;
   height: 100%;
