@@ -256,6 +256,11 @@
   padding: 2%;
   border-radius: 10px;
 }
+.renderContent1 {
+  margin-top: 0;
+  padding: 2%;
+}
+
 
 .contentTitle {
   text-transform: uppercase;
@@ -283,6 +288,28 @@
   color: #3F3F3F;
   font-weight: 500;
 }
+
+
+.ContentV button {
+  margin-right: 10px; /* Add any margin or padding as needed */
+  padding: 8px 12px; /* Add any padding as needed */
+  color: #000000; /* Set the text color */
+  cursor: pointer;
+}
+
+.ContentV button:hover {
+  color: #0056b3; /* Change background color on hover */
+}
+
+.ContentV button.active {
+  color: #b30000; /* Set active background color */
+}
+
+.ContentV button.inactive {
+  color: #00ff6e; /* Set inactive background color */
+  opacity: 0.7; /* Adjust opacity for inactive buttons */
+}
+
 
 /* .frameChild {
   position: absolute;

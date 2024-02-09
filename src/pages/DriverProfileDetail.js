@@ -26,6 +26,15 @@ const DriverProfileDetail = () => {
   const [vehicleImageStatus, setVehicleImageStatus] = useState("Pending");
   const [currentTab, setCurrentTab] = useState("Personal Info");
 
+
+  //billing info accounts//
+  const [selectedAccount, setSelectedAccount] = useState("account1");
+
+  const handleAccountClick = (account) => {
+    setSelectedAccount(account);
+  };
+
+  //
   const changeCurrentTab = (tab) => {
     setCurrentTab(tab);
   };
@@ -483,6 +492,58 @@ const DriverProfileDetail = () => {
                   <div className={styles.ContentB}>Private</div>
                 </div>
               </div>
+            </div>
+          )}
+          {currentTab === "Billing Info" && (
+            <div className={styles.renderContent}>
+              <p className={styles.contentTitle}>Billing info</p>
+              <div className={styles.ContentV}>
+               <button
+                className={selectedAccount === "account1" ? styles.activeAccount : styles.inactiveAccount}
+                onClick={() => handleAccountClick("account1")}
+               >
+                Account 1
+               </button>
+               <button
+                 className={selectedAccount === "account2" ? styles.activeAccount : styles.inactiveAccount}
+                 onClick={() => handleAccountClick("account2")}
+               >
+                Account 2
+               </button>
+      </div>
+      {selectedAccount === "account1" && (
+        <div className={styles.renderContent1}>
+          <p className={styles.contentTitle}>Billing info (Account 1)</p>
+              <div className={styles.ContentV}>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Account Holder Name</div>
+                  <div className={styles.ContentB}>Charindu Udantha Edirisuriya</div>
+                </div>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Bank</div>
+                  <div className={styles.ContentB}>HNB</div>
+                </div>
+              </div>
+              <div className={styles.ContentV}>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Account Number</div>
+                  <div className={styles.ContentB}>14752369</div>
+                </div>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Branch</div>
+                  <div className={styles.ContentB}>Bambalapitiya</div>
+                </div>
+
+              </div>
+              </div>
+        )} 
+        {selectedAccount === "account2" && (
+         <div className={styles.renderContent1}>
+           <p className={styles.contentTitle}>Billing info (Account 2)</p>
+                 
+                  {/* ... (billing d etails for account 2) */}
+                </div>
+        )}
             </div>
           )}
         </div>
