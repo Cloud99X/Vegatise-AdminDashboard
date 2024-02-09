@@ -16,6 +16,19 @@ const ComingSoon = () => {
   const [personalInfo, setPersonalInfo] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [userWatching, setUserWatching] = useState("alldrivers");
+  const [checkedRows, setCheckedRows] = useState([]);
+
+  const handleCheckboxClick = (documentId) => {
+    // Toggle the checked state for the clicked row
+    setCheckedRows((prevCheckedRows) => {
+      if (prevCheckedRows.includes(documentId)) {
+        return prevCheckedRows.filter((id) => id !== documentId);
+      } else {
+        return [...prevCheckedRows, documentId];
+      }
+    });
+  };
+
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -202,7 +215,14 @@ const ComingSoon = () => {
                   style={{ cursor: "pointer" }}
                 >
                   <td className={styles.icontd}>
-                    <img className={styles.icon} src="/vector53@2x.png" />
+                  <img
+              className={styles.icon}
+              src={checkedRows.includes(driver.documentId) ? '/checked.svg' : '/unchecked.svg'}
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent row click when clicking the checkbox
+                handleCheckboxClick(driver.documentId);
+              }}
+            />
                   </td>
                   <td
                     style={{
