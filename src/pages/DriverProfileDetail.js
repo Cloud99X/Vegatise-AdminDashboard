@@ -228,7 +228,7 @@ const DriverProfileDetail = () => {
         Province:editedDriverInfo.Province,
         AvgKM: editedDriverInfo.AvgKM,
         AvgTravelRoute: editedDriverInfo.AvgTravelRoute,
-        WordAddress: editedDriverInfo.wordAddress,
+        WorkAddress: editedDriverInfo.workAddress,
       });
 
       setDriverInfo(editedDriverInfo);
@@ -420,7 +420,7 @@ const DriverProfileDetail = () => {
               </div>
             </div>
 
-            <div>{/* prathikshan */}</div>
+            
           </div>
 
           {/* tab containers */}
@@ -596,17 +596,17 @@ const DriverProfileDetail = () => {
                   </div>
                 </div>
                 <div className={styles.ContentOne}>
-                  <div className={styles.ContentG}>Word address</div>
+                  <div className={styles.ContentG}>Work address</div>
                   <div className={styles.name}>
                     {isEditing ? (
                         <Input
-                          value={editedDriverInfo && editedDriverInfo.wordAddress}
+                          value={editedDriverInfo && editedDriverInfo.workAddress}
                           onChange={(e) =>
-                            handleEditChange("wordAddress", e.target.value)
+                            handleEditChange("workAddress", e.target.value)
                           }
                         />
                       ) : (
-                        driverInfo && driverInfo.wordAddress
+                        driverInfo && driverInfo.workAddress
                       )}
                   </div>
                 </div>
@@ -765,7 +765,7 @@ const DriverProfileDetail = () => {
       <img className={styles.Icon} alt="" src="/1.png" />
         <button><img className={styles.Icon2} alt="" src="/notepencil.svg" /></button>
       <div className={styles.headtext}>
-        <div className={styles.b}>abdullah ihthisham</div>
+          <div className={styles.b}>{editedDriverInfo && editedDriverInfo.name}</div>
         <div className={styles.a}>#100485A</div>
       </div>
     </div>
