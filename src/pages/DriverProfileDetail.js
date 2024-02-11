@@ -130,6 +130,14 @@ const DriverProfileDetail = () => {
     setStatus3("Rejected");
   };
 
+  const getInitials = (fullName) => {
+    if (!fullName) return '';
+    const names = fullName.split(' ');
+    const firstNameInitial = names[0].charAt(0).toUpperCase();
+    const lastName = names.length > 1 ? names[names.length - 1] : '';
+    return `${firstNameInitial}.${lastName}`;
+  };
+
   useEffect(() => {
     const fetchDriverInfo = async () => {
       try {
@@ -144,27 +152,37 @@ const DriverProfileDetail = () => {
         const nicNumberDocSnapshot = await getDoc(nicNumberDocRef);
 
         const addressAndRoutesCollection = collection(db, "AddressAndRoutes");
-        const addressAndRoutesDocRef = doc(
-          addressAndRoutesCollection,
-          documentId
-        );
-        const addressAndRoutesDocSnapshot = await getDoc(
-          addressAndRoutesDocRef
-        );
+        const addressAndRoutesDocRef = doc(addressAndRoutesCollection, documentId);          
+        const addressAndRoutesDocSnapshot = await getDoc(addressAndRoutesDocRef);
+
+        const VehicleInformationCollection = collection(db, "VehicleInformation");
+        const VehicleInformationDocRef = doc(VehicleInformationCollection, documentId);          
+        const VehicleInformationDocSnapshot = await getDoc(VehicleInformationDocRef);
+
+        
+        const utilityCollection = collection(db, "Utility Bill");
+        const utilityDocRef = doc(utilityCollection, documentId);          
+        const utilityDocSnapshot = await getDoc(utilityDocRef);
 
         if (
           personalInfoDocSnapshot.exists() &&
           nicNumberDocSnapshot.exists() &&
-          addressAndRoutesDocSnapshot.exists()
+          addressAndRoutesDocSnapshot.exists() &&
+          VehicleInformationDocSnapshot.exists() 
+          //utilityDocSnapshot.exists()
         ) {
           const personalInfoData = personalInfoDocSnapshot.data();
           const nicNumberData = nicNumberDocSnapshot.data();
           const addressAndRoutesData = addressAndRoutesDocSnapshot.data();
+          const VehicleInformationData = VehicleInformationDocSnapshot.data();
+          const utilityData = utilityDocSnapshot.data();
 
           const mergedData = {
             ...personalInfoData,
             ...nicNumberData,
             ...addressAndRoutesData,
+            ...VehicleInformationData,
+            ...utilityData,
           };
 
           setDriverInfo(mergedData);
@@ -196,10 +214,10 @@ const DriverProfileDetail = () => {
       const nicNumberDocRef = doc(nicNumberCollection, documentId);
 
       const addressAndRoutesCollection = collection(db, "AddressAndRoutes");
-      const addressAndRoutesDocRef = doc(
-        addressAndRoutesCollection,
-        documentId
-      );
+      const addressAndRoutesDocRef = doc(addressAndRoutesCollection,documentId);
+
+      // const VehicleInformationCollection = collection(db, "VehicleInformation");
+      // const VehicleInformationDocRef = doc(VehicleInformationCollection,documentId);
 
       await updateDoc(personalInfoDocRef, {
         name: editedDriverInfo.name,
@@ -216,8 +234,23 @@ const DriverProfileDetail = () => {
       await updateDoc(addressAndRoutesDocRef, {
         Add1: editedDriverInfo.Add1,
         Add2: editedDriverInfo.Add2,
+        City:editedDriverInfo.City,
+        Province:editedDriverInfo.Province,
         AvgKM: editedDriverInfo.AvgKM,
+        AvgTravelRoute: editedDriverInfo.AvgTravelRoute,
+        WorkAddress: editedDriverInfo.workAddress,
       });
+
+      // await updateDoc(VehicleInformationDocRef, {
+      //   carType: editedDriverInfo.carType,
+      //   carBrand: editedDriverInfo.carBrand,
+      //   carModel: editedDriverInfo.carModel,
+      //   carNumberPlate: editedDriverInfo.carNumberPlate,
+      //   yearOfMaking: editedDriverInfo.carYOM,
+      //   carColor: editedDriverInfo.carColor,
+      //   identity: editedDriverInfo.identity,
+      //   carUsage: editedDriverInfo.carUsage,
+      // });
 
       setDriverInfo(editedDriverInfo);
 
@@ -408,7 +441,7 @@ const DriverProfileDetail = () => {
               </div>
             </div>
 
-            <div>{/* prathikshan */}</div>
+            
           </div>
 
           {/* tab containers */}
@@ -418,25 +451,80 @@ const DriverProfileDetail = () => {
               <div className={styles.ContentV}>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Full Name</div>
-                  <div className={styles.ContentB}>Charindu Udantha Edirisuriya</div>
+                  <div className={styles.name}>
+                    {isEditing ? (
+                        <Input
+                          value={editedDriverInfo && editedDriverInfo.name}
+                          onChange={(e) =>
+                            handleEditChange("name", e.target.value)
+                          }
+                        />
+                      ) : (
+                        driverInfo && driverInfo.name
+                      )}
+                  </div>
                 </div>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Date of birth</div>
-                  <div className={styles.ContentB}>1999-08-14</div>
+                  <div className={styles.dob}>
+                    {isEditing ? (
+                        <Input
+                          value={editedDriverInfo && editedDriverInfo.dateOfBirth}
+                          onChange={(e) =>
+                            handleEditChange("dateOfBirth", e.target.value)
+                          }
+                        />
+                      ) : (
+                        driverInfo && driverInfo.dateOfBirth
+                      )}
+                    </div>
+
                 </div>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Email </div>
-                  <div className={styles.ContentB}>udantha15@gmail.com</div>
+                  <div className={styles.mailInput}>
+                    {isEditing ? (
+                      <Input
+                        value={editedDriverInfo && editedDriverInfo.email}
+                        onChange={(e) =>
+                          handleEditChange("email", e.target.value)
+                        }
+                      />
+                    ) : (
+                      driverInfo && driverInfo.email
+                    )}
+                  </div>
                 </div>
+                
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>National Id Number</div>
-                  <div className={styles.ContentB}>199922810193</div>
+                  <div className={styles.nic}>
+                    {isEditing ? (
+                    <Input
+                      value={editedDriverInfo && editedDriverInfo.NICNumber}
+                      onChange={(e) =>
+                        handleEditChange("NICNumber", e.target.value)
+                      }
+                    />
+                  ) : (
+                    driverInfo && driverInfo.NICNumber
+                  )}
+                  </div>
                 </div>
               </div>
               <div className={styles.ContentV}>
                 <div className={styles.ContentOne}>
-                  <div className={styles.ContentG}>Full Name with Initials</div>
-                  <div className={styles.ContentB}>C.U Edirisuriya</div>
+                  <div className={styles.ContentG}>Full Name with Initials</div>                  
+                  <div className={styles.name}>
+                    {isEditing ? (
+                      <Input
+                        value={editedDriverInfo && editedDriverInfo.name}
+                        onChange={(e) => handleEditChange("name", e.target.value)}
+                      />
+                    ) : (
+                      <span>{getInitials(driverInfo && driverInfo.name)}</span>
+                    )}
+                  </div>
                 </div>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Gender</div>
@@ -444,7 +532,20 @@ const DriverProfileDetail = () => {
                 </div>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Phone</div>
-                  <div className={styles.ContentB}>+94775248346</div>
+                  <div className={styles.phno}>
+                    {isEditing ? (
+                        <Input
+                          value={
+                            editedDriverInfo && editedDriverInfo.mobileNumber
+                          }
+                          onChange={(e) =>
+                            handleEditChange("mobileNumber", e.target.value)
+                          }
+                        />
+                      ) : (
+                        driverInfo && driverInfo.mobileNumber
+                      )}
+                  </div>
                 </div>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Age category</div>
@@ -459,41 +560,246 @@ const DriverProfileDetail = () => {
               <div className={styles.ContentV}>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Car Type</div>
-                  <div className={styles.ContentB}>SUV</div>
+                  <div className={styles.name}>
+                    {isEditing ? (
+                      <Input
+                        value={editedDriverInfo && editedDriverInfo.carType}
+                        onChange={(e) =>
+                          handleEditChange("carType", e.target.value)
+                        }
+                      />
+                    ) : (
+                      driverInfo && driverInfo.carType
+                    )}
+                  </div>
                 </div>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Car Model</div>
-                  <div className={styles.ContentB}>Carrens</div>
+                  <div className={styles.name}>
+                    {isEditing ? (
+                      <Input
+                        value={editedDriverInfo && editedDriverInfo.carModel}
+                        onChange={(e) =>
+                          handleEditChange("carModel", e.target.value)
+                        }
+                      />
+                    ) : (
+                      driverInfo && driverInfo.carModel
+                    )}
+                  </div>
                 </div>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Year Of Making Car</div>
-                  <div className={styles.ContentB}>udantha15@gmail.com</div>
+                  <div className={styles.name}>
+                    {isEditing ? (
+                      <Input
+                        value={editedDriverInfo && editedDriverInfo.yearOfMaking}
+                        onChange={(e) =>
+                          handleEditChange("yearOfMaking", e.target.value)
+                        }
+                      />
+                    ) : (
+                      driverInfo && driverInfo.yearOfMaking
+                    )}
+                  </div>
                 </div>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Identity</div>
-                  <div className={styles.ContentB}>I am the owner and the driver of this car</div>
+                  <div className={styles.name}>
+                    {isEditing ? (
+                      <Input
+                        value={editedDriverInfo && editedDriverInfo.identity}
+                        onChange={(e) =>
+                          handleEditChange("identity", e.target.value)
+                        }
+                      />
+                    ) : (
+                      driverInfo && driverInfo.identity
+                    )}
+                  </div>
                 </div>
               </div>
               <div className={styles.ContentV}>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Car Brand</div>
-                  <div className={styles.ContentB}>KIA</div>
+                  <div className={styles.name}>
+                    {isEditing ? (
+                      <Input
+                        value={editedDriverInfo && editedDriverInfo.carBrand}
+                        onChange={(e) =>
+                          handleEditChange("carBrand", e.target.value)
+                        }
+                      />
+                    ) : (
+                      driverInfo && driverInfo.carBrand
+                    )}
+                  </div>
                 </div>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Car Number Plate</div>
-                  <div className={styles.ContentB}>Ka-0678</div>
+                  <div className={styles.name}>
+                    {isEditing ? (
+                      <Input
+                        value={editedDriverInfo && editedDriverInfo.carNumberPlate}
+                        onChange={(e) =>
+                          handleEditChange("carNumberPlate", e.target.value)
+                        }
+                      />
+                    ) : (
+                      driverInfo && driverInfo.carNumberPlate
+                    )}
+                  </div>
                 </div>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Car Color</div>
-                  <div className={styles.ContentB}>Gold</div>
+                  <div className={styles.name}>
+                    {isEditing ? (
+                      <Input
+                        value={editedDriverInfo && editedDriverInfo.carColor}
+                        onChange={(e) =>
+                          handleEditChange("carColor", e.target.value)
+                        }
+                      />
+                    ) : (
+                      driverInfo && driverInfo.carColor
+                    )}
+                  </div>
                 </div>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Car Usage</div>
-                  <div className={styles.ContentB}>Private</div>
+                  <div className={styles.name}>
+                    {isEditing ? (
+                      <Input
+                        value={editedDriverInfo && editedDriverInfo.carUsage}
+                        onChange={(e) =>
+                          handleEditChange("carUsage", e.target.value)
+                        }
+                      />
+                    ) : (
+                      driverInfo && driverInfo.carUsage
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
           )}
+
+          {currentTab === "Address & Routes" && (
+            <div className={styles.renderContent}>
+              <p className={styles.contentTitle}>ADDRESS & ROUTES INFO</p>
+              <div className={styles.ContentV}>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Address line 1</div>
+                  <div className={styles.name}>
+                    {isEditing ? (
+                        <Input
+                          value={editedDriverInfo && editedDriverInfo.Add1}
+                          onChange={(e) =>
+                            handleEditChange("Add1", e.target.value)
+                          }
+                        />
+                      ) : (
+                        driverInfo && driverInfo.Add1
+                      )}
+                  </div>
+                </div>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Work address</div>
+                  <div className={styles.name}>
+                    {isEditing ? (
+                        <Input
+                          value={editedDriverInfo && editedDriverInfo.workAddress}
+                          onChange={(e) =>
+                            handleEditChange("workAddress", e.target.value)
+                          }
+                        />
+                      ) : (
+                        driverInfo && driverInfo.workAddress
+                      )}
+                  </div>
+                </div>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Province</div>
+                  <div className={styles.name}>
+                    {isEditing ? (
+                        <Input
+                          value={editedDriverInfo && editedDriverInfo.Province}
+                          onChange={(e) =>
+                            handleEditChange("Province", e.target.value)
+                          }
+                        />
+                      ) : (
+                        driverInfo && driverInfo.Province
+                      )}
+                  </div>
+                </div>
+                <div className={styles.ContentOne}>
+                  <div className={styles.ContentG}>Avg travel route</div>
+                  <div className={styles.name}>
+                    {isEditing ? (
+                        <Input
+                          value={editedDriverInfo && editedDriverInfo.AvgTravelRoute}
+                          onChange={(e) =>
+                            handleEditChange("AvgTravelRoute", e.target.value)
+                          }
+                        />
+                      ) : (
+                        driverInfo && driverInfo.AvgTravelRoute
+                      )}
+                  </div>
+                </div>
+              </div>
+              <div className={styles.ContentV}>
+                <div className={styles.Content0}>
+                  <div className={styles.ContentG}>Address line 2</div>
+                  <div className={styles.name}>
+                    {isEditing ? (
+                        <Input
+                          value={editedDriverInfo && editedDriverInfo.Add2}
+                          onChange={(e) =>
+                            handleEditChange("Add2", e.target.value)
+                          }
+                        />
+                      ) : (
+                        driverInfo && driverInfo.Add2
+                      )}
+                  </div>
+                </div>
+                <div className={styles.Contenttwo}>
+                  <div className={styles.ContentG}>City</div>
+                  <div className={styles.name}>
+                    {isEditing ? (
+                        <Input
+                          value={editedDriverInfo && editedDriverInfo.City}
+                          onChange={(e) =>
+                            handleEditChange("City", e.target.value)
+                          }
+                        />
+                      ) : (
+                        driverInfo && driverInfo.City
+                      )}
+                  </div>
+                </div>
+                <div className={styles.Contentthree}>
+                  <div className={styles.ContentG}>Avg Drive KM</div>
+                  <div className={styles.name}>
+                    {isEditing ? (
+                        <Input
+                          value={editedDriverInfo && editedDriverInfo.AvgKM}
+                          onChange={(e) =>
+                            handleEditChange("AvgKM", e.target.value)
+                          }
+                        />
+                      ) : (
+                        driverInfo && driverInfo.AvgKM
+                      )}
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          )}
+
           {currentTab === "Billing Info" && (
             <div className={styles.renderContent}>
               <p className={styles.contentTitle}>Billing info</p>
@@ -547,7 +853,30 @@ const DriverProfileDetail = () => {
             </div>
           )}
         </div>
+        <button className={styles.rectangleGroup} onClick={toggleEdit}>
+          <div className={styles.groupChild} />
+          <div className={styles.editParent}>
+            <div className={styles.edit}>Edit</div>
+            <img
+              className={styles.notepencilIcon}
+              alt=""
+              src="/notepencil.svg"
+            />
+          </div>
+        </button>
+        <button className={styles.rectangleContainer} onClick={saveChanges}>
+          <div className={styles.groupItem} />
+          <div className={styles.saveChanges}>Save changes</div>
+        </button>
       </section>
+      <div className={styles.prof}>
+      <img className={styles.Icon} alt="" src="/1.png" />
+        <button><img className={styles.Icon2} alt="" src="/notepencil.svg" /></button>
+      <div className={styles.headtext}>
+          <div className={styles.b}>{driverInfo && driverInfo.name}</div>
+        <div className={styles.a}>#100485A</div>
+      </div>
+    </div>
     </PageLayout>
     // <div className={styles.driverProfileDetail}>
     //   <div className={styles.rectangleParent}>

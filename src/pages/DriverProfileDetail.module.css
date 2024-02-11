@@ -251,7 +251,7 @@
 }
 
 .renderContent {
-  margin-top: 2%;
+  margin-top: 8%;
   border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 2%;
   border-radius: 10px;
@@ -274,7 +274,16 @@
   flex-direction: row;
 }
 
-.ContentOne{
+.ContentOne {
+  width: 291px;
+  height: 90px;
+}
+
+.Contenttwo {
+  width: 291px;
+  height: 90px;
+}
+.Content0 {
   width: 291px;
   height: 90px;
 }
@@ -310,7 +319,175 @@
   opacity: 0.7; /* Adjust opacity for inactive buttons */
 }
 
+.groupItem,
+.mapgroupItem,
+.rectangleGroup {
+  position: absolute;
+  height: 44px;
+}
 
+.prof {
+  position: absolute;
+  top: 157px;
+  right: 36px;
+  border-radius: 13px;
+  background-color: #fdf1f0;
+  width: 342px;
+  height: 129px;
+  overflow: hidden;
+  font-size: 18px;
+  color: #020202;
+  font-family: Lexend;
+}
+
+.Icon {
+  position: absolute;
+  top: 27px;
+  left: 230px;
+  border-radius: 4px;
+  width: 76px;
+  height: 76px;
+  object-fit: cover;
+}
+
+.Icon2 {
+  position: absolute;
+  height: 17.83%;
+  width: 7.02%;
+  top: 70.54%;
+  right: 8.19%;
+  bottom: 11.63%;
+  left: 84.8%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+
+.headtext {
+  position: absolute;
+  top: 27px;
+  left: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.a {
+    font-size: 12px;
+    font-weight: 600;
+    color: #ec5954;
+}
+.a,
+.b {
+  position: relative;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.rectangleGroup {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  top: 590px;
+  left: 1130px;
+  width: 98px;
+}
+
+.groupItem {
+  top: 0;
+  left: 0;
+  border-radius: var(--br-6xs);
+  background-color: #ea5858;
+  border: 2px solid var(--color-lightgray-100);
+  box-sizing: border-box;
+  width: 128px;
+}
+
+.saveChanges {
+  position: absolute;
+  top: 11px;
+  left: 14px;
+  font-size: var(--font-size-mini);
+  line-height: 21px;
+  text-transform: capitalize;
+  font-weight: 600;
+  font-family: var(--font-urbanist);
+  color: var(--background-backgroundprimary);
+  text-align: left;
+}
+
+.rectangleContainer {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 590px;
+  left: 1250px;
+  width: 128px;
+  height: 44px;
+}
+
+.edit,
+.groupChild {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.groupChild {
+  border-radius: var(--br-6xs);
+  background-color: var(--background-backgroundprimary);
+  border: 2px solid var(--color-lightgray-100);
+  box-sizing: border-box;
+  width: 98px;
+  height: 44px;
+}
+
+.notepencilIcon {
+  position: absolute;
+  height: 83.05%;
+  width: 34.62%;
+  top: 12.42%;
+  right: 0;
+  bottom: 4.53%;
+  left: 65.38%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+
+.editParent {
+  position: absolute;
+  top: 11px;
+  left: 22px;
+  width: 52px;
+  height: 21px;
+}
+
+.mailInput {
+
+  width: 256px;
+  right: -400px;
+}
+
+.name {
+  width: 200px;
+}
+
+.dob {
+  width: 160px
+}
+
+.phno {
+  width: 160px
+}
+
+.nic {
+  width: 140px;
+}
 /* .frameChild {
   position: absolute;
   height: 100%;
