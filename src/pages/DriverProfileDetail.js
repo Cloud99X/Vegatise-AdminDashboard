@@ -873,7 +873,7 @@ const DriverProfileDetail = () => {
       <img className={styles.Icon} alt="" src="/1.png" />
         <button><img className={styles.Icon2} alt="" src="/notepencil.svg" /></button>
       <div className={styles.headtext}>
-          <div className={styles.b}>{editedDriverInfo && editedDriverInfo.name}</div>
+          <div className={styles.b}>{driverInfo && driverInfo.name}</div>
         <div className={styles.a}>#100485A</div>
       </div>
     </div>
