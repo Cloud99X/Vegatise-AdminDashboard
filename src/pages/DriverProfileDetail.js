@@ -26,10 +26,7 @@ const DriverProfileDetail = () => {
   const [vehicleImageStatus, setVehicleImageStatus] = useState("Pending");
   const [currentTab, setCurrentTab] = useState("Personal Info");
 
-  const [imageUrl, setImageUrl] = useState(`https://firebasestorage.googleapis.com/v0/b/vegatise-1bad9.appspot.com/o/${documentId}%2FProfile%20Photo%2Fprofile.jpg?alt=media`);
-
-
-
+  const [imageUrl, setImageUrl] = useState('');
 
   //billing info accounts//
   const [selectedAccount, setSelectedAccount] = useState("account1");
@@ -141,6 +138,29 @@ const DriverProfileDetail = () => {
     const lastName = names.length > 1 ? names[names.length - 1] : '';
     return `${firstNameInitial}.${lastName}`;
   };
+
+  useEffect(() => {
+    const fetchImageUrl = async () => {
+      try {
+        const storage = getStorage();
+        const userImagesFolder = `${documentId}/Profile Photo`;
+        const folderRef = ref(storage, userImagesFolder);
+        const items = await listAll(folderRef);
+        if (items && items.items.length > 0) {
+          const firstItem = items.items[0];
+          const firstItemUrl = await getDownloadURL(firstItem);
+          setImageUrl(firstItemUrl);
+        } else {
+          console.error("No items found in the folder.");
+        }
+      } catch (error) {
+        console.error("Error retrieving images:", error);
+      }
+    };
+    fetchImageUrl();
+    return () => {
+    };
+  }, [documentId]);
 
   useEffect(() => {
     const fetchDriverInfo = async () => {
