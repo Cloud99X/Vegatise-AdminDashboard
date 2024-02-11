@@ -26,6 +26,10 @@ const DriverProfileDetail = () => {
   const [vehicleImageStatus, setVehicleImageStatus] = useState("Pending");
   const [currentTab, setCurrentTab] = useState("Personal Info");
 
+  const [imageUrl, setImageUrl] = useState(`https://firebasestorage.googleapis.com/v0/b/vegatise-1bad9.appspot.com/o/${documentId}%2FProfile%20Photo%2Fprofile.jpg?alt=media`);
+
+
+
 
   //billing info accounts//
   const [selectedAccount, setSelectedAccount] = useState("account1");
@@ -312,6 +316,7 @@ const DriverProfileDetail = () => {
       console.error("Error retrieving images:", error);
     }
   }, [documentId]);
+
 
   const onVehicleImagesButtonClick = useCallback(async () => {
     try {
@@ -870,7 +875,7 @@ const DriverProfileDetail = () => {
         </button>
       </section>
       <div className={styles.prof}>
-      <img className={styles.Icon} alt="" src="/1.png" />
+      <img className={styles.Icon} alt="" src={imageUrl} />
         <button><img className={styles.Icon2} alt="" src="/notepencil.svg" /></button>
       <div className={styles.headtext}>
           <div className={styles.b}>{driverInfo && driverInfo.name}</div>
