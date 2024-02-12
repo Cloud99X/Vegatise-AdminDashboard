@@ -413,8 +413,9 @@
   border: 0;
   padding: 0;
   background-color: transparent;
-  top: 90%;
-  left: 170%;
+  top: 2%;
+  position: relative;
+  left: 75%;
   width: 98px;
 }
 
@@ -424,9 +425,9 @@
   border: 0;
   padding: 0;
   background-color: transparent;
-  position: absolute;
-  top: 90%;
-  left: 187%;
+  position: relative;
+  top: 2%;
+  left:77%;
   width: 128px;
   height: 44px;
 }
