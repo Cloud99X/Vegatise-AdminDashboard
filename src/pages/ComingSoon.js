@@ -11,6 +11,9 @@ import firebaseApp from "./firebase";
 import { getFirestore } from "firebase/firestore";
 import PageLayout from "../components/page-layout/page-layout";
 
+import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
+
+
 const ComingSoon = () => {
   const navigate = useNavigate();
   const [personalInfo, setPersonalInfo] = useState([]);
@@ -74,29 +77,41 @@ const ComingSoon = () => {
     return fullName.includes(searchTerm.toLowerCase());
   });
 
-  useEffect(() => {
-    const fetchPersonalInfo = async () => {
-      try {
-        const db = getFirestore(firebaseApp);
-        const personalInfoCollection = collection(db, "PersonalInfomation");
-        const querySnapshot = await getDocs(personalInfoCollection);
 
-        const personalInfoArray = querySnapshot.docs.map((doc) => ({
-          documentId: doc.id,
-          ...doc.data(),
-        }));
-
-        setPersonalInfo(personalInfoArray);
-
-        console.log(personalInfo);
-      } catch (error) {
-        console.error("Error fetching personal information:", error);
-      }
-    };
-
-    fetchPersonalInfo();
-  }, []);
-
+  const fetchPersonalInfo = async () => {
+    try {
+      const db = getFirestore(firebaseApp);
+      const personalInfoCollection = collection(db, "PersonalInfomation");
+      const querySnapshot = await getDocs(personalInfoCollection);
+      const storage = getStorage(firebaseApp);
+      const personalInfoArray = querySnapshot.docs.map(async (doc) => {
+        const data = doc.data();
+        const folderRef = ref(storage, `/${doc.id}/Profile Photo`);
+        const folderSnapshot = await listAll(folderRef);
+        if (folderSnapshot.items.length > 0) {
+          const firstImageRef = folderSnapshot.items[0];
+          const profilePictureUrl = await getDownloadURL(firstImageRef);
+          return {
+            documentId: doc.id,
+            profilePicture: profilePictureUrl,
+            ...data,
+          };
+        } else {
+          return {
+            documentId: doc.id,
+            profilePicture: "",
+            ...data,
+          };
+        }
+      });
+      const resolvedPersonalInfoArray = await Promise.all(personalInfoArray);
+      setPersonalInfo(resolvedPersonalInfoArray);
+    } catch (error) {
+      console.error("Error fetching personal information:", error);
+    }
+  };
+  fetchPersonalInfo();
+  fetchPersonalInfo();
   const formatDate = (timestamp) => {
     const date = new Date(timestamp);
 
@@ -231,7 +246,7 @@ const ComingSoon = () => {
                       gap: "20px",
                     }}
                   >
-                    <img className={styles.icon} src="/vector53@2x.png" />
+                    <img className={styles.icon} src={driver.profilePicture} />
                     {driver.name}
                   </td>
                   <td>{driver.email}</td>

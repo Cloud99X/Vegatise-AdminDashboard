@@ -26,6 +26,7 @@ const DriverProfileDetail = () => {
   const [vehicleImageStatus, setVehicleImageStatus] = useState("Pending");
   const [currentTab, setCurrentTab] = useState("Personal Info");
 
+  const [imageUrl, setImageUrl] = useState('');
 
   //billing info accounts//
   const [selectedAccount, setSelectedAccount] = useState("account1");
@@ -137,6 +138,29 @@ const DriverProfileDetail = () => {
     const lastName = names.length > 1 ? names[names.length - 1] : '';
     return `${firstNameInitial}.${lastName}`;
   };
+
+  useEffect(() => {
+    const fetchImageUrl = async () => {
+      try {
+        const storage = getStorage();
+        const userImagesFolder = `${documentId}/Profile Photo`;
+        const folderRef = ref(storage, userImagesFolder);
+        const items = await listAll(folderRef);
+        if (items && items.items.length > 0) {
+          const firstItem = items.items[0];
+          const firstItemUrl = await getDownloadURL(firstItem);
+          setImageUrl(firstItemUrl);
+        } else {
+          console.error("No items found in the folder.");
+        }
+      } catch (error) {
+        console.error("Error retrieving images:", error);
+      }
+    };
+    fetchImageUrl();
+    return () => {
+    };
+  }, [documentId]);
 
   useEffect(() => {
     const fetchDriverInfo = async () => {
@@ -312,6 +336,7 @@ const DriverProfileDetail = () => {
       console.error("Error retrieving images:", error);
     }
   }, [documentId]);
+
 
   const onVehicleImagesButtonClick = useCallback(async () => {
     try {
@@ -870,7 +895,7 @@ const DriverProfileDetail = () => {
         </button>
       </section>
       <div className={styles.prof}>
-      <img className={styles.Icon} alt="" src="/1.png" />
+      <img className={styles.Icon} alt="" src={imageUrl} />
         <button><img className={styles.Icon2} alt="" src="/notepencil.svg" /></button>
       <div className={styles.headtext}>
           <div className={styles.b}>{driverInfo && driverInfo.name}</div>
