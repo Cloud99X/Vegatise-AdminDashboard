@@ -182,7 +182,7 @@ const DriverProfileDetail = () => {
             ...nicNumberData,
             ...addressAndRoutesData,
             ...VehicleInformationData,
-            ...utilityData,
+            //...utilityData,
           };
 
           setDriverInfo(mergedData);
@@ -216,8 +216,8 @@ const DriverProfileDetail = () => {
       const addressAndRoutesCollection = collection(db, "AddressAndRoutes");
       const addressAndRoutesDocRef = doc(addressAndRoutesCollection,documentId);
 
-      // const VehicleInformationCollection = collection(db, "VehicleInformation");
-      // const VehicleInformationDocRef = doc(VehicleInformationCollection,documentId);
+      const VehicleInformationCollection = collection(db, "VehicleInformation");
+      const VehicleInformationDocRef = doc(VehicleInformationCollection,documentId);
 
       await updateDoc(personalInfoDocRef, {
         name: editedDriverInfo.name,
@@ -238,19 +238,19 @@ const DriverProfileDetail = () => {
         Province:editedDriverInfo.Province,
         AvgKM: editedDriverInfo.AvgKM,
         AvgTravelRoute: editedDriverInfo.AvgTravelRoute,
-        WorkAddress: editedDriverInfo.workAddress,
+        WorkAddress: editedDriverInfo.WorkAddress,
       });
 
-      // await updateDoc(VehicleInformationDocRef, {
-      //   carType: editedDriverInfo.carType,
-      //   carBrand: editedDriverInfo.carBrand,
-      //   carModel: editedDriverInfo.carModel,
-      //   carNumberPlate: editedDriverInfo.carNumberPlate,
-      //   yearOfMaking: editedDriverInfo.carYOM,
-      //   carColor: editedDriverInfo.carColor,
-      //   identity: editedDriverInfo.identity,
-      //   carUsage: editedDriverInfo.carUsage,
-      // });
+      await updateDoc(VehicleInformationDocRef, {
+        carType: editedDriverInfo.carType,
+        carBrand: editedDriverInfo.carBrand,
+        carModel: editedDriverInfo.carModel,
+        carNumberPlate: editedDriverInfo.carNumberPlate,
+        yearOfMaking: editedDriverInfo.yearOfMaking,
+        carColor: editedDriverInfo.carColor,
+        identity: editedDriverInfo.identity,
+        carUsage: editedDriverInfo.carUsage,
+      });
 
       setDriverInfo(editedDriverInfo);
 
@@ -708,13 +708,13 @@ const DriverProfileDetail = () => {
                   <div className={styles.name}>
                     {isEditing ? (
                         <Input
-                          value={editedDriverInfo && editedDriverInfo.workAddress}
+                          value={editedDriverInfo && editedDriverInfo.WorkAddress}
                           onChange={(e) =>
-                            handleEditChange("workAddress", e.target.value)
+                            handleEditChange("WorkAddress", e.target.value)
                           }
                         />
                       ) : (
-                        driverInfo && driverInfo.workAddress
+                        driverInfo && driverInfo.WorkAddress
                       )}
                   </div>
                 </div>
