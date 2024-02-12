@@ -1,151 +1,3 @@
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  border-right: 3px solid rgb(0, 0, 0, 0.2);
-  justify-content: space-between;
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-
-.section {
-  align-self: center;
-}
-
-.itemsContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.sidebarItemContainer {
-  display: flex;
-  height: 50px;
-  gap: 10px;
-  align-items: center;
-}
-
-.notActiveIcon {
-  width: 5px;
-  height: 40px;
-  border-radius: 20px;
-  padding-left: 2px;
-}
-
-.sidebarItem {
-  font-family: 'Poppins', 'sans-serif';
-  color: #818187;
-  font-weight: 600;
-  gap: 10px;
-  display: flex;
-  align-items: center;
-  height: 50px;
-  border-radius: 16px;
-  width: 100%;
-  margin-right: 10px;
-  padding-left: 60px;
-  cursor: pointer;
-}
-
-.sidebarItem img {
-  width: 18px;
-  height: 18px;
-}
-
-.activeIcon {
-  width: 5px;
-  background-color: #FA0000;
-  height: 40px;
-  border-radius: 20px;
-  padding-left: 2px;
-}
-
-.activeSidebarItemContainer {
-  display: flex;
-  height: 50px;
-  gap: 10px;
-  align-items: center;
-}
-
-.activeSidebarItem {
-  background-color: rgba(250, 0, 0, 0.05);
-  font-family: 'Poppins', 'sans-serif';
-  color: #FA0000;
-  font-weight: 600;
-  gap: 10px;
-  display: flex;
-  align-items: center;
-  height: 50px;
-  border-radius: 16px;
-  width: 100%;
-  margin-right: 10px;
-  padding-left: 50px;
-  cursor: pointer;
-}
-
-.activeSidebarItem img {
-  width: 18px;
-  height: 18px;
-}
-
-.logoutParent {
-  width: 202px;
-  height: 178px;
-  border: 1px solid #818187;
-  align-self: center;
-}
-
-.companyIcon {
-  width: 80px;
-  justify-content: center;
-}
-
-.logoutSection {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  border: 1px solid rgb(0, 0, 0, 0.2);
-  margin-left: 25px;
-  margin-right: 25px;
-  border-radius: 16px;
-  font-family: 'Poppins', 'sans-serif';
-}
-
-.companyImage {
-  margin-top: -40px;
-  width: 80px;
-
-}
-
-.companyText {
-  color: black;
-  font-weight: 700;
-  margin-top: 10px;
-}
-
-.brandText {
-  font-size: 12px;
-  margin-top: -15px;
-}
-
-.logoutButton {
-  background-color: rgba(250, 0, 0, 0.3);
-  padding: 10px 20px;
-  font-size: 16px;
-  font-family: 'Poppins', 'sans-serif';
-  color: rgba(250, 0, 0, 0.9);
-  display: flex;
-  align-items: center;
-  width: 170px;
-  border-radius: 12px;
-  gap: 5px;
-  justify-content: center;
-  margin-bottom: 15px;
-  cursor: pointer;
-}
-
 .page {
   display: flex;
   flex-direction: row;
@@ -256,6 +108,7 @@
   padding: 2%;
   border-radius: 10px;
 }
+
 .renderContent1 {
   margin-top: 0;
   padding: 2%;
@@ -264,12 +117,12 @@
 
 .contentTitle {
   text-transform: uppercase;
-  color: #435C9A ;
+  color: #435C9A;
   font-size: 16px;
   font-weight: 600;
 }
 
-.ContentV{
+.ContentV {
   display: flex;
   flex-direction: row;
 }
@@ -283,40 +136,48 @@
   width: 291px;
   height: 90px;
 }
+
 .Content0 {
   width: 291px;
   height: 90px;
 }
 
-.ContentG{
+.ContentG {
   color: #6B7280;
   font-weight: 400;
 }
 
-.ContentB{
+.ContentB {
   color: #3F3F3F;
   font-weight: 500;
 }
 
 
 .ContentV button {
-  margin-right: 10px; /* Add any margin or padding as needed */
-  padding: 8px 12px; /* Add any padding as needed */
-  color: #000000; /* Set the text color */
+  margin-right: 10px;
+  /* Add any margin or padding as needed */
+  padding: 8px 12px;
+  /* Add any padding as needed */
+  color: #000000;
+  /* Set the text color */
   cursor: pointer;
 }
 
 .ContentV button:hover {
-  color: #0056b3; /* Change background color on hover */
+  color: #0056b3;
+  /* Change background color on hover */
 }
 
 .ContentV button.active {
-  color: #b30000; /* Set active background color */
+  color: #b30000;
+  /* Set active background color */
 }
 
 .ContentV button.inactive {
-  color: #00ff6e; /* Set inactive background color */
-  opacity: 0.7; /* Adjust opacity for inactive buttons */
+  color: #00ff6e;
+  /* Set inactive background color */
+  opacity: 0.7;
+  /* Adjust opacity for inactive buttons */
 }
 
 .groupItem,
@@ -373,11 +234,13 @@
   justify-content: flex-start;
   gap: 10px;
 }
+
 .a {
-    font-size: 12px;
-    font-weight: 600;
-    color: #ec5954;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ec5954;
 }
+
 .a,
 .b {
   position: relative;
@@ -427,7 +290,7 @@
   background-color: transparent;
   position: relative;
   top: 2%;
-  left:77%;
+  left: 77%;
   width: 128px;
   height: 44px;
 }
@@ -490,6 +353,101 @@
 .nic {
   width: 140px;
 }
+
+.attachedDocumentContainer {
+  font-family: 'Poppins', 'sans-serif';
+  padding: 20px;
+}
+
+.attachedDocument {
+  color: #000;
+  font-size: var(--h2-title-size);
+  font-weight: 600;
+}
+
+.headers {
+  display: flex;
+  justify-content: space-between;
+  color: #7D8DA6;
+  font-size: 14px;
+
+
+}
+
+.documentsContainerParent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.documentContainer {
+  border-radius: 10px;
+  border: 1px solid #D8D8D8;
+  display: flex;
+  flex-direction: column;
+}
+
+.documentContainer1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.document1stContainer {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.document2ndContainer {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.document3rdContainer {
+  display: flex;
+  gap: 20px;
+}
+
+.docTitle {
+  font-size: 16px;
+  color: #141736;
+  font-weight: 600;
+}
+
+.approveButton {
+  border-radius: 6px;
+  border: 1px solid #BABABA;
+  height: 28px;
+  width: 82px;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: #232323;
+  font-weight: 600;
+  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+
+.rejectButton {
+  border-radius: 6px;
+  height: 28px;
+  width: 82px;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #fff;
+  font-weight: 600;
+  background-color: #FE6470;
+  display: flex;
+  gap: 5px;
+}
+
+
+
 /* .frameChild {
   position: absolute;
   height: 100%;

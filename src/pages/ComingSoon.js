@@ -13,7 +13,6 @@ import PageLayout from "../components/page-layout/page-layout";
 
 import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
 
-
 const ComingSoon = () => {
   const navigate = useNavigate();
   const [personalInfo, setPersonalInfo] = useState([]);
@@ -31,7 +30,6 @@ const ComingSoon = () => {
       }
     });
   };
-
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -77,7 +75,6 @@ const ComingSoon = () => {
     return fullName.includes(searchTerm.toLowerCase());
   });
 
-
   const fetchPersonalInfo = async () => {
     try {
       const db = getFirestore(firebaseApp);
@@ -105,13 +102,17 @@ const ComingSoon = () => {
         }
       });
       const resolvedPersonalInfoArray = await Promise.all(personalInfoArray);
+      console.log(resolvedPersonalInfoArray);
       setPersonalInfo(resolvedPersonalInfoArray);
     } catch (error) {
       console.error("Error fetching personal information:", error);
     }
   };
+
   fetchPersonalInfo();
   fetchPersonalInfo();
+
+  //
   const formatDate = (timestamp) => {
     const date = new Date(timestamp);
 
@@ -230,14 +231,18 @@ const ComingSoon = () => {
                   style={{ cursor: "pointer" }}
                 >
                   <td className={styles.icontd}>
-                  <img
-              className={styles.icon}
-              src={checkedRows.includes(driver.documentId) ? '/checked.svg' : '/unchecked.svg'}
-              onClick={(e) => {
-                e.stopPropagation(); // Prevent row click when clicking the checkbox
-                handleCheckboxClick(driver.documentId);
-              }}
-            />
+                    <img
+                      className={styles.icon}
+                      src={
+                        checkedRows.includes(driver.documentId)
+                          ? "/checked.svg"
+                          : "/unchecked.svg"
+                      }
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent row click when clicking the checkbox
+                        handleCheckboxClick(driver.documentId);
+                      }}
+                    />
                   </td>
                   <td
                     style={{
