@@ -385,16 +385,6 @@
   font-weight: 500;
 }
 
-.rectangleGroup {
-  cursor: pointer;
-  border: 0;
-  padding: 0;
-  background-color: transparent;
-  top: 590px;
-  left: 1130px;
-  width: 98px;
-}
-
 .groupItem {
   top: 0;
   left: 0;
@@ -418,14 +408,25 @@
   text-align: left;
 }
 
+.rectangleGroup {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  top: 90%;
+  left: 170%;
+  width: 98px;
+}
+
+
 .rectangleContainer {
   cursor: pointer;
   border: 0;
   padding: 0;
   background-color: transparent;
   position: absolute;
-  top: 590px;
-  left: 1250px;
+  top: 90%;
+  left: 187%;
   width: 128px;
   height: 44px;
 }
