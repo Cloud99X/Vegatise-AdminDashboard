@@ -485,16 +485,6 @@ const DriverProfileDetail = () => {
               </div>
               <div
                 className={
-                  currentTab === "Billing Info"
-                    ? styles.activeTab
-                    : styles.notActiveTab
-                }
-                onClick={() => changeCurrentTab("Billing Info")}
-              >
-                <span>Billing Info</span>
-              </div>
-              <div
-                className={
                   currentTab === "Vehicle Info"
                     ? styles.activeTab
                     : styles.notActiveTab
@@ -502,6 +492,16 @@ const DriverProfileDetail = () => {
                 onClick={() => changeCurrentTab("Vehicle Info")}
               >
                 <span>Vehicle Info</span>
+              </div>
+              <div
+                className={
+                  currentTab === "Billing Info"
+                    ? styles.activeTab
+                    : styles.notActiveTab
+                }
+                onClick={() => changeCurrentTab("Billing Info")}
+              >
+                <span>Billing Info</span>
               </div>
             </div>
           </div>
@@ -913,22 +913,22 @@ const DriverProfileDetail = () => {
                     <div className={styles.ContentOne}>
                       <div className={styles.ContentG}>Account Holder Name</div>
                       <div className={styles.ContentB}>
-                        Charindu Udantha Edirisuriya
+                        
                       </div>
                     </div>
                     <div className={styles.ContentOne}>
                       <div className={styles.ContentG}>Bank</div>
-                      <div className={styles.ContentB}>HNB</div>
+                      <div className={styles.ContentB}></div>
                     </div>
                   </div>
                   <div className={styles.ContentV}>
                     <div className={styles.ContentOne}>
                       <div className={styles.ContentG}>Account Number</div>
-                      <div className={styles.ContentB}>14752369</div>
+                      <div className={styles.ContentB}></div>
                     </div>
                     <div className={styles.ContentOne}>
                       <div className={styles.ContentG}>Branch</div>
-                      <div className={styles.ContentB}>Bambalapitiya</div>
+                      <div className={styles.ContentB}></div>
                     </div>
                   </div>
                 </div>
