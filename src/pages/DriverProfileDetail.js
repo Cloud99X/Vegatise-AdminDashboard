@@ -247,6 +247,7 @@ const DriverProfileDetail = () => {
         name: editedDriverInfo.name,
         email: editedDriverInfo.email,
         mobileNumber: editedDriverInfo.mobileNumber,
+        gender: editedDriverInfo.gender,
         dateOfBirth: editedDriverInfo.dateOfBirth,
         timestamp: timestamp,
       });
@@ -553,7 +554,18 @@ const DriverProfileDetail = () => {
                 </div>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Gender</div>
-                  <div className={styles.ContentB}>Male</div>
+                  <div className={styles.name}>
+                    {isEditing ? (
+                        <Input
+                          value={editedDriverInfo && editedDriverInfo.gender}
+                          onChange={(e) =>
+                            handleEditChange("gender", e.target.value)
+                          }
+                        />
+                      ) : (
+                        driverInfo && driverInfo.gender
+                      )}
+                  </div>
                 </div>
                 <div className={styles.ContentOne}>
                   <div className={styles.ContentG}>Phone</div>
