@@ -1045,6 +1045,81 @@ const DriverProfileDetail = () => {
               )}
                */}
             </div>
+            <div className={styles.documentContainer}>
+              <div className={styles.documentContainer1}>
+                <div className={styles.document1stContainer}>
+                  {/* Icon */}
+                  <p className={styles.docTitle}>
+                  Revenue License
+                  </p>
+                </div>
+                <div className={styles.document2ndContainer}>
+                  <img src={documentSVG} />
+                  <img
+                    src={CaretCircleDown}
+                    alt="dropdown icon"
+                    onClick={() => handleDropdownClick("NIC")}
+                  />
+                </div>
+                <div className={styles.document3rdContainer}>
+                  <button className={styles.approveButton}>Approve</button>
+                  <button className={styles.rejectButton}>
+                    <img src={CloseIcon} alt="Icon" />
+                    Reject
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className={styles.documentContainer}>
+              <div className={styles.documentContainer1}>
+                <div className={styles.document1stContainer}>
+                  {/* Icon */}
+                  <p className={styles.docTitle}>
+                  Vehicle Insurance 
+                  </p>
+                </div>
+                <div className={styles.document2ndContainer}>
+                  <img src={documentSVG} />
+                  <img
+                    src={CaretCircleDown}
+                    alt="dropdown icon"
+                    onClick={() => handleDropdownClick("NIC")}
+                  />
+                </div>
+                <div className={styles.document3rdContainer}>
+                  <button className={styles.approveButton}>Approve</button>
+                  <button className={styles.rejectButton}>
+                    <img src={CloseIcon} alt="Icon" />
+                    Reject
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className={styles.documentContainer}>
+              <div className={styles.documentContainer1}>
+                <div className={styles.document1stContainer}>
+                  {/* Icon */}
+                  <p className={styles.docTitle}>
+                  Billing Document 
+                  </p>
+                </div>
+                <div className={styles.document2ndContainer}>
+                  <img src={documentSVG} />
+                  <img
+                    src={CaretCircleDown}
+                    alt="dropdown icon"
+                    onClick={() => handleDropdownClick("NIC")}
+                  />
+                </div>
+                <div className={styles.document3rdContainer}>
+                  <button className={styles.approveButton}>Approve</button>
+                  <button className={styles.rejectButton}>
+                    <img src={CloseIcon} alt="Icon" />
+                    Reject
+                  </button>
+                </div>
+              </div>
+            </div>            
           </div>
         </div>
       </section>
