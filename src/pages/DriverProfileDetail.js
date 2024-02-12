@@ -1058,7 +1058,7 @@ const DriverProfileDetail = () => {
                   <img
                     src={CaretCircleDown}
                     alt="dropdown icon"
-                    onClick={() => handleDropdownClick("NIC")}
+                    onClick={() => handleDropdownClick("Revenue License")}
                   />
                 </div>
                 <div className={styles.document3rdContainer}>
@@ -1083,7 +1083,7 @@ const DriverProfileDetail = () => {
                   <img
                     src={CaretCircleDown}
                     alt="dropdown icon"
-                    onClick={() => handleDropdownClick("NIC")}
+                    onClick={() => handleDropdownClick("Vehicle Insurance")}
                   />
                 </div>
                 <div className={styles.document3rdContainer}>
@@ -1108,7 +1108,7 @@ const DriverProfileDetail = () => {
                   <img
                     src={CaretCircleDown}
                     alt="dropdown icon"
-                    onClick={() => handleDropdownClick("NIC")}
+                    onClick={() => handleDropdownClick("Billing Document")}
                   />
                 </div>
                 <div className={styles.document3rdContainer}>
