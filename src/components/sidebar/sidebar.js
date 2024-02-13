@@ -32,13 +32,14 @@ const Sidebar = ({ activeItem }) => {
       icon: CarIcon,
       activeIcon: CarIconActive,
     },
+
     {
-      name: "Attribution",
+      name: "Drivers Information",
       icon: RocketIcon,
       activeIcon: RocketIconActive,
     },
     {
-      name: "Drivers Information",
+      name: "Attribution",
       icon: RocketIcon,
       activeIcon: RocketIconActive,
     },
@@ -63,8 +64,8 @@ const Sidebar = ({ activeItem }) => {
   const navigations = [
     "analytics",
     "about-campaign",
-    "attribution",
     "coming-soon",
+    "attribution",
     "retargetting",
     "billing",
     "setting",
