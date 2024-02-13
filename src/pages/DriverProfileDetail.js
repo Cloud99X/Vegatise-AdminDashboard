@@ -6,12 +6,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import { collection, getDoc, doc, updateDoc } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import firebaseApp from "./firebase";
-import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, listAll, getDownloadURL, uploadBytes, deleteObject } from "firebase/storage";
 import PageLayout from "../components/page-layout/page-layout";
 import documentSVG from "../../src/icons/documentSVG.svg";
 import CaretCircleDown from "../../src/icons/CaretCircleDown.svg";
 import CloseIcon from "../../src/icons/span_text-lg.svg";
-import uplo from "../../src/icons/1.png"
+import uplo from "../../src/icons/1.png";
 
 const DriverProfileDetail = () => {
   const { documentId } = useParams();
@@ -151,26 +151,49 @@ const DriverProfileDetail = () => {
     return `${firstNameInitial}.${lastName}`;
   };
 
-  useEffect(() => {
-    const fetchImageUrl = async () => {
-      try {
-        const storage = getStorage();
-        const userImagesFolder = `${documentId}/Profile Photo`;
-        const folderRef = ref(storage, userImagesFolder);
-        const items = await listAll(folderRef);
-        if (items && items.items.length > 0) {
-          const firstItem = items.items[0];
-          const firstItemUrl = await getDownloadURL(firstItem);
-          setImageUrl(firstItemUrl);
-        } else {
-          console.error("No items found in the folder.");
-        }
-      } catch (error) {
-        console.error("Error retrieving images:", error);
+  const uploadImageToFirestore = async (file, documentId, fetchImageUrl) => {
+    try {
+      const storage = getStorage();
+      const storageRef = ref(storage, `${documentId}/Profile Photo/${file.name}`);
+      const existingImageRef = ref(storage, `${documentId}/Profile Photo`);
+      const existingImageSnapshot = await listAll(existingImageRef);
+      existingImageSnapshot.items.forEach(async (item) => {
+        await deleteObject(item);
+      });
+      await uploadBytes(storageRef, file);
+      fetchImageUrl();
+    } catch (error) {
+      console.error("Error uploading image to Firestore:", error);
+    }
+  };
+
+  const handleImageUpload = async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      await uploadImageToFirestore(file, documentId, fetchImageUrl);
+    }
+  };
+
+  const fetchImageUrl = async () => {
+    try {
+      const storage = getStorage();
+      const userImagesFolder = `${documentId}/Profile Photo`;
+      const folderRef = ref(storage, userImagesFolder);
+      const items = await listAll(folderRef);
+      if (items && items.items.length > 0) {
+        const firstItem = items.items[0];
+        const firstItemUrl = await getDownloadURL(firstItem);
+        setImageUrl(firstItemUrl);
+      } else {
+        console.error("No items found in the folder.");
       }
-    };
+    } catch (error) {
+      console.error("Error retrieving images:", error);
+    }
+  };
+
+  useEffect(() => {
     fetchImageUrl();
-    return () => {};
   }, [documentId]);
 
   useEffect(() => {
@@ -434,6 +457,8 @@ const DriverProfileDetail = () => {
       setNicImageDropdown(!nicDropdown);
     } else if (section === "VehicleImage") {
       setVehicleImageDropdown(!vehicleImageDropdown);
+    } else if (section === "Revenue License") {
+      setRevenueLicenseDropdown(!revenueLicenseDropdown);
     }
   };
 
@@ -913,9 +938,7 @@ const DriverProfileDetail = () => {
                   <div className={styles.ContentV}>
                     <div className={styles.ContentOne}>
                       <div className={styles.ContentG}>Account Holder Name</div>
-                      <div className={styles.ContentB}>
-                        
-                      </div>
+                      <div className={styles.ContentB}></div>
                     </div>
                     <div className={styles.ContentOne}>
                       <div className={styles.ContentG}>Bank</div>
@@ -991,6 +1014,50 @@ const DriverProfileDetail = () => {
                   </button>
                 </div>
               </div>
+              {drivingLicenseDropdown && (
+                <div className={styles.dropdownContainer}>
+                  <div className={styles.dropdown}>
+                    <p className={styles.info}>
+                      Driving License Number Plate -{" "}
+                      <span className={styles.blueText}>2000235300851</span>
+                    </p>
+                    <p className={styles.info}>
+                      Expiration Date -{" "}
+                      <span className={styles.blueText}>12/08/2028</span>
+                    </p>
+                    <div className={styles.dropdownCaption}>
+                      <div className={styles.greyText}>
+                        My License Doesn't Have An Expiration Date (For Older
+                        License)
+                      </div>
+                      <button className={styles.box}></button>
+                    </div>
+                    <div className={styles.dropdownContent}>
+                      {/* Dropdown options */}
+                      <div className={styles.miniDropdownContainer}>
+                        <div className={styles.viewsTag}>Front View</div>
+                        <div className={styles.uploadButtonContainer}>
+                          <button className={styles.nameTag}>View</button>
+                          <button className={styles.uploadBtn}>
+                            <b className={styles.upld}>Upload</b>
+                            <img alt="" src={uplo} />
+                          </button>
+                        </div>
+                      </div>
+                      <div className={styles.miniDropdownContainer}>
+                        <div className={styles.viewsTag}>Back View</div>
+                        <div className={styles.uploadButtonContainer}>
+                          <button className={styles.nameTag}>View</button>
+                          <button className={styles.uploadBtn}>
+                            <b className={styles.upld}>Upload</b>
+                            <img alt="" src={uplo} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className={styles.documentContainer}>
@@ -999,15 +1066,12 @@ const DriverProfileDetail = () => {
                   Nation Identity card (NIC)
                 </div>
                 <div className={styles.img}>
+                  <img alt="" src={documentSVG} />
                   <img
                     alt=""
-                    src={documentSVG}
+                    onClick={() => handleDropdownClick("NIC")}
+                    src={CaretCircleDown}
                   />
-                    <img
-                      alt=""
-                      onClick={() => handleDropdownClick("NIC")}
-                      src={CaretCircleDown}
-                    />
                 </div>
                 <div className={styles.document3rdContainer}>
                   <button className={styles.approveButton}>Approve</button>
@@ -1022,7 +1086,9 @@ const DriverProfileDetail = () => {
                   <div className={styles.nictxt}>
                     <div className={styles.nicnum}>
                       <span>{`NIC number - `}</span>
-                      <span className={styles.span}>{driverInfo && driverInfo.NICNumber}</span>
+                      <span className={styles.span}>
+                        {driverInfo && driverInfo.NICNumber}
+                      </span>
                     </div>
                   </div>
                   <div className={styles.frnt}>
@@ -1031,10 +1097,7 @@ const DriverProfileDetail = () => {
                       <button className={styles.viw}>View</button>
                       <button className={styles.but}>
                         <b className={styles.upld}>Upload</b>
-                        <img
-                          alt=""
-                          src={uplo}
-                        />
+                        <img alt="" src={uplo} />
                       </button>
                     </div>
                   </div>
@@ -1044,10 +1107,7 @@ const DriverProfileDetail = () => {
                       <button className={styles.viw}>View</button>
                       <button className={styles.but}>
                         <b className={styles.upld}>Upload</b>
-                        <img
-                          alt=""
-                          src={uplo}
-                        />
+                        <img alt="" src={uplo} />
                       </button>
                     </div>
                   </div>
@@ -1058,11 +1118,11 @@ const DriverProfileDetail = () => {
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
-                {/*<div className={styles.spanbadgeWrapper1}>
+                  {/*<div className={styles.spanbadgeWrapper1}>
                   <img className={styles.spanavatarIcon} 
                     alt="" src="/component-471.svg" />
 
-                 </div> */}  
+                 </div> */}
                   <p className={styles.docTitle}>Vehicle Image</p>
                 </div>
                 <div className={styles.document2ndContainer}>
@@ -1081,23 +1141,60 @@ const DriverProfileDetail = () => {
                   </button>
                 </div>
               </div>
+              {vehicleImageDropdown && (
+                <div className={styles.dropdownContainer}>
+                  <div className={styles.dropdown}>
+                    <p className={styles.info}>
+                      Vehicle Condition -{" "}
+                      <span className={styles.blueText}>Very good</span>
+                    </p>
 
-              {/* if dropdown true */}
-              {/* {vehicleImageDropdown && (
-                <div></div>
+                    <div className={styles.dropdownContent}>
+                      {/* Dropdown options */}
+                      <div className={styles.miniDropdownContainer}>
+                        <div className={styles.viewsTag}>Front View</div>
+                        <div className={styles.uploadButtonContainer}>
+                          <button className={styles.nameTag}>View</button>
+                          <button className={styles.uploadBtn}>
+                            <b className={styles.upld}>Upload</b>
+                            <img alt="" src={uplo} />
+                          </button>
+                        </div>
+                      </div>
+                      <div className={styles.miniDropdownContainer}>
+                        <div className={styles.viewsTag}>Back View</div>
+                        <div className={styles.uploadButtonContainer}>
+                          <button className={styles.nameTag}>View</button>
+                          <button className={styles.uploadBtn}>
+                            <b className={styles.upld}>Upload</b>
+                            <img alt="" src={uplo} />
+                          </button>
+                        </div>
+                      </div>
+                      <div className={styles.miniDropdownContainer}>
+                        <div className={styles.viewsTag}>Side View</div>
+                        <div className={styles.uploadButtonContainer}>
+                          <button className={styles.nameTag}>View</button>
+                          <button className={styles.uploadBtn}>
+                            <b className={styles.upld}>Upload</b>
+                            <img alt="" src={uplo} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               )}
-               */}
             </div>
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
                   {/* Icon */}
-                  <p className={styles.docTitle}>
-                  Revenue License
-                  </p>
+                  <p className={styles.docTitle}>Revenue License</p>
                 </div>
                 <div className={styles.document2ndContainer}>
                   <img src={documentSVG} />
+                  <div className={styles.two}>2/2</div>
                   <img
                     src={CaretCircleDown}
                     alt="dropdown icon"
@@ -1112,14 +1209,36 @@ const DriverProfileDetail = () => {
                   </button>
                 </div>
               </div>
+              {revenueLicenseDropdown && (
+                <div className={styles.drpdwn}>
+                  <div className={styles.frnt}>
+                    <div className={styles.frntViw}>Image1</div>
+                    <div className={styles.div}>
+                      <button className={styles.viw}>View</button>
+                      <button className={styles.but}>
+                        <b className={styles.upld}>Upload</b>
+                        <img alt="" src={uplo} />
+                      </button>
+                    </div>
+                  </div>
+                  <div className={styles.frnt}>
+                    <div className={styles.frntViw}>Image2</div>
+                    <div className={styles.div}>
+                      <button className={styles.viw}>View</button>
+                      <button className={styles.but}>
+                        <b className={styles.upld}>Upload</b>
+                        <img alt="" src={uplo} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
                   {/* Icon */}
-                  <p className={styles.docTitle}>
-                  Vehicle Insurance 
-                  </p>
+                  <p className={styles.docTitle}>Vehicle Insurance</p>
                 </div>
                 <div className={styles.document2ndContainer}>
                   <img src={documentSVG} />
@@ -1142,9 +1261,7 @@ const DriverProfileDetail = () => {
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
                   {/* Icon */}
-                  <p className={styles.docTitle}>
-                  Billing Document 
-                  </p>
+                  <p className={styles.docTitle}>Billing Document</p>
                 </div>
                 <div className={styles.document2ndContainer}>
                   <img src={documentSVG} />
@@ -1162,15 +1279,16 @@ const DriverProfileDetail = () => {
                   </button>
                 </div>
               </div>
-            </div>            
+            </div>
           </div>
         </div>
       </section>
       <div className={styles.prof}>
         <img className={styles.Icon} alt="" src={imageUrl} />
-        <button>
+        <label htmlFor="file-upload">
           <img className={styles.Icon2} alt="" src="/notepencil.svg" />
-        </button>
+        </label>
+        <input id="file-upload" type="file" onChange={handleImageUpload} style={{ display: 'none' }} />
         <div className={styles.headtext}>
           <div className={styles.b}>{driverInfo && driverInfo.name}</div>
           <div className={styles.a}>#100485A</div>
