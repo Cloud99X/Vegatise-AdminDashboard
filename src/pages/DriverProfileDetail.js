@@ -6,7 +6,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { collection, getDoc, doc, updateDoc } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import firebaseApp from "./firebase";
-import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, listAll, getDownloadURL, uploadBytes, deleteObject } from "firebase/storage";
 import PageLayout from "../components/page-layout/page-layout";
 import documentSVG from "../../src/icons/documentSVG.svg";
 import CaretCircleDown from "../../src/icons/CaretCircleDown.svg";
@@ -151,26 +151,49 @@ const DriverProfileDetail = () => {
     return `${firstNameInitial}.${lastName}`;
   };
 
-  useEffect(() => {
-    const fetchImageUrl = async () => {
-      try {
-        const storage = getStorage();
-        const userImagesFolder = `${documentId}/Profile Photo`;
-        const folderRef = ref(storage, userImagesFolder);
-        const items = await listAll(folderRef);
-        if (items && items.items.length > 0) {
-          const firstItem = items.items[0];
-          const firstItemUrl = await getDownloadURL(firstItem);
-          setImageUrl(firstItemUrl);
-        } else {
-          console.error("No items found in the folder.");
-        }
-      } catch (error) {
-        console.error("Error retrieving images:", error);
+  const uploadImageToFirestore = async (file, documentId, fetchImageUrl) => {
+    try {
+      const storage = getStorage();
+      const storageRef = ref(storage, `${documentId}/Profile Photo/${file.name}`);
+      const existingImageRef = ref(storage, `${documentId}/Profile Photo`);
+      const existingImageSnapshot = await listAll(existingImageRef);
+      existingImageSnapshot.items.forEach(async (item) => {
+        await deleteObject(item);
+      });
+      await uploadBytes(storageRef, file);
+      fetchImageUrl();
+    } catch (error) {
+      console.error("Error uploading image to Firestore:", error);
+    }
+  };
+
+  const handleImageUpload = async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      await uploadImageToFirestore(file, documentId, fetchImageUrl);
+    }
+  };
+
+  const fetchImageUrl = async () => {
+    try {
+      const storage = getStorage();
+      const userImagesFolder = `${documentId}/Profile Photo`;
+      const folderRef = ref(storage, userImagesFolder);
+      const items = await listAll(folderRef);
+      if (items && items.items.length > 0) {
+        const firstItem = items.items[0];
+        const firstItemUrl = await getDownloadURL(firstItem);
+        setImageUrl(firstItemUrl);
+      } else {
+        console.error("No items found in the folder.");
       }
-    };
+    } catch (error) {
+      console.error("Error retrieving images:", error);
+    }
+  };
+
+  useEffect(() => {
     fetchImageUrl();
-    return () => {};
   }, [documentId]);
 
   useEffect(() => {
@@ -1262,9 +1285,10 @@ const DriverProfileDetail = () => {
       </section>
       <div className={styles.prof}>
         <img className={styles.Icon} alt="" src={imageUrl} />
-        <button>
+        <label htmlFor="file-upload">
           <img className={styles.Icon2} alt="" src="/notepencil.svg" />
-        </button>
+        </label>
+        <input id="file-upload" type="file" onChange={handleImageUpload} style={{ display: 'none' }} />
         <div className={styles.headtext}>
           <div className={styles.b}>{driverInfo && driverInfo.name}</div>
           <div className={styles.a}>#100485A</div>
