@@ -434,6 +434,8 @@ const DriverProfileDetail = () => {
       setNicImageDropdown(!nicDropdown);
     } else if (section === "VehicleImage") {
       setVehicleImageDropdown(!vehicleImageDropdown);
+    } else if (section === "Revenue License") {
+      setRevenueLicenseDropdown(!revenueLicenseDropdown);
     }
   };
 
@@ -1094,6 +1096,7 @@ const DriverProfileDetail = () => {
                 </div>
                 <div className={styles.document2ndContainer}>
                   <img src={documentSVG} />
+                  <div className={styles.two}>2/2</div>
                   <img
                     src={CaretCircleDown}
                     alt="dropdown icon"
@@ -1108,6 +1111,36 @@ const DriverProfileDetail = () => {
                   </button>
                 </div>
               </div>
+              {revenueLicenseDropdown && (
+                <div className={styles.drpdwn}>
+                  <div className={styles.frnt}>
+                    <div className={styles.frntViw}>Image1</div>
+                    <div className={styles.div}>
+                      <button className={styles.viw}>View</button>
+                      <button className={styles.but}>
+                        <b className={styles.upld}>Upload</b>
+                        <img
+                          alt=""
+                          src={uplo}
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <div className={styles.frnt}>
+                    <div className={styles.frntViw}>Image2</div>
+                    <div className={styles.div}>
+                      <button className={styles.viw}>View</button>
+                      <button className={styles.but}>
+                        <b className={styles.upld}>Upload</b>
+                        <img
+                          alt=""
+                          src={uplo}
+                        />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
