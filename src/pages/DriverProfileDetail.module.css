@@ -241,12 +241,19 @@
   color: #ec5954;
 }
 
+.b {
+  white-space: normal; 
+  max-width: 80%; 
+}
+
 .a,
 .b {
   position: relative;
   text-transform: capitalize;
   font-weight: 500;
 }
+
+
 
 .groupItem {
   top: 0;
