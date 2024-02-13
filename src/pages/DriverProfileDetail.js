@@ -11,6 +11,7 @@ import PageLayout from "../components/page-layout/page-layout";
 import documentSVG from "../../src/icons/documentSVG.svg";
 import CaretCircleDown from "../../src/icons/CaretCircleDown.svg";
 import CloseIcon from "../../src/icons/span_text-lg.svg";
+import uplo from "../../src/icons/1.png"
 
 const DriverProfileDetail = () => {
   const { documentId } = useParams();
@@ -991,21 +992,22 @@ const DriverProfileDetail = () => {
                 </div>
               </div>
             </div>
+
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
-                <div className={styles.document1stContainer}>
-                  {/* Icon */}
-                  <p className={styles.docTitle}>
-                    National Identity Card (NIC)
-                  </p>
+                <div className={styles.docTitle}>
+                  Nation Identity card (NIC)
                 </div>
-                <div className={styles.document2ndContainer}>
-                  <img src={documentSVG} />
+                <div className={styles.img}>
                   <img
-                    src={CaretCircleDown}
-                    alt="dropdown icon"
-                    onClick={() => handleDropdownClick("NIC")}
+                    alt=""
+                    src={documentSVG}
                   />
+                    <img
+                      alt=""
+                      onClick={() => handleDropdownClick("NIC")}
+                      src={CaretCircleDown}
+                    />
                 </div>
                 <div className={styles.document3rdContainer}>
                   <button className={styles.approveButton}>Approve</button>
@@ -1015,7 +1017,44 @@ const DriverProfileDetail = () => {
                   </button>
                 </div>
               </div>
+              {nicDropdown && (
+                <div className={styles.drpdwn}>
+                  <div className={styles.nictxt}>
+                    <div className={styles.nicnum}>
+                      <span>{`NIC number - `}</span>
+                      <span className={styles.span}>{driverInfo && driverInfo.NICNumber}</span>
+                    </div>
+                  </div>
+                  <div className={styles.frnt}>
+                    <div className={styles.frntViw}>Front view</div>
+                    <div className={styles.div}>
+                      <button className={styles.viw}>View</button>
+                      <button className={styles.but}>
+                        <b className={styles.upld}>Upload</b>
+                        <img
+                          alt=""
+                          src={uplo}
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <div className={styles.frnt}>
+                    <div className={styles.frntViw}>Back view</div>
+                    <div className={styles.div}>
+                      <button className={styles.viw}>View</button>
+                      <button className={styles.but}>
+                        <b className={styles.upld}>Upload</b>
+                        <img
+                          alt=""
+                          src={uplo}
+                        />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
+
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
