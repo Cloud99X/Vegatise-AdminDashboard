@@ -370,9 +370,9 @@
   justify-content: space-between;
   color: #7D8DA6;
   font-size: 14px;
-
-
 }
+
+
 
 .documentsContainerParent {
   display: flex;
@@ -398,6 +398,7 @@
   display: flex;
   gap: 20px;
   width: 100%;
+  align-items: center; 
 }
 
 .document2ndContainer {
@@ -416,6 +417,7 @@
   font-size: 16px;
   color: #141736;
   font-weight: 600;
+  margin: 0;
 }
 
 .approveButton {

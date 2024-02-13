@@ -1060,7 +1060,11 @@ const DriverProfileDetail = () => {
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
-                  {/* Icon */}
+                {/*<div className={styles.spanbadgeWrapper1}>
+                  <img className={styles.spanavatarIcon} 
+                    alt="" src="/component-471.svg" />
+
+                 </div> */}  
                   <p className={styles.docTitle}>Vehicle Image</p>
                 </div>
                 <div className={styles.document2ndContainer}>
