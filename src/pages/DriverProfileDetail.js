@@ -915,9 +915,7 @@ const DriverProfileDetail = () => {
                   <div className={styles.ContentV}>
                     <div className={styles.ContentOne}>
                       <div className={styles.ContentG}>Account Holder Name</div>
-                      <div className={styles.ContentB}>
-                        
-                      </div>
+                      <div className={styles.ContentB}></div>
                     </div>
                     <div className={styles.ContentOne}>
                       <div className={styles.ContentG}>Bank</div>
@@ -993,6 +991,49 @@ const DriverProfileDetail = () => {
                   </button>
                 </div>
               </div>
+              {drivingLicenseDropdown && (
+                <div className={styles.dropdownContainer}>
+                  <div className={styles.dropdown}>
+                   
+                      <p>
+                        Driving License Number Plate -{" "}
+                        <span className={styles.blueText}>2000235300851</span>
+                      </p>
+                      <p>
+                        Expiration Date -{" "}
+                        <span className={styles.blueText}>12/08/2028</span>
+                      </p>
+                      <div className={styles.dropdownCaption}>
+                      <div className={styles.greyText}>
+                        My License Doesn't Have An Expiration Date (For Older
+                        License)
+                      </div>
+                      <button className={styles.box}></button>
+                    </div>
+                    <div className={styles.dropdownContent}>
+                      {/* Dropdown options */}
+                      <div className={styles.miniDropdownContainer}>
+                        <div className={styles.viewsTag}>Front View</div>
+                        <div className={styles.uploadButtonContainer}>
+                          <button className={styles.nameTag}>View</button>
+                          <button className={styles.approveButton}>
+                            Upload
+                          </button>
+                        </div>
+                      </div>
+                      <div className={styles.miniDropdownContainer}>
+                        <div className={styles.viewsTag}>Back View</div>
+                        <div className={styles.uploadButtonContainer}>
+                          <button className={styles.nameTag}>View</button>
+                          <button className={styles.approveButton}>
+                            Upload
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className={styles.documentContainer}>
@@ -1083,20 +1124,53 @@ const DriverProfileDetail = () => {
                   </button>
                 </div>
               </div>
+              {vehicleImageDropdown && (
+                <div className={styles.dropdownContainer}>
+                  <div className={styles.dropdown}>
+                    <p>
+                      Vehicle Condition -{" "}
+                      <span className={styles.blueText}>Very good</span>
+                    </p>
 
-              {/* if dropdown true */}
-              {/* {vehicleImageDropdown && (
-                <div></div>
+                    <div className={styles.dropdownContent}>
+                      {/* Dropdown options */}
+                      <div className={styles.miniDropdownContainer}>
+                        <div className={styles.viewsTag}>Front View</div>
+                        <div className={styles.uploadButtonContainer}>
+                          <button className={styles.nameTag}>View</button>
+                          <button className={styles.approveButton}>
+                            Upload
+                          </button>
+                        </div>
+                      </div>
+                      <div className={styles.miniDropdownContainer}>
+                        <div className={styles.viewsTag}>Back View</div>
+                        <div className={styles.uploadButtonContainer}>
+                          <button className={styles.nameTag}>View</button>
+                          <button className={styles.approveButton}>
+                            Upload
+                          </button>
+                        </div>
+                      </div>
+                      <div className={styles.miniDropdownContainer}>
+                        <div className={styles.viewsTag}>Side View</div>
+                        <div className={styles.uploadButtonContainer}>
+                          <button className={styles.nameTag}>View</button>
+                          <button className={styles.approveButton}>
+                            Upload
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               )}
-               */}
             </div>
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
                   {/* Icon */}
-                  <p className={styles.docTitle}>
-                  Revenue License
-                  </p>
+                  <p className={styles.docTitle}>Revenue License</p>
                 </div>
                 <div className={styles.document2ndContainer}>
                   <img src={documentSVG} />
@@ -1150,9 +1224,7 @@ const DriverProfileDetail = () => {
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
                   {/* Icon */}
-                  <p className={styles.docTitle}>
-                  Vehicle Insurance 
-                  </p>
+                  <p className={styles.docTitle}>Vehicle Insurance</p>
                 </div>
                 <div className={styles.document2ndContainer}>
                   <img src={documentSVG} />
@@ -1175,9 +1247,7 @@ const DriverProfileDetail = () => {
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
                   {/* Icon */}
-                  <p className={styles.docTitle}>
-                  Billing Document 
-                  </p>
+                  <p className={styles.docTitle}>Billing Document</p>
                 </div>
                 <div className={styles.document2ndContainer}>
                   <img src={documentSVG} />
@@ -1195,7 +1265,7 @@ const DriverProfileDetail = () => {
                   </button>
                 </div>
               </div>
-            </div>            
+            </div>
           </div>
         </div>
       </section>
