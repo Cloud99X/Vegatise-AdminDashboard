@@ -98,6 +98,7 @@
   width: 94.66px;
   height: 37px;
 }
+/**/
 .divheaderActionItem1 {
   position: relative;
   border-radius: var(--br-9980xl);
@@ -119,15 +120,16 @@
 .headerheader {
   position: absolute;
   top: 0;
-  left: calc(50% - 595px);
+  left: 18%;
   background-color: var(--background-backgroundprimary);
   border-bottom: 0.7px solid var(--color-gainsboro-200);
   box-sizing: border-box;
-  width: 1190px;
-  height: 64px;
+  width: 88%;
+  height: 12%;
   color: var(--color-slategray);
   font-family: var(--font-inter);
 }
+/**/
 .thisFeatureIn {
   position: absolute;
   top: 134px;
@@ -428,4 +430,24 @@
   font-size: var(--other-other-regular-size);
   color: var(--color-darkslategray-200);
   font-family: var(--body-large-semibold);
+}
+
+.txtDev {
+  position: relative;
+  align-items: center;
+  top: 27%;
+  left: 18%;
+  font-weight: 100;
+  font-size:x-large;
+  height: 25%;
+  width: 50%;
+}
+
+.Img{
+  position: relative;
+  top: 34%;
+  left: -25%;
+  width: 50%;
+  height: 50%;
+  overflow: hidden;
 }

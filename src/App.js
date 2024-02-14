@@ -54,7 +54,7 @@ function App() {
         title = "";
         metaDescription = "";
         break;
-      case "/retargetting":
+      case "/Retargetting":
         title = "";
         metaDescription = "";
         break;
@@ -102,7 +102,7 @@ function App() {
       <Route path="/driver-profile-detail/:documentId" element={<DriverProfileDetail />} />
       <Route path="/billing-invoice" element={<BillingInvoice />} />
       <Route path="/billing" element={<Billing />} />
-      <Route path="/retargetting" element={<Retargetting />} />
+      <Route path="/Retargetting" element={<Retargetting />} />
       <Route path="/setting" element={<Setting />} />
       <Route path="/coming-soon" element={<ComingSoon />} />
       <Route path="/attribution" element={<Attribution />} />
