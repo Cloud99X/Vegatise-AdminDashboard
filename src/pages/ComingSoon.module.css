@@ -19,6 +19,10 @@
   cursor: pointer;
 }
 
+.headerImage1 {
+  width:33px;
+  height:33px;
+}
 .adminContainer {
   display: flex;
   align-items: center;

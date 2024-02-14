@@ -126,9 +126,9 @@ const ComingSoon = () => {
               src="/span_badge-wrapper.svg"
               className={styles.headerImage}
             />
-            <img alt="" src="/settingsSVG.svg" className={styles.headerImage} />
+            <img alt="" src="/settingsSVG.svg"  />
             <div className={styles.adminContainer}>
-              <img alt="" src="/spanavatar9.svg" />
+              <img alt="" src="/logo.png" className={styles.headerImage1}/>
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <span className={styles.admin}>Admin</span>
                 <span className={styles.adminName}>Abdurrahman</span>

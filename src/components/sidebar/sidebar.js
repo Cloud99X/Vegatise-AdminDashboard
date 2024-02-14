@@ -114,9 +114,9 @@ const Sidebar = ({ activeItem }) => {
         ))}
       </div>
       <div className={styles.logoutSection}>
-        <img src="/ellipse-1@2x.png" alt="" className={styles.companyImage} />
-        <p className={styles.companyText}>Popeyes</p>
-        <p className={styles.brandText}>Brand</p>
+        <img src="/logo.png" alt="" className={styles.companyImage} />
+        <p className={styles.companyText}>Abdurrahman</p>
+        <p className={styles.brandText}>Admin</p>
         <div className={styles.logoutButton} onClick={onLogoutClick}>
           <img alt="" src="/logout.svg" />
           <span>Logout</span>

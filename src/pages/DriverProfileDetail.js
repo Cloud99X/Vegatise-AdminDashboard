@@ -486,7 +486,7 @@ const DriverProfileDetail = () => {
             />
             <img alt="" src="/settingsSVG.svg" className={styles.headerImage} />
             <div className={styles.adminContainer}>
-              <img alt="" src="/spanavatar9.svg" />
+              <img alt="" src="/logo.png" className={styles.headerImage1}/>
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <span className={styles.admin}>Admin</span>
                 <span className={styles.adminName}>Abdurrahman</span>
@@ -1385,7 +1385,7 @@ const DriverProfileDetail = () => {
         <input id="file-upload" type="file" onChange={handleImageUpload} style={{ display: 'none' }} />
         <div className={styles.headtext}>
           <div className={styles.b}>{driverInfo && driverInfo.name}</div>
-          <div className={styles.a}>#100485A</div>
+          {/*<div className={styles.a}>#100485A</div>  */}
         </div>
       </div>
     </PageLayout>
