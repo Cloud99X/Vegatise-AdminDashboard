@@ -51,7 +51,7 @@ const Retargetting = () => {
               <img
                 className={styles.spanavatarIcon}
                 alt=""
-                src="/imgavatarimg5@2x.png"
+                src="/logo.png"
               />
               <div className={styles.divhidden}>
                 <div className={styles.divtextXs}>
