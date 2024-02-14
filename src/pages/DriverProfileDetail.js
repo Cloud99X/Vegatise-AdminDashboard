@@ -459,6 +459,10 @@ const DriverProfileDetail = () => {
       setVehicleImageDropdown(!vehicleImageDropdown);
     } else if (section === "Revenue License") {
       setRevenueLicenseDropdown(!revenueLicenseDropdown);
+    } else if (section === "Vehicle Insurance") {
+      setVehicleInsuranceDropdown(!vehicleInsuranceDropdown);
+    } else if (section === "Billing Documents") {
+      setBillingDocDropdown(!billingDocDropdown);
     }
   };
 
@@ -1271,6 +1275,7 @@ const DriverProfileDetail = () => {
                 </div>
               )}
             </div>
+            
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
@@ -1294,7 +1299,32 @@ const DriverProfileDetail = () => {
                   </button>
                 </div>
               </div>
+              {vehicleInsuranceDropdown && (
+                <div className={styles.drpdwn}>
+                  <div className={styles.frnt}>
+                    <div className={styles.frntViw}>Image1</div>
+                    <div className={styles.div}>
+                      <button className={styles.viw}>View</button>
+                      <button className={styles.but}>
+                        <b className={styles.upld}>Upload</b>
+                        <img alt="" src={uplo} />
+                      </button>
+                    </div>
+                  </div>
+                  <div className={styles.frnt}>
+                    <div className={styles.frntViw}>Image2</div>
+                    <div className={styles.div}>
+                      <button className={styles.viw}>View</button>
+                      <button className={styles.but}>
+                        <b className={styles.upld}>Upload</b>
+                        <img alt="" src={uplo} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
+
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
@@ -1319,7 +1349,32 @@ const DriverProfileDetail = () => {
                 </div>
               </div>
             </div>
+            {billingDocDropdown && (
+                <div className={styles.drpdwn}>
+                  <div className={styles.frnt}>
+                    <div className={styles.frntViw}>Image1</div>
+                    <div className={styles.div}>
+                      <button className={styles.viw}>View</button>
+                      <button className={styles.but}>
+                        <b className={styles.upld}>Upload</b>
+                        <img alt="" src={uplo} />
+                      </button>
+                    </div>
+                  </div>
+                  <div className={styles.frnt}>
+                    <div className={styles.frntViw}>Image2</div>
+                    <div className={styles.div}>
+                      <button className={styles.viw}>View</button>
+                      <button className={styles.but}>
+                        <b className={styles.upld}>Upload</b>
+                        <img alt="" src={uplo} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
           </div>
+            
         </div>
       </section>
       <div className={styles.prof}>
