@@ -29,7 +29,7 @@ const DriverProfileDetail = () => {
   const [NICStatus, setNICStatus] = useState("Pending");
   const [vehicleImageStatus, setVehicleImageStatus] = useState("Pending");
   const [currentTab, setCurrentTab] = useState("Personal Info");
-
+  const [selectedFile, setSelectedFile] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
 
   //billing info accounts//
@@ -460,6 +460,12 @@ const DriverProfileDetail = () => {
     } else if (section === "Revenue License") {
       setRevenueLicenseDropdown(!revenueLicenseDropdown);
     }
+  };
+
+  
+
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
   };
 
   //
@@ -1330,23 +1336,45 @@ const DriverProfileDetail = () => {
               </div>
               {revenueLicenseDropdown && (
                 <div className={styles.drpdwn}>
+                <p className={styles.info} style={{ left: "20px", position: "relative"}}>
+                  Revenue License number -{" "}
+                  <span className={styles.blueText}>1234567890</span>
+                </p>
                   <div className={styles.frnt}>
-                    <div className={styles.frntViw}>Image1</div>
+                    <div className={styles.frntViw}>Front view</div>
                     <div className={styles.div}>
                       <button className={styles.viw}>View</button>
                       <button className={styles.but}>
-                        <b className={styles.upld}>Upload</b>
+                        <label htmlFor="fileInput" className={styles.upld}>
+                          <b>Upload</b>
+                        </label>
+                        <input
+                          id="fileInput"
+                          type="file"
+                          accept="image/*"
+                          style={{ display: "none" }}
+                          onChange={handleFileChange}
+                        />
                         <img alt="" src={uplo} />
                       </button>
                     </div>
                   </div>
                   <div className={styles.frnt}>
-                    <div className={styles.frntViw}>Image2</div>
+                    <div className={styles.frntViw}>Back view</div>
                     <div className={styles.div}>
                       <button className={styles.viw}>View</button>
                       <button className={styles.but}>
-                        <b className={styles.upld}>Upload</b>
-                        <img alt="" src={uplo} />
+                          <label htmlFor="fileInput" className={styles.upld}>
+                              <b>Upload</b>
+                            </label>
+                            <input
+                              id="fileInput"
+                              type="file"
+                              accept="image/*"
+                              style={{ display: "none" }}
+                              onChange={handleFileChange}
+                            />
+                            <img alt="" src={uplo} />
                       </button>
                     </div>
                   </div>
