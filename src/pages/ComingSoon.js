@@ -112,7 +112,7 @@ const ComingSoon = () => {
     }
   };
   fetchPersonalInfo();
-  fetchPersonalInfo();
+
 
 
   const formatDate = (timestamp) => {
