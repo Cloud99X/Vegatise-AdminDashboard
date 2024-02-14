@@ -1000,6 +1000,7 @@ const DriverProfileDetail = () => {
                 </div>
                 <div className={styles.document2ndContainer}>
                   <img src={documentSVG} />
+                  <div className={styles.two}>2/2</div>
                   <img
                     src={CaretCircleDown}
                     alt="dropdown icon"
@@ -1067,6 +1068,7 @@ const DriverProfileDetail = () => {
                 </div>
                 <div className={styles.img}>
                   <img alt="" src={documentSVG} />
+                  <div className={styles.two}>2/2</div>
                   <img
                     alt=""
                     onClick={() => handleDropdownClick("NIC")}
@@ -1122,6 +1124,7 @@ const DriverProfileDetail = () => {
                 </div>
                 <div className={styles.img}>
                   <img alt="" src={documentSVG} />
+                  <div className={styles.two}>2/2</div>
                   <img
                     alt=""
                     onClick={() => handleDropdownClick("NIC")}
@@ -1177,6 +1180,7 @@ const DriverProfileDetail = () => {
                 </div>
                 <div className={styles.img}>
                   <img alt="" src={documentSVG} />
+                  <div className={styles.two}>2/2</div>
                   <img
                     alt=""
                     onClick={() => handleDropdownClick("NIC")}
@@ -1237,6 +1241,7 @@ const DriverProfileDetail = () => {
                 </div>
                 <div className={styles.document2ndContainer}>
                   <img src={documentSVG} />
+                  <div className={styles.two}>2/2</div>
                   <img
                     src={CaretCircleDown}
                     alt="dropdown icon"
@@ -1352,6 +1357,7 @@ const DriverProfileDetail = () => {
                 </div>
                 <div className={styles.document2ndContainer}>
                   <img src={documentSVG} />
+                  <div className={styles.two}>2/2</div>
                   <img
                     src={CaretCircleDown}
                     alt="dropdown icon"
@@ -1375,6 +1381,7 @@ const DriverProfileDetail = () => {
                 </div>
                 <div className={styles.document2ndContainer}>
                   <img src={documentSVG} />
+                  <div className={styles.two}>2/2</div>
                   <img
                     src={CaretCircleDown}
                     alt="dropdown icon"
