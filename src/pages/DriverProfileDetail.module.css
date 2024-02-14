@@ -393,7 +393,7 @@
 }
 
 .dropdownContainer{
-  width: 54%;
+  width: 58%;
   margin-left: 20px;
 }
 
@@ -410,14 +410,14 @@
 
 .viewsTag{
   margin-left: 10px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
 }
 
 .nameTag{
   font-size: 13px;
-  font-weight: 500;
-  margin-right: 10px;
+  font-weight: 600;
+  margin-right: 18px;
 }
 
 .uploadButtonContainer{
@@ -442,7 +442,7 @@
 }
 
 .info{
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .uploadBtn{
