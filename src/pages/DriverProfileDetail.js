@@ -1329,7 +1329,7 @@ const DriverProfileDetail = () => {
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
                   {/* Icon */}
-                  <p className={styles.docTitle}>Billing Document</p>
+                  <p className={styles.docTitle}>Billing Documents</p>
                 </div>
                 <div className={styles.document2ndContainer}>
                   <img src={documentSVG} />
@@ -1337,7 +1337,7 @@ const DriverProfileDetail = () => {
                   <img
                     src={CaretCircleDown}
                     alt="dropdown icon"
-                    onClick={() => handleDropdownClick("Billing Document")}
+                    onClick={() => handleDropdownClick("Billing Documents")}
                   />
                 </div>
                 <div className={styles.document3rdContainer}>
@@ -1348,8 +1348,7 @@ const DriverProfileDetail = () => {
                   </button>
                 </div>
               </div>
-            </div>
-            {billingDocDropdown && (
+              {billingDocDropdown && (
                 <div className={styles.drpdwn}>
                   <div className={styles.frnt}>
                     <div className={styles.frntViw}>Image1</div>
@@ -1373,6 +1372,10 @@ const DriverProfileDetail = () => {
                   </div>
                 </div>
               )}
+            </div>
+
+            
+              
           </div>
             
         </div>
