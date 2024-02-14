@@ -1067,6 +1067,7 @@ const DriverProfileDetail = () => {
                 </div>
                 <div className={styles.img}>
                   <img alt="" src={documentSVG} />
+                  <div className={styles.three}>2/2</div>
                   <img
                     alt=""
                     onClick={() => handleDropdownClick("NIC")}
