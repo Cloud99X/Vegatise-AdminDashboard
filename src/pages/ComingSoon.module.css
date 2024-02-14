@@ -78,12 +78,23 @@ table {
   width: 90%;
 }
 
-td,
-th {
+td{
   padding-bottom: 20px;
-
+  font-family: 'Urbanist', sans-serif;
+  font-size: 16px;
+  font-weight: 600; 
+  
 }
 
+th {
+  padding-bottom: 20px;
+  height: 44px;
+  font-size:14px;
+  color:#7d8da6;
+  position: relative;
+  font-weight: 400;
+  
+}
 /* .divheaderWrapperIcon {
   position: absolute;
   top: 0;
