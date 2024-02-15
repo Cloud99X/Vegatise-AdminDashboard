@@ -994,13 +994,98 @@ const DriverProfileDetail = () => {
           <div className={styles.groupItem} />
           <div className={styles.saveChanges}>Save changes</div>
         </button>
+
+{/* ... (test) */}
+
         <div className={styles.attachedDocumentContainer}>
-          <p className={styles.attachedDocument}>Attached Documents</p>
+          <p className={styles.attachedDocument}>Information</p>
           <div className={styles.headers}>
             <p>Document Type</p>
-            <p>Document</p>
             <p>Status</p>
           </div>
+          <div className={styles.documentsContainerParent}>
+            <div className={styles.documentContainer}>
+              <div className={styles.documentContainer1}>
+                <div className={styles.document1stContainer}>
+                  {/* Icon */}
+                  <p className={styles.docTitle}>Personal Information</p>
+                </div>
+
+                <div className={styles.document3rdContainer}>
+                  <button className={styles.approveButton}>Approve</button>
+                  <button className={styles.rejectButton}>
+                    <img src={CloseIcon} alt="Icon" />
+                    Reject
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+            <div className={styles.documentContainer}>
+              <div className={styles.documentContainer1}>
+                <div className={styles.document1stContainer}>
+                  {/*<div className={styles.spanbadgeWrapper1}>
+                  <img className={styles.spanavatarIcon} 
+                    alt="" src="/component-471.svg" />
+
+                 </div> */}
+                  <p className={styles.docTitle}>Vehicle Information</p>
+                </div>
+
+                <div className={styles.document3rdContainer}>
+                  <button className={styles.approveButton}>Approve</button>
+                  <button className={styles.rejectButton}>
+                    <img src={CloseIcon} alt="Icon" />
+                    Reject
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+
+
+
+
+            <div className={styles.documentContainer}>
+              <div className={styles.documentContainer1}>
+                <div className={styles.document1stContainer}>
+                  {/*<div className={styles.spanbadgeWrapper1}>
+                  <img className={styles.spanavatarIcon} 
+                    alt="" src="/component-471.svg" />
+
+                 </div> */}
+                  <p className={styles.docTitle}>Address and Routes</p>
+                </div>
+
+                <div className={styles.document3rdContainer}>
+                  <button className={styles.approveButton}>Approve</button>
+                  <button className={styles.rejectButton}>
+                    <img src={CloseIcon} alt="Icon" />
+                    Reject
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+{/* ... (test) */}
+
+        <div className={styles.attachedDocumentContainer}>
+          <p className={styles.attachedDocument}>Attached Documents</p>
+          
+          <div className={styles.outerContainer}>
+              <div className={styles.headers}>
+                 <p>Document Type</p>
+                 <p>Document</p>
+                 <p>Status</p>
+              </div>
+          </div>
+
           <div className={styles.documentsContainerParent}>
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>

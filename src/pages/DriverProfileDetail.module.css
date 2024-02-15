@@ -382,6 +382,11 @@
   font-size: 14px;
 }
 
+.headers p {
+  margin-left:80px; 
+  margin-right:80px; 
+}
+
 .documentsContainerParent {
   display: flex;
   flex-direction: column;

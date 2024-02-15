@@ -219,7 +219,7 @@ const ComingSoon = () => {
               <tr>
                 <th className={styles.icontd}></th>
                 <th>Name</th>
-                <th>Email</th>
+                <th>Driver ID</th>
                 <th>Phone number</th>
                 <th>Status</th>
                 <th>Date Modified</th>
