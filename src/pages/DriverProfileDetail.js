@@ -1067,14 +1067,20 @@ const DriverProfileDetail = () => {
       <>
         <button
           className={styles.approveButton}
-          onClick={() => handlePIStatusChange("Approved")}
+          onClick={() => {
+            handlePIStatusChange("Approved");
+            handleApprovePersonalInfo(['PersonalInfo.status']); // Replace with your actual keys
+          }}
         >
           Approve
         </button>
 
         <button
           className={styles.rejectButton}
-          onClick={() => handlePIStatusChange("Rejected")}
+          onClick={() =>{
+             handlePIStatusChange("Rejected");
+             handleRejectpersonalinfo(['PersonalInfo.status']);
+            }}
         >
           <img src={CloseIcon} alt="Icon" />
           Reject
@@ -1091,7 +1097,10 @@ const DriverProfileDetail = () => {
       
       <button
       className={styles.rejectButton}
-      onClick={() => handlePIStatusChange("Rejected")}
+      onClick={() =>{
+        handlePIStatusChange("Rejected");
+        handleRejectpersonalinfo(['PersonalInfo.status']);
+       }}
     >
       <img src={CloseIcon} alt="Icon" />
       Reject
@@ -1103,7 +1112,10 @@ const DriverProfileDetail = () => {
       <>
               <button
           className={styles.approveButton}
-          onClick={() => handlePIStatusChange("Approved")}
+          onClick={() => {
+            handlePIStatusChange("Approved");
+            handleApprovePersonalInfo(['PersonalInfo.status']); // Replace with your actual keys
+          }}
         >
           Approve
         </button>
