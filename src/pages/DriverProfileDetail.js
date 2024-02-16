@@ -1078,7 +1078,7 @@ const DriverProfileDetail = () => {
                         className={styles.approveButton}
                         onClick={() => {
                           handlePIStatusChange("Approved");
-                          handleApprovePersonalInfo(['PersonalInfo.status']); // Replace with your actual keys
+                          handleApprovePersonalInfo(['PersonalInfo.status']); 
                         }}
                         >
                         Approve
@@ -1123,7 +1123,7 @@ const DriverProfileDetail = () => {
                         className={styles.approveButton}
                         onClick={() => {
                           handlePIStatusChange("Approved");
-                          handleApprovePersonalInfo(['PersonalInfo.status']); // Replace with your actual keys
+                          handleApprovePersonalInfo(['PersonalInfo.status']); 
                         }}
                         >
                         Approve
@@ -1143,20 +1143,81 @@ const DriverProfileDetail = () => {
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
-                  {/*<div className={styles.spanbadgeWrapper1}>
-                  <img className={styles.spanavatarIcon} 
-                    alt="" src="/component-471.svg" />
-
-                 </div> */}
+                  <div className={styles.spanbadgeWrapper1}> 
+                    <img
+                       className={styles.spanavatarIcon}
+                       alt=""
+                       src={`/${getIconForStatus(VIStatus)}.svg`}  
+                    />
+                  </div> 
                   <p className={styles.docTitle}>Vehicle Information</p>
                 </div>
 
                 <div className={styles.document3rdContainer}>
-                  <button className={styles.approveButton} onClick={() => handleApprovePersonalInfo(['VehicleInfo.status'])}>Approve</button>
-                  <button className={styles.rejectButton} onClick={() => handleRejectpersonalinfo(['VehicleInfo.status'])}>
-                    <img src={CloseIcon} alt="Icon" />
-                    Reject
-                  </button>
+                  <>
+                    {PIStatus === "Pending" && (
+                      <>
+                        <button
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleVIStatusChange("Approved");
+                          handleApprovePersonalInfo(['vehicleInfo.status']);
+                        }}
+                        >
+                        Approve
+                        </button>
+
+                        <button
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleVIStatusChange("Rejected");
+                          handleRejectpersonalinfo(['vehicleInfo.status']);
+                        }}
+                        >
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
+                        </button>
+                      </>
+                    )}
+
+                    {PIStatus === "Approved" && (
+                      <>
+                        <button className={styles.approvedButton}>
+                        <img src={CloseIcon} alt="Icon" />
+                        Approved
+                        </button>
+      
+                        <button
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleVIStatusChange("Rejected");
+                          handleRejectpersonalinfo(['vehicleInfo.status']);
+                        }}
+                        >
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
+                        </button>
+                      </>
+                    )}
+
+                    {PIStatus === "Rejected" && (
+                      <>
+                        <button
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handlePIStatusChange("Approved");
+                          handleApprovePersonalInfo(['vehicleInfo.status']);
+                        }}
+                        >
+                        Approve
+                        </button>
+                        <button className={styles.rejectedButton}>
+                        <img src={CloseIcon} alt="Icon" />
+                        Rejected
+                        </button>
+                      </>
+                    )}
+                  </>
                 </div>
               </div>
 
@@ -1166,23 +1227,85 @@ const DriverProfileDetail = () => {
 
 
 
+
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
-                  {/*<div className={styles.spanbadgeWrapper1}>
-                  <img className={styles.spanavatarIcon} 
-                    alt="" src="/component-471.svg" />
-
-                 </div> */}
+                  <div className={styles.spanbadgeWrapper1}> 
+                    <img
+                       className={styles.spanavatarIcon}
+                       alt=""
+                       src={`/${getIconForStatus(ARStatus)}.svg`}  
+                    />
+                  </div> 
                   <p className={styles.docTitle}>Address and Routes</p>
                 </div>
 
                 <div className={styles.document3rdContainer}>
-                  <button className={styles.approveButton} onClick={() => handleApprovePersonalInfo(['AddressAndRoutes.status'])}>Approve</button>
-                  <button className={styles.rejectButton} onClick={() => handleRejectpersonalinfo(['AddressAndRoutes.status'])}>
-                    <img src={CloseIcon} alt="Icon" />
-                    Reject
-                  </button>
+                  <>
+                    {PIStatus === "Pending" && (
+                      <>
+                        <button
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleARStatusChange("Approved");
+                          handleApprovePersonalInfo(['AddressAndRoutes.status']);
+                        }}
+                        >
+                        Approve
+                        </button>
+
+                        <button
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleARStatusChange("Rejected");
+                          handleRejectpersonalinfo(['AddressAndRoutes.status']);
+                        }}
+                        >
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
+                        </button>
+                      </>
+                    )}
+
+                    {PIStatus === "Approved" && (
+                      <>
+                        <button className={styles.approvedButton}>
+                        <img src={CloseIcon} alt="Icon" />
+                        Approved
+                        </button>
+      
+                        <button
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleARStatusChange("Rejected");
+                          handleRejectpersonalinfo(['AddressAndRoutes.status']);
+                        }}
+                        >
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
+                        </button>
+                      </>
+                    )}
+
+                    {PIStatus === "Rejected" && (
+                      <>
+                        <button
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleARStatusChange("Approved");
+                          handleApprovePersonalInfo(['AddressAndRoutes.status']);
+                        }}
+                        >
+                        Approve
+                        </button>
+                        <button className={styles.rejectedButton}>
+                        <img src={CloseIcon} alt="Icon" />
+                        Rejected
+                        </button>
+                      </>
+                    )}
+                  </>
                 </div>
               </div>
 
