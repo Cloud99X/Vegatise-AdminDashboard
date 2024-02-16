@@ -12,6 +12,9 @@ import documentSVG from "../../src/icons/documentSVG.svg";
 import CaretCircleDown from "../../src/icons/CaretCircleDown.svg";
 import CloseIcon from "../../src/icons/span_text-lg.svg";
 import uplo from "../../src/icons/1.png";
+import 'firebase/firestore';
+
+
 
 const DriverProfileDetail = () => {
   const { documentId } = useParams();
@@ -338,7 +341,42 @@ const DriverProfileDetail = () => {
       window.alert("Error saving changes. Please try again.");
     }
   };
-  //
+
+
+  const handleApprovepersonalinfo = async () => {
+    try {
+      const db = getFirestore(firebaseApp);
+      const userDocumentPath = `/DocumentsStatus/${documentId}`; 
+      const docRef = doc(db, userDocumentPath); 
+
+      await updateDoc(docRef, {
+        'PersonalInfo.status': 'Approved'
+      });
+
+      console.log('Document successfully updated!');
+    } catch (error) {
+      console.error('Error updating document: ', error);
+    }
+  }
+
+
+  const handleRejectpersonalinfo = async () => {
+    try {
+      const db = getFirestore(firebaseApp);
+      const userDocumentPath = `/DocumentsStatus/${documentId}`;
+      const docRef = doc(db, userDocumentPath);
+
+      await updateDoc(docRef, {
+        'PersonalInfo.status': 'Rejected'
+      });
+
+      console.log('Document successfully updated!');
+    } catch (error) {
+      console.error('Error updating document: ', error);
+    }
+  }
+
+  
   const onDLImagesButtonClick = useCallback(async () => {
     try {
       const storage = getStorage();
@@ -1012,8 +1050,8 @@ const DriverProfileDetail = () => {
                 </div>
 
                 <div className={styles.document3rdContainer}>
-                  <button className={styles.approveButton}>Approve</button>
-                  <button className={styles.rejectButton}>
+                  <button className={styles.approveButton} onClick={handleApprovepersonalinfo}>Approve</button>
+                  <button className={styles.rejectButton} onClick={handleRejectpersonalinfo}>
                     <img src={CloseIcon} alt="Icon" />
                     Reject
                   </button>
