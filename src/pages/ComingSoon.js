@@ -113,8 +113,6 @@ const ComingSoon = () => {
   };
   fetchPersonalInfo();
 
-
-
   const formatDate = (timestamp) => {
     const date = new Date(timestamp);
 
@@ -219,7 +217,7 @@ const ComingSoon = () => {
               <tr>
                 <th className={styles.icontd}></th>
                 <th>Name</th>
-                <th>Driver ID</th>
+                <th>Email</th>
                 <th>Phone number</th>
                 <th>Status</th>
                 <th>Date Modified</th>
