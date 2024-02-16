@@ -27,7 +27,7 @@ const DriverProfileDetail = () => {
   const [status3, setStatus3] = useState("In Review");
   const [image, setImage] = useState("/component-473.svg");
   //
-  const [DLStatus, setDLStatus] = useState("Pending");
+  const [PIStatus, setPIStatus] = useState("Pending");
   const [ILStatus, setILStatus] = useState("Pending");
   const [NICStatus, setNICStatus] = useState("Pending");
   const [vehicleImageStatus, setVehicleImageStatus] = useState("Pending");
@@ -54,8 +54,8 @@ const DriverProfileDetail = () => {
   const changeCurrentTab = (tab) => {
     setCurrentTab(tab);
   };
-  const handleDLStatusChange = (newStatus) => {
-    setDLStatus(newStatus);
+  const handlePIStatusChange = (newStatus) => {
+    setPIStatus(newStatus);
   };
 
   const handleILStatusChange = (newStatus) => {
@@ -73,13 +73,13 @@ const DriverProfileDetail = () => {
   const getIconForStatus = (status) => {
     switch (status) {
       case "Approved":
-        return "471"; // Use the appropriate component number for the 'Approved' status
+        return "approved"; // Use the appropriate component number for the 'Approved' status
       case "Rejected":
-        return "472"; // Use the appropriate component number for the 'Rejected' status
+        return "rejected"; // Use the appropriate component number for the 'Rejected' status
       case "In Review":
-        return "473"; // Use the appropriate component number for the 'In Review' status
+        return "inReview"; // Use the appropriate component number for the 'In Review' status
       case "Pending":
-        return "474"; // Use the appropriate component number for the 'In Review' status
+        return "pending"; // Use the appropriate component number for the 'In Review' status
       default:
         return ""; // Return an empty string or default icon number for other cases
     }
@@ -1051,16 +1051,69 @@ const DriverProfileDetail = () => {
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
-                  {/* Icon */}
+                <div className={styles.spanbadgeWrapper1}> 
+                   <img
+                       className={styles.spanavatarIcon}
+                       alt=""
+                       src={`/${getIconForStatus(PIStatus)}.svg`}  
+                   />
+                  </div> 
                   <p className={styles.docTitle}>Personal Information</p>
                 </div>
 
                 <div className={styles.document3rdContainer}>
-                  <button className={styles.approveButton} onClick={() => handleApprovePersonalInfo(['PersonalInfo.status']) }>Approve</button>
-                  <button className={styles.rejectButton} onClick={() => handleRejectpersonalinfo(['PersonalInfo.status'])}>
-                    <img src={CloseIcon} alt="Icon" />
-                    Reject
-                  </button>
+                <>
+    {PIStatus === "Pending" && (
+      <>
+        <button
+          className={styles.approveButton}
+          onClick={() => handlePIStatusChange("Approved")}
+        >
+          Approve
+        </button>
+
+        <button
+          className={styles.rejectButton}
+          onClick={() => handlePIStatusChange("Rejected")}
+        >
+          <img src={CloseIcon} alt="Icon" />
+          Reject
+        </button>
+      </>
+    )}
+
+    {PIStatus === "Approved" && (
+     <>
+     <button className={styles.approvedButton}>
+        <img src={CloseIcon} alt="Icon" />
+        Approved
+      </button>
+      
+      <button
+      className={styles.rejectButton}
+      onClick={() => handlePIStatusChange("Rejected")}
+    >
+      <img src={CloseIcon} alt="Icon" />
+      Reject
+    </button>
+    </>
+    )}
+
+    {PIStatus === "Rejected" && (
+      <>
+              <button
+          className={styles.approveButton}
+          onClick={() => handlePIStatusChange("Approved")}
+        >
+          Approve
+        </button>
+      <button className={styles.rejectedButton}>
+        <img src={CloseIcon} alt="Icon" />
+        Rejected
+      </button>
+      </>
+    )}
+  </>
                 </div>
               </div>
 
