@@ -22,12 +22,12 @@ const DriverProfileDetail = () => {
   const [driverInfo, setDriverInfo] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [editedDriverInfo, setEditedDriverInfo] = useState(null);
-  const [status1, setStatus1] = useState("In Review");
-  const [status2, setStatus2] = useState("In Review");
-  const [status3, setStatus3] = useState("In Review");
-  const [image, setImage] = useState("/component-473.svg");
+
   //
   const [PIStatus, setPIStatus] = useState("Pending");
+  const [VIStatus, setVIStatus] = useState("Pending");
+  const [ARStatus, setARStatus] = useState("Pending");
+
   const [ILStatus, setILStatus] = useState("Pending");
   const [NICStatus, setNICStatus] = useState("Pending");
   const [vehicleImageStatus, setVehicleImageStatus] = useState("Pending");
@@ -57,6 +57,15 @@ const DriverProfileDetail = () => {
   const handlePIStatusChange = (newStatus) => {
     setPIStatus(newStatus);
   };
+  const handleVIStatusChange = (newStatus) => {
+    setVIStatus(newStatus);
+  };
+  const handleARStatusChange = (newStatus) => {
+    setARStatus(newStatus);
+  };
+
+
+
 
   const handleILStatusChange = (newStatus) => {
     setILStatus(newStatus);
@@ -1051,81 +1060,81 @@ const DriverProfileDetail = () => {
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
-                <div className={styles.spanbadgeWrapper1}> 
-                   <img
+                  <div className={styles.spanbadgeWrapper1}> 
+                    <img
                        className={styles.spanavatarIcon}
                        alt=""
                        src={`/${getIconForStatus(PIStatus)}.svg`}  
-                   />
+                    />
                   </div> 
                   <p className={styles.docTitle}>Personal Information</p>
                 </div>
 
                 <div className={styles.document3rdContainer}>
-                <>
-    {PIStatus === "Pending" && (
-      <>
-        <button
-          className={styles.approveButton}
-          onClick={() => {
-            handlePIStatusChange("Approved");
-            handleApprovePersonalInfo(['PersonalInfo.status']); // Replace with your actual keys
-          }}
-        >
-          Approve
-        </button>
+                  <>
+                    {PIStatus === "Pending" && (
+                      <>
+                        <button
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handlePIStatusChange("Approved");
+                          handleApprovePersonalInfo(['PersonalInfo.status']); // Replace with your actual keys
+                        }}
+                        >
+                        Approve
+                        </button>
 
-        <button
-          className={styles.rejectButton}
-          onClick={() =>{
-             handlePIStatusChange("Rejected");
-             handleRejectpersonalinfo(['PersonalInfo.status']);
-            }}
-        >
-          <img src={CloseIcon} alt="Icon" />
-          Reject
-        </button>
-      </>
-    )}
+                        <button
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handlePIStatusChange("Rejected");
+                          handleRejectpersonalinfo(['PersonalInfo.status']);
+                        }}
+                        >
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
+                        </button>
+                      </>
+                    )}
 
-    {PIStatus === "Approved" && (
-     <>
-     <button className={styles.approvedButton}>
-        <img src={CloseIcon} alt="Icon" />
-        Approved
-      </button>
+                    {PIStatus === "Approved" && (
+                      <>
+                        <button className={styles.approvedButton}>
+                        <img src={CloseIcon} alt="Icon" />
+                        Approved
+                        </button>
       
-      <button
-      className={styles.rejectButton}
-      onClick={() =>{
-        handlePIStatusChange("Rejected");
-        handleRejectpersonalinfo(['PersonalInfo.status']);
-       }}
-    >
-      <img src={CloseIcon} alt="Icon" />
-      Reject
-    </button>
-    </>
-    )}
+                        <button
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handlePIStatusChange("Rejected");
+                          handleRejectpersonalinfo(['PersonalInfo.status']);
+                        }}
+                        >
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
+                        </button>
+                      </>
+                    )}
 
-    {PIStatus === "Rejected" && (
-      <>
-              <button
-          className={styles.approveButton}
-          onClick={() => {
-            handlePIStatusChange("Approved");
-            handleApprovePersonalInfo(['PersonalInfo.status']); // Replace with your actual keys
-          }}
-        >
-          Approve
-        </button>
-      <button className={styles.rejectedButton}>
-        <img src={CloseIcon} alt="Icon" />
-        Rejected
-      </button>
-      </>
-    )}
-  </>
+                    {PIStatus === "Rejected" && (
+                      <>
+                        <button
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handlePIStatusChange("Approved");
+                          handleApprovePersonalInfo(['PersonalInfo.status']); // Replace with your actual keys
+                        }}
+                        >
+                        Approve
+                        </button>
+                        <button className={styles.rejectedButton}>
+                        <img src={CloseIcon} alt="Icon" />
+                        Rejected
+                        </button>
+                      </>
+                    )}
+                  </>
                 </div>
               </div>
 
