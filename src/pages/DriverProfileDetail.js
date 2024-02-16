@@ -343,15 +343,18 @@ const DriverProfileDetail = () => {
   };
 
 
-  const handleApprovepersonalinfo = async () => {
+  const handleApprovePersonalInfo = async (keysToUpdate) => {
     try {
       const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`; 
-      const docRef = doc(db, userDocumentPath); 
+      const userDocumentPath = `/DocumentsStatus/${documentId}`;
+      const docRef = doc(db, userDocumentPath);
 
-      await updateDoc(docRef, {
-        'PersonalInfo.status': 'Approved'
+      const updateData = {};
+      keysToUpdate.forEach(key => {
+        updateData[key] = 'Approved';
       });
+
+      await updateDoc(docRef, updateData);
 
       console.log('Document successfully updated!');
     } catch (error) {
@@ -360,15 +363,18 @@ const DriverProfileDetail = () => {
   }
 
 
-  const handleRejectpersonalinfo = async () => {
+  const handleRejectpersonalinfo = async (keysToUpdate) => {
     try {
       const db = getFirestore(firebaseApp);
       const userDocumentPath = `/DocumentsStatus/${documentId}`;
       const docRef = doc(db, userDocumentPath);
 
-      await updateDoc(docRef, {
-        'PersonalInfo.status': 'Rejected'
+      const updateData = {};
+      keysToUpdate.forEach(key => {
+        updateData[key] = 'Rejected';
       });
+
+      await updateDoc(docRef, updateData);
 
       console.log('Document successfully updated!');
     } catch (error) {
@@ -1050,8 +1056,8 @@ const DriverProfileDetail = () => {
                 </div>
 
                 <div className={styles.document3rdContainer}>
-                  <button className={styles.approveButton} onClick={handleApprovepersonalinfo}>Approve</button>
-                  <button className={styles.rejectButton} onClick={handleRejectpersonalinfo}>
+                  <button className={styles.approveButton} onClick={() => handleApprovePersonalInfo(['PersonalInfo.status']) }>Approve</button>
+                  <button className={styles.rejectButton} onClick={() => handleRejectpersonalinfo(['PersonalInfo.status'])}>
                     <img src={CloseIcon} alt="Icon" />
                     Reject
                   </button>
@@ -1072,8 +1078,8 @@ const DriverProfileDetail = () => {
                 </div>
 
                 <div className={styles.document3rdContainer}>
-                  <button className={styles.approveButton}>Approve</button>
-                  <button className={styles.rejectButton}>
+                  <button className={styles.approveButton} onClick={() => handleApprovePersonalInfo(['VehicleInfo.status'])}>Approve</button>
+                  <button className={styles.rejectButton} onClick={() => handleRejectpersonalinfo(['VehicleInfo.status'])}>
                     <img src={CloseIcon} alt="Icon" />
                     Reject
                   </button>
@@ -1098,8 +1104,8 @@ const DriverProfileDetail = () => {
                 </div>
 
                 <div className={styles.document3rdContainer}>
-                  <button className={styles.approveButton}>Approve</button>
-                  <button className={styles.rejectButton}>
+                  <button className={styles.approveButton} onClick={() => handleApprovePersonalInfo(['AddressAndRoutes.status'])}>Approve</button>
+                  <button className={styles.rejectButton} onClick={() => handleRejectpersonalinfo(['AddressAndRoutes.status'])}>
                     <img src={CloseIcon} alt="Icon" />
                     Reject
                   </button>
@@ -1141,8 +1147,8 @@ const DriverProfileDetail = () => {
                   />
                 </div>
                 <div className={styles.document3rdContainer}>
-                  <button className={styles.approveButton}>Approve</button>
-                  <button className={styles.rejectButton}>
+                  <button className={styles.approveButton} onClick={() => handleApprovePersonalInfo(['DrivingLicense.status'])}>Approve</button>
+                  <button className={styles.rejectButton} onClick={() => handleRejectpersonalinfo(['DrivingLicense.status'])}>
                     <img src={CloseIcon} alt="Icon" />
                     Reject
                   </button>
@@ -1211,8 +1217,8 @@ const DriverProfileDetail = () => {
                   />
                 </div>
                 <div className={styles.document3rdContainer}>
-                  <button className={styles.approveButton}>Approve</button>
-                  <button className={styles.rejectButton}>
+                  <button className={styles.approveButton} onClick={() => handleApprovePersonalInfo(['NIC.status'])}>Approve</button>
+                  <button className={styles.rejectButton} onClick={() => handleRejectpersonalinfo(['NIC.status'])}>
                     <img src={CloseIcon} alt="Icon" />
                     Reject
                   </button>
@@ -1276,8 +1282,8 @@ const DriverProfileDetail = () => {
                   />
                 </div>
                 <div className={styles.document3rdContainer}>
-                  <button className={styles.approveButton}>Approve</button>
-                  <button className={styles.rejectButton}>
+                  <button className={styles.approveButton} onClick={() => handleApprovePersonalInfo(['VehicleImage.status'])}>Approve</button>
+                  <button className={styles.rejectButton} onClick={() => handleRejectpersonalinfo(['VehicleImage.status'])}>
                     <img src={CloseIcon} alt="Icon" />
                     Reject
                   </button>
@@ -1344,8 +1350,8 @@ const DriverProfileDetail = () => {
                   />
                 </div>
                 <div className={styles.document3rdContainer}>
-                  <button className={styles.approveButton}>Approve</button>
-                  <button className={styles.rejectButton}>
+                  <button className={styles.approveButton} onClick={() => handleApprovePersonalInfo(['RevenueLicense.status'])}>Approve</button>
+                  <button className={styles.rejectButton} onClick={() => handleRejectpersonalinfo(['RevenueLicense.status'])}>
                     <img src={CloseIcon} alt="Icon" />
                     Reject
                   </button>
@@ -1366,11 +1372,7 @@ const DriverProfileDetail = () => {
                           <b>Upload</b>
                         </label>
                         <input
-                          id="fileInput"
-                          type="file"
-                          accept="image/*"
                           style={{ display: "none" }}
-                          onChange={handleFileChange}
                         />
                         <img alt="" src={uplo} />
                       </button>
@@ -1385,11 +1387,9 @@ const DriverProfileDetail = () => {
                               <b>Upload</b>
                             </label>
                             <input
-                              id="fileInput"
-                              type="file"
-                              accept="image/*"
+
                               style={{ display: "none" }}
-                              onChange={handleFileChange}
+
                             />
                             <img alt="" src={uplo} />
                       </button>
@@ -1415,8 +1415,8 @@ const DriverProfileDetail = () => {
                   />
                 </div>
                 <div className={styles.document3rdContainer}>
-                  <button className={styles.approveButton}>Approve</button>
-                  <button className={styles.rejectButton}>
+                  <button className={styles.approveButton} onClick={() => handleApprovePersonalInfo(['VehicleInsuarance.status'])}>Approve</button>
+                  <button className={styles.rejectButton} onClick={() => handleRejectpersonalinfo(['VehicleInsuarance.status'])}>
                     <img src={CloseIcon} alt="Icon" />
                     Reject
                   </button>
@@ -1464,8 +1464,8 @@ const DriverProfileDetail = () => {
                   />
                 </div>
                 <div className={styles.document3rdContainer}>
-                  <button className={styles.approveButton}>Approve</button>
-                  <button className={styles.rejectButton}>
+                  <button className={styles.approveButton} onClick={() => handleApprovePersonalInfo(['BillingDocuments.status'])}>Approve</button>
+                  <button className={styles.rejectButton} onClick={() => handleRejectpersonalinfo(['BillingDocuments.status'])}>
                     <img src={CloseIcon} alt="Icon" />
                     Reject
                   </button>
