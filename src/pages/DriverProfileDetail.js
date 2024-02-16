@@ -1155,7 +1155,7 @@ const DriverProfileDetail = () => {
 
                 <div className={styles.document3rdContainer}>
                   <>
-                    {PIStatus === "Pending" && (
+                    {VIStatus === "Pending" && (
                       <>
                         <button
                         className={styles.approveButton}
@@ -1180,7 +1180,7 @@ const DriverProfileDetail = () => {
                       </>
                     )}
 
-                    {PIStatus === "Approved" && (
+                    {VIStatus === "Approved" && (
                       <>
                         <button className={styles.approvedButton}>
                         <img src={CloseIcon} alt="Icon" />
@@ -1200,12 +1200,12 @@ const DriverProfileDetail = () => {
                       </>
                     )}
 
-                    {PIStatus === "Rejected" && (
+                    {VIStatus === "Rejected" && (
                       <>
                         <button
                         className={styles.approveButton}
                         onClick={() => {
-                          handlePIStatusChange("Approved");
+                          handleVIStatusChange("Approved");
                           handleApprovePersonalInfo(['vehicleInfo.status']);
                         }}
                         >
@@ -1243,7 +1243,7 @@ const DriverProfileDetail = () => {
 
                 <div className={styles.document3rdContainer}>
                   <>
-                    {PIStatus === "Pending" && (
+                    {ARStatus === "Pending" && (
                       <>
                         <button
                         className={styles.approveButton}
@@ -1268,7 +1268,7 @@ const DriverProfileDetail = () => {
                       </>
                     )}
 
-                    {PIStatus === "Approved" && (
+                    {ARStatus === "Approved" && (
                       <>
                         <button className={styles.approvedButton}>
                         <img src={CloseIcon} alt="Icon" />
@@ -1288,7 +1288,7 @@ const DriverProfileDetail = () => {
                       </>
                     )}
 
-                    {PIStatus === "Rejected" && (
+                    {ARStatus === "Rejected" && (
                       <>
                         <button
                         className={styles.approveButton}
