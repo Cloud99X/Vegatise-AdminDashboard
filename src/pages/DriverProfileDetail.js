@@ -11,6 +11,7 @@ import PageLayout from "../components/page-layout/page-layout";
 import documentSVG from "../../src/icons/documentSVG.svg";
 import CaretCircleDown from "../../src/icons/CaretCircleDown.svg";
 import CloseIcon from "../../src/icons/span_text-lg.svg";
+import TickIcon from "../../src/icons/tick.svg";
 import uplo from "../../src/icons/1.png";
 import 'firebase/firestore';
 
@@ -82,17 +83,38 @@ const DriverProfileDetail = () => {
   const getIconForStatus = (status) => {
     switch (status) {
       case "Approved":
-        return "approved"; // Use the appropriate component number for the 'Approved' status
+        return "approved"; 
       case "Rejected":
-        return "rejected"; // Use the appropriate component number for the 'Rejected' status
+        return "rejected"; 
       case "In Review":
-        return "inReview"; // Use the appropriate component number for the 'In Review' status
+        return "inReview"; 
       case "Pending":
-        return "pending"; // Use the appropriate component number for the 'In Review' status
+        return "pending"; 
       default:
-        return ""; // Return an empty string or default icon number for other cases
+        return ""; 
     }
   };
+
+  useEffect(() => {
+    // Fetch the PIStatus from the database
+    const fetchPIStatus = async () => {
+      try {
+        const db = getFirestore(firebaseApp);
+        const userDocumentPath = `/DocumentsStatus/${documentId}`;
+        const docRef = doc(db, userDocumentPath);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          setPIStatus(data.PersonalInfo.status);
+        }
+      } catch (error) {
+        console.error('Error fetching document: ', error);
+      }
+    };
+
+    fetchPIStatus();
+  }, [documentId]);
 
   //
 
@@ -1100,7 +1122,7 @@ const DriverProfileDetail = () => {
                     {PIStatus === "Approved" && (
                       <>
                         <button className={styles.approvedButton}>
-                        <img src={CloseIcon} alt="Icon" />
+                        <img src={TickIcon} alt="Icon" />
                         Approved
                         </button>
       
@@ -1183,7 +1205,7 @@ const DriverProfileDetail = () => {
                     {VIStatus === "Approved" && (
                       <>
                         <button className={styles.approvedButton}>
-                        <img src={CloseIcon} alt="Icon" />
+                        <img src={TickIcon} alt="Icon" />
                         Approved
                         </button>
       
@@ -1271,7 +1293,7 @@ const DriverProfileDetail = () => {
                     {ARStatus === "Approved" && (
                       <>
                         <button className={styles.approvedButton}>
-                        <img src={CloseIcon} alt="Icon" />
+                        <img src={TickIcon} alt="Icon" />
                         Approved
                         </button>
       
