@@ -23,6 +23,8 @@ const DriverProfileDetail = () => {
   const [driverInfo, setDriverInfo] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [editedDriverInfo, setEditedDriverInfo] = useState(null);
+  const [fileCount, setFileCount] = useState(0);
+  const [file, setFile] = useState(null);
 
   //
   const [PIStatus, setPIStatus] = useState("Pending");
@@ -230,6 +232,31 @@ const DriverProfileDetail = () => {
     fetchImageUrl();
   }, [documentId]);
 
+
+const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchImageUrl, index) => {
+  try {
+    const storage = getStorage();
+    const storageRef = ref(storage, `${documentId}/${folderPath}/${file.name}`);
+    const existingImageRef = ref(storage, `${documentId}/${folderPath}`);
+    const existingImageSnapshot = await listAll(existingImageRef);
+
+    if (typeof index === 'number' && index >= 0) {
+      const fileToDelete = existingImageSnapshot.items[index];
+      if (fileToDelete) {
+        await deleteObject(fileToDelete);
+      }
+    }
+    await uploadBytes(storageRef, file);
+    fetchImageUrl();
+  } catch (error) {
+    console.error("Error uploading image to Firestore:", error);
+  }
+};
+
+
+
+
+
   useEffect(() => {
     const fetchDriverInfo = async () => {
       try {
@@ -242,6 +269,14 @@ const DriverProfileDetail = () => {
         const nicNumberCollection = collection(db, "NIC Number");
         const nicNumberDocRef = doc(nicNumberCollection, documentId);
         const nicNumberDocSnapshot = await getDoc(nicNumberDocRef);
+
+        const driliCollection = collection(db, "Driving License");
+        const driliDocRef = doc(driliCollection, documentId);
+        const driliDocSnapshot = await getDoc(driliDocRef);
+
+        const vecoCollection = collection(db, "Vehicle Condition");
+        const vecoDocRef = doc(vecoCollection, documentId);
+        const vecoDocSnapshot = await getDoc(vecoDocRef);
 
         const addressAndRoutesCollection = collection(db, "AddressAndRoutes");
         const addressAndRoutesDocRef = doc(
@@ -272,7 +307,9 @@ const DriverProfileDetail = () => {
           personalInfoDocSnapshot.exists() &&
           nicNumberDocSnapshot.exists() &&
           addressAndRoutesDocSnapshot.exists() &&
-          VehicleInformationDocSnapshot.exists()
+          VehicleInformationDocSnapshot.exists() &&
+          driliDocSnapshot.exists() &&
+          vecoDocSnapshot.exists()
           //utilityDocSnapshot.exists()
         ) {
           const personalInfoData = personalInfoDocSnapshot.data();
@@ -280,12 +317,16 @@ const DriverProfileDetail = () => {
           const addressAndRoutesData = addressAndRoutesDocSnapshot.data();
           const VehicleInformationData = VehicleInformationDocSnapshot.data();
           const utilityData = utilityDocSnapshot.data();
+          const driliData = driliDocSnapshot.data();
+          const vecoData = vecoDocSnapshot.data();
 
           const mergedData = {
             ...personalInfoData,
             ...nicNumberData,
             ...addressAndRoutesData,
             ...VehicleInformationData,
+            ...driliData,
+            ...vecoData
             //...utilityData,
           };
 
@@ -414,31 +455,14 @@ const DriverProfileDetail = () => {
   }
 
   
-  const onDLImagesButtonClick = useCallback(async () => {
+  const viewButtons = useCallback(async (folderPath, index) => {
     try {
       const storage = getStorage();
-      const nicImagesFolder = `${documentId}/Driving Lisenceeee`;
-      const folderRef = ref(storage, nicImagesFolder);
+      const fullPath = `${documentId}/${folderPath}`;
+      const folderRef = ref(storage, fullPath);
       const items = await listAll(folderRef);
       if (items && items.items.length > 0) {
-        const firstItemUrl = await getDownloadURL(items.items[0]);
-        window.open(firstItemUrl, "_blank");
-      } else {
-        console.error("No items found in the folder.");
-      }
-    } catch (error) {
-      console.error("Error retrieving images:", error);
-    }
-  }, [documentId]);
-  //
-  const onNICImagesButtonClick = useCallback(async () => {
-    try {
-      const storage = getStorage();
-      const nicImagesFolder = `${documentId}/NIC Images`;
-      const folderRef = ref(storage, nicImagesFolder);
-      const items = await listAll(folderRef);
-      if (items && items.items.length > 0) {
-        const firstItemUrl = await getDownloadURL(items.items[0]);
+        const firstItemUrl = await getDownloadURL(items.items[index]);
         window.open(firstItemUrl, "_blank");
       } else {
         console.error("No items found in the folder.");
@@ -448,82 +472,41 @@ const DriverProfileDetail = () => {
     }
   }, [documentId]);
 
-  const onInsuranceImagesButtonClick = useCallback(async () => {
-    try {
-      const storage = getStorage();
-      const nicImagesFolder = `${documentId}/vehicle Insurance Documents`;
-      const folderRef = ref(storage, nicImagesFolder);
-      const items = await listAll(folderRef);
-      if (items && items.items.length > 0) {
-        const firstItemUrl = await getDownloadURL(items.items[0]);
-        window.open(firstItemUrl, "_blank");
-      } else {
-        console.error("No items found in the folder.");
+  useEffect(() => {
+    const fetchFileCount = async () => {
+      try {
+        const storage = getStorage();
+        const folderRef = ref(storage, `${documentId}/BillingProofDocuments/Utility Bill`);
+        const items = await listAll(folderRef);
+        setFileCount(items.items.length);
+      } catch (error) {
+        console.error("Error fetching file count:", error);
       }
-    } catch (error) {
-      console.error("Error retrieving images:", error);
-    }
+    };
+    fetchFileCount();
   }, [documentId]);
 
-  const onVehicleImagesButtonClick = useCallback(async () => {
-    try {
-      const storage = getStorage();
-      const nicImagesFolder = `${documentId}/Vehicle Images`;
-      const folderRef = ref(storage, nicImagesFolder);
-      const items = await listAll(folderRef);
-      if (items && items.items.length > 0) {
-        const firstItemUrl = await getDownloadURL(items.items[0]);
-        window.open(firstItemUrl, "_blank");
-      } else {
-        console.error("No items found in the folder.");
-      }
-    } catch (error) {
-      console.error("Error retrieving images:", error);
-    }
-  }, [documentId]);
 
-  const onVehicleRegistrationButtonClick = useCallback(async () => {
-    try {
-      const storage = getStorage();
-      const nicImagesFolder = `${documentId}/Vehicle Registration Documents`;
-      const folderRef = ref(storage, nicImagesFolder);
-      const items = await listAll(folderRef);
-      if (items && items.items.length > 0) {
-        const firstItemUrl = await getDownloadURL(items.items[0]);
-        window.open(firstItemUrl, "_blank");
-      } else {
-        console.error("No items found in the folder.");
-      }
-    } catch (error) {
-      console.error("Error retrieving images:", error);
-    }
-  }, [documentId]);
 
-  const onBillingProofButtonClick = useCallback(async () => {
-    try {
-      const storage = getStorage();
-      const utilityFolder = `${documentId}/BillingProofDocuments/Utility Bill`;
-      const bankFolder = `${documentId}/BillingProofDocuments/Bank Statements`;
-      const folderRef = ref(storage, utilityFolder);
-      const folderRef1 = ref(storage, bankFolder);
-      const items = await listAll(folderRef);
-      const items1 = await listAll(folderRef1);
-      if (items && items.items.length > 0) {
-        const firstItemUrl = await getDownloadURL(items.items[0]);
-        window.open(firstItemUrl, "_blank");
-      } else {
-        console.error("No items found in the folder.");
-      }
-      if (items1 && items1.items.length > 0) {
-        const firstItemUrl = await getDownloadURL(items1.items[0]);
-        window.open(firstItemUrl, "_blank");
-      } else {
-        console.error("No items found in the folder.");
-      }
-    } catch (error) {
-      console.error("Error retrieving images:", error);
+  const renderImages = () => {
+    const images = [];
+    for (let i = 1; i <= fileCount; i++) {
+      images.push(
+        <div className={styles.frnt} key={i}>
+          <div className={styles.frntViw}>Image {i}</div>
+          <div className={styles.div}>
+            <button className={styles.viw} onClick={() => viewButtons("BillingProofDocuments/Utility Bill", i - 1)}>View</button>
+            <button className={styles.but}>
+              <b className={styles.upld}>Upload</b>
+              <img alt="" src={uplo} />
+            </button>
+          </div>
+        </div>
+      );
+      
     }
-  }, [documentId]);
+    return images;
+  };
 
   const handleDropdownClick = (section) => {
     if (section === "DrivingLicense") {
@@ -543,9 +526,7 @@ const DriverProfileDetail = () => {
 
   
 
-  const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
-  };
+
 
   //
   return (
@@ -1378,11 +1359,11 @@ const DriverProfileDetail = () => {
                   <div className={styles.dropdown}>
                     <p className={styles.info}>
                       Driving License Number Plate -{" "}
-                      <span className={styles.blueText}>2000235300851</span>
+                      <span className={styles.blueText}>{driverInfo && driverInfo.drivingLicenseNumber}</span>
                     </p>
                     <p className={styles.info}>
                       Expiration Date -{" "}
-                      <span className={styles.blueText}>12/08/2028</span>
+                      <span className={styles.blueText}>{driverInfo && driverInfo.expireDate}</span>
                     </p>
                     <div className={styles.dropdownCaption}>
                       <div className={styles.greyText}>
@@ -1396,8 +1377,8 @@ const DriverProfileDetail = () => {
                       <div className={styles.miniDropdownContainer}>
                         <div className={styles.viewsTag}>Front View</div>
                         <div className={styles.uploadButtonContainer}>
-                          <button className={styles.nameTag}>View</button>
-                          <button className={styles.uploadBtn}>
+                          <button className={styles.nameTag} onClick={() => viewButtons("Driving License", 0)}>View</button>
+                          <button className={styles.but}>
                             <b className={styles.upld}>Upload</b>
                             <img alt="" src={uplo} />
                           </button>
@@ -1406,11 +1387,12 @@ const DriverProfileDetail = () => {
                       <div className={styles.miniDropdownContainer}>
                         <div className={styles.viewsTag}>Back View</div>
                         <div className={styles.uploadButtonContainer}>
-                          <button className={styles.nameTag}>View</button>
-                          <button className={styles.uploadBtn}>
+                          <button className={styles.nameTag} onClick={() => viewButtons("Driving License", 1)}>View</button>
+                          <button className={styles.but}>
                             <b className={styles.upld}>Upload</b>
                             <img alt="" src={uplo} />
                           </button>
+
                         </div>
                       </div>
                     </div>
@@ -1456,9 +1438,20 @@ const DriverProfileDetail = () => {
                   <div className={styles.frnt}>
                     <div className={styles.frntViw}>Front view</div>
                     <div className={styles.div}>
-                      <button className={styles.viw}>View</button>
+                      <button className={styles.viw} onClick={() => viewButtons("NIC Images", 0)}>View</button>
                       <button className={styles.but}>
-                        <b className={styles.upld}>Upload</b>
+                        <label htmlFor="fileInput0" className={styles.upld}>
+                          Upload
+                          <input
+                            id="fileInput0"
+                            type="file"
+                            style={{ display: 'none' }}
+                            onChange={(e) => {
+                              const file = e.target.files[0];
+                              uploaddriverimageToFirestore(file, documentId, "NIC Images", fetchImageUrl, 0);
+                            }}
+                          />
+                        </label>
                         <img alt="" src={uplo} />
                       </button>
                     </div>
@@ -1466,9 +1459,20 @@ const DriverProfileDetail = () => {
                   <div className={styles.frnt}>
                     <div className={styles.frntViw}>Back view</div>
                     <div className={styles.div}>
-                      <button className={styles.viw}>View</button>
+                      <button className={styles.viw} onClick={() => viewButtons("NIC Images", 1)}>View</button>
                       <button className={styles.but}>
-                        <b className={styles.upld}>Upload</b>
+                        <label htmlFor="fileInput1" className={styles.upld}>
+                          Upload
+                          <input
+                            id="fileInput1"
+                            type="file"
+                            style={{ display: 'none' }}
+                            onChange={(e) => {
+                              const file = e.target.files[0];
+                              uploaddriverimageToFirestore(file, documentId, "NIC Images", fetchImageUrl, 1);
+                            }}
+                          />
+                        </label>
                         <img alt="" src={uplo} />
                       </button>
                     </div>
@@ -1513,7 +1517,7 @@ const DriverProfileDetail = () => {
                   <div className={styles.dropdown}>
                     <p className={styles.info}>
                       Vehicle Condition -{" "}
-                      <span className={styles.blueText}>Very good</span>
+                      <span className={styles.blueText}>{driverInfo && driverInfo.vehicleCondition}</span>
                     </p>
 
                     <div className={styles.dropdownContent}>
@@ -1521,7 +1525,7 @@ const DriverProfileDetail = () => {
                       <div className={styles.miniDropdownContainer}>
                         <div className={styles.viewsTag}>Front View</div>
                         <div className={styles.uploadButtonContainer}>
-                          <button className={styles.nameTag}>View</button>
+                          <button className={styles.nameTag} onClick={() => viewButtons("Vehicle Images", 0)}>View</button>
                           <button className={styles.uploadBtn}>
                             <b className={styles.upld}>Upload</b>
                             <img alt="" src={uplo} />
@@ -1531,7 +1535,7 @@ const DriverProfileDetail = () => {
                       <div className={styles.miniDropdownContainer}>
                         <div className={styles.viewsTag}>Back View</div>
                         <div className={styles.uploadButtonContainer}>
-                          <button className={styles.nameTag}>View</button>
+                          <button className={styles.nameTag} onClick={() => viewButtons("Vehicle Images", 1)}>View</button>
                           <button className={styles.uploadBtn}>
                             <b className={styles.upld}>Upload</b>
                             <img alt="" src={uplo} />
@@ -1541,7 +1545,7 @@ const DriverProfileDetail = () => {
                       <div className={styles.miniDropdownContainer}>
                         <div className={styles.viewsTag}>Side View</div>
                         <div className={styles.uploadButtonContainer}>
-                          <button className={styles.nameTag}>View</button>
+                          <button className={styles.nameTag} onClick={() => viewButtons("Vehicle Images", 2)}>View</button>
                           <button className={styles.uploadBtn}>
                             <b className={styles.upld}>Upload</b>
                             <img alt="" src={uplo} />
@@ -1587,12 +1591,7 @@ const DriverProfileDetail = () => {
                     <div className={styles.div}>
                       <button className={styles.viw}>View</button>
                       <button className={styles.but}>
-                        <label htmlFor="fileInput" className={styles.upld}>
-                          <b>Upload</b>
-                        </label>
-                        <input
-                          style={{ display: "none" }}
-                        />
+                        <b className={styles.upld}>Upload</b>
                         <img alt="" src={uplo} />
                       </button>
                     </div>
@@ -1602,15 +1601,8 @@ const DriverProfileDetail = () => {
                     <div className={styles.div}>
                       <button className={styles.viw}>View</button>
                       <button className={styles.but}>
-                          <label htmlFor="fileInput" className={styles.upld}>
-                              <b>Upload</b>
-                            </label>
-                            <input
-
-                              style={{ display: "none" }}
-
-                            />
-                            <img alt="" src={uplo} />
+                        <b className={styles.upld}>Upload</b>
+                        <img alt="" src={uplo} />
                       </button>
                     </div>
                   </div>
@@ -1692,26 +1684,7 @@ const DriverProfileDetail = () => {
               </div>
               {billingDocDropdown && (
                 <div className={styles.drpdwn}>
-                  <div className={styles.frnt}>
-                    <div className={styles.frntViw}>Image1</div>
-                    <div className={styles.div}>
-                      <button className={styles.viw}>View</button>
-                      <button className={styles.but}>
-                        <b className={styles.upld}>Upload</b>
-                        <img alt="" src={uplo} />
-                      </button>
-                    </div>
-                  </div>
-                  <div className={styles.frnt}>
-                    <div className={styles.frntViw}>Image2</div>
-                    <div className={styles.div}>
-                      <button className={styles.viw}>View</button>
-                      <button className={styles.but}>
-                        <b className={styles.upld}>Upload</b>
-                        <img alt="" src={uplo} />
-                      </button>
-                    </div>
-                  </div>
+                  {renderImages()}
                 </div>
               )}
             </div>
