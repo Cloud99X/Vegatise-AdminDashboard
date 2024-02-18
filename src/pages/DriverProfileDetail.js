@@ -26,14 +26,7 @@ const DriverProfileDetail = () => {
   const [fileCount, setFileCount] = useState(0);
   const [file, setFile] = useState(null);
 
-  //
-  const [PIStatus, setPIStatus] = useState("Pending");
-  const [VIStatus, setVIStatus] = useState("Pending");
-  const [ARStatus, setARStatus] = useState("Pending");
-
-  const [ILStatus, setILStatus] = useState("Pending");
-  const [NICStatus, setNICStatus] = useState("Pending");
-  const [vehicleImageStatus, setVehicleImageStatus] = useState("Pending");
+  
   const [currentTab, setCurrentTab] = useState("Personal Info");
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
@@ -49,6 +42,9 @@ const DriverProfileDetail = () => {
     useState(false);
   const [billingDocDropdown, setBillingDocDropdown] = useState(false);
 
+
+
+
   const handleAccountClick = (account) => {
     setSelectedAccount(account);
   };
@@ -57,30 +53,11 @@ const DriverProfileDetail = () => {
   const changeCurrentTab = (tab) => {
     setCurrentTab(tab);
   };
-  const handlePIStatusChange = (newStatus) => {
-    setPIStatus(newStatus);
-  };
-  const handleVIStatusChange = (newStatus) => {
-    setVIStatus(newStatus);
-  };
-  const handleARStatusChange = (newStatus) => {
-    setARStatus(newStatus);
-  };
+  //status
 
 
 
-
-  const handleILStatusChange = (newStatus) => {
-    setILStatus(newStatus);
-  };
-
-  const handleNICStatusChange = (newStatus) => {
-    setNICStatus(newStatus);
-  };
-
-  const handleVehicleImageStatusChange = (newStatus) => {
-    setVehicleImageStatus(newStatus);
-  };
+//status icon
 
   const getIconForStatus = (status) => {
     switch (status) {
@@ -96,6 +73,52 @@ const DriverProfileDetail = () => {
         return ""; 
     }
   };
+//Personal Information status
+const [PIStatus, setPIStatus] = useState("Pending");
+
+const handlePIStatusChange = (newStatus) => {
+  setPIStatus(newStatus);
+};
+
+  const handleApprovePersonalInfo = async (keysToUpdate) => {
+    try {
+      const db = getFirestore(firebaseApp);
+      const userDocumentPath = `/DocumentsStatus/${documentId}`;
+      const docRef = doc(db, userDocumentPath);
+
+      const updateData = {};
+      keysToUpdate.forEach(key => {
+        updateData[key] = 'Approved';
+      });
+
+      await updateDoc(docRef, updateData);
+
+      console.log('Document successfully updated!');
+    } catch (error) {
+      console.error('Error updating document: ', error);
+    }
+  }
+
+
+  const handleRejectpersonalinfo = async (keysToUpdate) => {
+    try {
+      const db = getFirestore(firebaseApp);
+      const userDocumentPath = `/DocumentsStatus/${documentId}`;
+      const docRef = doc(db, userDocumentPath);
+
+      const updateData = {};
+      keysToUpdate.forEach(key => {
+        updateData[key] = 'Rejected';
+      });
+
+      await updateDoc(docRef, updateData);
+
+      console.log('Document successfully updated!');
+    } catch (error) {
+      console.error('Error updating document: ', error);
+    }
+  }
+
 
   useEffect(() => {
     // Fetch the PIStatus from the database
@@ -118,7 +141,528 @@ const DriverProfileDetail = () => {
     fetchPIStatus();
   }, [documentId]);
 
-  //
+  // Vehicle Information status
+const [VIStatus, setVIStatus] = useState("Pending");
+
+const handleVIStatusChange = (newStatus) => {
+  setVIStatus(newStatus);
+};
+
+const handleApproveVehicleInfo = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Approved';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+};
+
+const handleRejectVehicleInfo = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Rejected';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+};
+
+useEffect(() => {
+  const fetchVIStatus = async () => {
+    try {
+      const db = getFirestore(firebaseApp);
+      const userDocumentPath = `/DocumentsStatus/${documentId}`;
+      const docRef = doc(db, userDocumentPath);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        setVIStatus(data.VehicleInfo.status);
+      }
+    } catch (error) {
+      console.error('Error fetching document: ', error);
+    }
+  };
+
+  fetchVIStatus();
+}, [documentId]);
+  
+ // Address and Routes Status
+const [ARStatus, setARStatus] = useState("Pending");
+
+const handleARStatusChange = (newStatus) => {
+  setARStatus(newStatus);
+};
+
+const handleApproveAddressAndRoutes = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Approved';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+};
+
+const handleRejectAddressAndRoutes = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Rejected';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+};
+
+useEffect(() => {
+  const fetchARStatus = async () => {
+    try {
+      const db = getFirestore(firebaseApp);
+      const userDocumentPath = `/DocumentsStatus/${documentId}`;
+      const docRef = doc(db, userDocumentPath);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        setARStatus(data.AddressAndRoutes.status);
+      }
+    } catch (error) {
+      console.error('Error fetching document: ', error);
+    }
+  };
+
+  fetchARStatus();
+}, [documentId]); 
+
+// Driving License Status
+const [DLStatus, setDLStatus] = useState("Pending");
+
+const handleDLStatusChange = (newStatus) => {
+  setDLStatus(newStatus);
+};
+
+const handleApproveDriverLicense = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Approved';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Driver License Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating Driver License document: ', error);
+  }
+};
+
+const handleRejectDriverLicense = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Rejected';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Driver License Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating Driver License document: ', error);
+  }
+};
+
+useEffect(() => {
+  const fetchDLStatus = async () => {
+    try {
+      const db = getFirestore(firebaseApp);
+      const userDocumentPath = `/DocumentsStatus/${documentId}`;
+      const docRef = doc(db, userDocumentPath);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        setDLStatus(data.DriverLicense.status);
+      }
+    } catch (error) {
+      console.error('Error fetching Driver License document: ', error);
+    }
+  };
+
+  fetchDLStatus();
+}, [documentId]);
+
+// Nation Identity card Status
+const [NICStatus, setNICStatus] = useState("Pending");
+
+const handleNICStatusChange = (newStatus) => {
+  setNICStatus(newStatus);
+};
+
+const handleApproveNIC = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Approved';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+};
+
+const handleRejectNIC = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Rejected';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+};
+
+useEffect(() => {
+  const fetchNICStatus = async () => {
+    try {
+      const db = getFirestore(firebaseApp);
+      const userDocumentPath = `/DocumentsStatus/${documentId}`;
+      const docRef = doc(db, userDocumentPath);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        setNICStatus(data.NIC.status);
+      }
+    } catch (error) {
+      console.error('Error fetching document: ', error);
+    }
+  };
+
+  fetchNICStatus();
+}, [documentId]);
+
+// Vehicle Image Status
+const [vehicleImageStatus, setVehicleImageStatus] = useState("Pending");
+
+const handleVehicleImageStatusChange = (newStatus) => {
+  setVehicleImageStatus(newStatus);
+};
+
+const handleApproveVehicleImage = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Approved';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+};
+
+const handleRejectVehicleImage = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Rejected';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+};
+
+useEffect(() => {
+  const fetchVehicleImageStatus = async () => {
+    try {
+      const db = getFirestore(firebaseApp);
+      const userDocumentPath = `/DocumentsStatus/${documentId}`;
+      const docRef = doc(db, userDocumentPath);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        setVehicleImageStatus(data.VehicleImage.status);
+      }
+    } catch (error) {
+      console.error('Error fetching document: ', error);
+    }
+  };
+
+  fetchVehicleImageStatus();
+}, [documentId]);
+
+//Revenue License Status
+const [RLStatus, setRLStatus] = useState("Pending");
+
+const handleRLStatusChange = (newStatus) => {
+  setRLStatus(newStatus);
+};
+
+const handleApproveRouteLicense = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Approved';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+};
+
+const handleRejectRouteLicense = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Rejected';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+};
+
+useEffect(() => {
+  const fetchRLStatus = async () => {
+    try {
+      const db = getFirestore(firebaseApp);
+      const userDocumentPath = `/DocumentsStatus/${documentId}`;
+      const docRef = doc(db, userDocumentPath);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        setRLStatus(data.RouteLicense.status);
+      }
+    } catch (error) {
+      console.error('Error fetching document: ', error);
+    }
+  };
+
+  fetchRLStatus();
+}, [documentId]);
+
+// Vehicle Insurance Status
+const [vehicleInsuranceStatus, setVehicleInsuranceStatus] = useState("Pending");
+
+const handleVehicleInsuranceStatusChange = (newStatus) => {
+  setVehicleInsuranceStatus(newStatus);
+};
+
+const handleApproveVehicleInsurance = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Approved';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+};
+
+const handleRejectVehicleInsurance = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Rejected';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+};
+
+useEffect(() => {
+  const fetchVehicleInsuranceStatus = async () => {
+    try {
+      const db = getFirestore(firebaseApp);
+      const userDocumentPath = `/DocumentsStatus/${documentId}`;
+      const docRef = doc(db, userDocumentPath);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        setVehicleInsuranceStatus(data.VehicleInsurance.status);
+      }
+    } catch (error) {
+      console.error('Error fetching document: ', error);
+    }
+  };
+
+  fetchVehicleInsuranceStatus();
+}, [documentId]);
+
+
+// Billing Documents Status
+const [BDStatus, setBDStatus] = useState("Pending");
+
+const handleBDStatusChange = (newStatus) => {
+  setBDStatus(newStatus);
+};
+
+const handleApproveBusinessDocument = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Approved';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+};
+
+const handleRejectBusinessDocument = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Rejected';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+};
+
+useEffect(() => {
+  const fetchBDStatus = async () => {
+    try {
+      const db = getFirestore(firebaseApp);
+      const userDocumentPath = `/DocumentsStatus/${documentId}`;
+      const docRef = doc(db, userDocumentPath);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        setBDStatus(data.BusinessDocument.status);
+      }
+    } catch (error) {
+      console.error('Error fetching document: ', error);
+    }
+  };
+
+  fetchBDStatus();
+}, [documentId]);
+
+  ////
 
   const onComponent1Click = useCallback(() => {
     navigate("/analytics");
@@ -155,29 +699,29 @@ const DriverProfileDetail = () => {
     setEditedDriverInfo((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleApprovedClick1 = () => {
-    setStatus1("Approved"); // Update status state to 'Approved'
-  };
+  //const handleApprovedClick1 = () => {
+  //  setStatus1("Approved"); // Update status state to 'Approved'
+  //};
 
-  const handleRejectClick1 = () => {
-    setStatus1("Rejected"); // Update status state to 'Rejected'
-  };
+  //const handleRejectClick1 = () => {
+   // setStatus1("Rejected"); // Update status state to 'Rejected'
+ // };
 
-  const handleApprovedClick2 = () => {
-    setStatus2("Approved");
-  };
+ // const handleApprovedClick2 = () => {
+ //   setStatus2("Approved");
+  //};
 
-  const handleRejectClick2 = () => {
-    setStatus2("Rejected");
-  };
+//  const handleRejectClick2 = () => {
+ //   setStatus2("Rejected");
+ // };
 
-  const handleApprovedClick3 = () => {
-    setStatus3("Approved");
-  };
+  //const handleApprovedClick3 = () => {
+    //setStatus3("Approved");
+  //};
 
-  const handleRejectClick3 = () => {
-    setStatus3("Rejected");
-  };
+  //const handleRejectClick3 = () => {
+    //setStatus3("Rejected");
+  //};
 
   const getInitials = (fullName) => {
     if (!fullName) return "";
@@ -415,44 +959,6 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
   };
 
 
-  const handleApprovePersonalInfo = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach(key => {
-        updateData[key] = 'Approved';
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log('Document successfully updated!');
-    } catch (error) {
-      console.error('Error updating document: ', error);
-    }
-  }
-
-
-  const handleRejectpersonalinfo = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach(key => {
-        updateData[key] = 'Rejected';
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log('Document successfully updated!');
-    } catch (error) {
-      console.error('Error updating document: ', error);
-    }
-  }
 
   
   const viewButtons = useCallback(async (folderPath, index) => {
