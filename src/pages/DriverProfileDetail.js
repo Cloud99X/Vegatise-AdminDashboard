@@ -1681,7 +1681,7 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
                         className={styles.approveButton}
                         onClick={() => {
                           handleVIStatusChange("Approved");
-                          handleApprovePersonalInfo(['vehicleInfo.status']);
+                          handleApproveVehicleInfo(['vehicleInfo.status']);
                         }}
                         >
                         Approve
@@ -1691,7 +1691,7 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
                         className={styles.rejectButton}
                         onClick={() =>{
                           handleVIStatusChange("Rejected");
-                          handleRejectpersonalinfo(['vehicleInfo.status']);
+                          handleRejectVehicleInfo(['vehicleInfo.status']);
                         }}
                         >
                         <img src={CloseIcon} alt="Icon" />
@@ -1711,7 +1711,7 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
                         className={styles.rejectButton}
                         onClick={() =>{
                           handleVIStatusChange("Rejected");
-                          handleRejectpersonalinfo(['vehicleInfo.status']);
+                          handleRejectVehicleInfo(['vehicleInfo.status']);
                         }}
                         >
                         <img src={CloseIcon} alt="Icon" />
@@ -1726,7 +1726,7 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
                         className={styles.approveButton}
                         onClick={() => {
                           handleVIStatusChange("Approved");
-                          handleApprovePersonalInfo(['vehicleInfo.status']);
+                          handleApproveVehicleInfo(['vehicleInfo.status']);
                         }}
                         >
                         Approve
@@ -1769,7 +1769,7 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
                         className={styles.approveButton}
                         onClick={() => {
                           handleARStatusChange("Approved");
-                          handleApprovePersonalInfo(['AddressAndRoutes.status']);
+                          handleApproveAddressAndRoutes(['AddressAndRoutes.status']);
                         }}
                         >
                         Approve
@@ -1779,7 +1779,7 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
                         className={styles.rejectButton}
                         onClick={() =>{
                           handleARStatusChange("Rejected");
-                          handleRejectpersonalinfo(['AddressAndRoutes.status']);
+                          handleRejectAddressAndRoutes(['AddressAndRoutes.status']);
                         }}
                         >
                         <img src={CloseIcon} alt="Icon" />
@@ -1799,7 +1799,7 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
                         className={styles.rejectButton}
                         onClick={() =>{
                           handleARStatusChange("Rejected");
-                          handleRejectpersonalinfo(['AddressAndRoutes.status']);
+                          handleRejectAddressAndRoutes(['AddressAndRoutes.status']);
                         }}
                         >
                         <img src={CloseIcon} alt="Icon" />
@@ -1814,7 +1814,7 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
                         className={styles.approveButton}
                         onClick={() => {
                           handleARStatusChange("Approved");
-                          handleApprovePersonalInfo(['AddressAndRoutes.status']);
+                          handleApproveAddressAndRoutes(['AddressAndRoutes.status']);
                         }}
                         >
                         Approve
@@ -1851,7 +1851,13 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
-                  {/* Icon */}
+                <div className={styles.spanbadgeWrapper1}> 
+                    <img
+                       className={styles.spanavatarIcon}
+                       alt=""
+                       src={`/${getIconForStatus(DLStatus)}.svg`}  
+                    />
+                  </div> 
                   <p className={styles.docTitle}>Driving License</p>
                 </div>
                 <div className={styles.document2ndContainer}>
@@ -1864,11 +1870,70 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
                   />
                 </div>
                 <div className={styles.document3rdContainer}>
-                  <button className={styles.approveButton} onClick={() => handleApprovePersonalInfo(['DrivingLicense.status'])}>Approve</button>
-                  <button className={styles.rejectButton} onClick={() => handleRejectpersonalinfo(['DrivingLicense.status'])}>
-                    <img src={CloseIcon} alt="Icon" />
-                    Reject
-                  </button>
+                  <>
+                    {DLStatus === "Pending" && (
+                      <>
+                        <button
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleDLStatusChange("Approved");
+                          handleApproveDriverLicense(['DrivingLicense.status']); 
+                        }}
+                        >
+                        Approve
+                        </button>
+
+                        <button
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleDLStatusChange("Rejected");
+                          handleRejectDriverLicense(['DrivingLicense.status']);
+                        }}
+                        >
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
+                        </button>
+                      </>
+                    )}
+
+                    {DLStatus === "Approved" && (
+                      <>
+                        <button className={styles.approvedButton}>
+                        <img src={TickIcon} alt="Icon" />
+                        Approved
+                        </button>
+      
+                        <button
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleDLStatusChange("Rejected");
+                          handleRejectDriverLicense(['DrivingLicense.status']);
+                        }}
+                        >
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
+                        </button>
+                      </>
+                    )}
+
+                    {DLStatus === "Rejected" && (
+                      <>
+                        <button
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleDLStatusChange("Approved");
+                          handleApproveDriverLicense(['DrivingLicense.status']); 
+                        }}
+                        >
+                        Approve
+                        </button>
+                        <button className={styles.rejectedButton}>
+                        <img src={CloseIcon} alt="Icon" />
+                        Rejected
+                        </button>
+                      </>
+                    )}
+                  </>
                 </div>
               </div>
               {drivingLicenseDropdown && (
@@ -1943,7 +2008,14 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.docTitle}>
-                  Nation Identity card (NIC)
+                  <div className={styles.spanbadgeWrapper1}> 
+                    <img
+                       className={styles.spanavatarIcon}
+                       alt=""
+                       src={`/${getIconForStatus(NICStatus)}.svg`}  
+                    />
+                  </div> 
+                  <p> Nation Identity card (NIC)</p>
                 </div>
                 <div className={styles.img}>
                   <img alt="" src={documentSVG} />
@@ -1957,11 +2029,70 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
                   />
                 </div>
                 <div className={styles.document3rdContainer}>
-                  <button className={styles.approveButton} onClick={() => handleApprovePersonalInfo(['NIC.status'])}>Approve</button>
-                  <button className={styles.rejectButton} onClick={() => handleRejectpersonalinfo(['NIC.status'])}>
-                    <img src={CloseIcon} alt="Icon" />
-                    Reject
-                  </button>
+                  <>
+                    {NICStatus === "Pending" && (
+                      <>
+                        <button
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleNICStatusChange("Approved");
+                          handleApproveNIC(['NIC.status']); 
+                        }}
+                        >
+                        Approve
+                        </button>
+
+                        <button
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleNICStatusChange("Rejected");
+                          handleRejectNIC(['NIC.status']);
+                        }}
+                        >
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
+                        </button>
+                      </>
+                    )}
+
+                    {NICStatus === "Approved" && (
+                      <>
+                        <button className={styles.approvedButton}>
+                        <img src={TickIcon} alt="Icon" />
+                        Approved
+                        </button>
+      
+                        <button
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleNICStatusChange("Rejected");
+                          handleRejectNIC(['NIC.status']);
+                        }}
+                        >
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
+                        </button>
+                      </>
+                    )}
+
+                    {NICStatus === "Rejected" && (
+                      <>
+                        <button
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleNICStatusChange("Approved");
+                          handleApproveNIC(['NIC.status']); 
+                        }}
+                        >
+                        Approve
+                        </button>
+                        <button className={styles.rejectedButton}>
+                        <img src={CloseIcon} alt="Icon" />
+                        Rejected
+                        </button>
+                      </>
+                    )}
+                  </>
                 </div>
               </div>
               {nicDropdown && (
@@ -2027,11 +2158,13 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
-                  {/*<div className={styles.spanbadgeWrapper1}>
-                  <img className={styles.spanavatarIcon} 
-                    alt="" src="/component-471.svg" />
-
-                 </div> */}
+                  <div className={styles.spanbadgeWrapper1}> 
+                    <img
+                       className={styles.spanavatarIcon}
+                       alt=""
+                       src={`/${getIconForStatus(vehicleImageStatus)}.svg`}  
+                    />
+                  </div> 
                   <p className={styles.docTitle}>Vehicle Image</p>
                 </div>
                 <div className={styles.document2ndContainer}>
@@ -2044,11 +2177,70 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
                   />
                 </div>
                 <div className={styles.document3rdContainer}>
-                  <button className={styles.approveButton} onClick={() => handleApprovePersonalInfo(['VehicleImage.status'])}>Approve</button>
-                  <button className={styles.rejectButton} onClick={() => handleRejectpersonalinfo(['VehicleImage.status'])}>
-                    <img src={CloseIcon} alt="Icon" />
-                    Reject
-                  </button>
+                  <>
+                    {vehicleImageStatus === "Pending" && (
+                      <>
+                        <button
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleVehicleImageStatusChange("Approved");
+                          handleApproveVehicleImage(['VehicleImage.status']); 
+                        }}
+                        >
+                        Approve
+                        </button>
+
+                        <button
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleVehicleImageStatusChange("Rejected");
+                          handleRejectVehicleImage(['VehicleImage.status']);
+                        }}
+                        >
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
+                        </button>
+                      </>
+                    )}
+
+                    {vehicleImageStatus === "Approved" && (
+                      <>
+                        <button className={styles.approvedButton}>
+                        <img src={TickIcon} alt="Icon" />
+                        Approved
+                        </button>
+      
+                        <button
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleVehicleImageStatusChange("Rejected");
+                          handleRejectVehicleImage(['VehicleImage.status']);
+                        }}
+                        >
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
+                        </button>
+                      </>
+                    )}
+
+                    {vehicleImageStatus === "Rejected" && (
+                      <>
+                        <button
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleVehicleImageStatusChange("Approved");
+                          handleApproveVehicleImage(['VehicleImage.status']); 
+                        }}
+                        >
+                        Approve
+                        </button>
+                        <button className={styles.rejectedButton}>
+                        <img src={CloseIcon} alt="Icon" />
+                        Rejected
+                        </button>
+                      </>
+                    )}
+                  </>
                 </div>
               </div>
               {vehicleImageDropdown && (
@@ -2132,7 +2324,13 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
-                  {/* Icon */}
+                  <div className={styles.spanbadgeWrapper1}> 
+                    <img
+                       className={styles.spanavatarIcon}
+                       alt=""
+                       src={`/${getIconForStatus(RLStatus)}.svg`}  
+                    />
+                  </div> 
                   <p className={styles.docTitle}>Revenue License</p>
                 </div>
                 <div className={styles.document2ndContainer}>
@@ -2145,11 +2343,70 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
                   />
                 </div>
                 <div className={styles.document3rdContainer}>
-                  <button className={styles.approveButton} onClick={() => handleApprovePersonalInfo(['RevenueLicense.status'])}>Approve</button>
-                  <button className={styles.rejectButton} onClick={() => handleRejectpersonalinfo(['RevenueLicense.status'])}>
-                    <img src={CloseIcon} alt="Icon" />
-                    Reject
-                  </button>
+                  <>
+                    {RLStatus === "Pending" && (
+                      <>
+                        <button
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleRLStatusChange("Approved");
+                          handleApproveRouteLicense(['RevenueLicense.status']); 
+                        }}
+                        >
+                        Approve
+                        </button>
+
+                        <button
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleRLStatusChange("Rejected");
+                          handleRejectRouteLicense(['RevenueLicense.status']);
+                        }}
+                        >
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
+                        </button>
+                      </>
+                    )}
+
+                    {RLStatus === "Approved" && (
+                      <>
+                        <button className={styles.approvedButton}>
+                        <img src={TickIcon} alt="Icon" />
+                        Approved
+                        </button>
+      
+                        <button
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleRLStatusChange("Rejected");
+                          handleRejectpersonalinfo(['RevenueLicense.status']);
+                        }}
+                        >
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
+                        </button>
+                      </>
+                    )}
+
+                    {RLStatus === "Rejected" && (
+                      <>
+                        <button
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleRLStatusChange("Approved");
+                          handleRejectRouteLicense(['RevenueLicense.status']); 
+                        }}
+                        >
+                        Approve
+                        </button>
+                        <button className={styles.rejectedButton}>
+                        <img src={CloseIcon} alt="Icon" />
+                        Rejected
+                        </button>
+                      </>
+                    )}
+                  </>
                 </div>
               </div>
               {revenueLicenseDropdown && (
@@ -2185,7 +2442,13 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
-                  {/* Icon */}
+                <div className={styles.spanbadgeWrapper1}> 
+                    <img
+                       className={styles.spanavatarIcon}
+                       alt=""
+                       src={`/${getIconForStatus(vehicleInsuranceStatus)}.svg`}  
+                    />
+                  </div> 
                   <p className={styles.docTitle}>Vehicle Insurance</p>
                 </div>
                 <div className={styles.document2ndContainer}>
@@ -2198,11 +2461,70 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
                   />
                 </div>
                 <div className={styles.document3rdContainer}>
-                  <button className={styles.approveButton} onClick={() => handleApprovePersonalInfo(['VehicleInsuarance.status'])}>Approve</button>
-                  <button className={styles.rejectButton} onClick={() => handleRejectpersonalinfo(['VehicleInsuarance.status'])}>
-                    <img src={CloseIcon} alt="Icon" />
-                    Reject
-                  </button>
+                  <>
+                    {vehicleInsuranceStatus === "Pending" && (
+                      <>
+                        <button
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleVehicleInsuranceStatusChange("Approved");
+                          handleApproveVehicleInsurance(['VehicleInsuarance.status']); 
+                        }}
+                        >
+                        Approve
+                        </button>
+
+                        <button
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleVehicleInsuranceStatusChange("Rejected");
+                          handleRejectVehicleInsurance(['VehicleInsuarance.status']);
+                        }}
+                        >
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
+                        </button>
+                      </>
+                    )}
+
+                    {vehicleInsuranceStatus === "Approved" && (
+                      <>
+                        <button className={styles.approvedButton}>
+                        <img src={TickIcon} alt="Icon" />
+                        Approved
+                        </button>
+      
+                        <button
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleVehicleInsuranceStatusChange("Rejected");
+                          handleRejectVehicleInsurance(['VehicleInsuarance.status']);
+                        }}
+                        >
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
+                        </button>
+                      </>
+                    )}
+
+                    {vehicleInsuranceStatus === "Rejected" && (
+                      <>
+                        <button
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleVehicleInsuranceStatusChange("Approved");
+                          handleApproveVehicleInsurance(['VehicleInsuarance.status']); 
+                        }}
+                        >
+                        Approve
+                        </button>
+                        <button className={styles.rejectedButton}>
+                        <img src={CloseIcon} alt="Icon" />
+                        Rejected
+                        </button>
+                      </>
+                    )}
+                  </>
                 </div>
               </div>
               {vehicleInsuranceDropdown && (
@@ -2256,7 +2578,13 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
-                  {/* Icon */}
+                  <div className={styles.spanbadgeWrapper1}> 
+                    <img
+                       className={styles.spanavatarIcon}
+                       alt=""
+                       src={`/${getIconForStatus(BDStatus)}.svg`}  
+                    />
+                  </div> 
                   <p className={styles.docTitle}>Billing Documents</p>
                 </div>
                 <div className={styles.document2ndContainer}>
@@ -2269,11 +2597,70 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
                   />
                 </div>
                 <div className={styles.document3rdContainer}>
-                  <button className={styles.approveButton} onClick={() => handleApprovePersonalInfo(['BillingDocuments.status'])}>Approve</button>
-                  <button className={styles.rejectButton} onClick={() => handleRejectpersonalinfo(['BillingDocuments.status'])}>
-                    <img src={CloseIcon} alt="Icon" />
-                    Reject
-                  </button>
+                  <>
+                    {BDStatus === "Pending" && (
+                      <>
+                        <button
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleBDStatusChange("Approved");
+                          handleApproveBusinessDocument(['BillingDocuments.status']); 
+                        }}
+                        >
+                        Approve
+                        </button>
+
+                        <button
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleBDStatusChange("Rejected");
+                          handleRejectBusinessDocument(['BillingDocuments.status']);
+                        }}
+                        >
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
+                        </button>
+                      </>
+                    )}
+
+                    {BDStatus === "Approved" && (
+                      <>
+                        <button className={styles.approvedButton}>
+                        <img src={TickIcon} alt="Icon" />
+                        Approved
+                        </button>
+      
+                        <button
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleBDStatusChange("Rejected");
+                          handleRejectBusinessDocument(['BillingDocuments.status']);
+                        }}
+                        >
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
+                        </button>
+                      </>
+                    )}
+
+                    {BDStatus === "Rejected" && (
+                      <>
+                        <button
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleBDStatusChange("Approved");
+                          handleApproveBusinessDocument(['BillingDocuments.status']); 
+                        }}
+                        >
+                        Approve
+                        </button>
+                        <button className={styles.rejectedButton}>
+                        <img src={CloseIcon} alt="Icon" />
+                        Rejected
+                        </button>
+                      </>
+                    )}
+                  </>
                 </div>
               </div>
               {billingDocDropdown && (
