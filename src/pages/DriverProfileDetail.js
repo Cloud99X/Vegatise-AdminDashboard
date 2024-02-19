@@ -142,7 +142,7 @@ const handlePIStatusChange = (newStatus) => {
   }, [documentId]);
 
   // Vehicle Information status
-const [VIStatus, setVIStatus] = useState("Pending");
+ {/*const [VIStatus, setVIStatus] = useState("Pending");
 
 const handleVIStatusChange = (newStatus) => {
   setVIStatus(newStatus);
@@ -165,7 +165,7 @@ const handleApproveVehicleInfo = async (keysToUpdate) => {
   } catch (error) {
     console.error('Error updating document: ', error);
   }
-};
+}
 
 const handleRejectVehicleInfo = async (keysToUpdate) => {
   try {
@@ -663,7 +663,7 @@ useEffect(() => {
 }, [documentId]);
 
   ////
-
+ */}
   const onComponent1Click = useCallback(() => {
     navigate("/analytics");
   }, [navigate]);
@@ -864,6 +864,7 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
           const driliData = driliDocSnapshot.data();
           const vecoData = vecoDocSnapshot.data();
 
+          
           const mergedData = {
             ...personalInfoData,
             ...nicNumberData,
@@ -1592,7 +1593,7 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
 
                 <div className={styles.document3rdContainer}>
                   <>
-                    {PIStatus === "Pending" && (
+                    {PIStatus === "In Review" && (
                       <>
                         <button
                         className={styles.approveButton}
