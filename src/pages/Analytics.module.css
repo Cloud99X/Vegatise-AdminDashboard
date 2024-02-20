@@ -1,4 +1,150 @@
-.divheaderWrapperIcon {
+.pageLayout {
+  flex-grow: 1;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  font-family: 'Poppins', 'sans-serif';
+}
+
+.header {
+  display: flex;
+  gap: 20px;
+}
+
+.headerImage {
+  cursor: pointer;
+}
+.headerImage1 {
+  width:33px;
+  height:33px;
+}
+.adminContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.admin {
+  font-size: 12px;
+}
+
+.adminName {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.bodyContainer{
+  /* background-color: red; */
+}
+
+.title{
+  color: #3D3C3C;
+  font-weight: 700;
+  font-size: 24px;
+  position: relative;
+  left: 50px;
+  top: 30px;
+  font-family: 'Poppins', 'sans-serif';
+}
+
+.newCampaignContainer{
+  position: relative;
+  top: 70%;
+  left: 60%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 35px;
+  background-color: #FFF3F3;
+  width: 327px;
+  height: 116px;
+  border-radius: 20px;
+}
+
+.title2{
+  font-weight: 600;
+  font-family: var(--font-urbanist);
+  font-size: 23.73px;
+
+}
+
+.plusIcon{
+  width: 27px;
+  height: 27px;
+}
+
+.title3{
+  color: #D1110B;
+  font-weight: 600;
+  font-size: 20px;
+  font-family: var(--font-urbanist);
+  position: relative;
+  left: 50px;
+  top: -50px;
+  
+}
+
+.title4{
+  font-family: var(--font-urbanist);
+  font-weight: 400;
+  color: #4C4F69;
+  font-size: 15px;
+  position: relative;
+  left: -80px;
+  top: -25px;
+}
+
+.inputContainer {
+ position: relative;
+ top: 10px;
+ left: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .divheaderWrapperIcon {
   position: absolute;
   top: 0;
   left: 45px;
@@ -1024,4 +1170,4 @@
   font-size: var(--h2-title-size);
   color: var(--color-darkslategray-100);
   font-family: var(--body-large-semibold);
-}
+} */

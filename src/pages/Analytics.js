@@ -1,14 +1,28 @@
-import { useCallback } from "react";
+// import { useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "antd/dist/antd.min.css";
-import { Switch, FormControlLabel, Radio } from "@mui/material";
-import { Dropdown, Menu, Button } from "antd";
-import { RightOutlined } from "@ant-design/icons";
+// import { Switch, FormControlLabel, Radio } from "@mui/material";
+// import { Dropdown, Menu, Button } from "antd";
+// import { RightOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Analytics.module.css";
 import PageLayout from "../components/page-layout/page-layout";
+import plusIcon from "../icons/plusIcon.png";
+
+
+import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { SearchIcon } from "@chakra-ui/icons";
+
+
 
 const Analytics = () => {
+
   const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   const onComponent1Click = useCallback(() => {
     navigate("/about-campaign");
@@ -34,10 +48,56 @@ const Analytics = () => {
     navigate("/log-in");
   }, [navigate]);
 
+
   return (
     <PageLayout activeSidebarItem="Analytics">
-      <di></di>
+      <section className={styles.pageLayout}>
+        <div className={styles.headerContainer}>
+          <img alt="" src="/menu.svg" className={styles.headerImage} />
+          <div className={styles.header}>
+            <img
+              alt=""
+              src="/span_badge-wrapper.svg"
+              className={styles.headerImage}
+            />
+            <img alt="" src="/settingsSVG.svg" className={styles.headerImage} />
+            <div className={styles.adminContainer}>
+              <img alt="" src="/logo.png" className={styles.headerImage1} />
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <span className={styles.admin}>Admin</span>
+                <span className={styles.adminName}>Abdurrahman</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.bodyContainer}>
+          <span className={styles.title}>Analytics</span>
+          <div className={styles.newCampaignContainer}>
+            <img alt="plusIcon" src={plusIcon} className={styles.plusIcon} />
+            <span className={styles.title2}>New Campaign</span>
+          </div>
+          <span className={styles.title3}>Campaign List</span>
+          <span className={styles.title4}>View and manage campaign analytics </span>
+
+          <div className={styles.inputContainer}>
+            <InputGroup className={styles.searchbar2Fig4} width="250px">
+              <InputLeftElement
+                pointerEvents="none"
+                children={<SearchIcon color="#000000" />}
+              />
+              <Input
+                variant="outline"
+                placeholder="Search"
+                size="sm"
+                value={searchTerm}
+                onChange={handleSearchChange}
+              />
+            </InputGroup>
+          </div>
+        </div>
+      </section>
     </PageLayout>
+
     // <div className={styles.analytics}>
     //   <div className={styles.headerheaderParent}>
     //     <div className={styles.headerheader}>
