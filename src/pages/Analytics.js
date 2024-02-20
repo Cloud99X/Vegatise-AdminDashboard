@@ -72,10 +72,10 @@ const Analytics = () => {
         </div>
         <div className={styles.bodyContainer}>
           <span className={styles.title}>Analytics</span>
-          <div className={styles.newCampaignContainer}>
+          <button className={styles.newCampaignContainer}>
             <img alt="plusIcon" src={plusIcon} className={styles.plusIcon} />
             <span className={styles.title2}>New Campaign</span>
-          </div>
+          </button>
           <span className={styles.title3}>Campaign List</span>
           <span className={styles.title4}>View and manage campaign analytics </span>
 
