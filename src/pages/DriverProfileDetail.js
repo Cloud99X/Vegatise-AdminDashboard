@@ -121,7 +121,7 @@ const handlePIStatusChange = (newStatus) => {
   }
 
 
-  useEffect(() => {
+  {/*useEffect(() => {
     // Fetch the PIStatus from the database
     const fetchPIStatus = async () => {
       try {
@@ -140,7 +140,7 @@ const handlePIStatusChange = (newStatus) => {
     };
 
     fetchPIStatus();
-  }, [documentId]);
+  }, [documentId]);*/}
 
   // Vehicle Information status
 const [VIStatus, setVIStatus] = useState("Pending");
@@ -186,7 +186,7 @@ const handleRejectVehicleInfo = async (keysToUpdate) => {
     console.error('Error updating document: ', error);
   }
 };
-
+{/*
 useEffect(() => {
   const fetchVIStatus = async () => {
     try {
@@ -205,7 +205,7 @@ useEffect(() => {
   };
 
   fetchVIStatus();
-}, [documentId]);
+}, [documentId]);*/}
   
  // Address and Routes Status
 const [ARStatus, setARStatus] = useState("Pending");
@@ -252,7 +252,7 @@ const handleRejectAddressAndRoutes = async (keysToUpdate) => {
   }
 };
 
-useEffect(() => {
+{/*useEffect(() => {
   const fetchARStatus = async () => {
     try {
       const db = getFirestore(firebaseApp);
@@ -270,7 +270,7 @@ useEffect(() => {
   };
 
   fetchARStatus();
-}, [documentId]); 
+}, [documentId]); */}
 
 // Driving License Status
 const [DLStatus, setDLStatus] = useState("Pending");
@@ -317,7 +317,7 @@ const handleRejectDriverLicense = async (keysToUpdate) => {
   }
 };
 
-useEffect(() => {
+{/*useEffect(() => {
   const fetchDLStatus = async () => {
     try {
       const db = getFirestore(firebaseApp);
@@ -335,7 +335,7 @@ useEffect(() => {
   };
 
   fetchDLStatus();
-}, [documentId]);
+}, [documentId]);*/}
 
 // Nation Identity card Status
 const [NICStatus, setNICStatus] = useState("Pending");
@@ -382,7 +382,7 @@ const handleRejectNIC = async (keysToUpdate) => {
   }
 };
 
-useEffect(() => {
+{/*useEffect(() => {
   const fetchNICStatus = async () => {
     try {
       const db = getFirestore(firebaseApp);
@@ -400,7 +400,7 @@ useEffect(() => {
   };
 
   fetchNICStatus();
-}, [documentId]);
+}, [documentId]);*/}
 
 // Vehicle Image Status
 const [vehicleImageStatus, setVehicleImageStatus] = useState("Pending");
@@ -447,7 +447,7 @@ const handleRejectVehicleImage = async (keysToUpdate) => {
   }
 };
 
-useEffect(() => {
+{/*useEffect(() => {
   const fetchVehicleImageStatus = async () => {
     try {
       const db = getFirestore(firebaseApp);
@@ -465,7 +465,7 @@ useEffect(() => {
   };
 
   fetchVehicleImageStatus();
-}, [documentId]);
+}, [documentId]);*/}
 
 //Revenue License Status
 const [RLStatus, setRLStatus] = useState("Pending");
@@ -512,7 +512,7 @@ const handleRejectRevenueLicense = async (keysToUpdate) => {
   }
 };
 
-useEffect(() => {
+{/*useEffect(() => {
   const fetchRLStatus = async () => {
     try {
       const db = getFirestore(firebaseApp);
@@ -530,7 +530,7 @@ useEffect(() => {
   };
 
   fetchRLStatus();
-}, [documentId]);
+}, [documentId]);*/}
 
 
 // Vehicle registration Status
@@ -578,7 +578,7 @@ const handleRejectVRD = async (keysToUpdate) => {
   }
 };
 
-useEffect(() => {
+{/*useEffect(() => {
   const fetchVRDStatus = async () => {
     try {
       const db = getFirestore(firebaseApp);
@@ -588,7 +588,7 @@ useEffect(() => {
 
       if (docSnap.exists()) {
         const data = docSnap.data();
-        setVehicleInsuranceStatus(data.VehicleRegistration.status);
+        setVRDStatus(data.VehicleRegistration.status);
       }
     } catch (error) {
       console.error('Error fetching document: ', error);
@@ -596,7 +596,7 @@ useEffect(() => {
   };
 
   fetchVRDStatus();
-}, [documentId]);
+}, [documentId]);*/}
 
 // Vehicle Insurance Status
 const [vehicleInsuranceStatus, setVehicleInsuranceStatus] = useState("Pending");
@@ -643,7 +643,7 @@ const handleRejectVehicleInsurance = async (keysToUpdate) => {
   }
 };
 
-useEffect(() => {
+{/*useEffect(() => {
   const fetchVehicleInsuranceStatus = async () => {
     try {
       const db = getFirestore(firebaseApp);
@@ -661,7 +661,7 @@ useEffect(() => {
   };
 
   fetchVehicleInsuranceStatus();
-}, [documentId]);
+}, [documentId]);*/}
 
 
 // Billing Documents Status
@@ -709,7 +709,7 @@ const handleRejectBusinessDocument = async (keysToUpdate) => {
   }
 };
 
-useEffect(() => {
+{/*useEffect(() => {
   const fetchBDStatus = async () => {
     try {
       const db = getFirestore(firebaseApp);
@@ -727,9 +727,45 @@ useEffect(() => {
   };
 
   fetchBDStatus();
-}, [documentId]);
+}, [documentId]);*/}
 
-  ////
+const fetchDocumentStatus = async (field, setStatusFunction) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      setStatusFunction(data[field].status);
+    }
+  } catch (error) {
+    console.error(`Error fetching ${field} document: `, error);
+  }
+};
+
+
+
+const documentFields = [
+  { field: "PersonalInfo", setter: setPIStatus },
+  { field: "VehicleInfo", setter: setVIStatus },
+  { field: "AddressAndRoutes", setter: setARStatus },
+  { field: "DrivingLicense", setter: setDLStatus },
+  { field: "NIC", setter: setNICStatus },
+  { field: "VehicleImage", setter: setVehicleImageStatus },
+  { field: "RevenueLicense", setter: setRLStatus },
+  { field: "VehicleRegistration", setter: setVRDStatus },
+  { field: "VehicleInsuarance", setter: setVehicleInsuranceStatus },
+  { field: "BillingDocuments", setter: setBDStatus },
+];
+documentFields.forEach(({ field, setter }) => {
+  useEffect(() => {
+    fetchDocumentStatus(field, setter);
+  }, [documentId]);
+});
+
+////
  
   const onComponent1Click = useCallback(() => {
     navigate("/analytics");
@@ -1046,7 +1082,7 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
     }
   }, [documentId]);
 
-  useEffect(() => {
+  {/*useEffect(() => {
     const fetchFileCount = async () => {
       try {
         const storage = getStorage();
@@ -1058,7 +1094,7 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
       }
     };
     fetchFileCount();
-  }, [documentId]);
+  }, [documentId]);*/}
 
 
 
@@ -2880,9 +2916,50 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
               </div>
               {billingDocDropdown && (
                 <div className={styles.drpdwn}>
-                  {renderImages()}
+                <div className={styles.frnt}>
+                  <div className={styles.frntViw}>Image1</div>
+                  <div className={styles.div}>
+                    <button className={styles.viw} onClick={() => viewButtons("Billing Documents/frontimage", 0)}>View</button>
+                    <button className={styles.but}>
+                      <label htmlFor="fileInput14" className={styles.upld}>
+                        <b> Upload </b>
+                        <input
+                          id="fileInput14"
+                          type="file"
+                          style={{ display: 'none' }}
+                          onChange={(e) => {
+                            const file = e.target.files[0];
+                            uploaddriverimageToFirestore(file, documentId, "Billing Documents/frontimage", fetchImageUrl, 0);
+                          }}
+                        />
+                      </label>
+                      <img alt="" src={uplo} />
+                    </button>
+                  </div>
                 </div>
-              )}
+                <div className={styles.frnt}>
+                  <div className={styles.frntViw}>Image2</div>
+                  <div className={styles.div}>
+                    <button className={styles.viw} onClick={() => viewButtons("Billing Documents/rearimage", 0)}>View</button>
+                    <button className={styles.but}>
+                      <label htmlFor="fileInput12" className={styles.upld}>
+                        <b> Upload </b>
+                        <input
+                          id="fileInput12"
+                          type="file"
+                          style={{ display: 'none' }}
+                          onChange={(e) => {
+                            const file = e.target.files[0];
+                            uploaddriverimageToFirestore(file, documentId, "Billing Documents/rearimage", fetchImageUrl, 0);
+                          }}
+                        />
+                      </label>
+                      <img alt="" src={uplo} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
             </div>
 
             
