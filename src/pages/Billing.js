@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Billing.module.css";
-import PageLayout from "../components/page-layout/page-layout";
+import PageLayout from "../components/page-layout/page-layout";;
 
 const Billing = () => {
   const navigate = useNavigate();

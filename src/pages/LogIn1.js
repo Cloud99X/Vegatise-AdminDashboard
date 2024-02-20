@@ -56,11 +56,16 @@ const LogIn = () => {
             <p className={styles.inputLabel}>Email</p>
             <TextField
               className={styles.input}
-              color="primary"
+              color = "primary"
               placeholder="balamia@gmail.com"
               variant="outlined"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              InputProps={{
+                style: {
+                  fontFamily: 'Poppins, sans-serif',
+                },
+              }}
             />
           </div>
           <div className={styles.inputContainer}>
@@ -69,29 +74,32 @@ const LogIn = () => {
               <p className={styles.forgotLabel}>Forgot?</p>
             </div>
             <TextField
-              className={styles.input}
-              color="primary"
-              placeholder="Enter your password"
-              required={true}
-              variant="outlined"
-              type={showPassword ? "text" : "password"}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      onClick={handleShowPasswordClick}
-                      aria-label="toggle password visibility"
-                    >
-                      <Icon>
-                        {showPassword ? "visibility" : "visibility_off"}
-                      </Icon>
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+                className={styles.input}
+                color="primary"
+                placeholder="Enter your password"
+                required={true}
+                variant="outlined"
+                type={showPassword ? "text" : "password"}
+                InputProps={{
+                  style: {
+                    fontFamily: 'Poppins, sans-serif', // Apply Poppins font family
+                  },
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={handleShowPasswordClick}
+                        aria-label="toggle password visibility"
+                      >
+                        <Icon>
+                          {showPassword ? "visibility" : "visibility_off"}
+                        </Icon>
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
           </div>
           <button className={styles.buttonsParent} onClick={onCreateAccClick}>
             Login now

@@ -217,7 +217,7 @@ const ComingSoon = () => {
               <tr>
                 <th className={styles.icontd}></th>
                 <th>Name</th>
-                <th>Driver ID</th>
+                <th>Email</th>
                 <th>Phone number</th>
                 <th>Status</th>
                 <th>Date Modified</th>
@@ -228,13 +228,7 @@ const ComingSoon = () => {
                 <tr
                   key={index}
                   onClick={() => onTableRowClick(driver.documentId)}
-                  style={{ cursor: "pointer",
-                           verticalAlign: "middle",
-                           borderRadius: "10px",
-                       }}
-                  
-
-                  className={styles.hoverHighlight}
+                  style={{ cursor: "pointer" }}
                 >
                   <td className={styles.icontd}>
                   <img
@@ -256,7 +250,7 @@ const ComingSoon = () => {
                     <img className={styles.icon} src={driver.profilePicture} />
                     {driver.name}
                   </td>
-                  <td>{driver.driverID}</td>
+                  <td>{driver.email}</td>
                   <td>{driver.mobileNumber}</td>
                   <td>{driver.status}</td>
                   <td>

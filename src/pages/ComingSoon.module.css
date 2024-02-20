@@ -8,6 +8,7 @@
   border-bottom: 2px solid rgba(0, 0, 0, 0.2);
   padding: 20px;
   font-family: 'Poppins', 'sans-serif';
+  
 }
 
 .header {
@@ -47,13 +48,20 @@
 }
 
 .driverList {
+  font-family: 'Urbanist-SemiBold', sans-serif;
   font-size: var(--h2-title-size);
   font-weight: 600;
   color: var(--color-orangered-100);
 }
 
+.dateCreated {
+  font-family: 'Urbanist-Medium', sans-serif;
+  color: #6B7280;
+}
+
 .manageYourDrivers {
   font-size: var(--font-size-mini);
+  font-family: Urbanist – Regular;
   color: #4c4f69;
   margin-top: -1%;
 }
@@ -62,6 +70,7 @@
   display: flex;
   gap: 15px;
   margin-top: 2%;
+  border-radius: 20px;
 }
 
 .icontd {
@@ -71,6 +80,7 @@
 .icon {
   width: 25px;
   height: 25px;
+  right: 5%;
 }
 
 thead {
@@ -79,25 +89,28 @@ thead {
 
 table {
   margin-top: 50px;
-  width: 90%;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 td{
   padding-bottom: 20px;
-  font-family: 'Urbanist', sans-serif;
+  font-family: 'Urbanist-Medium', sans-serif;
   font-size: 16px;
-  font-weight: 600; 
-  
+  font-weight: 600;
+  color: #141736;
+  position: relative;
+  right: "50%";
 }
 
 th {
+  font-family: 'Urbanist-Regular', sans-serif;
   padding-bottom: 20px;
   height: 44px;
   font-size:14px;
   color:#7d8da6;
   position: relative;
-  font-weight: 400;
-  
+  font-weight: 400; 
 }
 
 .hoverHighlight:hover {
@@ -107,6 +120,37 @@ th {
 .hoverHighlight {
   border-radius: 50px;
 }
+tr {
+  font-family: 'Urbanist-Medium', sans-serif;
+  color: #141736;
+  transition: background-color 0.3s ease;
+}
+
+tr:hover {
+  background-color: #E30700;
+  color: white
+}
+
+tr:hover td {
+  color: white; /* Change text color to white */
+}
+
+.detail {
+  position: relative;
+  right: 7%;
+}
+
+.dropArrow {
+  position: relative;
+  bottom: 13px;
+  left: 43px;
+}
+
+input::placeholder {
+  text-align: center;
+  text-indent: -130px;
+}
+
 /* .divheaderWrapperIcon {
   position: absolute;
   top: 0;
