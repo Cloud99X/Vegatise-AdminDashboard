@@ -228,7 +228,13 @@ const ComingSoon = () => {
                 <tr
                   key={index}
                   onClick={() => onTableRowClick(driver.documentId)}
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer",
+                           verticalAlign: "middle",
+                           borderRadius: "10px",
+                       }}
+                  
+
+                  className={styles.hoverHighlight}
                 >
                   <td className={styles.icontd}>
                   <img

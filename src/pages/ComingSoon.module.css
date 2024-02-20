@@ -99,6 +99,14 @@ th {
   font-weight: 400;
   
 }
+
+.hoverHighlight:hover {
+  background-color: #E30700; /* Red color for highlighting */
+}
+
+.hoverHighlight {
+  border-radius: 50px;
+}
 /* .divheaderWrapperIcon {
   position: absolute;
   top: 0;
