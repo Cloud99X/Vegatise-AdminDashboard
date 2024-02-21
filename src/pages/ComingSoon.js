@@ -159,10 +159,7 @@ const ComingSoon = () => {
           </p>
           <div className={styles.inputContainer}>
             <InputGroup className={styles.searchbar2Fig4} width="250px">
-              <InputLeftElement
-                pointerEvents="none"
-                children={<SearchIcon color="gray.300" />}
-              />
+            <img alt="" src="/srch.png" className={styles.srch}/>
               <Input
                 variant="outline"
                 placeholder="Search"
@@ -187,8 +184,8 @@ const ComingSoon = () => {
               trigger={["hover"]}
             >
               <Button onClick={(e) => e.preventDefault()}>
-                {`Filter `}
-                <DownOutlined />
+                <div style={{position: "relative",right: "15%"}}>Filter</div>
+                <img alt="" src="/Arrowdwn.png" className={styles.drpdwn}/>
               </Button>
             </Dropdown>
             <Dropdown
@@ -207,14 +204,14 @@ const ComingSoon = () => {
               trigger={["hover"]}
             >
               <Button onClick={(e) => e.preventDefault()}>
-                {`View all leads `}
-                <DownOutlined />
+                <div style={{position: "relative",right: "8%"}}>View all leads</div>
+                <img alt="" src="/Arrowdwn.png" className={styles.drpdwn} style={{height:"30%", width: "13%",  left:"98%", bottom:"59%"}}/>
               </Button>
             </Dropdown>
           </div>
           <table>
             <thead>
-              <tr>
+              <tr style={{backgroundColor: "white"}}>
                 <th className={styles.icontd}></th>
                 <th>Name</th>
                 <th>Email</th>

@@ -151,6 +151,30 @@ input::placeholder {
   text-indent: -130px;
 }
 
+.srch {
+  position: relative;
+  width: 10%;
+  height: 45%;
+  left: 10%;
+  top: 25%;
+}
+.drpdwn {
+  position: relative;
+  width: 30%;
+  height: 30%;
+  left: 105%;
+  bottom: 55%;
+}
+
+input::placeholder {
+  text-align: left;
+  text-indent: 20px; /* Adjust this value to move the placeholder to the left by the desired number of pixels */
+}
+
+.searchbar2Fig4 {
+  position: relative;
+}
+
 /* .divheaderWrapperIcon {
   position: absolute;
   top: 0;

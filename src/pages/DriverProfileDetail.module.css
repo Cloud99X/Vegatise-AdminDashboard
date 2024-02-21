@@ -103,6 +103,7 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .renderContent {
@@ -147,12 +148,14 @@
 
 .ContentG {
   color: #6B7280;
+  font-family: Urbanist-Medium;
   font-weight: 400;
 }
 
 .ContentB {
   color: #3F3F3F;
   font-weight: 500;
+  font-family: Urbanist-SemiBold;
 }
 
 
@@ -343,36 +346,44 @@
 }
 
 .mailInput {
-
   width: 256px;
   right: -400px;
+  font-family: Urbanist-SemiBold;
 }
 
 .name {
   width: 200px;
+  font-family: Urbanist-SemiBold;
+  font-size: 16px;
+  color: #374151;
 }
 
 .dob {
-  width: 160px
+  width: 160px;
+  font-family: Urbanist-SemiBold;
 }
 
 .phno {
-  width: 160px
+  width: 160px;
+  font-family: Urbanist-SemiBold;
 }
 
 .nic {
   width: 140px;
+  font-family: Urbanist-SemiBold;
 }
 
 .attachedDocumentContainer {
-  font-family: 'Poppins', 'sans-serif';
+  font-family: Urbanist-SemiBold;
+  color: '#141736';
   padding: 20px;
 }
 
 .attachedDocument {
-  color: #000;
+  color: #141736;
   font-size: var(--h2-title-size);
   font-weight: 600;
+  font-family: Urbanist-SemiBold;
 }
 
 .headers {
@@ -384,7 +395,9 @@
 
 .headers p {
   margin-left:80px; 
-  margin-right:80px; 
+  margin-right:80px;
+  font-family: Urbanist-Regular;
+  align-items: center;
 }
 
 .documentsContainerParent {
@@ -520,6 +533,7 @@
   color: #141736;
   font-weight: 600;
   margin: 0;
+  font-family: Urbanist-SemiBold 
 }
 
 .approveButton {

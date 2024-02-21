@@ -1186,7 +1186,7 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
                 }
                 onClick={() => changeCurrentTab("Personal Info")}
               >
-                <span>Personal Info</span>
+                <span style={{fontFamily: "Urbanist-Bold"}}>Personal Info</span>
               </div>
               <div
                 className={
@@ -1196,7 +1196,7 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
                 }
                 onClick={() => changeCurrentTab("Address & Routes")}
               >
-                <span>Address & Routes</span>
+                <span style={{fontFamily: "Urbanist-Bold"}}>Address & Routes</span>
               </div>
               <div
                 className={
@@ -1206,7 +1206,7 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
                 }
                 onClick={() => changeCurrentTab("Vehicle Info")}
               >
-                <span>Vehicle Info</span>
+                <span style={{fontFamily: "Urbanist-Bold"}}>Vehicle Info</span>
               </div>
               <div
                 className={
@@ -1216,7 +1216,7 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
                 }
                 onClick={() => changeCurrentTab("Billing Info")}
               >
-                <span>Billing Info</span>
+                <span style={{fontFamily: "Urbanist-Bold"}}>Billing Info</span>
               </div>
             </div>
           </div>
