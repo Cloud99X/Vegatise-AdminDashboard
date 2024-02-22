@@ -1082,7 +1082,7 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
     }
   }, [documentId]);
 
-  {/*useEffect(() => {
+  useEffect(() => {
     const fetchFileCount = async () => {
       try {
         const storage = getStorage();
@@ -1094,7 +1094,7 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
       }
     };
     fetchFileCount();
-  }, [documentId]);*/}
+  }, [documentId]);
 
 
 
@@ -1124,7 +1124,7 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
           </div>
         </div>
       );
-      
+
     }
     return images;
   };
@@ -2916,48 +2916,8 @@ const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchI
               </div>
               {billingDocDropdown && (
                 <div className={styles.drpdwn}>
-                <div className={styles.frnt}>
-                  <div className={styles.frntViw}>Image1</div>
-                  <div className={styles.div}>
-                    <button className={styles.viw} onClick={() => viewButtons("Billing Documents/frontimage", 0)}>View</button>
-                    <button className={styles.but}>
-                      <label htmlFor="fileInput14" className={styles.upld}>
-                        <b> Upload </b>
-                        <input
-                          id="fileInput14"
-                          type="file"
-                          style={{ display: 'none' }}
-                          onChange={(e) => {
-                            const file = e.target.files[0];
-                            uploaddriverimageToFirestore(file, documentId, "Billing Documents/frontimage", fetchImageUrl, 0);
-                          }}
-                        />
-                      </label>
-                      <img alt="" src={uplo} />
-                    </button>
-                  </div>
-                </div>
-                <div className={styles.frnt}>
-                  <div className={styles.frntViw}>Image2</div>
-                  <div className={styles.div}>
-                    <button className={styles.viw} onClick={() => viewButtons("Billing Documents/rearimage", 0)}>View</button>
-                    <button className={styles.but}>
-                      <label htmlFor="fileInput12" className={styles.upld}>
-                        <b> Upload </b>
-                        <input
-                          id="fileInput12"
-                          type="file"
-                          style={{ display: 'none' }}
-                          onChange={(e) => {
-                            const file = e.target.files[0];
-                            uploaddriverimageToFirestore(file, documentId, "Billing Documents/rearimage", fetchImageUrl, 0);
-                          }}
-                        />
-                      </label>
-                      <img alt="" src={uplo} />
-                    </button>
-                  </div>
-                </div>
+                
+                  {renderImages()}
               </div>
             )}
             </div>
