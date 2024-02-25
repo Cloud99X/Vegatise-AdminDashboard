@@ -50,46 +50,12 @@ const Setting = () => {
 
   return (
     <PageLayout activeSidebarItem="Settings">
-      <div className={styles.headerheader}>
-          <img
-            className={styles.divheaderWrapperIcon}
-            alt=""
-            src="/divheaderwrapper.svg"
-          />
-          <div className={styles.divheaderAction}>
-            <div className={styles.divheaderActionItem} />
-            <div className={styles.divheaderActionItem}>
-              <div className={styles.spanbadgeWrapper}>
-                <img className={styles.svgIcon} alt="" src="/svg.svg" />
-                <div className={styles.spanbadgeDot} />
-              </div>
-            </div>
-            <img className={styles.divIcon} alt="" src="/div.svg" />
-            <div className={styles.divheaderActionItem1}>
-              <img
-                className={styles.spanavatarIcon}
-                alt=""
-                src="/logo.png"
-              />
-              <div className={styles.divhidden}>
-                <div className={styles.divtextXs}>
-                  <div className={styles.admin}>Admin</div>
-                </div>
-                <div className={styles.divfontBold}>
-                  <b className={styles.abdurrahman}>Abdurrahman</b>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      <div className={styles.txtDev}>
-        <b>This feature is under research and development</b>
-        </div>
-        <img
-            className={styles.Img}
-            alt=""
-            src="/DevImg.png"
-          />
+      <div className={styles.container}>
+        <p className={styles.text}>
+          This feature is under research and development
+        </p>
+        <img alt="" src="/DevImg.png" />
+      </div>
     </PageLayout>
     // <div className={styles.setting}>
     //   <div className={styles.headerheaderParent}>

@@ -1,10 +1,26 @@
-.divheaderWrapperIcon {
+.container {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  gap: 30px;
+}
+
+.text {
+  font-weight: 100;
+  font-size: x-large;
+}
+
+
+/* .divheaderWrapperIcon {
   position: absolute;
   top: 0;
   left: 0;
   width: 972.66px;
   height: 65px;
 }
+
 .divheaderActionItem {
   position: relative;
   border-radius: var(--br-9980xl);
@@ -12,6 +28,7 @@
   width: 40px;
   height: 40px;
 }
+
 .svgIcon {
   position: absolute;
   top: 0;
@@ -20,6 +37,7 @@
   height: 24px;
   overflow: hidden;
 }
+
 .spanbadgeDot {
   position: absolute;
   top: -1px;
@@ -29,6 +47,7 @@
   width: 8px;
   height: 8px;
 }
+
 .spanbadgeWrapper {
   position: absolute;
   top: 8px;
@@ -37,6 +56,7 @@
   width: 24px;
   height: 24px;
 }
+
 .divIcon,
 .spanavatarIcon {
   position: relative;
@@ -44,6 +64,7 @@
   width: 40px;
   height: 40px;
 }
+
 .spanavatarIcon {
   position: absolute;
   top: 10px;
@@ -51,6 +72,7 @@
   width: 33px;
   height: 33px;
 }
+
 .admin {
   position: absolute;
   top: 0.67px;
@@ -62,11 +84,13 @@
   width: 35.86px;
   height: 14px;
 }
+
 .divtextXs {
   top: 0;
   background-color: var(--color-gray-300);
   height: 16px;
 }
+
 .abdurrahman,
 .divfontBold,
 .divtextXs {
@@ -74,6 +98,7 @@
   left: 0;
   width: 94.66px;
 }
+
 .abdurrahman {
   top: 2px;
   line-height: 21px;
@@ -81,16 +106,19 @@
   align-items: center;
   height: 16.67px;
 }
+
 .divfontBold {
   top: 16px;
   height: 21px;
   font-size: var(--paragraph-small-size);
 }
+
 .divfontBold,
 .divheaderActionItem1,
 .divhidden {
   background-color: var(--color-gray-300);
 }
+
 .divhidden {
   position: absolute;
   top: 8px;
@@ -98,13 +126,15 @@
   width: 94.66px;
   height: 37px;
 }
-/**/
+
+/*
 .divheaderActionItem1 {
   position: relative;
   border-radius: var(--br-9980xl);
   width: 150.66px;
   height: 53px;
 }
+
 .divheaderAction {
   position: absolute;
   top: calc(50% - 26px);
@@ -117,6 +147,7 @@
   padding: 0 var(--padding-9xs);
   gap: var(--gap-5xs);
 }
+
 .headerheader {
   position: absolute;
   top: 0;
@@ -129,7 +160,8 @@
   color: var(--color-slategray);
   font-family: var(--font-inter);
 }
-/**/
+
+/*
 .thisFeatureIn {
   position: absolute;
   top: 134px;
@@ -137,6 +169,7 @@
   font-size: var(--font-size-11xl);
   line-height: 21px;
 }
+
 .imageVectorIcon {
   position: absolute;
   top: 225px;
@@ -145,11 +178,13 @@
   height: 317px;
   overflow: hidden;
 }
+
 .getExclusiveEarly,
 .requestAccess {
   position: absolute;
   left: calc(50% - 347.5px);
 }
+
 .getExclusiveEarly {
   top: 44px;
   line-height: 21px;
@@ -158,6 +193,7 @@
   align-items: center;
   width: 794px;
 }
+
 .requestAccess {
   text-decoration: none;
   top: 111px;
@@ -167,6 +203,7 @@
   color: var(--color-salmon-200);
   cursor: pointer;
 }
+
 .image7AdobeExpress1 {
   position: absolute;
   top: 0;
@@ -175,6 +212,7 @@
   height: 163px;
   overflow: hidden;
 }
+
 .getExclusiveEarlyAccessToParent {
   position: absolute;
   top: 663px;
@@ -188,6 +226,7 @@
   overflow: hidden;
   font-size: var(--h2-title-size);
 }
+
 .cantWait {
   position: absolute;
   top: 602px;
@@ -196,6 +235,7 @@
   line-height: 21px;
   font-weight: 600;
 }
+
 .headerheaderParent {
   position: absolute;
   top: calc(50% - 450px);
@@ -205,6 +245,7 @@
   height: 900px;
   overflow: hidden;
 }
+
 .asset84xIcon {
   position: absolute;
   height: 100%;
@@ -218,6 +259,7 @@
   max-height: 100%;
   object-fit: cover;
 }
+
 .divlogo,
 .logo {
   position: absolute;
@@ -226,6 +268,7 @@
   width: 175px;
   height: 35px;
 }
+
 .divlogo {
   top: 25px;
   left: 0;
@@ -233,6 +276,7 @@
   width: 250px;
   height: 64px;
 }
+
 .growthIcon {
   position: relative;
   width: 18px;
@@ -240,6 +284,7 @@
   overflow: hidden;
   flex-shrink: 0;
 }
+
 .myGroup {
   position: relative;
   font-size: var(--paragraph-small-size);
@@ -250,6 +295,7 @@
   color: var(--color-gray-100);
   text-align: left;
 }
+
 .component1 {
   cursor: pointer;
   border: 0;
@@ -263,6 +309,7 @@
   box-sizing: border-box;
   gap: var(--gap-5xs);
 }
+
 .component1Wrapper {
   align-self: stretch;
   display: flex;
@@ -270,6 +317,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .analytics {
   position: relative;
   font-size: var(--paragraph-small-size);
@@ -280,6 +328,7 @@
   color: var(--color-red-100);
   text-align: left;
 }
+
 .rocketlaunchParent {
   cursor: pointer;
   border: 0;
@@ -296,6 +345,7 @@
   gap: var(--gap-5xs);
   z-index: 0;
 }
+
 .frameChild {
   position: absolute;
   margin: 0 !important;
@@ -307,11 +357,13 @@
   height: 32px;
   z-index: 1;
 }
+
 .frameParent,
 .menuItem {
   display: flex;
   flex-direction: column;
 }
+
 .frameParent {
   align-self: stretch;
   align-items: center;
@@ -319,6 +371,7 @@
   position: relative;
   gap: var(--gap-36xl);
 }
+
 .menuItem {
   position: absolute;
   top: 158px;
@@ -328,20 +381,24 @@
   justify-content: flex-start;
   gap: var(--gap-5xs);
 }
+
 .influencer,
 .theresaMilly {
   position: relative;
   line-height: 137.1%;
 }
+
 .theresaMilly {
   letter-spacing: 0.02em;
   font-weight: 500;
 }
+
 .influencer {
   font-size: var(--other-other-regular-size);
   letter-spacing: 0.01em;
   color: var(--color-gray-100);
 }
+
 .theresaMillyParent {
   align-self: stretch;
   display: flex;
@@ -349,6 +406,7 @@
   align-items: center;
   justify-content: flex-start;
 }
+
 .logout1 {
   position: relative;
   font-size: var(--paragraph-small-size);
@@ -359,11 +417,13 @@
   color: var(--color-orangered-100);
   text-align: left;
 }
+
 .logout,
 .logoutGroup {
   display: flex;
   justify-content: center;
 }
+
 .logoutGroup {
   cursor: pointer;
   border: 0;
@@ -375,6 +435,7 @@
   align-items: center;
   gap: var(--gap-9xs);
 }
+
 .logout {
   position: absolute;
   top: 30px;
@@ -390,6 +451,7 @@
   padding: var(--padding-17xl) var(--padding-base) var(--padding-base);
   gap: var(--gap-xs);
 }
+
 .groupChild {
   position: absolute;
   top: 0;
@@ -399,6 +461,7 @@
   height: 60px;
   object-fit: cover;
 }
+
 .logoutParent {
   position: absolute;
   top: 672px;
@@ -406,12 +469,14 @@
   width: 202px;
   height: 178px;
 }
+
 .attribution,
 .navbar {
   background-color: var(--background-backgroundprimary);
   height: 900px;
   overflow: hidden;
 }
+
 .navbar {
   position: absolute;
   top: 0;
@@ -423,6 +488,7 @@
   color: var(--color-gray-200);
   font-family: var(--font-lexend);
 }
+
 .attribution {
   position: relative;
   width: 100%;
@@ -430,24 +496,4 @@
   font-size: var(--other-other-regular-size);
   color: var(--color-darkslategray-200);
   font-family: var(--body-large-semibold);
-}
-
-.txtDev {
-  position: relative;
-  align-items: center;
-  top: 27%;
-  left: 18%;
-  font-weight: 100;
-  font-size:x-large;
-  height: 25%;
-  width: 50%;
-}
-
-.Img{
-  position: relative;
-  top: 34%;
-  left: -25%;
-  width: 50%;
-  height: 50%;
-  overflow: hidden;
-}
+} */

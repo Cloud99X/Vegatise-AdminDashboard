@@ -12,9 +12,6 @@ import { getFirestore } from "firebase/firestore";
 import PageLayout from "../components/page-layout/page-layout";
 import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
 
-
-
-
 const ComingSoon = () => {
   const navigate = useNavigate();
   const [personalInfo, setPersonalInfo] = useState([]);
@@ -32,7 +29,6 @@ const ComingSoon = () => {
       }
     });
   };
-
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -77,7 +73,6 @@ const ComingSoon = () => {
     const fullName = `${driver.name} ${driver.surname}`.toLowerCase();
     return fullName.includes(searchTerm.toLowerCase());
   });
-
 
   const fetchPersonalInfo = async () => {
     try {
@@ -134,24 +129,6 @@ const ComingSoon = () => {
     <PageLayout activeSidebarItem="Drivers Information">
       {/* add the content that need to display right side of the side bar */}
       <section className={styles.pageLayout}>
-        <div className={styles.headerContainer}>
-          <img alt="" src="/menu.svg" className={styles.headerImage} />
-          <div className={styles.header}>
-            <img
-              alt=""
-              src="/span_badge-wrapper.svg"
-              className={styles.headerImage}
-            />
-            <img alt="" src="/settingsSVG.svg"  />
-            <div className={styles.adminContainer}>
-              <img alt="" src="/logo.png" className={styles.headerImage1}/>
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <span className={styles.admin}>Admin</span>
-                <span className={styles.adminName}>Abdurrahman</span>
-              </div>
-            </div>
-          </div>
-        </div>
         <div className={styles.driverListContainer}>
           <p className={styles.driverList}>Driver List</p>
           <p className={styles.manageYourDrivers}>
@@ -159,7 +136,7 @@ const ComingSoon = () => {
           </p>
           <div className={styles.inputContainer}>
             <InputGroup className={styles.searchbar2Fig4} width="250px">
-            <img alt="" src="/srch.png" className={styles.srch}/>
+              <img alt="" src="/srch.png" className={styles.srch} />
               <Input
                 variant="outline"
                 placeholder="Search"
@@ -184,8 +161,8 @@ const ComingSoon = () => {
               trigger={["hover"]}
             >
               <Button onClick={(e) => e.preventDefault()}>
-                <div style={{position: "relative",right: "15%"}}>Filter</div>
-                <img alt="" src="/Arrowdwn.png" className={styles.drpdwn}/>
+                <div style={{ position: "relative", right: "15%" }}>Filter</div>
+                <img alt="" src="/Arrowdwn.png" className={styles.drpdwn} />
               </Button>
             </Dropdown>
             <Dropdown
@@ -204,14 +181,26 @@ const ComingSoon = () => {
               trigger={["hover"]}
             >
               <Button onClick={(e) => e.preventDefault()}>
-                <div style={{position: "relative",right: "8%"}}>View all leads</div>
-                <img alt="" src="/Arrowdwn.png" className={styles.drpdwn} style={{height:"30%", width: "13%",  left:"98%", bottom:"59%"}}/>
+                <div style={{ position: "relative", right: "8%" }}>
+                  View all leads
+                </div>
+                <img
+                  alt=""
+                  src="/Arrowdwn.png"
+                  className={styles.drpdwn}
+                  style={{
+                    height: "30%",
+                    width: "13%",
+                    left: "98%",
+                    bottom: "59%",
+                  }}
+                />
               </Button>
             </Dropdown>
           </div>
           <table>
             <thead>
-              <tr style={{backgroundColor: "white"}}>
+              <tr style={{ backgroundColor: "white" }}>
                 <th className={styles.icontd}></th>
                 <th>Name</th>
                 <th>Email</th>
@@ -229,14 +218,18 @@ const ComingSoon = () => {
                   className={styles.hoverHighlight}
                 >
                   <td className={styles.icontd}>
-                  <img
-              className={styles.icon}
-              src={checkedRows.includes(driver.documentId) ? '/checked.svg' : '/unchecked.svg'}
-              onClick={(e) => {
-                e.stopPropagation(); // Prevent row click when clicking the checkbox
-                handleCheckboxClick(driver.documentId);
-              }}
-            />
+                    <img
+                      className={styles.icon}
+                      src={
+                        checkedRows.includes(driver.documentId)
+                          ? "/checked.svg"
+                          : "/unchecked.svg"
+                      }
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent row click when clicking the checkbox
+                        handleCheckboxClick(driver.documentId);
+                      }}
+                    />
                   </td>
                   <td
                     style={{
