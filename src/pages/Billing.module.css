@@ -1,20 +1,4 @@
-.container {
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 90vh;
-  gap: 30px;
-}
-
-.text {
-  font-weight: 100;
-  font-size: x-large;
-}
-
-
-
-/* .divheaderWrapperIcon {
+.divheaderWrapperIcon {
   position: absolute;
   top: 0;
   left: 0;
@@ -995,4 +979,4 @@
   font-size: var(--other-other-regular-size);
   color: var(--color-darkslategray-200);
   font-family: var(--body-large-semibold);
-} */
+}

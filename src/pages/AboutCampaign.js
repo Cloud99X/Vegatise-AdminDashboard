@@ -32,8 +32,11 @@ const AboutCampaign = () => {
 
   return (
     <PageLayout activeSidebarItem="About Campaign">
+      
       {/* add the content that need to display right side of the side bar */}
-      <section className={styles.pageLayout}></section>
+      <section className={styles.pageLayout}>
+        
+      </section>
     </PageLayout>
     // <div className={styles.aboutCampaign}>
     //   <div className={styles.headerheaderParent}>

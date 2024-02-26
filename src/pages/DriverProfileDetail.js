@@ -6,21 +6,17 @@ import { useParams, useNavigate } from "react-router-dom";
 import { collection, getDoc, doc, updateDoc } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import firebaseApp from "./firebase";
-import {
-  getStorage,
-  ref,
-  listAll,
-  getDownloadURL,
-  uploadBytes,
-  deleteObject,
-} from "firebase/storage";
+import { getStorage, ref, listAll, getDownloadURL, uploadBytes, deleteObject } from "firebase/storage";
 import PageLayout from "../components/page-layout/page-layout";
 import documentSVG from "../../src/icons/documentSVG.svg";
 import CaretCircleDown from "../../src/icons/CaretCircleDown.svg";
 import CloseIcon from "../../src/icons/span_text-lg.svg";
 import TickIcon from "../../src/icons/tick.svg";
 import uplo from "../../src/icons/1.png";
-import "firebase/firestore";
+import 'firebase/firestore';
+
+
+
 
 const DriverProfileDetail = () => {
   const { documentId } = useParams();
@@ -31,6 +27,7 @@ const DriverProfileDetail = () => {
   const [fileCount, setFileCount] = useState(0);
   const [file, setFile] = useState(null);
 
+  
   const [currentTab, setCurrentTab] = useState("Personal Info");
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
@@ -47,6 +44,8 @@ const DriverProfileDetail = () => {
   const [billingDocDropdown, setBillingDocDropdown] = useState(false);
   const [VRDropdown, setVRDropdown] = useState(false);
 
+
+
   const handleAccountClick = (account) => {
     setSelectedAccount(account);
   };
@@ -57,28 +56,30 @@ const DriverProfileDetail = () => {
   };
   //status
 
-  //status icon
+
+
+//status icon
 
   const getIconForStatus = (status) => {
     switch (status) {
       case "Approved":
-        return "approved";
+        return "approved"; 
       case "Rejected":
-        return "rejected";
+        return "rejected"; 
       case "In Review":
-        return "inReview";
+        return "inReview"; 
       case "Pending":
-        return "pending";
+        return "pending"; 
       default:
-        return "";
+        return ""; 
     }
   };
-  //Personal Information status
-  const [PIStatus, setPIStatus] = useState("Pending");
+//Personal Information status
+const [PIStatus, setPIStatus] = useState("Pending");
 
-  const handlePIStatusChange = (newStatus) => {
-    setPIStatus(newStatus);
-  };
+const handlePIStatusChange = (newStatus) => {
+  setPIStatus(newStatus);
+};
 
   const handleApprovePersonalInfo = async (keysToUpdate) => {
     try {
@@ -87,17 +88,18 @@ const DriverProfileDetail = () => {
       const docRef = doc(db, userDocumentPath);
 
       const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Approved";
+      keysToUpdate.forEach(key => {
+        updateData[key] = 'Approved';
       });
 
       await updateDoc(docRef, updateData);
 
-      console.log("Document successfully updated!");
+      console.log('Document successfully updated!');
     } catch (error) {
-      console.error("Error updating document: ", error);
+      console.error('Error updating document: ', error);
     }
-  };
+  }
+
 
   const handleRejectpersonalinfo = async (keysToUpdate) => {
     try {
@@ -106,20 +108,20 @@ const DriverProfileDetail = () => {
       const docRef = doc(db, userDocumentPath);
 
       const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Rejected";
+      keysToUpdate.forEach(key => {
+        updateData[key] = 'Rejected';
       });
 
       await updateDoc(docRef, updateData);
 
-      console.log("Document successfully updated!");
+      console.log('Document successfully updated!');
     } catch (error) {
-      console.error("Error updating document: ", error);
+      console.error('Error updating document: ', error);
     }
-  };
+  }
 
-  {
-    /*useEffect(() => {
+
+  {/*useEffect(() => {
     // Fetch the PIStatus from the database
     const fetchPIStatus = async () => {
       try {
@@ -138,55 +140,53 @@ const DriverProfileDetail = () => {
     };
 
     fetchPIStatus();
-  }, [documentId]);*/
-  }
+  }, [documentId]);*/}
 
   // Vehicle Information status
-  const [VIStatus, setVIStatus] = useState("Pending");
+const [VIStatus, setVIStatus] = useState("Pending");
 
-  const handleVIStatusChange = (newStatus) => {
-    setVIStatus(newStatus);
-  };
+const handleVIStatusChange = (newStatus) => {
+  setVIStatus(newStatus);
+};
 
-  const handleApproveVehicleInfo = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
+const handleApproveVehicleInfo = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
 
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Approved";
-      });
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Approved';
+    });
 
-      await updateDoc(docRef, updateData);
+    await updateDoc(docRef, updateData);
 
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+}
 
-  const handleRejectVehicleInfo = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
+const handleRejectVehicleInfo = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
 
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Rejected";
-      });
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Rejected';
+    });
 
-      await updateDoc(docRef, updateData);
+    await updateDoc(docRef, updateData);
 
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-  {
-    /*
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+};
+{/*
 useEffect(() => {
   const fetchVIStatus = async () => {
     try {
@@ -205,56 +205,54 @@ useEffect(() => {
   };
 
   fetchVIStatus();
-}, [documentId]);*/
+}, [documentId]);*/}
+  
+ // Address and Routes Status
+const [ARStatus, setARStatus] = useState("Pending");
+
+const handleARStatusChange = (newStatus) => {
+  setARStatus(newStatus);
+};
+
+const handleApproveAddressAndRoutes = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Approved';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
   }
+};
 
-  // Address and Routes Status
-  const [ARStatus, setARStatus] = useState("Pending");
+const handleRejectAddressAndRoutes = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
 
-  const handleARStatusChange = (newStatus) => {
-    setARStatus(newStatus);
-  };
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Rejected';
+    });
 
-  const handleApproveAddressAndRoutes = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
+    await updateDoc(docRef, updateData);
 
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Approved";
-      });
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+};
 
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
-  const handleRejectAddressAndRoutes = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Rejected";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
-  {
-    /*useEffect(() => {
+{/*useEffect(() => {
   const fetchARStatus = async () => {
     try {
       const db = getFirestore(firebaseApp);
@@ -272,56 +270,54 @@ useEffect(() => {
   };
 
   fetchARStatus();
-}, [documentId]); */
+}, [documentId]); */}
+
+// Driving License Status
+const [DLStatus, setDLStatus] = useState("Pending");
+
+const handleDLStatusChange = (newStatus) => {
+  setDLStatus(newStatus);
+};
+
+const handleApproveDriverLicense = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Approved';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Driver License Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating Driver License document: ', error);
   }
+};
 
-  // Driving License Status
-  const [DLStatus, setDLStatus] = useState("Pending");
+const handleRejectDriverLicense = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
 
-  const handleDLStatusChange = (newStatus) => {
-    setDLStatus(newStatus);
-  };
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Rejected';
+    });
 
-  const handleApproveDriverLicense = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
+    await updateDoc(docRef, updateData);
 
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Approved";
-      });
+    console.log('Driver License Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating Driver License document: ', error);
+  }
+};
 
-      await updateDoc(docRef, updateData);
-
-      console.log("Driver License Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating Driver License document: ", error);
-    }
-  };
-
-  const handleRejectDriverLicense = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Rejected";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Driver License Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating Driver License document: ", error);
-    }
-  };
-
-  {
-    /*useEffect(() => {
+{/*useEffect(() => {
   const fetchDLStatus = async () => {
     try {
       const db = getFirestore(firebaseApp);
@@ -339,56 +335,54 @@ useEffect(() => {
   };
 
   fetchDLStatus();
-}, [documentId]);*/
+}, [documentId]);*/}
+
+// Nation Identity card Status
+const [NICStatus, setNICStatus] = useState("Pending");
+
+const handleNICStatusChange = (newStatus) => {
+  setNICStatus(newStatus);
+};
+
+const handleApproveNIC = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Approved';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
   }
+};
 
-  // Nation Identity card Status
-  const [NICStatus, setNICStatus] = useState("Pending");
+const handleRejectNIC = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
 
-  const handleNICStatusChange = (newStatus) => {
-    setNICStatus(newStatus);
-  };
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Rejected';
+    });
 
-  const handleApproveNIC = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
+    await updateDoc(docRef, updateData);
 
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Approved";
-      });
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+};
 
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
-  const handleRejectNIC = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Rejected";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
-  {
-    /*useEffect(() => {
+{/*useEffect(() => {
   const fetchNICStatus = async () => {
     try {
       const db = getFirestore(firebaseApp);
@@ -406,56 +400,54 @@ useEffect(() => {
   };
 
   fetchNICStatus();
-}, [documentId]);*/
+}, [documentId]);*/}
+
+// Vehicle Image Status
+const [vehicleImageStatus, setVehicleImageStatus] = useState("Pending");
+
+const handleVehicleImageStatusChange = (newStatus) => {
+  setVehicleImageStatus(newStatus);
+};
+
+const handleApproveVehicleImage = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Approved';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
   }
+};
 
-  // Vehicle Image Status
-  const [vehicleImageStatus, setVehicleImageStatus] = useState("Pending");
+const handleRejectVehicleImage = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
 
-  const handleVehicleImageStatusChange = (newStatus) => {
-    setVehicleImageStatus(newStatus);
-  };
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Rejected';
+    });
 
-  const handleApproveVehicleImage = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
+    await updateDoc(docRef, updateData);
 
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Approved";
-      });
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+};
 
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
-  const handleRejectVehicleImage = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Rejected";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
-  {
-    /*useEffect(() => {
+{/*useEffect(() => {
   const fetchVehicleImageStatus = async () => {
     try {
       const db = getFirestore(firebaseApp);
@@ -473,56 +465,54 @@ useEffect(() => {
   };
 
   fetchVehicleImageStatus();
-}, [documentId]);*/
+}, [documentId]);*/}
+
+//Revenue License Status
+const [RLStatus, setRLStatus] = useState("Pending");
+
+const handleRLStatusChange = (newStatus) => {
+  setRLStatus(newStatus);
+};
+
+const handleApproveRevenueLicense = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Approved';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
   }
+};
 
-  //Revenue License Status
-  const [RLStatus, setRLStatus] = useState("Pending");
+const handleRejectRevenueLicense = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
 
-  const handleRLStatusChange = (newStatus) => {
-    setRLStatus(newStatus);
-  };
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Rejected';
+    });
 
-  const handleApproveRevenueLicense = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
+    await updateDoc(docRef, updateData);
 
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Approved";
-      });
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+};
 
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
-  const handleRejectRevenueLicense = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Rejected";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
-  {
-    /*useEffect(() => {
+{/*useEffect(() => {
   const fetchRLStatus = async () => {
     try {
       const db = getFirestore(firebaseApp);
@@ -540,56 +530,55 @@ useEffect(() => {
   };
 
   fetchRLStatus();
-}, [documentId]);*/
+}, [documentId]);*/}
+
+
+// Vehicle registration Status
+const [VRDStatus, setVRDStatus] = useState("Pending");
+
+const handleVRDStatusChange = (newStatus) => {
+  setVRDStatus(newStatus);
+};
+
+const handleApproveVRD = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Approved';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
   }
+};
 
-  // Vehicle registration Status
-  const [VRDStatus, setVRDStatus] = useState("Pending");
+const handleRejectVRD = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
 
-  const handleVRDStatusChange = (newStatus) => {
-    setVRDStatus(newStatus);
-  };
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Rejected';
+    });
 
-  const handleApproveVRD = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
+    await updateDoc(docRef, updateData);
 
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Approved";
-      });
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+};
 
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
-  const handleRejectVRD = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Rejected";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
-  {
-    /*useEffect(() => {
+{/*useEffect(() => {
   const fetchVRDStatus = async () => {
     try {
       const db = getFirestore(firebaseApp);
@@ -607,57 +596,54 @@ useEffect(() => {
   };
 
   fetchVRDStatus();
-}, [documentId]);*/
+}, [documentId]);*/}
+
+// Vehicle Insurance Status
+const [vehicleInsuranceStatus, setVehicleInsuranceStatus] = useState("Pending");
+
+const handleVehicleInsuranceStatusChange = (newStatus) => {
+  setVehicleInsuranceStatus(newStatus);
+};
+
+const handleApproveVehicleInsurance = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Approved';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
   }
+};
 
-  // Vehicle Insurance Status
-  const [vehicleInsuranceStatus, setVehicleInsuranceStatus] =
-    useState("Pending");
+const handleRejectVehicleInsurance = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
 
-  const handleVehicleInsuranceStatusChange = (newStatus) => {
-    setVehicleInsuranceStatus(newStatus);
-  };
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Rejected';
+    });
 
-  const handleApproveVehicleInsurance = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
+    await updateDoc(docRef, updateData);
 
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Approved";
-      });
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+};
 
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
-  const handleRejectVehicleInsurance = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Rejected";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
-  {
-    /*useEffect(() => {
+{/*useEffect(() => {
   const fetchVehicleInsuranceStatus = async () => {
     try {
       const db = getFirestore(firebaseApp);
@@ -675,56 +661,55 @@ useEffect(() => {
   };
 
   fetchVehicleInsuranceStatus();
-}, [documentId]);*/
+}, [documentId]);*/}
+
+
+// Billing Documents Status
+const [BDStatus, setBDStatus] = useState("Pending");
+
+const handleBDStatusChange = (newStatus) => {
+  setBDStatus(newStatus);
+};
+
+const handleApproveBusinessDocument = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Approved';
+    });
+
+    await updateDoc(docRef, updateData);
+
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
   }
+};
 
-  // Billing Documents Status
-  const [BDStatus, setBDStatus] = useState("Pending");
+const handleRejectBusinessDocument = async (keysToUpdate) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
 
-  const handleBDStatusChange = (newStatus) => {
-    setBDStatus(newStatus);
-  };
+    const updateData = {};
+    keysToUpdate.forEach(key => {
+      updateData[key] = 'Rejected';
+    });
 
-  const handleApproveBusinessDocument = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
+    await updateDoc(docRef, updateData);
 
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Approved";
-      });
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
+  }
+};
 
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
-  const handleRejectBusinessDocument = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Rejected";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
-  {
-    /*useEffect(() => {
+{/*useEffect(() => {
   const fetchBDStatus = async () => {
     try {
       const db = getFirestore(firebaseApp);
@@ -742,45 +727,46 @@ useEffect(() => {
   };
 
   fetchBDStatus();
-}, [documentId]);*/
-  }
+}, [documentId]);*/}
 
-  const fetchDocumentStatus = async (field, setStatusFunction) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-      const docSnap = await getDoc(docRef);
+const fetchDocumentStatus = async (field, setStatusFunction) => {
+  try {
+    const db = getFirestore(firebaseApp);
+    const userDocumentPath = `/DocumentsStatus/${documentId}`;
+    const docRef = doc(db, userDocumentPath);
+    const docSnap = await getDoc(docRef);
 
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        setStatusFunction(data[field].status);
-      }
-    } catch (error) {
-      console.error(`Error fetching ${field} document: `, error);
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      setStatusFunction(data[field].status);
     }
-  };
+  } catch (error) {
+    console.error(`Error fetching ${field} document: `, error);
+  }
+};
 
-  const documentFields = [
-    { field: "PersonalInfo", setter: setPIStatus },
-    { field: "VehicleInfo", setter: setVIStatus },
-    { field: "AddressAndRoutes", setter: setARStatus },
-    { field: "DrivingLicense", setter: setDLStatus },
-    { field: "NIC", setter: setNICStatus },
-    { field: "VehicleImage", setter: setVehicleImageStatus },
-    { field: "RevenueLicense", setter: setRLStatus },
-    { field: "VehicleRegistration", setter: setVRDStatus },
-    { field: "VehicleInsuarance", setter: setVehicleInsuranceStatus },
-    { field: "BillingDocuments", setter: setBDStatus },
-  ];
-  documentFields.forEach(({ field, setter }) => {
-    useEffect(() => {
-      fetchDocumentStatus(field, setter);
-    }, [documentId]);
-  });
 
-  ////
 
+const documentFields = [
+  { field: "PersonalInfo", setter: setPIStatus },
+  { field: "VehicleInfo", setter: setVIStatus },
+  { field: "AddressAndRoutes", setter: setARStatus },
+  { field: "DrivingLicense", setter: setDLStatus },
+  { field: "NIC", setter: setNICStatus },
+  { field: "VehicleImage", setter: setVehicleImageStatus },
+  { field: "RevenueLicense", setter: setRLStatus },
+  { field: "VehicleRegistration", setter: setVRDStatus },
+  { field: "VehicleInsuarance", setter: setVehicleInsuranceStatus },
+  { field: "BillingDocuments", setter: setBDStatus },
+];
+documentFields.forEach(({ field, setter }) => {
+  useEffect(() => {
+    fetchDocumentStatus(field, setter);
+  }, [documentId]);
+});
+
+////
+ 
   const onComponent1Click = useCallback(() => {
     navigate("/analytics");
   }, [navigate]);
@@ -821,23 +807,23 @@ useEffect(() => {
   //};
 
   //const handleRejectClick1 = () => {
-  // setStatus1("Rejected"); // Update status state to 'Rejected'
-  // };
+   // setStatus1("Rejected"); // Update status state to 'Rejected'
+ // };
 
-  // const handleApprovedClick2 = () => {
-  //   setStatus2("Approved");
+ // const handleApprovedClick2 = () => {
+ //   setStatus2("Approved");
   //};
 
-  //  const handleRejectClick2 = () => {
-  //   setStatus2("Rejected");
-  // };
+//  const handleRejectClick2 = () => {
+ //   setStatus2("Rejected");
+ // };
 
   //const handleApprovedClick3 = () => {
-  //setStatus3("Approved");
+    //setStatus3("Approved");
   //};
 
   //const handleRejectClick3 = () => {
-  //setStatus3("Rejected");
+    //setStatus3("Rejected");
   //};
 
   const getInitials = (fullName) => {
@@ -851,10 +837,7 @@ useEffect(() => {
   const uploadImageToFirestore = async (file, documentId, fetchImageUrl) => {
     try {
       const storage = getStorage();
-      const storageRef = ref(
-        storage,
-        `${documentId}/Profile Photo/${file.name}`
-      );
+      const storageRef = ref(storage, `${documentId}/Profile Photo/${file.name}`);
       const existingImageRef = ref(storage, `${documentId}/Profile Photo`);
       const existingImageSnapshot = await listAll(existingImageRef);
       existingImageSnapshot.items.forEach(async (item) => {
@@ -896,34 +879,30 @@ useEffect(() => {
     fetchImageUrl();
   }, [documentId]);
 
-  const uploaddriverimageToFirestore = async (
-    file,
-    documentId,
-    folderPath,
-    fetchImageUrl,
-    index
-  ) => {
-    try {
-      const storage = getStorage();
-      const storageRef = ref(
-        storage,
-        `${documentId}/${folderPath}/${file.name}`
-      );
-      const existingImageRef = ref(storage, `${documentId}/${folderPath}`);
-      const existingImageSnapshot = await listAll(existingImageRef);
 
-      if (typeof index === "number" && index >= 0) {
-        const fileToDelete = existingImageSnapshot.items[index];
-        if (fileToDelete) {
-          await deleteObject(fileToDelete);
-        }
+const uploaddriverimageToFirestore = async (file, documentId, folderPath, fetchImageUrl, index) => {
+  try {
+    const storage = getStorage();
+    const storageRef = ref(storage, `${documentId}/${folderPath}/${file.name}`);
+    const existingImageRef = ref(storage, `${documentId}/${folderPath}`);
+    const existingImageSnapshot = await listAll(existingImageRef);
+
+    if (typeof index === 'number' && index >= 0) {
+      const fileToDelete = existingImageSnapshot.items[index];
+      if (fileToDelete) {
+        await deleteObject(fileToDelete);
       }
-      await uploadBytes(storageRef, file);
-      fetchImageUrl();
-    } catch (error) {
-      console.error("Error uploading image to Firestore:", error);
     }
-  };
+    await uploadBytes(storageRef, file);
+    fetchImageUrl();
+  } catch (error) {
+    console.error("Error uploading image to Firestore:", error);
+  }
+};
+
+
+
+
 
   useEffect(() => {
     const fetchDriverInfo = async () => {
@@ -945,10 +924,6 @@ useEffect(() => {
         const vecoCollection = collection(db, "Vehicle Condition");
         const vecoDocRef = doc(vecoCollection, documentId);
         const vecoDocSnapshot = await getDoc(vecoDocRef);
-
-        const rliCollection = collection(db, "Revenue License No");
-        const rliDocRef = doc(rliCollection, documentId);
-        const rliDocSnapshot = await getDoc(rliDocRef);
 
         const addressAndRoutesCollection = collection(db, "AddressAndRoutes");
         const addressAndRoutesDocRef = doc(
@@ -981,8 +956,7 @@ useEffect(() => {
           addressAndRoutesDocSnapshot.exists() &&
           VehicleInformationDocSnapshot.exists() &&
           driliDocSnapshot.exists() &&
-          vecoDocSnapshot.exists() &&
-          rliDocSnapshot.exists()
+          vecoDocSnapshot.exists()
           //utilityDocSnapshot.exists()
         ) {
           const personalInfoData = personalInfoDocSnapshot.data();
@@ -992,16 +966,15 @@ useEffect(() => {
           const utilityData = utilityDocSnapshot.data();
           const driliData = driliDocSnapshot.data();
           const vecoData = vecoDocSnapshot.data();
-          const rliData = rliDocSnapshot.data();
 
+          
           const mergedData = {
             ...personalInfoData,
             ...nicNumberData,
             ...addressAndRoutesData,
             ...VehicleInformationData,
             ...driliData,
-            ...vecoData,
-            ...rliData,
+            ...vecoData
             //...utilityData,
           };
 
@@ -1089,34 +1062,31 @@ useEffect(() => {
     }
   };
 
-  const viewButtons = useCallback(
-    async (folderPath, index) => {
-      try {
-        const storage = getStorage();
-        const fullPath = `${documentId}/${folderPath}`;
-        const folderRef = ref(storage, fullPath);
-        const items = await listAll(folderRef);
-        if (items && items.items.length > 0) {
-          const firstItemUrl = await getDownloadURL(items.items[index]);
-          window.open(firstItemUrl, "_blank");
-        } else {
-          console.error("No items found in the folder.");
-        }
-      } catch (error) {
-        console.error("Error retrieving images:", error);
-      }
-    },
-    [documentId]
-  );
 
-  useEffect(() => {
+
+  
+  const viewButtons = useCallback(async (folderPath, index) => {
+    try {
+      const storage = getStorage();
+      const fullPath = `${documentId}/${folderPath}`;
+      const folderRef = ref(storage, fullPath);
+      const items = await listAll(folderRef);
+      if (items && items.items.length > 0) {
+        const firstItemUrl = await getDownloadURL(items.items[index]);
+        window.open(firstItemUrl, "_blank");
+      } else {
+        console.error("No items found in the folder.");
+      }
+    } catch (error) {
+      console.error("Error retrieving images:", error);
+    }
+  }, [documentId]);
+
+  {/*useEffect(() => {
     const fetchFileCount = async () => {
       try {
         const storage = getStorage();
-        const folderRef = ref(
-          storage,
-          `${documentId}/BillingProofDocuments/Utility Bill`
-        );
+        const folderRef = ref(storage, `${documentId}/BillingProofDocuments/Utility Bill`);
         const items = await listAll(folderRef);
         setFileCount(items.items.length);
       } catch (error) {
@@ -1124,7 +1094,9 @@ useEffect(() => {
       }
     };
     fetchFileCount();
-  }, [documentId]);
+  }, [documentId]);*/}
+
+
 
   const renderImages = () => {
     const images = [];
@@ -1133,30 +1105,17 @@ useEffect(() => {
         <div className={styles.frnt} key={i}>
           <div className={styles.frntViw}>Image {i}</div>
           <div className={styles.div}>
-            <button
-              className={styles.viw}
-              onClick={() =>
-                viewButtons("BillingProofDocuments/Utility Bill", i - 1)
-              }
-            >
-              View
-            </button>
+            <button className={styles.viw} onClick={() => viewButtons("BillingProofDocuments/Utility Bill", i - 1)}>View</button>
             <button className={styles.but}>
               <label htmlFor="fileInput9" className={styles.upld}>
                 <b> Upload </b>
                 <input
                   id="fileInput9"
                   type="file"
-                  style={{ display: "none" }}
+                  style={{ display: 'none' }}
                   onChange={(e) => {
                     const file = e.target.files[0];
-                    uploaddriverimageToFirestore(
-                      file,
-                      documentId,
-                      "BillingProofDocuments/Utility Bill",
-                      fetchImageUrl,
-                      i - 1
-                    );
+                    uploaddriverimageToFirestore(file, documentId, "BillingProofDocuments/Utility Bill", fetchImageUrl, i - 1);
                   }}
                 />
               </label>
@@ -1165,6 +1124,7 @@ useEffect(() => {
           </div>
         </div>
       );
+      
     }
     return images;
   };
@@ -1179,7 +1139,7 @@ useEffect(() => {
     } else if (section === "Revenue License") {
       setRevenueLicenseDropdown(!revenueLicenseDropdown);
     } else if (section === "VehicleRegistration") {
-      setVRDropdown(!VRDropdown);
+      setVRDropdown(!VRDropdown);      
     } else if (section === "Vehicle Insurance") {
       setVehicleInsuranceDropdown(!vehicleInsuranceDropdown);
     } else if (section === "Billing Documents") {
@@ -1187,10 +1147,32 @@ useEffect(() => {
     }
   };
 
+  
+
+
+
   //
   return (
     <PageLayout activeSidebarItem="Drivers Information">
       <section className={styles.pageLayout}>
+        <div className={styles.headerContainer}>
+          <img alt="" src="/menu.svg" className={styles.headerImage} />
+          <div className={styles.header}>
+            <img
+              alt=""
+              src="/span_badge-wrapper.svg"
+              className={styles.headerImage}
+            />
+            <img alt="" src="/settingsSVG.svg" className={styles.headerImage} />
+            <div className={styles.adminContainer}>
+              <img alt="" src="/logo.png" className={styles.headerImage1}/>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <span className={styles.admin}>Admin</span>
+                <span className={styles.adminName}>Abdurrahman</span>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className={styles.driverListContainer}>
           <p className={styles.driverList}>Driver Profile</p>
           <p className={styles.dateCreated}>Date Created 04.03.2024</p>
@@ -1204,9 +1186,7 @@ useEffect(() => {
                 }
                 onClick={() => changeCurrentTab("Personal Info")}
               >
-                <span style={{ fontFamily: "Urbanist-Bold" }}>
-                  Personal Info
-                </span>
+                <span style={{fontFamily: "Urbanist-Bold"}}>Personal Info</span>
               </div>
               <div
                 className={
@@ -1216,9 +1196,7 @@ useEffect(() => {
                 }
                 onClick={() => changeCurrentTab("Address & Routes")}
               >
-                <span style={{ fontFamily: "Urbanist-Bold" }}>
-                  Address & Routes
-                </span>
+                <span style={{fontFamily: "Urbanist-Bold"}}>Address & Routes</span>
               </div>
               <div
                 className={
@@ -1228,9 +1206,7 @@ useEffect(() => {
                 }
                 onClick={() => changeCurrentTab("Vehicle Info")}
               >
-                <span style={{ fontFamily: "Urbanist-Bold" }}>
-                  Vehicle Info
-                </span>
+                <span style={{fontFamily: "Urbanist-Bold"}}>Vehicle Info</span>
               </div>
               <div
                 className={
@@ -1240,9 +1216,7 @@ useEffect(() => {
                 }
                 onClick={() => changeCurrentTab("Billing Info")}
               >
-                <span style={{ fontFamily: "Urbanist-Bold" }}>
-                  Billing Info
-                </span>
+                <span style={{fontFamily: "Urbanist-Bold"}}>Billing Info</span>
               </div>
             </div>
           </div>
@@ -1700,7 +1674,7 @@ useEffect(() => {
           <div className={styles.saveChanges}>Save changes</div>
         </button>
 
-        {/* ... (test) */}
+{/* ... (test) */}
 
         <div className={styles.attachedDocumentContainer}>
           <p className={styles.attachedDocument}>Information</p>
@@ -1712,13 +1686,13 @@ useEffect(() => {
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
-                  <div className={styles.spanbadgeWrapper1}>
+                  <div className={styles.spanbadgeWrapper1}> 
                     <img
-                      className={styles.spanavatarIcon}
-                      alt=""
-                      src={`/${getIconForStatus(PIStatus)}.svg`}
+                       className={styles.spanavatarIcon}
+                       alt=""
+                       src={`/${getIconForStatus(PIStatus)}.svg`}  
                     />
-                  </div>
+                  </div> 
                   <p className={styles.docTitle}>Personal Information</p>
                 </div>
 
@@ -1727,24 +1701,24 @@ useEffect(() => {
                     {(PIStatus === "In Review" || PIStatus === "Pending") && (
                       <>
                         <button
-                          className={styles.approveButton}
-                          onClick={() => {
-                            handlePIStatusChange("Approved");
-                            handleApprovePersonalInfo(["PersonalInfo.status"]);
-                          }}
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handlePIStatusChange("Approved");
+                          handleApprovePersonalInfo(['PersonalInfo.status']); 
+                        }}
                         >
-                          Approve
+                        Approve
                         </button>
 
                         <button
-                          className={styles.rejectButton}
-                          onClick={() => {
-                            handlePIStatusChange("Rejected");
-                            handleRejectpersonalinfo(["PersonalInfo.status"]);
-                          }}
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handlePIStatusChange("Rejected");
+                          handleRejectpersonalinfo(['PersonalInfo.status']);
+                        }}
                         >
-                          <img src={CloseIcon} alt="Icon" />
-                          Reject
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
                         </button>
                       </>
                     )}
@@ -1752,19 +1726,19 @@ useEffect(() => {
                     {PIStatus === "Approved" && (
                       <>
                         <button className={styles.approvedButton}>
-                          <img src={TickIcon} alt="Icon" />
-                          Approved
+                        <img src={TickIcon} alt="Icon" />
+                        Approved
                         </button>
-
+      
                         <button
-                          className={styles.rejectButton}
-                          onClick={() => {
-                            handlePIStatusChange("Rejected");
-                            handleRejectpersonalinfo(["PersonalInfo.status"]);
-                          }}
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handlePIStatusChange("Rejected");
+                          handleRejectpersonalinfo(['PersonalInfo.status']);
+                        }}
                         >
-                          <img src={CloseIcon} alt="Icon" />
-                          Reject
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
                         </button>
                       </>
                     )}
@@ -1772,35 +1746,36 @@ useEffect(() => {
                     {PIStatus === "Rejected" && (
                       <>
                         <button
-                          className={styles.approveButton}
-                          onClick={() => {
-                            handlePIStatusChange("Approved");
-                            handleApprovePersonalInfo(["PersonalInfo.status"]);
-                          }}
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handlePIStatusChange("Approved");
+                          handleApprovePersonalInfo(['PersonalInfo.status']); 
+                        }}
                         >
-                          Approve
+                        Approve
                         </button>
                         <button className={styles.rejectedButton}>
-                          <img src={CloseIcon} alt="Icon" />
-                          Rejected
+                        <img src={CloseIcon} alt="Icon" />
+                        Rejected
                         </button>
                       </>
                     )}
                   </>
                 </div>
               </div>
+
             </div>
 
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
-                  <div className={styles.spanbadgeWrapper1}>
+                  <div className={styles.spanbadgeWrapper1}> 
                     <img
-                      className={styles.spanavatarIcon}
-                      alt=""
-                      src={`/${getIconForStatus(VIStatus)}.svg`}
+                       className={styles.spanavatarIcon}
+                       alt=""
+                       src={`/${getIconForStatus(VIStatus)}.svg`}  
                     />
-                  </div>
+                  </div> 
                   <p className={styles.docTitle}>Vehicle Information</p>
                 </div>
 
@@ -1809,24 +1784,24 @@ useEffect(() => {
                     {(VIStatus === "In Review" || VIStatus === "Pending") && (
                       <>
                         <button
-                          className={styles.approveButton}
-                          onClick={() => {
-                            handleVIStatusChange("Approved");
-                            handleApproveVehicleInfo(["VehicleInfo.status"]);
-                          }}
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleVIStatusChange("Approved");
+                          handleApproveVehicleInfo(['VehicleInfo.status']);
+                        }}
                         >
-                          Approve
+                        Approve
                         </button>
 
                         <button
-                          className={styles.rejectButton}
-                          onClick={() => {
-                            handleVIStatusChange("Rejected");
-                            handleRejectVehicleInfo(["VehicleInfo.status"]);
-                          }}
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleVIStatusChange("Rejected");
+                          handleRejectVehicleInfo(['VehicleInfo.status']);
+                        }}
                         >
-                          <img src={CloseIcon} alt="Icon" />
-                          Reject
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
                         </button>
                       </>
                     )}
@@ -1834,19 +1809,19 @@ useEffect(() => {
                     {VIStatus === "Approved" && (
                       <>
                         <button className={styles.approvedButton}>
-                          <img src={TickIcon} alt="Icon" />
-                          Approved
+                        <img src={TickIcon} alt="Icon" />
+                        Approved
                         </button>
-
+      
                         <button
-                          className={styles.rejectButton}
-                          onClick={() => {
-                            handleVIStatusChange("Rejected");
-                            handleRejectVehicleInfo(["VehicleInfo.status"]);
-                          }}
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleVIStatusChange("Rejected");
+                          handleRejectVehicleInfo(['VehicleInfo.status']);
+                        }}
                         >
-                          <img src={CloseIcon} alt="Icon" />
-                          Reject
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
                         </button>
                       </>
                     )}
@@ -1854,35 +1829,41 @@ useEffect(() => {
                     {VIStatus === "Rejected" && (
                       <>
                         <button
-                          className={styles.approveButton}
-                          onClick={() => {
-                            handleVIStatusChange("Approved");
-                            handleApproveVehicleInfo(["VehicleInfo.status"]);
-                          }}
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleVIStatusChange("Approved");
+                          handleApproveVehicleInfo(['VehicleInfo.status']);
+                        }}
                         >
-                          Approve
+                        Approve
                         </button>
                         <button className={styles.rejectedButton}>
-                          <img src={CloseIcon} alt="Icon" />
-                          Rejected
+                        <img src={CloseIcon} alt="Icon" />
+                        Rejected
                         </button>
                       </>
                     )}
                   </>
                 </div>
               </div>
+
             </div>
+
+
+
+
+
 
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
-                  <div className={styles.spanbadgeWrapper1}>
+                  <div className={styles.spanbadgeWrapper1}> 
                     <img
-                      className={styles.spanavatarIcon}
-                      alt=""
-                      src={`/${getIconForStatus(ARStatus)}.svg`}
+                       className={styles.spanavatarIcon}
+                       alt=""
+                       src={`/${getIconForStatus(ARStatus)}.svg`}  
                     />
-                  </div>
+                  </div> 
                   <p className={styles.docTitle}>Address and Routes</p>
                 </div>
 
@@ -1891,28 +1872,24 @@ useEffect(() => {
                     {(ARStatus === "In Review" || ARStatus === "Pending") && (
                       <>
                         <button
-                          className={styles.approveButton}
-                          onClick={() => {
-                            handleARStatusChange("Approved");
-                            handleApproveAddressAndRoutes([
-                              "AddressAndRoutes.status",
-                            ]);
-                          }}
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleARStatusChange("Approved");
+                          handleApproveAddressAndRoutes(['AddressAndRoutes.status']);
+                        }}
                         >
-                          Approve
+                        Approve
                         </button>
 
                         <button
-                          className={styles.rejectButton}
-                          onClick={() => {
-                            handleARStatusChange("Rejected");
-                            handleRejectAddressAndRoutes([
-                              "AddressAndRoutes.status",
-                            ]);
-                          }}
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleARStatusChange("Rejected");
+                          handleRejectAddressAndRoutes(['AddressAndRoutes.status']);
+                        }}
                         >
-                          <img src={CloseIcon} alt="Icon" />
-                          Reject
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
                         </button>
                       </>
                     )}
@@ -1920,21 +1897,19 @@ useEffect(() => {
                     {ARStatus === "Approved" && (
                       <>
                         <button className={styles.approvedButton}>
-                          <img src={TickIcon} alt="Icon" />
-                          Approved
+                        <img src={TickIcon} alt="Icon" />
+                        Approved
                         </button>
-
+      
                         <button
-                          className={styles.rejectButton}
-                          onClick={() => {
-                            handleARStatusChange("Rejected");
-                            handleRejectAddressAndRoutes([
-                              "AddressAndRoutes.status",
-                            ]);
-                          }}
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleARStatusChange("Rejected");
+                          handleRejectAddressAndRoutes(['AddressAndRoutes.status']);
+                        }}
                         >
-                          <img src={CloseIcon} alt="Icon" />
-                          Reject
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
                         </button>
                       </>
                     )}
@@ -1942,53 +1917,53 @@ useEffect(() => {
                     {ARStatus === "Rejected" && (
                       <>
                         <button
-                          className={styles.approveButton}
-                          onClick={() => {
-                            handleARStatusChange("Approved");
-                            handleApproveAddressAndRoutes([
-                              "AddressAndRoutes.status",
-                            ]);
-                          }}
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleARStatusChange("Approved");
+                          handleApproveAddressAndRoutes(['AddressAndRoutes.status']);
+                        }}
                         >
-                          Approve
+                        Approve
                         </button>
                         <button className={styles.rejectedButton}>
-                          <img src={CloseIcon} alt="Icon" />
-                          Rejected
+                        <img src={CloseIcon} alt="Icon" />
+                        Rejected
                         </button>
                       </>
                     )}
                   </>
                 </div>
               </div>
+
             </div>
           </div>
+
         </div>
 
-        {/* ... (test) */}
+{/* ... (test) */}
 
         <div className={styles.attachedDocumentContainer}>
           <p className={styles.attachedDocument}>Attached Documents</p>
-
+          
           <div className={styles.outerContainer}>
-            <div className={styles.headers}>
-              <p>Document Type</p>
-              <p>Document</p>
-              <p>Status</p>
-            </div>
+              <div className={styles.headers}>
+                 <p>Document Type</p>
+                 <p>Document</p>
+                 <p>Status</p>
+              </div>
           </div>
 
           <div className={styles.documentsContainerParent}>
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
-                  <div className={styles.spanbadgeWrapper1}>
+                <div className={styles.spanbadgeWrapper1}> 
                     <img
-                      className={styles.spanavatarIcon}
-                      alt=""
-                      src={`/${getIconForStatus(DLStatus)}.svg`}
+                       className={styles.spanavatarIcon}
+                       alt=""
+                       src={`/${getIconForStatus(DLStatus)}.svg`}  
                     />
-                  </div>
+                  </div> 
                   <p className={styles.docTitle}>Driving License</p>
                 </div>
                 <div className={styles.document2ndContainer}>
@@ -2005,28 +1980,24 @@ useEffect(() => {
                     {(DLStatus === "In Review" || DLStatus === "Pending") && (
                       <>
                         <button
-                          className={styles.approveButton}
-                          onClick={() => {
-                            handleDLStatusChange("Approved");
-                            handleApproveDriverLicense([
-                              "DrivingLicense.status",
-                            ]);
-                          }}
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleDLStatusChange("Approved");
+                          handleApproveDriverLicense(['DrivingLicense.status']); 
+                        }}
                         >
-                          Approve
+                        Approve
                         </button>
 
                         <button
-                          className={styles.rejectButton}
-                          onClick={() => {
-                            handleDLStatusChange("Rejected");
-                            handleRejectDriverLicense([
-                              "DrivingLicense.status",
-                            ]);
-                          }}
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleDLStatusChange("Rejected");
+                          handleRejectDriverLicense(['DrivingLicense.status']);
+                        }}
                         >
-                          <img src={CloseIcon} alt="Icon" />
-                          Reject
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
                         </button>
                       </>
                     )}
@@ -2034,21 +2005,19 @@ useEffect(() => {
                     {DLStatus === "Approved" && (
                       <>
                         <button className={styles.approvedButton}>
-                          <img src={TickIcon} alt="Icon" />
-                          Approved
+                        <img src={TickIcon} alt="Icon" />
+                        Approved
                         </button>
-
+      
                         <button
-                          className={styles.rejectButton}
-                          onClick={() => {
-                            handleDLStatusChange("Rejected");
-                            handleRejectDriverLicense([
-                              "DrivingLicense.status",
-                            ]);
-                          }}
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleDLStatusChange("Rejected");
+                          handleRejectDriverLicense(['DrivingLicense.status']);
+                        }}
                         >
-                          <img src={CloseIcon} alt="Icon" />
-                          Reject
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
                         </button>
                       </>
                     )}
@@ -2056,19 +2025,17 @@ useEffect(() => {
                     {DLStatus === "Rejected" && (
                       <>
                         <button
-                          className={styles.approveButton}
-                          onClick={() => {
-                            handleDLStatusChange("Approved");
-                            handleApproveDriverLicense([
-                              "DrivingLicense.status",
-                            ]);
-                          }}
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleDLStatusChange("Approved");
+                          handleApproveDriverLicense(['DrivingLicense.status']); 
+                        }}
                         >
-                          Approve
+                        Approve
                         </button>
                         <button className={styles.rejectedButton}>
-                          <img src={CloseIcon} alt="Icon" />
-                          Rejected
+                        <img src={CloseIcon} alt="Icon" />
+                        Rejected
                         </button>
                       </>
                     )}
@@ -2080,15 +2047,11 @@ useEffect(() => {
                   <div className={styles.dropdown}>
                     <p className={styles.info}>
                       Driving License Number Plate -{" "}
-                      <span className={styles.blueText}>
-                        {driverInfo && driverInfo.drivingLicenseNumber}
-                      </span>
+                      <span className={styles.blueText}>{driverInfo && driverInfo.drivingLicenseNumber}</span>
                     </p>
                     <p className={styles.info}>
                       Expiration Date -{" "}
-                      <span className={styles.blueText}>
-                        {driverInfo && driverInfo.expireDate}
-                      </span>
+                      <span className={styles.blueText}>{driverInfo && driverInfo.expireDate}</span>
                     </p>
                     <div className={styles.dropdownCaption}>
                       <div className={styles.greyText}>
@@ -2102,30 +2065,17 @@ useEffect(() => {
                       <div className={styles.miniDropdownContainer}>
                         <div className={styles.viewsTag}>Front View</div>
                         <div className={styles.uploadButtonContainer}>
-                          <button
-                            className={styles.nameTag}
-                            onClick={() =>
-                              viewButtons("Driving License/Front Image", 0)
-                            }
-                          >
-                            View
-                          </button>
+                          <button className={styles.nameTag} onClick={() => viewButtons("Driving License/Front Image", 0)}>View</button>
                           <button className={styles.uploadBtn}>
                             <label htmlFor="fileInput2" className={styles.upld}>
                               <b> Upload </b>
                               <input
                                 id="fileInput2"
                                 type="file"
-                                style={{ display: "none" }}
+                                style={{ display: 'none' }}
                                 onChange={(e) => {
                                   const file = e.target.files[0];
-                                  uploaddriverimageToFirestore(
-                                    file,
-                                    documentId,
-                                    "Driving License/Front Image",
-                                    fetchImageUrl,
-                                    0
-                                  );
+                                  uploaddriverimageToFirestore(file, documentId, "Driving License/Front Image", fetchImageUrl, 0);
                                 }}
                               />
                             </label>
@@ -2136,35 +2086,23 @@ useEffect(() => {
                       <div className={styles.miniDropdownContainer}>
                         <div className={styles.viewsTag}>Back View</div>
                         <div className={styles.uploadButtonContainer}>
-                          <button
-                            className={styles.nameTag}
-                            onClick={() =>
-                              viewButtons("Driving License/Rear Image", 0)
-                            }
-                          >
-                            View
-                          </button>
+                          <button className={styles.nameTag} onClick={() => viewButtons("Driving License/Rear Image", 0)}>View</button>
                           <button className={styles.uploadBtn}>
                             <label htmlFor="fileInput3" className={styles.upld}>
                               <b> Upload </b>
                               <input
                                 id="fileInput3"
                                 type="file"
-                                style={{ display: "none" }}
+                                style={{ display: 'none' }}
                                 onChange={(e) => {
                                   const file = e.target.files[0];
-                                  uploaddriverimageToFirestore(
-                                    file,
-                                    documentId,
-                                    "Driving License/Rear Image",
-                                    fetchImageUrl,
-                                    0
-                                  );
+                                  uploaddriverimageToFirestore(file, documentId, "Driving License/Rear Image", fetchImageUrl, 0);
                                 }}
                               />
                             </label>
                             <img alt="" src={uplo} />
                           </button>
+
                         </div>
                       </div>
                     </div>
@@ -2176,13 +2114,13 @@ useEffect(() => {
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
-                  <div className={styles.spanbadgeWrapper1}>
+                  <div className={styles.spanbadgeWrapper1}> 
                     <img
-                      className={styles.spanavatarIcon}
-                      alt=""
-                      src={`/${getIconForStatus(NICStatus)}.svg`}
+                       className={styles.spanavatarIcon}
+                       alt=""
+                       src={`/${getIconForStatus(NICStatus)}.svg`}  
                     />
-                  </div>
+                  </div> 
                   <p className={styles.docTitle}> NIC Information</p>
                 </div>
                 <div className={styles.document2ndContainer}>
@@ -2201,24 +2139,24 @@ useEffect(() => {
                     {(NICStatus === "In Review" || NICStatus === "Pending") && (
                       <>
                         <button
-                          className={styles.approveButton}
-                          onClick={() => {
-                            handleNICStatusChange("Approved");
-                            handleApproveNIC(["NIC.status"]);
-                          }}
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleNICStatusChange("Approved");
+                          handleApproveNIC(['NIC.status']); 
+                        }}
                         >
-                          Approve
+                        Approve
                         </button>
 
                         <button
-                          className={styles.rejectButton}
-                          onClick={() => {
-                            handleNICStatusChange("Rejected");
-                            handleRejectNIC(["NIC.status"]);
-                          }}
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleNICStatusChange("Rejected");
+                          handleRejectNIC(['NIC.status']);
+                        }}
                         >
-                          <img src={CloseIcon} alt="Icon" />
-                          Reject
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
                         </button>
                       </>
                     )}
@@ -2226,19 +2164,19 @@ useEffect(() => {
                     {NICStatus === "Approved" && (
                       <>
                         <button className={styles.approvedButton}>
-                          <img src={TickIcon} alt="Icon" />
-                          Approved
+                        <img src={TickIcon} alt="Icon" />
+                        Approved
                         </button>
-
+      
                         <button
-                          className={styles.rejectButton}
-                          onClick={() => {
-                            handleNICStatusChange("Rejected");
-                            handleRejectNIC(["NIC.status"]);
-                          }}
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleNICStatusChange("Rejected");
+                          handleRejectNIC(['NIC.status']);
+                        }}
                         >
-                          <img src={CloseIcon} alt="Icon" />
-                          Reject
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
                         </button>
                       </>
                     )}
@@ -2246,17 +2184,17 @@ useEffect(() => {
                     {NICStatus === "Rejected" && (
                       <>
                         <button
-                          className={styles.approveButton}
-                          onClick={() => {
-                            handleNICStatusChange("Approved");
-                            handleApproveNIC(["NIC.status"]);
-                          }}
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleNICStatusChange("Approved");
+                          handleApproveNIC(['NIC.status']); 
+                        }}
                         >
-                          Approve
+                        Approve
                         </button>
                         <button className={styles.rejectedButton}>
-                          <img src={CloseIcon} alt="Icon" />
-                          Rejected
+                        <img src={CloseIcon} alt="Icon" />
+                        Rejected
                         </button>
                       </>
                     )}
@@ -2276,28 +2214,17 @@ useEffect(() => {
                   <div className={styles.frnt}>
                     <div className={styles.frntViw}>Front view</div>
                     <div className={styles.div}>
-                      <button
-                        className={styles.viw}
-                        onClick={() => viewButtons("NIC Images/frontimage", 0)}
-                      >
-                        View
-                      </button>
+                      <button className={styles.viw} onClick={() => viewButtons("NIC Images/frontimage", 0)}>View</button>
                       <button className={styles.but}>
                         <label htmlFor="fileInput0" className={styles.upld}>
                           <b> Upload </b>
                           <input
                             id="fileInput0"
                             type="file"
-                            style={{ display: "none" }}
+                            style={{ display: 'none' }}
                             onChange={(e) => {
                               const file = e.target.files[0];
-                              uploaddriverimageToFirestore(
-                                file,
-                                documentId,
-                                "NIC Images/frontimage",
-                                fetchImageUrl,
-                                0
-                              );
+                              uploaddriverimageToFirestore(file, documentId, "NIC Images/frontimage", fetchImageUrl, 0);
                             }}
                           />
                         </label>
@@ -2308,28 +2235,17 @@ useEffect(() => {
                   <div className={styles.frnt}>
                     <div className={styles.frntViw}>Back view</div>
                     <div className={styles.div}>
-                      <button
-                        className={styles.viw}
-                        onClick={() => viewButtons("NIC Images/rearimage", 0)}
-                      >
-                        View
-                      </button>
+                      <button className={styles.viw} onClick={() => viewButtons("NIC Images/rearimage", 0)}>View</button>
                       <button className={styles.but}>
                         <label htmlFor="fileInput1" className={styles.upld}>
                           <b> Upload </b>
                           <input
                             id="fileInput1"
                             type="file"
-                            style={{ display: "none" }}
+                            style={{ display: 'none' }}
                             onChange={(e) => {
                               const file = e.target.files[0];
-                              uploaddriverimageToFirestore(
-                                file,
-                                documentId,
-                                "NIC Images/rearimage",
-                                fetchImageUrl,
-                                0
-                              );
+                              uploaddriverimageToFirestore(file, documentId, "NIC Images/rearimage", fetchImageUrl, 0);
                             }}
                           />
                         </label>
@@ -2341,16 +2257,20 @@ useEffect(() => {
               )}
             </div>
 
+
+
+
+
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
-                  <div className={styles.spanbadgeWrapper1}>
+                  <div className={styles.spanbadgeWrapper1}> 
                     <img
-                      className={styles.spanavatarIcon}
-                      alt=""
-                      src={`/${getIconForStatus(vehicleImageStatus)}.svg`}
+                       className={styles.spanavatarIcon}
+                       alt=""
+                       src={`/${getIconForStatus(vehicleImageStatus)}.svg`}  
                     />
-                  </div>
+                  </div> 
                   <p className={styles.docTitle}>Vehicle Image</p>
                 </div>
                 <div className={styles.document2ndContainer}>
@@ -2364,28 +2284,27 @@ useEffect(() => {
                 </div>
                 <div className={styles.document3rdContainer}>
                   <>
-                    {(vehicleImageStatus === "In Review" ||
-                      vehicleImageStatus === "Pending") && (
+                    {(vehicleImageStatus === "In Review" || vehicleImageStatus === "Pending") && (
                       <>
                         <button
-                          className={styles.approveButton}
-                          onClick={() => {
-                            handleVehicleImageStatusChange("Approved");
-                            handleApproveVehicleImage(["VehicleImage.status"]);
-                          }}
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleVehicleImageStatusChange("Approved");
+                          handleApproveVehicleImage(['VehicleImage.status']); 
+                        }}
                         >
-                          Approve
+                        Approve
                         </button>
 
                         <button
-                          className={styles.rejectButton}
-                          onClick={() => {
-                            handleVehicleImageStatusChange("Rejected");
-                            handleRejectVehicleImage(["VehicleImage.status"]);
-                          }}
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleVehicleImageStatusChange("Rejected");
+                          handleRejectVehicleImage(['VehicleImage.status']);
+                        }}
                         >
-                          <img src={CloseIcon} alt="Icon" />
-                          Reject
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
                         </button>
                       </>
                     )}
@@ -2393,19 +2312,19 @@ useEffect(() => {
                     {vehicleImageStatus === "Approved" && (
                       <>
                         <button className={styles.approvedButton}>
-                          <img src={TickIcon} alt="Icon" />
-                          Approved
+                        <img src={TickIcon} alt="Icon" />
+                        Approved
                         </button>
-
+      
                         <button
-                          className={styles.rejectButton}
-                          onClick={() => {
-                            handleVehicleImageStatusChange("Rejected");
-                            handleRejectVehicleImage(["VehicleImage.status"]);
-                          }}
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleVehicleImageStatusChange("Rejected");
+                          handleRejectVehicleImage(['VehicleImage.status']);
+                        }}
                         >
-                          <img src={CloseIcon} alt="Icon" />
-                          Reject
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
                         </button>
                       </>
                     )}
@@ -2413,17 +2332,17 @@ useEffect(() => {
                     {vehicleImageStatus === "Rejected" && (
                       <>
                         <button
-                          className={styles.approveButton}
-                          onClick={() => {
-                            handleVehicleImageStatusChange("Approved");
-                            handleApproveVehicleImage(["VehicleImage.status"]);
-                          }}
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleVehicleImageStatusChange("Approved");
+                          handleApproveVehicleImage(['VehicleImage.status']); 
+                        }}
                         >
-                          Approve
+                        Approve
                         </button>
                         <button className={styles.rejectedButton}>
-                          <img src={CloseIcon} alt="Icon" />
-                          Rejected
+                        <img src={CloseIcon} alt="Icon" />
+                        Rejected
                         </button>
                       </>
                     )}
@@ -2435,9 +2354,7 @@ useEffect(() => {
                   <div className={styles.dropdown}>
                     <p className={styles.info}>
                       Vehicle Condition -{" "}
-                      <span className={styles.blueText}>
-                        {driverInfo && driverInfo.vehicleCondition}
-                      </span>
+                      <span className={styles.blueText}>{driverInfo && driverInfo.vehicleCondition}</span>
                     </p>
 
                     <div className={styles.dropdownContent}>
@@ -2445,64 +2362,38 @@ useEffect(() => {
                       <div className={styles.miniDropdownContainer}>
                         <div className={styles.viewsTag}>Front View</div>
                         <div className={styles.uploadButtonContainer}>
-                          <button
-                            className={styles.nameTag}
-                            onClick={() =>
-                              viewButtons("Vehicle Images/frontimage", 0)
-                            }
-                          >
-                            View
-                          </button>
+                          <button className={styles.nameTag} onClick={() => viewButtons("Vehicle Images/frontimage", 0)}>View</button>
                           <button className={styles.uploadBtn}>
-                            <label htmlFor="fileInput4" className={styles.upld}>
-                              <b> Upload </b>
-                              <input
-                                id="fileInput4"
-                                type="file"
-                                style={{ display: "none" }}
-                                onChange={(e) => {
-                                  const file = e.target.files[0];
-                                  uploaddriverimageToFirestore(
-                                    file,
-                                    documentId,
-                                    "Vehicle Images/frontimage",
-                                    fetchImageUrl,
-                                    0
-                                  );
-                                }}
-                              />
-                            </label>
-                            <img alt="" src={uplo} />
+                              <label htmlFor="fileInput4" className={styles.upld}>
+                                <b> Upload </b>
+                                <input
+                                  id="fileInput4"
+                                  type="file"
+                                  style={{ display: 'none' }}
+                                  onChange={(e) => {
+                                    const file = e.target.files[0];
+                                    uploaddriverimageToFirestore(file, documentId, "Vehicle Images/frontimage", fetchImageUrl, 0);
+                                  }}
+                                />
+                              </label>
+                              <img alt="" src={uplo} />
                           </button>
                         </div>
                       </div>
                       <div className={styles.miniDropdownContainer}>
                         <div className={styles.viewsTag}>Back View</div>
                         <div className={styles.uploadButtonContainer}>
-                          <button
-                            className={styles.nameTag}
-                            onClick={() =>
-                              viewButtons("Vehicle Images/rearimage", 0)
-                            }
-                          >
-                            View
-                          </button>
+                          <button className={styles.nameTag} onClick={() => viewButtons("Vehicle Images/rearimage", 0)}>View</button>
                           <button className={styles.uploadBtn}>
                             <label htmlFor="fileInput5" className={styles.upld}>
                               <b> Upload </b>
                               <input
                                 id="fileInput5"
                                 type="file"
-                                style={{ display: "none" }}
+                                style={{ display: 'none' }}
                                 onChange={(e) => {
                                   const file = e.target.files[0];
-                                  uploaddriverimageToFirestore(
-                                    file,
-                                    documentId,
-                                    "Vehicle Images/rearimage",
-                                    fetchImageUrl,
-                                    0
-                                  );
+                                  uploaddriverimageToFirestore(file, documentId, "Vehicle Images/rearimage", fetchImageUrl, 0);
                                 }}
                               />
                             </label>
@@ -2513,30 +2404,17 @@ useEffect(() => {
                       <div className={styles.miniDropdownContainer}>
                         <div className={styles.viewsTag}>Side View</div>
                         <div className={styles.uploadButtonContainer}>
-                          <button
-                            className={styles.nameTag}
-                            onClick={() =>
-                              viewButtons("Vehicle Images/sideimage", 0)
-                            }
-                          >
-                            View
-                          </button>
+                          <button className={styles.nameTag} onClick={() => viewButtons("Vehicle Images/sideimage", 0)}>View</button>
                           <button className={styles.uploadBtn}>
                             <label htmlFor="fileInput6" className={styles.upld}>
                               <b> Upload </b>
                               <input
                                 id="fileInput6"
                                 type="file"
-                                style={{ display: "none" }}
+                                style={{ display: 'none' }}
                                 onChange={(e) => {
                                   const file = e.target.files[0];
-                                  uploaddriverimageToFirestore(
-                                    file,
-                                    documentId,
-                                    "Vehicle Images/sideimage",
-                                    fetchImageUrl,
-                                    0
-                                  );
+                                  uploaddriverimageToFirestore(file, documentId, "Vehicle Images/sideimage", fetchImageUrl, 0);
                                 }}
                               />
                             </label>
@@ -2552,18 +2430,18 @@ useEffect(() => {
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
-                  <div className={styles.spanbadgeWrapper1}>
+                  <div className={styles.spanbadgeWrapper1}> 
                     <img
-                      className={styles.spanavatarIcon}
-                      alt=""
-                      src={`/${getIconForStatus(RLStatus)}.svg`}
+                       className={styles.spanavatarIcon}
+                       alt=""
+                       src={`/${getIconForStatus(RLStatus)}.svg`}  
                     />
-                  </div>
+                  </div> 
                   <p className={styles.docTitle}>Revenue License</p>
                 </div>
                 <div className={styles.document2ndContainer}>
                   <img src={documentSVG} />
-                  {/*<div className={styles.two}>2/2</div>*/}
+                   {/*<div className={styles.two}>2/2</div>*/}
                   <img
                     src={CaretCircleDown}
                     alt="dropdown icon"
@@ -2575,28 +2453,24 @@ useEffect(() => {
                     {(RLStatus === "In Review" || RLStatus === "Pending") && (
                       <>
                         <button
-                          className={styles.approveButton}
-                          onClick={() => {
-                            handleRLStatusChange("Approved");
-                            handleApproveRevenueLicense([
-                              "RevenueLicense.status",
-                            ]);
-                          }}
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleRLStatusChange("Approved");
+                          handleApproveRevenueLicense(['RevenueLicense.status']); 
+                        }}
                         >
-                          Approve
+                        Approve
                         </button>
 
                         <button
-                          className={styles.rejectButton}
-                          onClick={() => {
-                            handleRLStatusChange("Rejected");
-                            handleRejectRevenueLicense([
-                              "RevenueLicense.status",
-                            ]);
-                          }}
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleRLStatusChange("Rejected");
+                          handleRejectRevenueLicense(['RevenueLicense.status']);
+                        }}
                         >
-                          <img src={CloseIcon} alt="Icon" />
-                          Reject
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
                         </button>
                       </>
                     )}
@@ -2604,19 +2478,19 @@ useEffect(() => {
                     {RLStatus === "Approved" && (
                       <>
                         <button className={styles.approvedButton}>
-                          <img src={TickIcon} alt="Icon" />
-                          Approved
+                        <img src={TickIcon} alt="Icon" />
+                        Approved
                         </button>
-
+      
                         <button
-                          className={styles.rejectButton}
-                          onClick={() => {
-                            handleRLStatusChange("Rejected");
-                            handleRejectpersonalinfo(["RevenueLicense.status"]);
-                          }}
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleRLStatusChange("Rejected");
+                          handleRejectpersonalinfo(['RevenueLicense.status']);
+                        }}
                         >
-                          <img src={CloseIcon} alt="Icon" />
-                          Reject
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
                         </button>
                       </>
                     )}
@@ -2624,19 +2498,17 @@ useEffect(() => {
                     {RLStatus === "Rejected" && (
                       <>
                         <button
-                          className={styles.approveButton}
-                          onClick={() => {
-                            handleRLStatusChange("Approved");
-                            handleRejectRevenueLicense([
-                              "RevenueLicense.status",
-                            ]);
-                          }}
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleRLStatusChange("Approved");
+                          handleRejectRevenueLicense(['RevenueLicense.status']); 
+                        }}
                         >
-                          Approve
+                        Approve
                         </button>
                         <button className={styles.rejectedButton}>
-                          <img src={CloseIcon} alt="Icon" />
-                          Rejected
+                        <img src={CloseIcon} alt="Icon" />
+                        Rejected
                         </button>
                       </>
                     )}
@@ -2645,45 +2517,16 @@ useEffect(() => {
               </div>
               {revenueLicenseDropdown && (
                 <div className={styles.drpdwn}>
-                  <p
-                    className={styles.info}
-                    style={{ left: "20px", position: "relative" }}
-                  >
-                    Revenue License number -{" "}
-                    <span className={styles.blueText}>
-                      {driverInfo && driverInfo.RLNumber}
-                    </span>
-                  </p>
+                <p className={styles.info} style={{ left: "20px", position: "relative"}}>
+                  Revenue License number -{" "}
+                  <span className={styles.blueText}>1234567890</span>
+                </p>
                   <div className={styles.frnt}>
                     <div className={styles.frntViw}>Front view</div>
                     <div className={styles.div}>
-                      <button
-                        className={styles.viw}
-                        onClick={() =>
-                          viewButtons("Vehicle Revenue Documents/frontimage", 0)
-                        }
-                      >
-                        View
-                      </button>
+                      <button className={styles.viw}>View</button>
                       <button className={styles.but}>
-                        <label htmlFor="fileInput20" className={styles.upld}>
-                          <b> Upload </b>
-                          <input
-                            id="fileInput20"
-                            type="file"
-                            style={{ display: "none" }}
-                            onChange={(e) => {
-                              const file = e.target.files[0];
-                              uploaddriverimageToFirestore(
-                                file,
-                                documentId,
-                                "Vehicle Revenue Documents/frontimage",
-                                fetchImageUrl,
-                                0
-                              );
-                            }}
-                          />
-                        </label>
+                        <b className={styles.upld}>Upload</b>
                         <img alt="" src={uplo} />
                       </button>
                     </div>
@@ -2691,33 +2534,9 @@ useEffect(() => {
                   <div className={styles.frnt}>
                     <div className={styles.frntViw}>Back view</div>
                     <div className={styles.div}>
-                      <button
-                        className={styles.viw}
-                        onClick={() =>
-                          viewButtons("Vehicle Revenue Documents/rearimage", 0)
-                        }
-                      >
-                        View
-                      </button>
+                      <button className={styles.viw}>View</button>
                       <button className={styles.but}>
-                        <label htmlFor="fileInput20" className={styles.upld}>
-                          <b> Upload </b>
-                          <input
-                            id="fileInput20"
-                            type="file"
-                            style={{ display: "none" }}
-                            onChange={(e) => {
-                              const file = e.target.files[0];
-                              uploaddriverimageToFirestore(
-                                file,
-                                documentId,
-                                "Vehicle Revenue Documents/rearimage",
-                                fetchImageUrl,
-                                0
-                              );
-                            }}
-                          />
-                        </label>
+                        <b className={styles.upld}>Upload</b>
                         <img alt="" src={uplo} />
                       </button>
                     </div>
@@ -2725,21 +2544,19 @@ useEffect(() => {
                 </div>
               )}
             </div>
-
-            {/* vehicle reg added ^ */}
+            
+{/* vehicle reg added ^ */}
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
-                  <div className={styles.spanbadgeWrapper1}>
+                <div className={styles.spanbadgeWrapper1}> 
                     <img
-                      className={styles.spanavatarIcon}
-                      alt=""
-                      src={`/${getIconForStatus(VRDStatus)}.svg`}
+                       className={styles.spanavatarIcon}
+                       alt=""
+                       src={`/${getIconForStatus(VRDStatus)}.svg`}  
                     />
-                  </div>
-                  <p className={styles.docTitle}>
-                    Vehicle Registration Document
-                  </p>
+                  </div> 
+                  <p className={styles.docTitle}>Vehicle Registration Document</p>
                 </div>
                 <div className={styles.document2ndContainer}>
                   <img src={documentSVG} />
@@ -2755,24 +2572,24 @@ useEffect(() => {
                     {(VRDStatus === "In Review" || VRDStatus === "Pending") && (
                       <>
                         <button
-                          className={styles.approveButton}
-                          onClick={() => {
-                            handleVRDStatusChange("Approved");
-                            handleApproveVRD(["VehicleRegistration.status"]);
-                          }}
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleVRDStatusChange("Approved");
+                          handleApproveVRD(['VehicleRegistration.status']); 
+                        }}
                         >
-                          Approve
+                        Approve
                         </button>
 
                         <button
-                          className={styles.rejectButton}
-                          onClick={() => {
-                            handleVRDStatusChange("Rejected");
-                            ["VehicleRegistration.status"];
-                          }}
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleVRDStatusChange("Rejected");
+                          (['VehicleRegistration.status']);
+                        }}
                         >
-                          <img src={CloseIcon} alt="Icon" />
-                          Reject
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
                         </button>
                       </>
                     )}
@@ -2780,19 +2597,19 @@ useEffect(() => {
                     {VRDStatus === "Approved" && (
                       <>
                         <button className={styles.approvedButton}>
-                          <img src={TickIcon} alt="Icon" />
-                          Approved
+                        <img src={TickIcon} alt="Icon" />
+                        Approved
                         </button>
-
+      
                         <button
-                          className={styles.rejectButton}
-                          onClick={() => {
-                            handleVRDStatusChange("Rejected");
-                            handleRejectVRD(["VehicleRegistration.status"]);
-                          }}
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleVRDStatusChange("Rejected");
+                          handleRejectVRD(['VehicleRegistration.status']);
+                        }}
                         >
-                          <img src={CloseIcon} alt="Icon" />
-                          Reject
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
                         </button>
                       </>
                     )}
@@ -2800,17 +2617,17 @@ useEffect(() => {
                     {VRDStatus === "Rejected" && (
                       <>
                         <button
-                          className={styles.approveButton}
-                          onClick={() => {
-                            handleVRDStatusChange("Approved");
-                            handleApproveVRD(["VehicleRegistration.status"]);
-                          }}
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleVRDStatusChange("Approved");
+                          handleApproveVRD(['VehicleRegistration.status']); 
+                        }}
                         >
-                          Approve
+                        Approve
                         </button>
                         <button className={styles.rejectedButton}>
-                          <img src={CloseIcon} alt="Icon" />
-                          Rejected
+                        <img src={CloseIcon} alt="Icon" />
+                        Rejected
                         </button>
                       </>
                     )}
@@ -2820,38 +2637,23 @@ useEffect(() => {
               {VRDropdown && (
                 <div className={styles.dropdownContainer}>
                   <div className={styles.dropdown}>
+
                     <div className={styles.dropdownContent}>
                       {/* Dropdown options */}
                       <div className={styles.miniDropdownContainer}>
                         <div className={styles.viewsTag}>Document 1</div>
                         <div className={styles.uploadButtonContainer}>
-                          <button
-                            className={styles.nameTag}
-                            onClick={() =>
-                              viewButtons("Vehicle Registration Documents", 0)
-                            }
-                          >
-                            View
-                          </button>
+                          <button className={styles.nameTag} onClick={() => viewButtons("Vehicle Registration/doc1", 0)}>View</button>
                           <button className={styles.uploadBtn}>
-                            <label
-                              htmlFor="fileInput24"
-                              className={styles.upld}
-                            >
+                            <label htmlFor="fileInput10" className={styles.upld}>
                               <b> Upload </b>
                               <input
-                                id="fileInput24"
+                                id="fileInput10"
                                 type="file"
-                                style={{ display: "none" }}
+                                style={{ display: 'none' }}
                                 onChange={(e) => {
                                   const file = e.target.files[0];
-                                  uploaddriverimageToFirestore(
-                                    file,
-                                    documentId,
-                                    "Vehicle Registration Documents",
-                                    fetchImageUrl,
-                                    0
-                                  );
+                                  uploaddriverimageToFirestore(file, documentId, "Vehicle Registration/doc1", fetchImageUrl, 0);
                                 }}
                               />
                             </label>
@@ -2862,16 +2664,23 @@ useEffect(() => {
                       <div className={styles.miniDropdownContainer}>
                         <div className={styles.viewsTag}>Document 2</div>
                         <div className={styles.uploadButtonContainer}>
-                          <button className={styles.nameTag}>View</button>
+                          <button className={styles.nameTag} onClick={() => viewButtons("Vehicle Registration/doc2", 0)}>View</button>
                           <button className={styles.uploadBtn}>
-                            <label
-                              htmlFor="fileInput11"
-                              className={styles.upld}
-                            >
+                            <label htmlFor="fileInput11" className={styles.upld}>
                               <b> Upload </b>
+                              <input
+                                id="fileInput11"
+                                type="file"
+                                style={{ display: 'none' }}
+                                onChange={(e) => {
+                                  const file = e.target.files[0];
+                                  uploaddriverimageToFirestore(file, documentId, "Vehicle Registration/doc2", fetchImageUrl, 0);
+                                }}
+                              />
                             </label>
                             <img alt="" src={uplo} />
                           </button>
+
                         </div>
                       </div>
                     </div>
@@ -2879,18 +2688,18 @@ useEffect(() => {
                 </div>
               )}
             </div>
-            {/* vehicle reg added ^ */}
+{/* vehicle reg added ^ */}
 
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
-                  <div className={styles.spanbadgeWrapper1}>
+                <div className={styles.spanbadgeWrapper1}> 
                     <img
-                      className={styles.spanavatarIcon}
-                      alt=""
-                      src={`/${getIconForStatus(vehicleInsuranceStatus)}.svg`}
+                       className={styles.spanavatarIcon}
+                       alt=""
+                       src={`/${getIconForStatus(vehicleInsuranceStatus)}.svg`}  
                     />
-                  </div>
+                  </div> 
                   <p className={styles.docTitle}>Vehicle Insurance</p>
                 </div>
                 <div className={styles.document2ndContainer}>
@@ -2904,32 +2713,27 @@ useEffect(() => {
                 </div>
                 <div className={styles.document3rdContainer}>
                   <>
-                    {(vehicleInsuranceStatus === "In Review" ||
-                      vehicleInsuranceStatus === "Pending") && (
+                    {(vehicleInsuranceStatus === "In Review" || vehicleInsuranceStatus === "Pending") && (
                       <>
                         <button
-                          className={styles.approveButton}
-                          onClick={() => {
-                            handleVehicleInsuranceStatusChange("Approved");
-                            handleApproveVehicleInsurance([
-                              "VehicleInsuarance.status",
-                            ]);
-                          }}
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleVehicleInsuranceStatusChange("Approved");
+                          handleApproveVehicleInsurance(['VehicleInsuarance.status']); 
+                        }}
                         >
-                          Approve
+                        Approve
                         </button>
 
                         <button
-                          className={styles.rejectButton}
-                          onClick={() => {
-                            handleVehicleInsuranceStatusChange("Rejected");
-                            handleRejectVehicleInsurance([
-                              "VehicleInsuarance.status",
-                            ]);
-                          }}
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleVehicleInsuranceStatusChange("Rejected");
+                          handleRejectVehicleInsurance(['VehicleInsuarance.status']);
+                        }}
                         >
-                          <img src={CloseIcon} alt="Icon" />
-                          Reject
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
                         </button>
                       </>
                     )}
@@ -2937,21 +2741,19 @@ useEffect(() => {
                     {vehicleInsuranceStatus === "Approved" && (
                       <>
                         <button className={styles.approvedButton}>
-                          <img src={TickIcon} alt="Icon" />
-                          Approved
+                        <img src={TickIcon} alt="Icon" />
+                        Approved
                         </button>
-
+      
                         <button
-                          className={styles.rejectButton}
-                          onClick={() => {
-                            handleVehicleInsuranceStatusChange("Rejected");
-                            handleRejectVehicleInsurance([
-                              "VehicleInsuarance.status",
-                            ]);
-                          }}
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleVehicleInsuranceStatusChange("Rejected");
+                          handleRejectVehicleInsurance(['VehicleInsuarance.status']);
+                        }}
                         >
-                          <img src={CloseIcon} alt="Icon" />
-                          Reject
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
                         </button>
                       </>
                     )}
@@ -2959,19 +2761,17 @@ useEffect(() => {
                     {vehicleInsuranceStatus === "Rejected" && (
                       <>
                         <button
-                          className={styles.approveButton}
-                          onClick={() => {
-                            handleVehicleInsuranceStatusChange("Approved");
-                            handleApproveVehicleInsurance([
-                              "VehicleInsuarance.status",
-                            ]);
-                          }}
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleVehicleInsuranceStatusChange("Approved");
+                          handleApproveVehicleInsurance(['VehicleInsuarance.status']); 
+                        }}
                         >
-                          Approve
+                        Approve
                         </button>
                         <button className={styles.rejectedButton}>
-                          <img src={CloseIcon} alt="Icon" />
-                          Rejected
+                        <img src={CloseIcon} alt="Icon" />
+                        Rejected
                         </button>
                       </>
                     )}
@@ -2983,33 +2783,17 @@ useEffect(() => {
                   <div className={styles.frnt}>
                     <div className={styles.frntViw}>Image1</div>
                     <div className={styles.div}>
-                      <button
-                        className={styles.viw}
-                        onClick={() =>
-                          viewButtons(
-                            "Vehicle Insurance Documents/frontimage",
-                            0
-                          )
-                        }
-                      >
-                        View
-                      </button>
+                      <button className={styles.viw} onClick={() => viewButtons("Vehicle Insurance Documents/frontimage", 0)}>View</button>
                       <button className={styles.but}>
                         <label htmlFor="fileInput7" className={styles.upld}>
                           <b> Upload </b>
                           <input
                             id="fileInput7"
                             type="file"
-                            style={{ display: "none" }}
+                            style={{ display: 'none' }}
                             onChange={(e) => {
                               const file = e.target.files[0];
-                              uploaddriverimageToFirestore(
-                                file,
-                                documentId,
-                                "Vehicle Insurance Documents/frontimage",
-                                fetchImageUrl,
-                                0
-                              );
+                              uploaddriverimageToFirestore(file, documentId, "Vehicle Insurance Documents/frontimage", fetchImageUrl, 0);
                             }}
                           />
                         </label>
@@ -3020,33 +2804,17 @@ useEffect(() => {
                   <div className={styles.frnt}>
                     <div className={styles.frntViw}>Image2</div>
                     <div className={styles.div}>
-                      <button
-                        className={styles.viw}
-                        onClick={() =>
-                          viewButtons(
-                            "Vehicle Insurance Documents/rearimage",
-                            0
-                          )
-                        }
-                      >
-                        View
-                      </button>
+                      <button className={styles.viw} onClick={() => viewButtons("Vehicle Insurance Documents/rearimage", 0)}>View</button>
                       <button className={styles.but}>
                         <label htmlFor="fileInput8" className={styles.upld}>
                           <b> Upload </b>
                           <input
                             id="fileInput8"
                             type="file"
-                            style={{ display: "none" }}
+                            style={{ display: 'none' }}
                             onChange={(e) => {
                               const file = e.target.files[0];
-                              uploaddriverimageToFirestore(
-                                file,
-                                documentId,
-                                "Vehicle Insurance Documents/rearimage",
-                                fetchImageUrl,
-                                0
-                              );
+                              uploaddriverimageToFirestore(file, documentId, "Vehicle Insurance Documents/rearimage", fetchImageUrl, 0);
                             }}
                           />
                         </label>
@@ -3061,13 +2829,13 @@ useEffect(() => {
             <div className={styles.documentContainer}>
               <div className={styles.documentContainer1}>
                 <div className={styles.document1stContainer}>
-                  <div className={styles.spanbadgeWrapper1}>
+                  <div className={styles.spanbadgeWrapper1}> 
                     <img
-                      className={styles.spanavatarIcon}
-                      alt=""
-                      src={`/${getIconForStatus(BDStatus)}.svg`}
+                       className={styles.spanavatarIcon}
+                       alt=""
+                       src={`/${getIconForStatus(BDStatus)}.svg`}  
                     />
-                  </div>
+                  </div> 
                   <p className={styles.docTitle}>Billing Documents</p>
                 </div>
                 <div className={styles.document2ndContainer}>
@@ -3084,28 +2852,24 @@ useEffect(() => {
                     {(BDStatus === "In Review" || BDStatus === "Pending") && (
                       <>
                         <button
-                          className={styles.approveButton}
-                          onClick={() => {
-                            handleBDStatusChange("Approved");
-                            handleApproveBusinessDocument([
-                              "BillingDocuments.status",
-                            ]);
-                          }}
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleBDStatusChange("Approved");
+                          handleApproveBusinessDocument(['BillingDocuments.status']); 
+                        }}
                         >
-                          Approve
+                        Approve
                         </button>
 
                         <button
-                          className={styles.rejectButton}
-                          onClick={() => {
-                            handleBDStatusChange("Rejected");
-                            handleRejectBusinessDocument([
-                              "BillingDocuments.status",
-                            ]);
-                          }}
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleBDStatusChange("Rejected");
+                          handleRejectBusinessDocument(['BillingDocuments.status']);
+                        }}
                         >
-                          <img src={CloseIcon} alt="Icon" />
-                          Reject
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
                         </button>
                       </>
                     )}
@@ -3113,21 +2877,19 @@ useEffect(() => {
                     {BDStatus === "Approved" && (
                       <>
                         <button className={styles.approvedButton}>
-                          <img src={TickIcon} alt="Icon" />
-                          Approved
+                        <img src={TickIcon} alt="Icon" />
+                        Approved
                         </button>
-
+      
                         <button
-                          className={styles.rejectButton}
-                          onClick={() => {
-                            handleBDStatusChange("Rejected");
-                            handleRejectBusinessDocument([
-                              "BillingDocuments.status",
-                            ]);
-                          }}
+                        className={styles.rejectButton}
+                        onClick={() =>{
+                          handleBDStatusChange("Rejected");
+                          handleRejectBusinessDocument(['BillingDocuments.status']);
+                        }}
                         >
-                          <img src={CloseIcon} alt="Icon" />
-                          Reject
+                        <img src={CloseIcon} alt="Icon" />
+                        Reject
                         </button>
                       </>
                     )}
@@ -3135,19 +2897,17 @@ useEffect(() => {
                     {BDStatus === "Rejected" && (
                       <>
                         <button
-                          className={styles.approveButton}
-                          onClick={() => {
-                            handleBDStatusChange("Approved");
-                            handleApproveBusinessDocument([
-                              "BillingDocuments.status",
-                            ]);
-                          }}
+                        className={styles.approveButton}
+                        onClick={() => {
+                          handleBDStatusChange("Approved");
+                          handleApproveBusinessDocument(['BillingDocuments.status']); 
+                        }}
                         >
-                          Approve
+                        Approve
                         </button>
                         <button className={styles.rejectedButton}>
-                          <img src={CloseIcon} alt="Icon" />
-                          Rejected
+                        <img src={CloseIcon} alt="Icon" />
+                        Rejected
                         </button>
                       </>
                     )}
@@ -3155,10 +2915,57 @@ useEffect(() => {
                 </div>
               </div>
               {billingDocDropdown && (
-                <div className={styles.drpdwn}>{renderImages()}</div>
-              )}
+                <div className={styles.drpdwn}>
+                <div className={styles.frnt}>
+                  <div className={styles.frntViw}>Image1</div>
+                  <div className={styles.div}>
+                    <button className={styles.viw} onClick={() => viewButtons("Billing Documents/frontimage", 0)}>View</button>
+                    <button className={styles.but}>
+                      <label htmlFor="fileInput14" className={styles.upld}>
+                        <b> Upload </b>
+                        <input
+                          id="fileInput14"
+                          type="file"
+                          style={{ display: 'none' }}
+                          onChange={(e) => {
+                            const file = e.target.files[0];
+                            uploaddriverimageToFirestore(file, documentId, "Billing Documents/frontimage", fetchImageUrl, 0);
+                          }}
+                        />
+                      </label>
+                      <img alt="" src={uplo} />
+                    </button>
+                  </div>
+                </div>
+                <div className={styles.frnt}>
+                  <div className={styles.frntViw}>Image2</div>
+                  <div className={styles.div}>
+                    <button className={styles.viw} onClick={() => viewButtons("Billing Documents/rearimage", 0)}>View</button>
+                    <button className={styles.but}>
+                      <label htmlFor="fileInput12" className={styles.upld}>
+                        <b> Upload </b>
+                        <input
+                          id="fileInput12"
+                          type="file"
+                          style={{ display: 'none' }}
+                          onChange={(e) => {
+                            const file = e.target.files[0];
+                            uploaddriverimageToFirestore(file, documentId, "Billing Documents/rearimage", fetchImageUrl, 0);
+                          }}
+                        />
+                      </label>
+                      <img alt="" src={uplo} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
             </div>
+
+            
+              
           </div>
+            
         </div>
       </section>
       <div className={styles.prof}>
@@ -3166,12 +2973,7 @@ useEffect(() => {
         <label htmlFor="file-upload">
           <img className={styles.Icon2} alt="" src="/notepencil.svg" />
         </label>
-        <input
-          id="file-upload"
-          type="file"
-          onChange={handleImageUpload}
-          style={{ display: "none" }}
-        />
+        <input id="file-upload" type="file" onChange={handleImageUpload} style={{ display: 'none' }} />
         <div className={styles.headtext}>
           <div className={styles.b}>{driverInfo && driverInfo.name}</div>
           {/*<div className={styles.a}>#100485A</div>  */}

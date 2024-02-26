@@ -1,19 +1,4 @@
-.container {
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 90vh;
-  gap: 30px;
-}
-
-.text {
-  font-weight: 100;
-  font-size: x-large;
-}
-
-
-/* .divheaderWrapperIcon {
+.divheaderWrapperIcon {
   position: absolute;
   top: 0;
   left: 0;
@@ -469,4 +454,4 @@
   width: 50%;
   height: 50%;
   overflow: hidden;
-} */
+}

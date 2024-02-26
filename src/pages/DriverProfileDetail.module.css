@@ -10,6 +10,42 @@
   flex-grow: 1;
 }
 
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  font-family: 'Poppins', 'sans-serif';
+}
+
+.header {
+  display: flex;
+  gap: 20px;
+}
+
+.headerImage {
+  cursor: pointer;
+}
+.headerImage1 {
+  width:33px;
+  height:33px;
+}
+.adminContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.admin {
+  font-size: 12px;
+}
+
+.adminName {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.7);
+}
 
 .driverListContainer {
   padding-top: 3%;
@@ -212,8 +248,8 @@
 }
 
 .b {
-  white-space: normal;
-  max-width: 80%;
+  white-space: normal; 
+  max-width: 80%; 
 }
 
 .a,
@@ -358,8 +394,8 @@
 }
 
 .headers p {
-  margin-left: 80px;
-  margin-right: 80px;
+  margin-left:80px; 
+  margin-right:80px;
   font-family: Urbanist-Regular;
   align-items: center;
 }
@@ -377,12 +413,12 @@
   flex-direction: column;
 }
 
-.dropdownContainer {
+.dropdownContainer{
   width: 58%;
   margin-left: 20px;
 }
 
-.miniDropdownContainer {
+.miniDropdownContainer{
   border: 1px solid #D8D8D8;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -393,44 +429,44 @@
 
 }
 
-.viewsTag {
+.viewsTag{
   margin-left: 10px;
   font-weight: 600;
   font-size: 16px;
 }
 
-.nameTag {
+.nameTag{
   font-size: 13px;
   font-weight: 600;
   margin-right: 18px;
 }
 
-.uploadButtonContainer {
+.uploadButtonContainer{
   align-items: center;
 }
 
 .blueText,
-.nameTag {
+.nameTag{
   color: #1E57BA;
 }
 
-.uploadImg {
+.uploadImg{
   margin-left: 10px;
 }
 
 .uploadBtn,
 .uploadButtonContainer,
-.miniDropdownContainer {
+.miniDropdownContainer{
   display: flex;
   flex-direction: row;
 
 }
 
-.info {
+.info{
   font-weight: 600;
 }
 
-.uploadBtn {
+.uploadBtn{
   cursor: pointer;
   border: 1px solid #bababa;
   padding: 7px 6px;
@@ -442,23 +478,23 @@
   justify-content: center;
   gap: 5px;
   margin-right: 45px;
-
+  
 }
 
-.dropdownCaption {
+.dropdownCaption{
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-bottom: 10px;
-
+ 
 }
 
-.greyText {
+.greyText{
   color: #83898C;
   font-size: 12px;
 }
 
-.box {
+.box{
   width: 20px;
   height: 20px;
   border: 1px solid #D8D8D8;
@@ -477,7 +513,7 @@
   display: flex;
   gap: 20px;
   width: 100%;
-  align-items: center;
+  align-items: center; 
 }
 
 .document2ndContainer {
@@ -497,7 +533,7 @@
   color: #141736;
   font-weight: 600;
   margin: 0;
-  font-family: Urbanist-SemiBold
+  font-family: Urbanist-SemiBold 
 }
 
 .approveButton {
@@ -528,7 +564,6 @@
   display: flex;
   gap: 5px;
 }
-
 .rejectedButton {
   border-radius: 6px;
   height: 28px;
@@ -573,7 +608,8 @@
   margin-bottom: 0;
 }
 
-.img {
+.img
+{
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -701,9 +737,9 @@
 
 
 
-.buttonbutton1 {
+.buttonbutton1{
   position: absolute;
-
+  
   left: 12.4px;
   background-color: var(--color-gray-300);
   width: 58.56px;
@@ -715,12 +751,11 @@
   border: 0;
   padding: 0;
   background-color: var(--color-salmon-100);
-
+  
   border-radius: var(--br-7xs);
   width: 82.56px;
   height: 28px;
 }
-
 .spanflex3 {
   background-color: var(--color-gray-300);
   width: 201.17px;
@@ -728,11 +763,10 @@
 }
 
 .spanflex3 {
-
+ 
   width: 58.56px;
   height: 18px;
 }
-
 .reject2,
 .spantextLgIcon4 {
   position: absolute;

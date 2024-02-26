@@ -2,8 +2,44 @@
   flex-grow: 1;
 }
 
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  font-family: 'Poppins', 'sans-serif';
+}
 
-.title {
+.header {
+  display: flex;
+  gap: 20px;
+}
+
+.headerImage {
+  cursor: pointer;
+}
+.headerImage1 {
+  width:33px;
+  height:33px;
+}
+.adminContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.admin {
+  font-size: 12px;
+}
+
+.adminName {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.title{
   color: #3D3C3C;
   font-weight: 700;
   font-size: 24px;
@@ -13,7 +49,7 @@
   font-family: 'Poppins', 'sans-serif';
 }
 
-.newCampaignContainer {
+.newCampaignContainer{
   position: relative;
   top: 70%;
   left: 60%;
@@ -28,19 +64,19 @@
   border-radius: 20px;
 }
 
-.title2 {
+.title2{
   font-weight: 600;
   font-family: var(--font-urbanist);
   font-size: 23.73px;
 
 }
 
-.plusIcon {
+.plusIcon{
   width: 27px;
   height: 27px;
 }
 
-.title3 {
+.title3{
   color: #D1110B;
   font-weight: 600;
   font-size: 20px;
@@ -48,10 +84,10 @@
   position: relative;
   left: 50px;
   top: -50px;
-
+  
 }
 
-.title4 {
+.title4{
   font-family: var(--font-urbanist);
   font-weight: 400;
   color: #4C4F69;
@@ -62,9 +98,9 @@
 }
 
 .inputContainer {
-  position: relative;
-  top: 10px;
-  left: 50px;
+ position: relative;
+ top: 10px;
+ left: 50px;
 }
 
 
