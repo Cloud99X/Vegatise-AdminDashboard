@@ -9,14 +9,10 @@ import styles from "./Analytics.module.css";
 import PageLayout from "../components/page-layout/page-layout";
 import plusIcon from "../icons/plusIcon.png";
 
-
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 
-
-
 const Analytics = () => {
-
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -51,28 +47,10 @@ const Analytics = () => {
   const handleNewCampaign = useCallback(() => {
     navigate("/NewCampaign");
   }, [navigate]);
-  
+
   return (
     <PageLayout activeSidebarItem="Analytics">
       <section className={styles.pageLayout}>
-        <div className={styles.headerContainer}>
-          <img alt="" src="/menu.svg" className={styles.headerImage} />
-          <div className={styles.header}>
-            <img
-              alt=""
-              src="/span_badge-wrapper.svg"
-              className={styles.headerImage}
-            />
-            <img alt="" src="/settingsSVG.svg" className={styles.headerImage} />
-            <div className={styles.adminContainer}>
-              <img alt="" src="/logo.png" className={styles.headerImage1} />
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <span className={styles.admin}>Admin</span>
-                <span className={styles.adminName}>Abdurrahman</span>
-              </div>
-            </div>
-          </div>
-        </div>
         <div className={styles.bodyContainer}>
           <span className={styles.title}>Analytics</span>
           <button 
@@ -82,7 +60,9 @@ const Analytics = () => {
             <span className={styles.title2}>New Campaign</span>
           </button>
           <span className={styles.title3}>Campaign List</span>
-          <span className={styles.title4}>View and manage campaign analytics </span>
+          <span className={styles.title4}>
+            View and manage campaign analytics{" "}
+          </span>
 
           <div className={styles.inputContainer}>
             <InputGroup className={styles.searchbar2Fig4} width="250px">

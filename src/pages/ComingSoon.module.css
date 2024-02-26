@@ -2,44 +2,6 @@
   flex-grow: 1;
 }
 
-.headerContainer {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  font-family: 'Poppins', 'sans-serif';
-  
-}
-
-.header {
-  display: flex;
-  gap: 20px;
-}
-
-.headerImage {
-  cursor: pointer;
-}
-
-.headerImage1 {
-  width:33px;
-  height:33px;
-}
-.adminContainer {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-}
-
-.admin {
-  font-size: 12px;
-}
-
-.adminName {
-  font-size: 14px;
-  font-weight: 600;
-  color: rgba(0, 0, 0, 0.7);
-}
 
 .driverListContainer {
   padding-top: 3%;
@@ -93,7 +55,7 @@ table {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-td{
+td {
   padding-bottom: 20px;
   font-family: 'Urbanist-Medium', sans-serif;
   font-size: 16px;
@@ -107,19 +69,21 @@ th {
   font-family: 'Urbanist-Regular', sans-serif;
   padding-bottom: 20px;
   height: 44px;
-  font-size:14px;
-  color:#7d8da6;
+  font-size: 14px;
+  color: #7d8da6;
   position: relative;
-  font-weight: 400; 
+  font-weight: 400;
 }
 
 .hoverHighlight:hover {
-  background-color: #E30700; /* Red color for highlighting */
+  background-color: #E30700;
+  /* Red color for highlighting */
 }
 
 .hoverHighlight {
   border-radius: 50px;
 }
+
 tr {
   font-family: 'Urbanist-Medium', sans-serif;
   color: #141736;
@@ -132,7 +96,8 @@ tr:hover {
 }
 
 tr:hover td {
-  color: white; /* Change text color to white */
+  color: white;
+  /* Change text color to white */
 }
 
 .detail {
@@ -158,6 +123,7 @@ input::placeholder {
   left: 10%;
   top: 25%;
 }
+
 .drpdwn {
   position: relative;
   width: 30%;
@@ -168,7 +134,8 @@ input::placeholder {
 
 input::placeholder {
   text-align: left;
-  text-indent: 20px; /* Adjust this value to move the placeholder to the left by the desired number of pixels */
+  text-indent: 20px;
+  /* Adjust this value to move the placeholder to the left by the desired number of pixels */
 }
 
 .searchbar2Fig4 {

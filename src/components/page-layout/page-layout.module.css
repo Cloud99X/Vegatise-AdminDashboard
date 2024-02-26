@@ -5,3 +5,7 @@
   height: 100vh;
   max-height: max-content;
 }
+
+.pageLayout {
+  flex-grow: 1;
+}
