@@ -48,7 +48,10 @@ const Analytics = () => {
     navigate("/log-in");
   }, [navigate]);
 
-
+  const handleNewCampaign = useCallback(() => {
+    navigate("/NewCampaign");
+  }, [navigate]);
+  
   return (
     <PageLayout activeSidebarItem="Analytics">
       <section className={styles.pageLayout}>
@@ -72,7 +75,9 @@ const Analytics = () => {
         </div>
         <div className={styles.bodyContainer}>
           <span className={styles.title}>Analytics</span>
-          <button className={styles.newCampaignContainer}>
+          <button 
+            onClick={handleNewCampaign}
+          className={styles.newCampaignContainer}>
             <img alt="plusIcon" src={plusIcon} className={styles.plusIcon} />
             <span className={styles.title2}>New Campaign</span>
           </button>
