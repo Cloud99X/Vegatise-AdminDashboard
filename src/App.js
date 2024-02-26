@@ -12,6 +12,7 @@ import Setting from "./pages/Setting";
 import ComingSoon from "./pages/ComingSoon";
 import Attribution from "./pages/Attribution";
 import AboutCampaign from "./pages/AboutCampaign";
+import NewCampaign from "./pages/NewCampaign";
 
 function App() {
   const location = useLocation();
@@ -74,6 +75,10 @@ function App() {
         title = "";
         metaDescription = "";
         break;
+        case "/NewCampaign":
+          title = "";
+          metaDescription = "";
+          break;
       default:
         // Default values if no match
         break;
@@ -107,6 +112,7 @@ function App() {
       <Route path="/coming-soon" element={<ComingSoon />} />
       <Route path="/attribution" element={<Attribution />} />
       <Route path="/about-campaign" element={<AboutCampaign />} />
+      <Route path="/NewCampaign" element={<NewCampaign />} />  
     </Routes>
   );
 }

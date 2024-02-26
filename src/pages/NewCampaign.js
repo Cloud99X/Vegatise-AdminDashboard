@@ -73,6 +73,7 @@ const NewCampaign = () => {
               />
             </InputGroup>
           </div>
+          <img alt="" src="/loc.png" className={styles.loc} />
           <span className={styles.label}  style={{top: '160px'}}><b>Route preffered</b></span>
             <div className={styles.inputContainer}>
             <InputGroup width="405px"  top='80px'>
@@ -84,6 +85,7 @@ const NewCampaign = () => {
               />
             </InputGroup>
           </div>
+          <img alt="" src="/money.png" className={styles.money} />
           <span className={styles.label}  style={{top: '180px'}}><b>Reward</b></span>
             <div className={styles.inputContainer}>
             <InputGroup width="405px"  top='100px'>
@@ -135,7 +137,7 @@ const NewCampaign = () => {
             <div className={styles.logoFrame}>
               <div className={styles.white}>
               <img alt="" src="/pic1.png" className={styles.nopic} />
-              <img alt="" src="/add.png" className={styles.add} />
+              <img alt="add" src="/add.png" className={styles.add} />
               </div>
             </div>
             <span className={styles.ImgTitle}><b>Vehicle Image</b></span>
@@ -143,12 +145,12 @@ const NewCampaign = () => {
               <div>
                 <span className={styles.frnt}><b>Front View</b></span>
                 <img alt="" src="/add.png" className={styles.add1} />
-                <img alt="" src="/frontView.png" className={styles.v1} />
+                <img alt="front view" src="/frontView.png" className={styles.v1} />
               </div>
               <div>
                 <span className={styles.back}><b>Back View</b></span>
                 <img alt="" src="/add.png" className={styles.add2} />
-                <img alt="" src="/backView.png" className={styles.v2} />
+                <img alt="car2" src="/backView.png" className={styles.v2} />
               </div>
               <div>
                 <span className={styles.left}><b>Side View(left)</b></span>

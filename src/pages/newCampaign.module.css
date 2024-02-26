@@ -229,3 +229,19 @@
     color: white;
     background-color: #13368E;
    }
+
+   .loc {
+    position: relative;
+    width: 24.02px;
+    height: 22px;
+    top: 220px;
+    left: 10.5%
+   }
+
+   .money {
+    position: relative;
+    width: 24.02px;
+    height: 22px;
+    top: 240px;
+    left: 10.5%
+   }
