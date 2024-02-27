@@ -12,6 +12,7 @@ import Setting from "./pages/Setting";
 import ComingSoon from "./pages/ComingSoon";
 import Attribution from "./pages/Attribution";
 import AboutCampaign from "./pages/AboutCampaign";
+import NewCampaign from "./pages/NewCampaign";
 
 function App() {
   const location = useLocation();
@@ -99,7 +100,10 @@ function App() {
       <Route path="/analytics" element={<Analytics />} />
       <Route path="/log-in" element={<LogIn />} />
       <Route path="/getting-started-04" element={<GettingStarted04 />} />
-      <Route path="/driver-profile-detail/:documentId" element={<DriverProfileDetail />} />
+      <Route
+        path="/driver-profile-detail/:documentId"
+        element={<DriverProfileDetail />}
+      />
       <Route path="/billing-invoice" element={<BillingInvoice />} />
       <Route path="/billing" element={<Billing />} />
       <Route path="/Retargetting" element={<Retargetting />} />
@@ -107,6 +111,7 @@ function App() {
       <Route path="/coming-soon" element={<ComingSoon />} />
       <Route path="/attribution" element={<Attribution />} />
       <Route path="/about-campaign" element={<AboutCampaign />} />
+      <Route path="/NewCampaign" element={<NewCampaign />} />
     </Routes>
   );
 }
