@@ -13,23 +13,25 @@
 
 .welcomeStartYourContainer1 {
   line-break: anywhere;
+  width: 100%;
+}
+
+.welcomeText {
+  font-size: 4vw;
 }
 
 .welcomeStartYourContainer {
-  line-height: 100%;
+  line-height: 120%;
   display: flex;
   flex-direction: column;
   background: linear-gradient(180deg, #fff, rgba(255, 255, 255, 0.44));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 45px;
+  font-size: 56px;
   position: absolute;
-  left: 2%;
   bottom: 0;
-}
-
-.welcomeText {
-  font-size: 4vw;
+  left: 2%;
+  width: 45%;
 }
 
 @media screen and (max-width: 750px) {

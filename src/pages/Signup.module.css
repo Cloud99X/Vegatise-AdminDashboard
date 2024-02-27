@@ -3,7 +3,6 @@
   flex-direction: row;
   width: 100%;
   height: 100vh;
-
 }
 
 .section1 {
@@ -14,7 +13,10 @@
 .welcomeStartYourContainer1 {
   line-break: anywhere;
   width: 100%;
+}
 
+.welcomeText {
+  font-size: 4vw;
 }
 
 .welcomeStartYourContainer {
@@ -25,9 +27,10 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 56px;
-  position: fixed;
+  position: absolute;
   bottom: 0;
-  margin-left: 20px;
+  left: 2%;
+  width: 45%;
 }
 
 .section2 {
@@ -43,6 +46,18 @@
   display: flex;
   flex-direction: column;
   gap: 10rem;
+}
+
+@media screen and (max-width: 750px) {
+  .welcomeText {
+    font-size: 4vw;
+  }
+}
+
+@media screen and (min-width: 120px) {
+  .welcomeText {
+    font-size: 3vw;
+  }
 }
 
 .createAnAccountContainer {
