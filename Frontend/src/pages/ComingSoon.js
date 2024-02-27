@@ -11,9 +11,7 @@ import firebaseApp from "./firebase";
 import { getFirestore } from "firebase/firestore";
 import PageLayout from "../components/page-layout/page-layout";
 import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
-
-
-
+import axios from "axios";
 
 const ComingSoon = () => {
   const navigate = useNavigate();
@@ -33,10 +31,64 @@ const ComingSoon = () => {
     });
   };
 
-
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
+
+  // const filteredPersonalInfo = personalInfo.filter((driver) => {
+  //   const fullName = `${driver.name} ${driver.surname}`.toLowerCase();
+  //   return fullName.includes(searchTerm.toLowerCase());
+  // });
+
+  // const fetchPersonalInfo = async () => {
+  //   try {
+  //     const db = getFirestore(firebaseApp);
+  //     const personalInfoCollection = collection(db, "PersonalInfomation");
+  //     const querySnapshot = await getDocs(personalInfoCollection);
+  //     const storage = getStorage(firebaseApp);
+  //     const personalInfoArray = querySnapshot.docs.map(async (doc) => {
+  //       const data = doc.data();
+  //       const folderRef = ref(storage, `/${doc.id}/Profile Photo`);
+  //       const folderSnapshot = await listAll(folderRef);
+  //       if (folderSnapshot.items.length > 0) {
+  //         const firstImageRef = folderSnapshot.items[0];
+  //         const profilePictureUrl = await getDownloadURL(firstImageRef);
+  //         return {
+  //           documentId: doc.id,
+  //           profilePicture: profilePictureUrl,
+  //           ...data,
+  //         };
+  //       } else {
+  //         return {
+  //           documentId: doc.id,
+  //           profilePicture: "",
+  //           ...data,
+  //         };
+  //       }
+  //     });
+  //     const resolvedPersonalInfoArray = await Promise.all(personalInfoArray);
+  //     setPersonalInfo(resolvedPersonalInfoArray);
+  //   } catch (error) {
+  //     console.error("Error fetching personal information:", error);
+  //   }
+  // };
+  //fetchPersonalInfo();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/drivers-data/all-drivers"
+        );
+        setPersonalInfo(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const onRectangleButtonClick = useCallback(() => {
     navigate("/driver-profile-detail");
@@ -73,85 +125,33 @@ const ComingSoon = () => {
     [navigate]
   );
 
-  const filteredPersonalInfo = personalInfo.filter((driver) => {
-    const fullName = `${driver.name} ${driver.surname}`.toLowerCase();
-    return fullName.includes(searchTerm.toLowerCase());
-  });
-
-
-  const fetchPersonalInfo = async () => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const personalInfoCollection = collection(db, "PersonalInfomation");
-      const querySnapshot = await getDocs(personalInfoCollection);
-      const storage = getStorage(firebaseApp);
-      const personalInfoArray = querySnapshot.docs.map(async (doc) => {
-        const data = doc.data();
-        const folderRef = ref(storage, `/${doc.id}/Profile Photo`);
-        const folderSnapshot = await listAll(folderRef);
-        if (folderSnapshot.items.length > 0) {
-          const firstImageRef = folderSnapshot.items[0];
-          const profilePictureUrl = await getDownloadURL(firstImageRef);
-          return {
-            documentId: doc.id,
-            profilePicture: profilePictureUrl,
-            ...data,
-          };
-        } else {
-          return {
-            documentId: doc.id,
-            profilePicture: "",
-            ...data,
-          };
-        }
-      });
-      const resolvedPersonalInfoArray = await Promise.all(personalInfoArray);
-      setPersonalInfo(resolvedPersonalInfoArray);
-    } catch (error) {
-      console.error("Error fetching personal information:", error);
-    }
-  };
-  fetchPersonalInfo();
-
   const formatDate = (timestamp) => {
-    const date = new Date(timestamp);
+    // Convert Firestore timestamp to milliseconds
+    const milliseconds =
+      timestamp._seconds * 1000 + Math.round(timestamp._nanoseconds / 1000000);
+    // Create a new Date object
+    const date = new Date(milliseconds);
 
+    // Extract date components
     const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Month starts from 0
-    const day = date.getDate().toString().padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
 
-    const hours = date.getHours().toString().padStart(2, "0");
-    const minutes = date.getMinutes().toString().padStart(2, "0");
-    const seconds = date.getSeconds().toString().padStart(2, "0");
+    // Extract time components
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    const seconds = String(date.getSeconds()).padStart(2, "0");
 
     const formattedDate = `${year}-${month}-${day}`;
     const formattedTime = `${hours}:${minutes}:${seconds}`;
 
-    return { date: formattedDate, time: formattedTime };
+    return `${formattedDate} ${formattedTime}`;
   };
 
   return (
     <PageLayout activeSidebarItem="Drivers Information">
       {/* add the content that need to display right side of the side bar */}
       <section className={styles.pageLayout}>
-        <div className={styles.headerContainer}>
-          <img alt="" src="/menu.svg" className={styles.headerImage} />
-          <div className={styles.header}>
-            <img
-              alt=""
-              src="/span_badge-wrapper.svg"
-              className={styles.headerImage}
-            />
-            <img alt="" src="/settingsSVG.svg"  />
-            <div className={styles.adminContainer}>
-              <img alt="" src="/logo.png" className={styles.headerImage1}/>
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <span className={styles.admin}>Admin</span>
-                <span className={styles.adminName}>Abdurrahman</span>
-              </div>
-            </div>
-          </div>
-        </div>
         <div className={styles.driverListContainer}>
           <p className={styles.driverList}>Driver List</p>
           <p className={styles.manageYourDrivers}>
@@ -159,7 +159,7 @@ const ComingSoon = () => {
           </p>
           <div className={styles.inputContainer}>
             <InputGroup className={styles.searchbar2Fig4} width="250px">
-            <img alt="" src="/srch.png" className={styles.srch}/>
+              <img alt="" src="/srch.png" className={styles.srch} />
               <Input
                 variant="outline"
                 placeholder="Search"
@@ -184,8 +184,8 @@ const ComingSoon = () => {
               trigger={["hover"]}
             >
               <Button onClick={(e) => e.preventDefault()}>
-                <div style={{position: "relative",right: "15%"}}>Filter</div>
-                <img alt="" src="/Arrowdwn.png" className={styles.drpdwn}/>
+                <div style={{ position: "relative", right: "15%" }}>Filter</div>
+                <img alt="" src="/Arrowdwn.png" className={styles.drpdwn} />
               </Button>
             </Dropdown>
             <Dropdown
@@ -204,14 +204,26 @@ const ComingSoon = () => {
               trigger={["hover"]}
             >
               <Button onClick={(e) => e.preventDefault()}>
-                <div style={{position: "relative",right: "8%"}}>View all leads</div>
-                <img alt="" src="/Arrowdwn.png" className={styles.drpdwn} style={{height:"30%", width: "13%",  left:"98%", bottom:"59%"}}/>
+                <div style={{ position: "relative", right: "8%" }}>
+                  View all leads
+                </div>
+                <img
+                  alt=""
+                  src="/Arrowdwn.png"
+                  className={styles.drpdwn}
+                  style={{
+                    height: "30%",
+                    width: "13%",
+                    left: "98%",
+                    bottom: "59%",
+                  }}
+                />
               </Button>
             </Dropdown>
           </div>
           <table>
             <thead>
-              <tr style={{backgroundColor: "white"}}>
+              <tr style={{ backgroundColor: "white" }}>
                 <th className={styles.icontd}></th>
                 <th>Name</th>
                 <th>Email</th>
@@ -221,7 +233,7 @@ const ComingSoon = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredPersonalInfo.map((driver, index) => (
+              {personalInfo.map((driver, index) => (
                 <tr
                   key={index}
                   onClick={() => onTableRowClick(driver.documentId)}
@@ -229,14 +241,18 @@ const ComingSoon = () => {
                   className={styles.hoverHighlight}
                 >
                   <td className={styles.icontd}>
-                  <img
-              className={styles.icon}
-              src={checkedRows.includes(driver.documentId) ? '/checked.svg' : '/unchecked.svg'}
-              onClick={(e) => {
-                e.stopPropagation(); // Prevent row click when clicking the checkbox
-                handleCheckboxClick(driver.documentId);
-              }}
-            />
+                    <img
+                      className={styles.icon}
+                      src={
+                        checkedRows.includes(driver.documentId)
+                          ? "/checked.svg"
+                          : "/unchecked.svg"
+                      }
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent row click when clicking the checkbox
+                        handleCheckboxClick(driver.documentId);
+                      }}
+                    />
                   </td>
                   <td
                     style={{
@@ -253,11 +269,8 @@ const ComingSoon = () => {
                   <td>{driver.status}</td>
                   <td>
                     {driver.timestamp
-                      ? `${
-                          formatDate(driver.timestamp.toDate().getTime()).date
-                        } ${
-                          formatDate(driver.timestamp.toDate().getTime()).time
-                        }`
+                      ? `${formatDate(driver.timestamp)} 
+                        `
                       : ""}
                   </td>
                 </tr>
