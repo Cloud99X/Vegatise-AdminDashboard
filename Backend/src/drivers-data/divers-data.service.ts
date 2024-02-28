@@ -13,17 +13,121 @@ export class DriversDataService {
     }
   }
 
-  async updatePersonalInfo(uid: string, updates: any): Promise<any> {
+  async getPersonalInfo(uid: string) {
     try {
       const docRef = admin
         .firestore()
         .collection('PersonalInfomation')
         .doc(uid);
-      await docRef.update(updates);
-      return 'done';
+      const snapshot = await docRef.get();
+      if (snapshot.exists) {
+        return snapshot.data();
+      } else {
+        console.log('Document not found for UID:', uid);
+        //handle the situation as needed
+      }
     } catch (error) {
-      console.error('Error updating document:', error);
-      throw error;
+      return { error };
     }
   }
+
+  async getAddressRoutesInfo(uid: string) {
+    try {
+      const docRef = admin.firestore().collection('AddressAndRoutes').doc(uid);
+      const snapshot = await docRef.get();
+      if (snapshot.exists) {
+        return snapshot.data();
+      } else {
+        console.log('Document not found for UID:', uid);
+
+        //handle the situation as needed
+      }
+    } catch (error) {
+      return { error };
+    }
+  }
+
+  async getVehicleInfo(uid: string) {
+    try {
+      const docRef = admin
+        .firestore()
+        .collection('VehicleInformation')
+        .doc(uid);
+      const snapshot = await docRef.get();
+      if (snapshot.exists) {
+        return snapshot.data();
+      } else {
+        console.log('Document not found for UID:', uid);
+
+        //handle the situation as needed
+      }
+    } catch (error) {
+      return { error };
+    }
+  }
+
+  async getDrivingLicenseInfo(uid: string) {
+    try {
+      const docRef = admin.firestore().collection('Driving License').doc(uid);
+      const snapshot = await docRef.get();
+      if (snapshot.exists) {
+        return snapshot.data();
+      } else {
+        console.log('Document not found for UID:', uid);
+
+        //handle the situation as needed
+      }
+    } catch (error) {
+      return { error };
+    }
+  }
+
+  async getVehicleImageInfo(uid: string) {
+    try {
+      const docRef = admin.firestore().collection('Vehicle Condition').doc(uid);
+      const snapshot = await docRef.get();
+      if (snapshot.exists) {
+        return snapshot.data();
+      } else {
+        console.log('Document not found for UID:', uid);
+
+        //handle the situation as needed
+      }
+    } catch (error) {
+      return { error };
+    }
+  }
+
+  async getRevenueLicenseInfo(uid: string) {
+    try {
+      const docRef = admin
+        .firestore()
+        .collection('Revenue License No')
+        .doc(uid);
+      const snapshot = await docRef.get();
+      if (snapshot.exists) {
+        return snapshot.data();
+      } else {
+        console.log('Document not found for UID:', uid);
+
+        //handle the situation as needed
+      }
+    } catch (error) {
+      return { error };
+    }
+  }
+
+  // async updatePersonalInfo(uid: string, updates: any): Promise<any> {
+  //   try {
+  //     const docRef = admin
+  //       .firestore()
+  //       .collection('PersonalInfomation')
+  //       .doc(uid);
+  //     await docRef.update(updates);
+  //     return 'done';
+  //   } catch (error) {
+  //     console.error('Error updating document:', error);
+  //     throw error;
+  //   }
+  // }
 }

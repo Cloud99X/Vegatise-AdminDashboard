@@ -98,7 +98,8 @@ const DriverProfileDetail = () => {
   const changeCurrentTab = (tab) => {
     setCurrentTab(tab);
   };
-  //status
+
+  //
 
   //status icon
 
@@ -158,6 +159,84 @@ const DriverProfileDetail = () => {
     fetchDocumentStatusData();
   }, []);
 
+  // get driver's personal information
+  useEffect(() => {
+    const fetchPersonalInfo = async () => {
+      try {
+        let personalInfoData;
+        let addressRoutesData;
+        let vehicleInfoData;
+        let drivingLicenseData;
+        let vehicleImageData;
+        let revenueLicenseData;
+
+        // if driver submits relevant data, then only send a request to the backend
+        if (PIStatus !== "Pending") {
+          const response = await axios.get(
+            `http://localhost:8000/drivers-data/get-personal-details/${documentId}`
+          );
+          console.log(response.data);
+          personalInfoData = response.data;
+        }
+
+        if (ARStatus !== "Pending") {
+          const response = await axios.get(
+            `http://localhost:8000/drivers-data/get-address-details/${documentId}`
+          );
+          console.log(response.data);
+          addressRoutesData = response.data;
+        }
+
+        if (VIStatus !== "Pending") {
+          const response = await axios.get(
+            `http://localhost:8000/drivers-data/get-vehicle-info/${documentId}`
+          );
+          console.log(response.data);
+          vehicleInfoData = response.data;
+        }
+
+        if (DLStatus !== "Pending") {
+          const response = await axios.get(
+            `http://localhost:8000/drivers-data/get-driving-license-info/${documentId}`
+          );
+          console.log(response.data);
+          drivingLicenseData = response.data;
+        }
+
+        if (vehicleImageStatus !== "Pending") {
+          const response = await axios.get(
+            `http://localhost:8000/drivers-data/get-vehicle-image-info/${documentId}`
+          );
+          console.log(response.data);
+          vehicleImageData = response.data;
+        }
+
+        if (RLStatus !== "Pending") {
+          const response = await axios.get(
+            `http://localhost:8000/drivers-data/get-revenue-license-info/${documentId}`
+          );
+          console.log(response.data);
+          revenueLicenseData = response.data;
+        }
+
+        const mergedData = {
+          ...personalInfoData,
+          ...addressRoutesData,
+          ...vehicleInfoData,
+          ...drivingLicenseData,
+          ...vehicleImageData,
+          ...revenueLicenseData,
+        };
+
+        setDriverInfo(mergedData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchPersonalInfo();
+  }, []);
+
   const handlePIStatusChange = (newStatus) => {
     setPIStatus(newStatus);
   };
@@ -206,7 +285,7 @@ const DriverProfileDetail = () => {
           statusType: statusType,
         }
       );
-      //setPersonalInfo(response.data);
+
       console.log(response.data);
     } catch (error) {
       console.error("Error updating the status:", error);
@@ -360,95 +439,95 @@ const DriverProfileDetail = () => {
   //   }
   // };
 
-  useEffect(() => {
-    const fetchDriverInfo = async () => {
-      try {
-        const db = getFirestore(firebaseApp);
+  // useEffect(() => {
+  //   const fetchDriverInfo = async () => {
+  //     try {
+  //       const db = getFirestore(firebaseApp);
 
-        const personalInfoCollection = collection(db, "PersonalInfomation");
-        const personalInfoDocRef = doc(personalInfoCollection, documentId);
-        const personalInfoDocSnapshot = await getDoc(personalInfoDocRef);
+  //       const personalInfoCollection = collection(db, "PersonalInfomation");
+  //       const personalInfoDocRef = doc(personalInfoCollection, documentId);
+  //       const personalInfoDocSnapshot = await getDoc(personalInfoDocRef);
 
-        // const nicNumberCollection = collection(db, "NIC Number");
-        // const nicNumberDocRef = doc(nicNumberCollection, documentId);
-        // const nicNumberDocSnapshot = await getDoc(nicNumberDocRef);
+  //       // const nicNumberCollection = collection(db, "NIC Number");
+  //       // const nicNumberDocRef = doc(nicNumberCollection, documentId);
+  //       // const nicNumberDocSnapshot = await getDoc(nicNumberDocRef);
 
-        const driliCollection = collection(db, "Driving License");
-        const driliDocRef = doc(driliCollection, documentId);
-        const driliDocSnapshot = await getDoc(driliDocRef);
+  //       const driliCollection = collection(db, "Driving License");
+  //       const driliDocRef = doc(driliCollection, documentId);
+  //       const driliDocSnapshot = await getDoc(driliDocRef);
 
-        const vecoCollection = collection(db, "Vehicle Condition");
-        const vecoDocRef = doc(vecoCollection, documentId);
-        const vecoDocSnapshot = await getDoc(vecoDocRef);
+  //       const vecoCollection = collection(db, "Vehicle Condition");
+  //       const vecoDocRef = doc(vecoCollection, documentId);
+  //       const vecoDocSnapshot = await getDoc(vecoDocRef);
 
-        const addressAndRoutesCollection = collection(db, "AddressAndRoutes");
-        const addressAndRoutesDocRef = doc(
-          addressAndRoutesCollection,
-          documentId
-        );
-        const addressAndRoutesDocSnapshot = await getDoc(
-          addressAndRoutesDocRef
-        );
+  //       const addressAndRoutesCollection = collection(db, "AddressAndRoutes");
+  //       const addressAndRoutesDocRef = doc(
+  //         addressAndRoutesCollection,
+  //         documentId
+  //       );
+  //       const addressAndRoutesDocSnapshot = await getDoc(
+  //         addressAndRoutesDocRef
+  //       );
 
-        const VehicleInformationCollection = collection(
-          db,
-          "VehicleInformation"
-        );
-        const VehicleInformationDocRef = doc(
-          VehicleInformationCollection,
-          documentId
-        );
-        const VehicleInformationDocSnapshot = await getDoc(
-          VehicleInformationDocRef
-        );
+  //       const VehicleInformationCollection = collection(
+  //         db,
+  //         "VehicleInformation"
+  //       );
+  //       const VehicleInformationDocRef = doc(
+  //         VehicleInformationCollection,
+  //         documentId
+  //       );
+  //       const VehicleInformationDocSnapshot = await getDoc(
+  //         VehicleInformationDocRef
+  //       );
 
-        const utilityCollection = collection(db, "Utility Bill");
-        const utilityDocRef = doc(utilityCollection, documentId);
-        const utilityDocSnapshot = await getDoc(utilityDocRef);
+  //       const utilityCollection = collection(db, "Utility Bill");
+  //       const utilityDocRef = doc(utilityCollection, documentId);
+  //       const utilityDocSnapshot = await getDoc(utilityDocRef);
 
-        if (
-          personalInfoDocSnapshot.exists() &&
-          //nicNumberDocSnapshot.exists() &&
-          addressAndRoutesDocSnapshot.exists() &&
-          VehicleInformationDocSnapshot.exists() &&
-          driliDocSnapshot.exists() &&
-          vecoDocSnapshot.exists()
-          //utilityDocSnapshot.exists()
-        ) {
-          const personalInfoData = personalInfoDocSnapshot.data();
-          //const nicNumberData = nicNumberDocSnapshot.data();
-          const addressAndRoutesData = addressAndRoutesDocSnapshot.data();
-          const VehicleInformationData = VehicleInformationDocSnapshot.data();
-          const utilityData = utilityDocSnapshot.data();
-          const driliData = driliDocSnapshot.data();
-          const vecoData = vecoDocSnapshot.data();
+  //       if (
+  //         personalInfoDocSnapshot.exists() &&
+  //         //nicNumberDocSnapshot.exists() &&
+  //         addressAndRoutesDocSnapshot.exists() &&
+  //         VehicleInformationDocSnapshot.exists() &&
+  //         driliDocSnapshot.exists() &&
+  //         vecoDocSnapshot.exists()
+  //         //utilityDocSnapshot.exists()
+  //       ) {
+  //         const personalInfoData = personalInfoDocSnapshot.data();
+  //         //const nicNumberData = nicNumberDocSnapshot.data();
+  //         const addressAndRoutesData = addressAndRoutesDocSnapshot.data();
+  //         const VehicleInformationData = VehicleInformationDocSnapshot.data();
+  //         const utilityData = utilityDocSnapshot.data();
+  //         const driliData = driliDocSnapshot.data();
+  //         const vecoData = vecoDocSnapshot.data();
 
-          const mergedData = {
-            ...personalInfoData,
-            //...nicNumberData,
-            ...addressAndRoutesData,
-            ...VehicleInformationData,
-            ...driliData,
-            ...vecoData,
-            //...utilityData,
-          };
+  //         const mergedData = {
+  //           ...personalInfoData,
+  //           //...nicNumberData,
+  //           ...addressAndRoutesData,
+  //           ...VehicleInformationData,
+  //           ...driliData,
+  //           ...vecoData,
+  //           //...utilityData,
+  //         };
 
-          setDriverInfo(mergedData);
-        } else {
-          console.error("Document not found for ID:", documentId);
-          setDriverInfo(null);
-        }
-      } catch (error) {
-        console.error(
-          "Error fetching driver information for ID:",
-          documentId,
-          error
-        );
-      }
-    };
+  //         setDriverInfo(mergedData);
+  //       } else {
+  //         console.error("Document not found for ID:", documentId);
+  //         setDriverInfo(null);
+  //       }
+  //     } catch (error) {
+  //       console.error(
+  //         "Error fetching driver information for ID:",
+  //         documentId,
+  //         error
+  //       );
+  //     }
+  //   };
 
-    fetchDriverInfo();
-  }, [documentId]);
+  //   //fetchDriverInfo();
+  // }, [documentId]);
 
   const saveChanges = async () => {
     try {
@@ -2140,7 +2219,9 @@ const DriverProfileDetail = () => {
                     style={{ left: "20px", position: "relative" }}
                   >
                     Revenue License number -{" "}
-                    <span className={styles.blueText}>1234567890</span>
+                    <span className={styles.blueText}>
+                      {driverInfo && driverInfo.RLNumber}
+                    </span>
                   </p>
                   <div className={styles.frnt}>
                     <div className={styles.frntViw}>Front view</div>
