@@ -730,7 +730,7 @@ const DriverProfileDetail = () => {
                   <div className={styles.nic}>
                     {isEditing ? (
                       <Input
-                        value={editedDriverInfo && editedDriverInfo.NICNumber}
+                        value={editedDriverInfo && editedDriverInfo.nic}
                         onChange={(e) =>
                           handleEditChange("NICNumber", e.target.value)
                         }
@@ -1741,7 +1741,7 @@ const DriverProfileDetail = () => {
                     <div className={styles.nicnum}>
                       <span>{`NIC number - `}</span>
                       <span className={styles.span}>
-                        {driverInfo && driverInfo.NICNumber}
+                        {driverInfo && driverInfo.nic}
                       </span>
                     </div>
                   </div>
