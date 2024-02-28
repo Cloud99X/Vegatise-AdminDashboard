@@ -236,7 +236,7 @@ const ComingSoon = () => {
               {personalInfo.map((driver, index) => (
                 <tr
                   key={index}
-                  onClick={() => onTableRowClick(driver.documentId)}
+                  onClick={() => onTableRowClick(driver.id)}
                   style={{ cursor: "pointer" }}
                   className={styles.hoverHighlight}
                 >

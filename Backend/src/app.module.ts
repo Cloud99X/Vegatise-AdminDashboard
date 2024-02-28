@@ -3,9 +3,15 @@ import { ConfigModule } from '@nestjs/config';
 import { DriversDataModule } from './drivers-data/divers-date.module';
 import { DriverInfoModule } from './driver-info/driver-info.module';
 import * as admin from 'firebase-admin';
+import { DocumentStatusModule } from './documentStatus/status.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), DriversDataModule, DriverInfoModule],
+  imports: [
+    ConfigModule.forRoot(),
+    DriversDataModule,
+    DriverInfoModule,
+    DocumentStatusModule,
+  ],
   controllers: [],
   providers: [],
 })

@@ -7,7 +7,7 @@ export class DriversDataService {
     try {
       const collectionRef = admin.firestore().collection('PersonalInfomation');
       const snapshot = await collectionRef.get();
-      return snapshot.docs.map((doc) => doc.data());
+      return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })); // Add ID to each document
     } catch (error) {
       return { error };
     }

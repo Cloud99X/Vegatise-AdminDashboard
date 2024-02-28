@@ -21,6 +21,7 @@ import CloseIcon from "../../src/icons/span_text-lg.svg";
 import TickIcon from "../../src/icons/tick.svg";
 import uplo from "../../src/icons/1.png";
 import "firebase/firestore";
+import axios from "axios";
 
 const DriverProfileDetail = () => {
   const { documentId } = useParams();
@@ -29,12 +30,11 @@ const DriverProfileDetail = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedDriverInfo, setEditedDriverInfo] = useState(null);
   const [fileCount, setFileCount] = useState(0);
-    // const [imageUrl, setImageUrl] = useState("");
+  // const [imageUrl, setImageUrl] = useState("");
   // const [file, setFile] = useState(null);
 
   const [currentTab, setCurrentTab] = useState("Personal Info");
   const [selectedFile, setSelectedFile] = useState(null);
-
 
   //billing info accounts//
   const [selectedAccount, setSelectedAccount] = useState("account1");
@@ -48,19 +48,16 @@ const DriverProfileDetail = () => {
   const [billingDocDropdown, setBillingDocDropdown] = useState(false);
   const [VRDropdown, setVRDropdown] = useState(false);
 
-
-
-
-  const [imageUrl, setImageUrl] = useState('');
+  const [imageUrl, setImageUrl] = useState("");
   const [file, setFile] = useState(null);
 
   useEffect(() => {
     const fetchImageUrl = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/images/url');
+        const response = await axios.get("http://localhost:8000/images/url");
         setImageUrl(response.data);
       } catch (error) {
-        console.error('Error fetching image URL:', error);
+        console.error("Error fetching image URL:", error);
       }
     };
 
@@ -75,28 +72,23 @@ const DriverProfileDetail = () => {
     if (!file) return;
 
     const formData = new FormData();
-    formData.append('image', file);
+    formData.append("image", file);
 
     try {
-      const response = await axios.post('http://localhost:8000/images/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const response = await axios.post(
+        "http://localhost:8000/images/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       setImageUrl(response.data);
     } catch (error) {
-      console.error('Error uploading image:', error);
+      console.error("Error uploading image:", error);
     }
   };
-
-
-
-
-
-
-
-
-
 
   const handleAccountClick = (account) => {
     setSelectedAccount(account);
@@ -124,8 +116,47 @@ const DriverProfileDetail = () => {
         return "";
     }
   };
-  //Personal Information status
-  const [PIStatus, setPIStatus] = useState("Pending");
+
+  const [PIStatus, setPIStatus] = useState("");
+  const [VIStatus, setVIStatus] = useState("");
+  const [ARStatus, setARStatus] = useState("");
+  const [DLStatus, setDLStatus] = useState("");
+  const [NICStatus, setNICStatus] = useState("");
+  const [vehicleImageStatus, setVehicleImageStatus] = useState("");
+  const [RLStatus, setRLStatus] = useState("");
+  const [VRDStatus, setVRDStatus] = useState("");
+  const [vehicleInsuranceStatus, setVehicleInsuranceStatus] = useState("");
+  const [BDStatus, setBDStatus] = useState("");
+
+  //
+  useEffect(() => {
+    const fetchDocumentStatusData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8000/document-status/get-document-status/${documentId}`
+        );
+        //setPersonalInfo(response.data);
+        console.log(response.data);
+
+        // access status
+        setPIStatus(response.data.PersonalInfo.status);
+        setARStatus(response.data.AddressAndRoutes.status);
+        setBDStatus(response.data.BillingDocuments.status);
+        setDLStatus(response.data.DrivingLicense.status);
+        setNICStatus(response.data.NIC.status);
+        setVehicleInsuranceStatus(response.data.VehicleInsuarance.status);
+        setVIStatus(response.data.VehicleInfo.status);
+        setVehicleImageStatus(response.data.VehicleImage.status);
+        setVRDStatus(response.data.VehicleRegistration.status);
+        setRLStatus(response.data.RevenueLicense.status);
+        //console.log(response.data.NIC.status);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchDocumentStatusData();
+  }, []);
 
   const handlePIStatusChange = (newStatus) => {
     setPIStatus(newStatus);
@@ -169,32 +200,6 @@ const DriverProfileDetail = () => {
     }
   };
 
-  {
-    /*useEffect(() => {
-    // Fetch the PIStatus from the database
-    const fetchPIStatus = async () => {
-      try {
-        const db = getFirestore(firebaseApp);
-        const userDocumentPath = `/DocumentsStatus/${documentId}`;
-        const docRef = doc(db, userDocumentPath);
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-          setPIStatus(data.PersonalInfo.status);
-        }
-      } catch (error) {
-        console.error('Error fetching document: ', error);
-      }
-    };
-
-    fetchPIStatus();
-  }, [documentId]);*/
-  }
-
-  // Vehicle Information status
-  const [VIStatus, setVIStatus] = useState("Pending");
-
   const handleVIStatusChange = (newStatus) => {
     setVIStatus(newStatus);
   };
@@ -236,31 +241,6 @@ const DriverProfileDetail = () => {
       console.error("Error updating document: ", error);
     }
   };
-  {
-    /*
-useEffect(() => {
-  const fetchVIStatus = async () => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        setVIStatus(data.VehicleInfo.status);
-      }
-    } catch (error) {
-      console.error('Error fetching document: ', error);
-    }
-  };
-
-  fetchVIStatus();
-}, [documentId]);*/
-  }
-
-  // Address and Routes Status
-  const [ARStatus, setARStatus] = useState("Pending");
 
   const handleARStatusChange = (newStatus) => {
     setARStatus(newStatus);
@@ -304,31 +284,6 @@ useEffect(() => {
     }
   };
 
-  {
-    /*useEffect(() => {
-  const fetchARStatus = async () => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        setARStatus(data.AddressAndRoutes.status);
-      }
-    } catch (error) {
-      console.error('Error fetching document: ', error);
-    }
-  };
-
-  fetchARStatus();
-}, [documentId]); */
-  }
-
-  // Driving License Status
-  const [DLStatus, setDLStatus] = useState("Pending");
-
   const handleDLStatusChange = (newStatus) => {
     setDLStatus(newStatus);
   };
@@ -370,31 +325,6 @@ useEffect(() => {
       console.error("Error updating Driver License document: ", error);
     }
   };
-
-  {
-    /*useEffect(() => {
-  const fetchDLStatus = async () => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        setDLStatus(data.DrivingLicense.status);
-      }
-    } catch (error) {
-      console.error('Error fetching Driver License document: ', error);
-    }
-  };
-
-  fetchDLStatus();
-}, [documentId]);*/
-  }
-
-  // Nation Identity card Status
-  const [NICStatus, setNICStatus] = useState("Pending");
 
   const handleNICStatusChange = (newStatus) => {
     setNICStatus(newStatus);
@@ -438,31 +368,6 @@ useEffect(() => {
     }
   };
 
-  {
-    /*useEffect(() => {
-  const fetchNICStatus = async () => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        setNICStatus(data.NIC.status);
-      }
-    } catch (error) {
-      console.error('Error fetching document: ', error);
-    }
-  };
-
-  fetchNICStatus();
-}, [documentId]);*/
-  }
-
-  // Vehicle Image Status
-  const [vehicleImageStatus, setVehicleImageStatus] = useState("Pending");
-
   const handleVehicleImageStatusChange = (newStatus) => {
     setVehicleImageStatus(newStatus);
   };
@@ -504,31 +409,6 @@ useEffect(() => {
       console.error("Error updating document: ", error);
     }
   };
-
-  {
-    /*useEffect(() => {
-  const fetchVehicleImageStatus = async () => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        setVehicleImageStatus(data.VehicleImage.status);
-      }
-    } catch (error) {
-      console.error('Error fetching document: ', error);
-    }
-  };
-
-  fetchVehicleImageStatus();
-}, [documentId]);*/
-  }
-
-  //Revenue License Status
-  const [RLStatus, setRLStatus] = useState("Pending");
 
   const handleRLStatusChange = (newStatus) => {
     setRLStatus(newStatus);
@@ -572,31 +452,6 @@ useEffect(() => {
     }
   };
 
-  {
-    /*useEffect(() => {
-  const fetchRLStatus = async () => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        setRLStatus(data.RevenueLicense.status.status);
-      }
-    } catch (error) {
-      console.error('Error fetching document: ', error);
-    }
-  };
-
-  fetchRLStatus();
-}, [documentId]);*/
-  }
-
-  // Vehicle registration Status
-  const [VRDStatus, setVRDStatus] = useState("Pending");
-
   const handleVRDStatusChange = (newStatus) => {
     setVRDStatus(newStatus);
   };
@@ -638,32 +493,6 @@ useEffect(() => {
       console.error("Error updating document: ", error);
     }
   };
-
-  {
-    /*useEffect(() => {
-  const fetchVRDStatus = async () => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        setVRDStatus(data.VehicleRegistration.status);
-      }
-    } catch (error) {
-      console.error('Error fetching document: ', error);
-    }
-  };
-
-  fetchVRDStatus();
-}, [documentId]);*/
-  }
-
-  // Vehicle Insurance Status
-  const [vehicleInsuranceStatus, setVehicleInsuranceStatus] =
-    useState("Pending");
 
   const handleVehicleInsuranceStatusChange = (newStatus) => {
     setVehicleInsuranceStatus(newStatus);
@@ -707,31 +536,6 @@ useEffect(() => {
     }
   };
 
-  {
-    /*useEffect(() => {
-  const fetchVehicleInsuranceStatus = async () => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        setVehicleInsuranceStatus(data.VehicleInsuarance.status);
-      }
-    } catch (error) {
-      console.error('Error fetching document: ', error);
-    }
-  };
-
-  fetchVehicleInsuranceStatus();
-}, [documentId]);*/
-  }
-
-  // Billing Documents Status
-  const [BDStatus, setBDStatus] = useState("Pending");
-
   const handleBDStatusChange = (newStatus) => {
     setBDStatus(newStatus);
   };
@@ -773,64 +577,6 @@ useEffect(() => {
       console.error("Error updating document: ", error);
     }
   };
-
-  {
-    /*useEffect(() => {
-  const fetchBDStatus = async () => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        setBDStatus(data.BillingDocuments.status);
-      }
-    } catch (error) {
-      console.error('Error fetching document: ', error);
-    }
-  };
-
-  fetchBDStatus();
-}, [documentId]);*/
-  }
-
-  const fetchDocumentStatus = async (field, setStatusFunction) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        setStatusFunction(data[field].status);
-      }
-    } catch (error) {
-      console.error(`Error fetching ${field} document: `, error);
-    }
-  };
-
-  const documentFields = [
-    { field: "PersonalInfo", setter: setPIStatus },
-    { field: "VehicleInfo", setter: setVIStatus },
-    { field: "AddressAndRoutes", setter: setARStatus },
-    { field: "DrivingLicense", setter: setDLStatus },
-    { field: "NIC", setter: setNICStatus },
-    { field: "VehicleImage", setter: setVehicleImageStatus },
-    { field: "RevenueLicense", setter: setRLStatus },
-    { field: "VehicleRegistration", setter: setVRDStatus },
-    { field: "VehicleInsuarance", setter: setVehicleInsuranceStatus },
-    { field: "BillingDocuments", setter: setBDStatus },
-  ];
-  documentFields.forEach(({ field, setter }) => {
-    useEffect(() => {
-      fetchDocumentStatus(field, setter);
-    }, [documentId]);
-  });
-
-  ////
 
   const onComponent1Click = useCallback(() => {
     navigate("/analytics");
@@ -899,11 +645,6 @@ useEffect(() => {
     return `${firstNameInitial}.${lastName}`;
   };
 
-
-
-
-
-
   // const uploadImageToFirestore = async (file, documentId, fetchImageUrl) => {
   //   try {
   //     const storage = getStorage();
@@ -923,21 +664,12 @@ useEffect(() => {
   //   }
   // };
 
-
-
-
-
   // const handleImageUpload = async (event) => {
   //   const file = event.target.files[0];
   //   if (file) {
   //     await uploadImageToFirestore(file, documentId, fetchImageUrl);
   //   }
   // };
-
-
-
-
-
 
   // const fetchImageUrl = async () => {
   //   try {
@@ -1753,27 +1485,10 @@ useEffect(() => {
           </div>
         </button>
 
-
-
-
-
-
-
-
         <button className={styles.rectangleContainer} onClick={handleUpload}>
           <div className={styles.groupItem} />
           <div className={styles.saveChanges}>Save changes</div>
         </button>
-
-
-
-
-
-
-
-
-
-
 
         {/* ... (test) */}
 
@@ -3278,10 +2993,6 @@ useEffect(() => {
         </div>
       </section>
 
-
-
-
-
       <div className={styles.prof}>
         <img className={styles.Icon} alt="" src={imageUrl} />
         <label htmlFor="file-upload">
@@ -3294,22 +3005,11 @@ useEffect(() => {
           style={{ display: "none" }}
         />
         <div className={styles.headtext}>
-
-
-{/* Add Drivers Name */}
+          {/* Add Drivers Name */}
           <div className={styles.b}>{driverInfo && driverInfo.name}</div>
           {/*<div className={styles.a}>#100485A</div>  */}
-
-
-
         </div>
       </div>
-
-
-
-
-
-
     </PageLayout>
     // <div className={styles.driverProfileDetail}>
     //   <div className={styles.rectangleParent}>
