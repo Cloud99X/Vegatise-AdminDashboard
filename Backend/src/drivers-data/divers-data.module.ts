@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { DriversDataService } from './divers-date..service';
-import { DriversDataController } from './divers-date.controller';
+import { DriversDataService } from './divers-data.service';
+import { DriversDataController } from './divers-data.controller';
 
 @Module({
   imports: [],

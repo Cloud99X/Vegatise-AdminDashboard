@@ -161,423 +161,61 @@ const DriverProfileDetail = () => {
   const handlePIStatusChange = (newStatus) => {
     setPIStatus(newStatus);
   };
-
-  const handleApprovePersonalInfo = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Approved";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
-  const handleRejectpersonalinfo = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Rejected";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
   const handleVIStatusChange = (newStatus) => {
     setVIStatus(newStatus);
-  };
-
-  const handleApproveVehicleInfo = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Approved";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
-  const handleRejectVehicleInfo = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Rejected";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
   };
 
   const handleARStatusChange = (newStatus) => {
     setARStatus(newStatus);
   };
 
-  const handleApproveAddressAndRoutes = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Approved";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
-  const handleRejectAddressAndRoutes = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Rejected";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
   const handleDLStatusChange = (newStatus) => {
     setDLStatus(newStatus);
-  };
-
-  const handleApproveDriverLicense = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Approved";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Driver License Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating Driver License document: ", error);
-    }
-  };
-
-  const handleRejectDriverLicense = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Rejected";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Driver License Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating Driver License document: ", error);
-    }
   };
 
   const handleNICStatusChange = (newStatus) => {
     setNICStatus(newStatus);
   };
 
-  const handleApproveNIC = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Approved";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
-  const handleRejectNIC = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Rejected";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
   const handleVehicleImageStatusChange = (newStatus) => {
     setVehicleImageStatus(newStatus);
-  };
-
-  const handleApproveVehicleImage = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Approved";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
-  const handleRejectVehicleImage = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Rejected";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
   };
 
   const handleRLStatusChange = (newStatus) => {
     setRLStatus(newStatus);
   };
 
-  const handleApproveRevenueLicense = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Approved";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
-  const handleRejectRevenueLicense = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Rejected";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
   const handleVRDStatusChange = (newStatus) => {
     setVRDStatus(newStatus);
   };
-
-  const handleApproveVRD = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Approved";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
-  const handleRejectVRD = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Rejected";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
   const handleVehicleInsuranceStatusChange = (newStatus) => {
     setVehicleInsuranceStatus(newStatus);
-  };
-
-  const handleApproveVehicleInsurance = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Approved";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
-  const handleRejectVehicleInsurance = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Rejected";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
   };
 
   const handleBDStatusChange = (newStatus) => {
     setBDStatus(newStatus);
   };
 
-  const handleApproveBusinessDocument = async (keysToUpdate) => {
+  const handleDocumentStatusChanges = async ({ documentType, statusType }) => {
     try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
-
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Approved";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
+      const response = await axios.put(
+        `http://localhost:8000/document-status/update-status`,
+        {
+          uid: documentId,
+          documentType: documentType,
+          statusType: statusType,
+        }
+      );
+      //setPersonalInfo(response.data);
+      console.log(response.data);
     } catch (error) {
-      console.error("Error updating document: ", error);
+      console.error("Error updating the status:", error);
     }
   };
 
-  const handleRejectBusinessDocument = async (keysToUpdate) => {
-    try {
-      const db = getFirestore(firebaseApp);
-      const userDocumentPath = `/DocumentsStatus/${documentId}`;
-      const docRef = doc(db, userDocumentPath);
+  //
 
-      const updateData = {};
-      keysToUpdate.forEach((key) => {
-        updateData[key] = "Rejected";
-      });
-
-      await updateDoc(docRef, updateData);
-
-      console.log("Document successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-    }
-  };
-
+  //
   const onComponent1Click = useCallback(() => {
     navigate("/analytics");
   }, [navigate]);
@@ -731,9 +369,9 @@ const DriverProfileDetail = () => {
         const personalInfoDocRef = doc(personalInfoCollection, documentId);
         const personalInfoDocSnapshot = await getDoc(personalInfoDocRef);
 
-        const nicNumberCollection = collection(db, "NIC Number");
-        const nicNumberDocRef = doc(nicNumberCollection, documentId);
-        const nicNumberDocSnapshot = await getDoc(nicNumberDocRef);
+        // const nicNumberCollection = collection(db, "NIC Number");
+        // const nicNumberDocRef = doc(nicNumberCollection, documentId);
+        // const nicNumberDocSnapshot = await getDoc(nicNumberDocRef);
 
         const driliCollection = collection(db, "Driving License");
         const driliDocRef = doc(driliCollection, documentId);
@@ -770,7 +408,7 @@ const DriverProfileDetail = () => {
 
         if (
           personalInfoDocSnapshot.exists() &&
-          nicNumberDocSnapshot.exists() &&
+          //nicNumberDocSnapshot.exists() &&
           addressAndRoutesDocSnapshot.exists() &&
           VehicleInformationDocSnapshot.exists() &&
           driliDocSnapshot.exists() &&
@@ -778,7 +416,7 @@ const DriverProfileDetail = () => {
           //utilityDocSnapshot.exists()
         ) {
           const personalInfoData = personalInfoDocSnapshot.data();
-          const nicNumberData = nicNumberDocSnapshot.data();
+          //const nicNumberData = nicNumberDocSnapshot.data();
           const addressAndRoutesData = addressAndRoutesDocSnapshot.data();
           const VehicleInformationData = VehicleInformationDocSnapshot.data();
           const utilityData = utilityDocSnapshot.data();
@@ -787,7 +425,7 @@ const DriverProfileDetail = () => {
 
           const mergedData = {
             ...personalInfoData,
-            ...nicNumberData,
+            //...nicNumberData,
             ...addressAndRoutesData,
             ...VehicleInformationData,
             ...driliData,
@@ -1098,7 +736,7 @@ const DriverProfileDetail = () => {
                         }
                       />
                     ) : (
-                      driverInfo && driverInfo.NICNumber
+                      driverInfo && driverInfo.nic
                     )}
                   </div>
                 </div>
@@ -1520,7 +1158,10 @@ const DriverProfileDetail = () => {
                           className={styles.approveButton}
                           onClick={() => {
                             handlePIStatusChange("Approved");
-                            handleApprovePersonalInfo(["PersonalInfo.status"]);
+                            handleDocumentStatusChanges({
+                              documentType: "PersonalInfo",
+                              statusType: "Approved",
+                            });
                           }}
                         >
                           Approve
@@ -1530,7 +1171,10 @@ const DriverProfileDetail = () => {
                           className={styles.rejectButton}
                           onClick={() => {
                             handlePIStatusChange("Rejected");
-                            handleRejectpersonalinfo(["PersonalInfo.status"]);
+                            handleDocumentStatusChanges({
+                              documentType: "PersonalInfo",
+                              statusType: "Rejected",
+                            });
                           }}
                         >
                           <img src={CloseIcon} alt="Icon" />
@@ -1550,7 +1194,10 @@ const DriverProfileDetail = () => {
                           className={styles.rejectButton}
                           onClick={() => {
                             handlePIStatusChange("Rejected");
-                            handleRejectpersonalinfo(["PersonalInfo.status"]);
+                            handleDocumentStatusChanges({
+                              documentType: "PersonalInfo",
+                              statusType: "Rejected",
+                            });
                           }}
                         >
                           <img src={CloseIcon} alt="Icon" />
@@ -1565,7 +1212,10 @@ const DriverProfileDetail = () => {
                           className={styles.approveButton}
                           onClick={() => {
                             handlePIStatusChange("Approved");
-                            handleApprovePersonalInfo(["PersonalInfo.status"]);
+                            handleDocumentStatusChanges({
+                              documentType: "PersonalInfo",
+                              statusType: "Approved",
+                            });
                           }}
                         >
                           Approve
@@ -1602,7 +1252,10 @@ const DriverProfileDetail = () => {
                           className={styles.approveButton}
                           onClick={() => {
                             handleVIStatusChange("Approved");
-                            handleApproveVehicleInfo(["VehicleInfo.status"]);
+                            handleDocumentStatusChanges({
+                              documentType: "VehicleInfo",
+                              statusType: "Approved",
+                            });
                           }}
                         >
                           Approve
@@ -1612,7 +1265,10 @@ const DriverProfileDetail = () => {
                           className={styles.rejectButton}
                           onClick={() => {
                             handleVIStatusChange("Rejected");
-                            handleRejectVehicleInfo(["VehicleInfo.status"]);
+                            handleDocumentStatusChanges({
+                              documentType: "VehicleInfo",
+                              statusType: "Rejected",
+                            });
                           }}
                         >
                           <img src={CloseIcon} alt="Icon" />
@@ -1632,7 +1288,10 @@ const DriverProfileDetail = () => {
                           className={styles.rejectButton}
                           onClick={() => {
                             handleVIStatusChange("Rejected");
-                            handleRejectVehicleInfo(["VehicleInfo.status"]);
+                            handleDocumentStatusChanges({
+                              documentType: "VehicleInfo",
+                              statusType: "Rejected",
+                            });
                           }}
                         >
                           <img src={CloseIcon} alt="Icon" />
@@ -1647,7 +1306,10 @@ const DriverProfileDetail = () => {
                           className={styles.approveButton}
                           onClick={() => {
                             handleVIStatusChange("Approved");
-                            handleApproveVehicleInfo(["VehicleInfo.status"]);
+                            handleDocumentStatusChanges({
+                              documentType: "VehicleInfo",
+                              statusType: "Approved",
+                            });
                           }}
                         >
                           Approve
@@ -1684,9 +1346,10 @@ const DriverProfileDetail = () => {
                           className={styles.approveButton}
                           onClick={() => {
                             handleARStatusChange("Approved");
-                            handleApproveAddressAndRoutes([
-                              "AddressAndRoutes.status",
-                            ]);
+                            handleDocumentStatusChanges({
+                              documentType: "AddressAndRoutes",
+                              statusType: "Approved",
+                            });
                           }}
                         >
                           Approve
@@ -1696,9 +1359,10 @@ const DriverProfileDetail = () => {
                           className={styles.rejectButton}
                           onClick={() => {
                             handleARStatusChange("Rejected");
-                            handleRejectAddressAndRoutes([
-                              "AddressAndRoutes.status",
-                            ]);
+                            handleDocumentStatusChanges({
+                              documentType: "AddressAndRoutes",
+                              statusType: "Rejected",
+                            });
                           }}
                         >
                           <img src={CloseIcon} alt="Icon" />
@@ -1718,9 +1382,10 @@ const DriverProfileDetail = () => {
                           className={styles.rejectButton}
                           onClick={() => {
                             handleARStatusChange("Rejected");
-                            handleRejectAddressAndRoutes([
-                              "AddressAndRoutes.status",
-                            ]);
+                            handleDocumentStatusChanges({
+                              documentType: "AddressAndRoutes",
+                              statusType: "Rejected",
+                            });
                           }}
                         >
                           <img src={CloseIcon} alt="Icon" />
@@ -1735,9 +1400,10 @@ const DriverProfileDetail = () => {
                           className={styles.approveButton}
                           onClick={() => {
                             handleARStatusChange("Approved");
-                            handleApproveAddressAndRoutes([
-                              "AddressAndRoutes.status",
-                            ]);
+                            handleDocumentStatusChanges({
+                              documentType: "AddressAndRoutes",
+                              statusType: "Approved",
+                            });
                           }}
                         >
                           Approve
@@ -1798,9 +1464,10 @@ const DriverProfileDetail = () => {
                           className={styles.approveButton}
                           onClick={() => {
                             handleDLStatusChange("Approved");
-                            handleApproveDriverLicense([
-                              "DrivingLicense.status",
-                            ]);
+                            handleDocumentStatusChanges({
+                              documentType: "DrivingLicense",
+                              statusType: "Approved",
+                            });
                           }}
                         >
                           Approve
@@ -1810,9 +1477,10 @@ const DriverProfileDetail = () => {
                           className={styles.rejectButton}
                           onClick={() => {
                             handleDLStatusChange("Rejected");
-                            handleRejectDriverLicense([
-                              "DrivingLicense.status",
-                            ]);
+                            handleDocumentStatusChanges({
+                              documentType: "DrivingLicense",
+                              statusType: "Rejected",
+                            });
                           }}
                         >
                           <img src={CloseIcon} alt="Icon" />
@@ -1832,9 +1500,10 @@ const DriverProfileDetail = () => {
                           className={styles.rejectButton}
                           onClick={() => {
                             handleDLStatusChange("Rejected");
-                            handleRejectDriverLicense([
-                              "DrivingLicense.status",
-                            ]);
+                            handleDocumentStatusChanges({
+                              documentType: "DrivingLicense",
+                              statusType: "Rejected",
+                            });
                           }}
                         >
                           <img src={CloseIcon} alt="Icon" />
@@ -1849,9 +1518,10 @@ const DriverProfileDetail = () => {
                           className={styles.approveButton}
                           onClick={() => {
                             handleDLStatusChange("Approved");
-                            handleApproveDriverLicense([
-                              "DrivingLicense.status",
-                            ]);
+                            handleDocumentStatusChanges({
+                              documentType: "DrivingLicense",
+                              statusType: "Approved",
+                            });
                           }}
                         >
                           Approve
@@ -1994,7 +1664,10 @@ const DriverProfileDetail = () => {
                           className={styles.approveButton}
                           onClick={() => {
                             handleNICStatusChange("Approved");
-                            handleApproveNIC(["NIC.status"]);
+                            handleDocumentStatusChanges({
+                              documentType: "NIC",
+                              statusType: "Approved",
+                            });
                           }}
                         >
                           Approve
@@ -2004,7 +1677,10 @@ const DriverProfileDetail = () => {
                           className={styles.rejectButton}
                           onClick={() => {
                             handleNICStatusChange("Rejected");
-                            handleRejectNIC(["NIC.status"]);
+                            handleDocumentStatusChanges({
+                              documentType: "NIC",
+                              statusType: "Rejected",
+                            });
                           }}
                         >
                           <img src={CloseIcon} alt="Icon" />
@@ -2024,7 +1700,10 @@ const DriverProfileDetail = () => {
                           className={styles.rejectButton}
                           onClick={() => {
                             handleNICStatusChange("Rejected");
-                            handleRejectNIC(["NIC.status"]);
+                            handleDocumentStatusChanges({
+                              documentType: "NIC",
+                              statusType: "Rejected",
+                            });
                           }}
                         >
                           <img src={CloseIcon} alt="Icon" />
@@ -2039,7 +1718,10 @@ const DriverProfileDetail = () => {
                           className={styles.approveButton}
                           onClick={() => {
                             handleNICStatusChange("Approved");
-                            handleApproveNIC(["NIC.status"]);
+                            handleDocumentStatusChanges({
+                              documentType: "NIC",
+                              statusType: "Approved",
+                            });
                           }}
                         >
                           Approve
@@ -2161,7 +1843,10 @@ const DriverProfileDetail = () => {
                           className={styles.approveButton}
                           onClick={() => {
                             handleVehicleImageStatusChange("Approved");
-                            handleApproveVehicleImage(["VehicleImage.status"]);
+                            handleDocumentStatusChanges({
+                              documentType: "VehicleImage",
+                              statusType: "Approved",
+                            });
                           }}
                         >
                           Approve
@@ -2171,7 +1856,10 @@ const DriverProfileDetail = () => {
                           className={styles.rejectButton}
                           onClick={() => {
                             handleVehicleImageStatusChange("Rejected");
-                            handleRejectVehicleImage(["VehicleImage.status"]);
+                            handleDocumentStatusChanges({
+                              documentType: "VehicleImage",
+                              statusType: "Rejected",
+                            });
                           }}
                         >
                           <img src={CloseIcon} alt="Icon" />
@@ -2191,7 +1879,10 @@ const DriverProfileDetail = () => {
                           className={styles.rejectButton}
                           onClick={() => {
                             handleVehicleImageStatusChange("Rejected");
-                            handleRejectVehicleImage(["VehicleImage.status"]);
+                            handleDocumentStatusChanges({
+                              documentType: "VehicleImage",
+                              statusType: "Rejected",
+                            });
                           }}
                         >
                           <img src={CloseIcon} alt="Icon" />
@@ -2206,7 +1897,10 @@ const DriverProfileDetail = () => {
                           className={styles.approveButton}
                           onClick={() => {
                             handleVehicleImageStatusChange("Approved");
-                            handleApproveVehicleImage(["VehicleImage.status"]);
+                            handleDocumentStatusChanges({
+                              documentType: "VehicleImage",
+                              statusType: "Approved",
+                            });
                           }}
                         >
                           Approve
@@ -2368,9 +2062,10 @@ const DriverProfileDetail = () => {
                           className={styles.approveButton}
                           onClick={() => {
                             handleRLStatusChange("Approved");
-                            handleApproveRevenueLicense([
-                              "RevenueLicense.status",
-                            ]);
+                            handleDocumentStatusChanges({
+                              documentType: "RevenueLicense",
+                              statusType: "Approved",
+                            });
                           }}
                         >
                           Approve
@@ -2380,9 +2075,10 @@ const DriverProfileDetail = () => {
                           className={styles.rejectButton}
                           onClick={() => {
                             handleRLStatusChange("Rejected");
-                            handleRejectRevenueLicense([
-                              "RevenueLicense.status",
-                            ]);
+                            handleDocumentStatusChanges({
+                              documentType: "RevenueLicense",
+                              statusType: "Rejected",
+                            });
                           }}
                         >
                           <img src={CloseIcon} alt="Icon" />
@@ -2402,7 +2098,10 @@ const DriverProfileDetail = () => {
                           className={styles.rejectButton}
                           onClick={() => {
                             handleRLStatusChange("Rejected");
-                            handleRejectpersonalinfo(["RevenueLicense.status"]);
+                            handleDocumentStatusChanges({
+                              documentType: "RevenueLicense",
+                              statusType: "Rejected",
+                            });
                           }}
                         >
                           <img src={CloseIcon} alt="Icon" />
@@ -2417,9 +2116,10 @@ const DriverProfileDetail = () => {
                           className={styles.approveButton}
                           onClick={() => {
                             handleRLStatusChange("Approved");
-                            handleRejectRevenueLicense([
-                              "RevenueLicense.status",
-                            ]);
+                            handleDocumentStatusChanges({
+                              documentType: "RevenueLicense",
+                              statusType: "Approved",
+                            });
                           }}
                         >
                           Approve
@@ -2498,7 +2198,10 @@ const DriverProfileDetail = () => {
                           className={styles.approveButton}
                           onClick={() => {
                             handleVRDStatusChange("Approved");
-                            handleApproveVRD(["VehicleRegistration.status"]);
+                            handleDocumentStatusChanges({
+                              documentType: "VehicleRegistration",
+                              statusType: "Approved",
+                            });
                           }}
                         >
                           Approve
@@ -2508,7 +2211,10 @@ const DriverProfileDetail = () => {
                           className={styles.rejectButton}
                           onClick={() => {
                             handleVRDStatusChange("Rejected");
-                            ["VehicleRegistration.status"];
+                            handleDocumentStatusChanges({
+                              documentType: "VehicleRegistration",
+                              statusType: "Rejected",
+                            });
                           }}
                         >
                           <img src={CloseIcon} alt="Icon" />
@@ -2528,7 +2234,10 @@ const DriverProfileDetail = () => {
                           className={styles.rejectButton}
                           onClick={() => {
                             handleVRDStatusChange("Rejected");
-                            handleRejectVRD(["VehicleRegistration.status"]);
+                            handleDocumentStatusChanges({
+                              documentType: "VehicleRegistration",
+                              statusType: "Rejected",
+                            });
                           }}
                         >
                           <img src={CloseIcon} alt="Icon" />
@@ -2543,7 +2252,10 @@ const DriverProfileDetail = () => {
                           className={styles.approveButton}
                           onClick={() => {
                             handleVRDStatusChange("Approved");
-                            handleApproveVRD(["VehicleRegistration.status"]);
+                            handleDocumentStatusChanges({
+                              documentType: "VehicleRegistration",
+                              statusType: "Approved",
+                            });
                           }}
                         >
                           Approve
@@ -2673,9 +2385,10 @@ const DriverProfileDetail = () => {
                           className={styles.approveButton}
                           onClick={() => {
                             handleVehicleInsuranceStatusChange("Approved");
-                            handleApproveVehicleInsurance([
-                              "VehicleInsuarance.status",
-                            ]);
+                            handleDocumentStatusChanges({
+                              documentType: "VehicleInsuarance",
+                              statusType: "Approved",
+                            });
                           }}
                         >
                           Approve
@@ -2685,9 +2398,10 @@ const DriverProfileDetail = () => {
                           className={styles.rejectButton}
                           onClick={() => {
                             handleVehicleInsuranceStatusChange("Rejected");
-                            handleRejectVehicleInsurance([
-                              "VehicleInsuarance.status",
-                            ]);
+                            handleDocumentStatusChanges({
+                              documentType: "VehicleInsuarance",
+                              statusType: "Rejected",
+                            });
                           }}
                         >
                           <img src={CloseIcon} alt="Icon" />
@@ -2707,9 +2421,10 @@ const DriverProfileDetail = () => {
                           className={styles.rejectButton}
                           onClick={() => {
                             handleVehicleInsuranceStatusChange("Rejected");
-                            handleRejectVehicleInsurance([
-                              "VehicleInsuarance.status",
-                            ]);
+                            handleDocumentStatusChanges({
+                              documentType: "VehicleInsuarance",
+                              statusType: "Rejected",
+                            });
                           }}
                         >
                           <img src={CloseIcon} alt="Icon" />
@@ -2724,9 +2439,10 @@ const DriverProfileDetail = () => {
                           className={styles.approveButton}
                           onClick={() => {
                             handleVehicleInsuranceStatusChange("Approved");
-                            handleApproveVehicleInsurance([
-                              "VehicleInsuarance.status",
-                            ]);
+                            handleDocumentStatusChanges({
+                              documentType: "VehicleInsuarance",
+                              statusType: "Approved",
+                            });
                           }}
                         >
                           Approve
@@ -2849,9 +2565,10 @@ const DriverProfileDetail = () => {
                           className={styles.approveButton}
                           onClick={() => {
                             handleBDStatusChange("Approved");
-                            handleApproveBusinessDocument([
-                              "BillingDocuments.status",
-                            ]);
+                            handleDocumentStatusChanges({
+                              documentType: "BillingDocuments",
+                              statusType: "Approved",
+                            });
                           }}
                         >
                           Approve
@@ -2861,9 +2578,10 @@ const DriverProfileDetail = () => {
                           className={styles.rejectButton}
                           onClick={() => {
                             handleBDStatusChange("Rejected");
-                            handleRejectBusinessDocument([
-                              "BillingDocuments.status",
-                            ]);
+                            handleDocumentStatusChanges({
+                              documentType: "BillingDocuments",
+                              statusType: "Rejected",
+                            });
                           }}
                         >
                           <img src={CloseIcon} alt="Icon" />
@@ -2883,9 +2601,10 @@ const DriverProfileDetail = () => {
                           className={styles.rejectButton}
                           onClick={() => {
                             handleBDStatusChange("Rejected");
-                            handleRejectBusinessDocument([
-                              "BillingDocuments.status",
-                            ]);
+                            handleDocumentStatusChanges({
+                              documentType: "BillingDocuments",
+                              statusType: "Rejected",
+                            });
                           }}
                         >
                           <img src={CloseIcon} alt="Icon" />
@@ -2900,9 +2619,10 @@ const DriverProfileDetail = () => {
                           className={styles.approveButton}
                           onClick={() => {
                             handleBDStatusChange("Approved");
-                            handleApproveBusinessDocument([
-                              "BillingDocuments.status",
-                            ]);
+                            handleDocumentStatusChanges({
+                              documentType: "BillingDocuments",
+                              statusType: "Approved",
+                            });
                           }}
                         >
                           Approve

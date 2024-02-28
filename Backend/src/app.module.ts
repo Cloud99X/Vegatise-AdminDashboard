@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { DriversDataModule } from './drivers-data/divers-date.module';
+import { DriversDataModule } from './drivers-data/divers-data.module';
 import { DriverInfoModule } from './driver-info/driver-info.module';
 import * as admin from 'firebase-admin';
 import { DocumentStatusModule } from './documentStatus/status.module';
