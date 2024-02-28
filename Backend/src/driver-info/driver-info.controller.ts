@@ -27,7 +27,7 @@ export class ImageController {
   ) {
     try {
       if (file && uid) {
-        const imagePath = `${uid}/Profile Picture/${file.originalname}`;
+        const imagePath = `${uid}/Profile Picture/ProfilePicture.jpg`;
         const saveImage = await this.imageService.uploadFile(
           file.buffer,
           imagePath,

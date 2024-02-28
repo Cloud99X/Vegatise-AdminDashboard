@@ -2,18 +2,15 @@ import { Injectable } from '@nestjs/common';
 import * as admin from 'firebase-admin';
 @Injectable()
 export class ImageService {
-  async getImageUrl(uid: string): Promise<string> {
+  async getImageUrl(
+    uid: string,
+    fileName: string,
+    folderName: string,
+  ): Promise<string> {
     try {
       const bucket = admin.storage().bucket('gs://vegatise-1bad9.appspot.com');
 
-      // const imageNames = this.getImageNamesFromStorage();
-      // console.log(imageNames);
-      // const imagePath = `${uid}/Profile Picture/${imageNames}`;
-
-      const imagePath = `${uid}/Profile Picture/ProfilePicture.jpg`;
-
-      // const imagePath =
-      //   'cpdmZYnZfOU2uGXVQeEPmphqmIj1/Profile Picture/helmet.jpg';
+      const imagePath = `${uid}/Driving License/${folderName}/${fileName}`;
 
       const [url] = await bucket.file(imagePath).getSignedUrl({
         action: 'read',

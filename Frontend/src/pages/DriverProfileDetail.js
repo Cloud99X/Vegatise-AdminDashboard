@@ -51,11 +51,72 @@ const DriverProfileDetail = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [file, setFile] = useState(null);
 
+  const [drivingLicenseFront, setDrivingLicenseFront] = useState("");
+  const [drivingLicenseBack, setDrivingLicenseBack] = useState("");
+
+  // ------ Upload Driver's License to the Firebase -------
+  const handleUpload = async (event, view) => {
+    const image = event.target.files[0];
+    if (!image) {
+      console.error("No image selected");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("photo", image, `${view}_view.jpg`);
+    formData.append("uid", "cpdmZYnZfOU2uGXVQeEPmphqmIj1");
+
+    try {
+      const response = await axios.post(
+        `http://localhost:8000/images/upload-${view}-view`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response.data.message);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+  // ---------------------------------------------------
+
+  // ------------ Get Driver's License ------------------
+  useEffect(() => {
+    const fetchDrivingLicenseImageUrl = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/images/front-view/"
+        );
+        setDrivingLicenseFront(response.data);
+        console.log(drivingLicenseFront);
+      } catch (error) {
+        console.error("Error fetching Driving License Front View URL:", error);
+      }
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/images/back-view/"
+        );
+        setDrivingLicenseBack(response.data);
+        console.log(drivingLicenseBack);
+      } catch (error) {
+        console.error("Error fetching Driving License Back View URL:", error);
+      }
+    };
+
+    fetchDrivingLicenseImageUrl();
+  }, []);
+   // --------------------------------------------------------
+
+   // ----------- Upload Profile Picture ---------------------
   useEffect(() => {
     const fetchImageUrl = async () => {
       try {
         const response = await axios.get("http://localhost:8000/images/url");
         setImageUrl(response.data);
+        console.log(imageUrl);
       } catch (error) {
         console.error("Error fetching image URL:", error);
       }
@@ -67,28 +128,40 @@ const DriverProfileDetail = () => {
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
+  // ----------------------------------------
 
-  const handleUpload = async () => {
-    if (!file) return;
+  // -------------- Upload Profile Picture ------------------
+  useEffect(() => {
+    const handleUpload = async () => {
+      if (!file) return;
 
-    const formData = new FormData();
-    formData.append("image", file);
+      const formData = new FormData();
+      formData.append("photo", file);
+      // formData.append('uid', documentId);
+      formData.append("uid", "cpdmZYnZfOU2uGXVQeEPmphqmIj1");
+      console.log(formData);
 
-    try {
-      const response = await axios.post(
-        "http://localhost:8000/images/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      setImageUrl(response.data);
-    } catch (error) {
-      console.error("Error uploading image:", error);
-    }
-  };
+      try {
+        const response = await axios.post(
+          "http://localhost:8000/images/",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setImageUrl(response.data);
+        console.log(response.data);
+        console.log(imageUrl);
+      } catch (error) {
+        console.error("Error uploading image:", error);
+      }
+    };
+
+    handleUpload();
+  }, [file]); // Call handleUpload when the file state changes
+  // --------------------------------------------------
 
   const handleAccountClick = (account) => {
     setSelectedAccount(account);
@@ -1202,7 +1275,7 @@ const DriverProfileDetail = () => {
           </div>
         </button>
 
-        <button className={styles.rectangleContainer} onClick={handleUpload}>
+        <button className={styles.rectangleContainer}>
           <div className={styles.groupItem} />
           <div className={styles.saveChanges}>Save changes</div>
         </button>
@@ -1641,14 +1714,14 @@ const DriverProfileDetail = () => {
                       <div className={styles.miniDropdownContainer}>
                         <div className={styles.viewsTag}>Front View</div>
                         <div className={styles.uploadButtonContainer}>
-                          <button
+                          <a
+                            href={drivingLicenseFront}
                             className={styles.nameTag}
-                            onClick={() =>
-                              viewButtons("Driving License/Front Image", 0)
-                            }
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
                             View
-                          </button>
+                          </a>
                           <button className={styles.uploadBtn}>
                             <label htmlFor="fileInput2" className={styles.upld}>
                               <b> Upload </b>
@@ -1656,16 +1729,9 @@ const DriverProfileDetail = () => {
                                 id="fileInput2"
                                 type="file"
                                 style={{ display: "none" }}
-                                onChange={(e) => {
-                                  const file = e.target.files[0];
-                                  uploaddriverimageToFirestore(
-                                    file,
-                                    documentId,
-                                    "Driving License/Front Image",
-                                    fetchImageUrl,
-                                    0
-                                  );
-                                }}
+                                onChange={(event) =>
+                                  handleUpload(event, "front")
+                                }
                               />
                             </label>
                             <img alt="" src={uplo} />
@@ -1675,14 +1741,14 @@ const DriverProfileDetail = () => {
                       <div className={styles.miniDropdownContainer}>
                         <div className={styles.viewsTag}>Back View</div>
                         <div className={styles.uploadButtonContainer}>
-                          <button
+                          <a
+                            href={drivingLicenseBack}
                             className={styles.nameTag}
-                            onClick={() =>
-                              viewButtons("Driving License/Rear Image", 0)
-                            }
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
                             View
-                          </button>
+                          </a>
                           <button className={styles.uploadBtn}>
                             <label htmlFor="fileInput3" className={styles.upld}>
                               <b> Upload </b>
@@ -1690,16 +1756,9 @@ const DriverProfileDetail = () => {
                                 id="fileInput3"
                                 type="file"
                                 style={{ display: "none" }}
-                                onChange={(e) => {
-                                  const file = e.target.files[0];
-                                  uploaddriverimageToFirestore(
-                                    file,
-                                    documentId,
-                                    "Driving License/Rear Image",
-                                    fetchImageUrl,
-                                    0
-                                  );
-                                }}
+                                onChange={(event) =>
+                                  handleUpload(event, "back")
+                                }
                               />
                             </label>
                             <img alt="" src={uplo} />

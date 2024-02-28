@@ -4,6 +4,7 @@ import { DriversDataModule } from './drivers-data/divers-data.module';
 import { DriverInfoModule } from './driver-info/driver-info.module';
 import * as admin from 'firebase-admin';
 import { DocumentStatusModule } from './documentStatus/status.module';
+import { DrivingLicenseModule } from './driving-license/driving-license.module';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { DocumentStatusModule } from './documentStatus/status.module';
     DriversDataModule,
     DriverInfoModule,
     DocumentStatusModule,
+    DrivingLicenseModule,
   ],
   controllers: [],
   providers: [],
