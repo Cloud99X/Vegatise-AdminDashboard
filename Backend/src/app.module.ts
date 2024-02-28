@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { DriversDataModule } from './drivers-data/divers-date.module';
+import { DriverInfoModule } from './driver-info/driver-info.module';
 import * as admin from 'firebase-admin';
 
 @Module({
-  imports: [ConfigModule.forRoot(), DriversDataModule],
+  imports: [ConfigModule.forRoot(), DriversDataModule, DriverInfoModule],
   controllers: [],
   providers: [],
 })

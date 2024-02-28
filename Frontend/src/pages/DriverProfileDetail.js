@@ -29,11 +29,12 @@ const DriverProfileDetail = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedDriverInfo, setEditedDriverInfo] = useState(null);
   const [fileCount, setFileCount] = useState(0);
-  const [file, setFile] = useState(null);
+    // const [imageUrl, setImageUrl] = useState("");
+  // const [file, setFile] = useState(null);
 
   const [currentTab, setCurrentTab] = useState("Personal Info");
   const [selectedFile, setSelectedFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState("");
+
 
   //billing info accounts//
   const [selectedAccount, setSelectedAccount] = useState("account1");
@@ -46,6 +47,56 @@ const DriverProfileDetail = () => {
     useState(false);
   const [billingDocDropdown, setBillingDocDropdown] = useState(false);
   const [VRDropdown, setVRDropdown] = useState(false);
+
+
+
+
+  const [imageUrl, setImageUrl] = useState('');
+  const [file, setFile] = useState(null);
+
+  useEffect(() => {
+    const fetchImageUrl = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/images/url');
+        setImageUrl(response.data);
+      } catch (error) {
+        console.error('Error fetching image URL:', error);
+      }
+    };
+
+    fetchImageUrl();
+  }, []);
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleUpload = async () => {
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('image', file);
+
+    try {
+      const response = await axios.post('http://localhost:8000/images/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      setImageUrl(response.data);
+    } catch (error) {
+      console.error('Error uploading image:', error);
+    }
+  };
+
+
+
+
+
+
+
+
+
 
   const handleAccountClick = (account) => {
     setSelectedAccount(account);
@@ -848,82 +899,96 @@ useEffect(() => {
     return `${firstNameInitial}.${lastName}`;
   };
 
-  const uploadImageToFirestore = async (file, documentId, fetchImageUrl) => {
-    try {
-      const storage = getStorage();
-      const storageRef = ref(
-        storage,
-        `${documentId}/Profile Photo/${file.name}`
-      );
-      const existingImageRef = ref(storage, `${documentId}/Profile Photo`);
-      const existingImageSnapshot = await listAll(existingImageRef);
-      existingImageSnapshot.items.forEach(async (item) => {
-        await deleteObject(item);
-      });
-      await uploadBytes(storageRef, file);
-      fetchImageUrl();
-    } catch (error) {
-      console.error("Error uploading image to Firestore:", error);
-    }
-  };
 
-  const handleImageUpload = async (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      await uploadImageToFirestore(file, documentId, fetchImageUrl);
-    }
-  };
 
-  const fetchImageUrl = async () => {
-    try {
-      const storage = getStorage();
-      const userImagesFolder = `${documentId}/Profile Photo`;
-      const folderRef = ref(storage, userImagesFolder);
-      const items = await listAll(folderRef);
-      if (items && items.items.length > 0) {
-        const firstItem = items.items[0];
-        const firstItemUrl = await getDownloadURL(firstItem);
-        setImageUrl(firstItemUrl);
-      } else {
-        console.error("No items found in the folder.");
-      }
-    } catch (error) {
-      console.error("Error retrieving images:", error);
-    }
-  };
 
-  useEffect(() => {
-    fetchImageUrl();
-  }, [documentId]);
 
-  const uploaddriverimageToFirestore = async (
-    file,
-    documentId,
-    folderPath,
-    fetchImageUrl,
-    index
-  ) => {
-    try {
-      const storage = getStorage();
-      const storageRef = ref(
-        storage,
-        `${documentId}/${folderPath}/${file.name}`
-      );
-      const existingImageRef = ref(storage, `${documentId}/${folderPath}`);
-      const existingImageSnapshot = await listAll(existingImageRef);
 
-      if (typeof index === "number" && index >= 0) {
-        const fileToDelete = existingImageSnapshot.items[index];
-        if (fileToDelete) {
-          await deleteObject(fileToDelete);
-        }
-      }
-      await uploadBytes(storageRef, file);
-      fetchImageUrl();
-    } catch (error) {
-      console.error("Error uploading image to Firestore:", error);
-    }
-  };
+  // const uploadImageToFirestore = async (file, documentId, fetchImageUrl) => {
+  //   try {
+  //     const storage = getStorage();
+  //     const storageRef = ref(
+  //       storage,
+  //       `${documentId}/Profile Photo/${file.name}`
+  //     );
+  //     const existingImageRef = ref(storage, `${documentId}/Profile Photo`);
+  //     const existingImageSnapshot = await listAll(existingImageRef);
+  //     existingImageSnapshot.items.forEach(async (item) => {
+  //       await deleteObject(item);
+  //     });
+  //     await uploadBytes(storageRef, file);
+  //     fetchImageUrl();
+  //   } catch (error) {
+  //     console.error("Error uploading image to Firestore:", error);
+  //   }
+  // };
+
+
+
+
+
+  // const handleImageUpload = async (event) => {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     await uploadImageToFirestore(file, documentId, fetchImageUrl);
+  //   }
+  // };
+
+
+
+
+
+
+  // const fetchImageUrl = async () => {
+  //   try {
+  //     const storage = getStorage();
+  //     const userImagesFolder = `${documentId}/Profile Photo`;
+  //     const folderRef = ref(storage, userImagesFolder);
+  //     const items = await listAll(folderRef);
+  //     if (items && items.items.length > 0) {
+  //       const firstItem = items.items[0];
+  //       const firstItemUrl = await getDownloadURL(firstItem);
+  //       setImageUrl(firstItemUrl);
+  //     } else {
+  //       console.error("No items found in the folder.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error retrieving images:", error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchImageUrl();
+  // }, [documentId]);
+
+  // const uploaddriverimageToFirestore = async (
+  //   file,
+  //   documentId,
+  //   folderPath,
+  //   fetchImageUrl,
+  //   index
+  // ) => {
+  //   try {
+  //     const storage = getStorage();
+  //     const storageRef = ref(
+  //       storage,
+  //       `${documentId}/${folderPath}/${file.name}`
+  //     );
+  //     const existingImageRef = ref(storage, `${documentId}/${folderPath}`);
+  //     const existingImageSnapshot = await listAll(existingImageRef);
+
+  //     if (typeof index === "number" && index >= 0) {
+  //       const fileToDelete = existingImageSnapshot.items[index];
+  //       if (fileToDelete) {
+  //         await deleteObject(fileToDelete);
+  //       }
+  //     }
+  //     await uploadBytes(storageRef, file);
+  //     fetchImageUrl();
+  //   } catch (error) {
+  //     console.error("Error uploading image to Firestore:", error);
+  //   }
+  // };
 
   useEffect(() => {
     const fetchDriverInfo = async () => {
@@ -1687,10 +1752,28 @@ useEffect(() => {
             />
           </div>
         </button>
-        <button className={styles.rectangleContainer} onClick={saveChanges}>
+
+
+
+
+
+
+
+
+        <button className={styles.rectangleContainer} onClick={handleUpload}>
           <div className={styles.groupItem} />
           <div className={styles.saveChanges}>Save changes</div>
         </button>
+
+
+
+
+
+
+
+
+
+
 
         {/* ... (test) */}
 
@@ -3194,6 +3277,11 @@ useEffect(() => {
           </div>
         </div>
       </section>
+
+
+
+
+
       <div className={styles.prof}>
         <img className={styles.Icon} alt="" src={imageUrl} />
         <label htmlFor="file-upload">
@@ -3202,14 +3290,26 @@ useEffect(() => {
         <input
           id="file-upload"
           type="file"
-          onChange={handleImageUpload}
+          onChange={handleFileChange}
           style={{ display: "none" }}
         />
         <div className={styles.headtext}>
+
+
+{/* Add Drivers Name */}
           <div className={styles.b}>{driverInfo && driverInfo.name}</div>
           {/*<div className={styles.a}>#100485A</div>  */}
+
+
+
         </div>
       </div>
+
+
+
+
+
+
     </PageLayout>
     // <div className={styles.driverProfileDetail}>
     //   <div className={styles.rectangleParent}>
