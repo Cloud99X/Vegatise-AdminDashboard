@@ -7,11 +7,11 @@ import {
   UploadedFile,
   Query,
 } from '@nestjs/common';
-import { ImageService } from './driving-license.service';
+import { ImageService } from './nic-doc.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Multer } from 'multer';
 
-@Controller('images')
+@Controller('nic')
 export class ImageController {
   constructor(private readonly imageService: ImageService) {}
 
@@ -33,7 +33,7 @@ export class ImageController {
   ) {
     try {
       if (file && uid) {
-        const imagePath = `${uid}/Driving License/Front View/front_view.jpg`;
+        const imagePath = `${uid}/NIC Information/Front View/front_view.jpg`;
         const saveImage = await this.imageService.uploadFile(
           file.buffer,
           imagePath,
@@ -59,7 +59,7 @@ export class ImageController {
   ) {
     try {
       if (file && uid) {
-        const imagePath = `${uid}/Driving License/Back View/back_view.jpg`;
+        const imagePath = `${uid}/NIC Information/Back View/back_view.jpg`;
         const saveImage = await this.imageService.uploadFile(
           file.buffer,
           imagePath,

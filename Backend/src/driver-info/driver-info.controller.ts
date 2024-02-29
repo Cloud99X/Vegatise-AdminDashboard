@@ -5,6 +5,7 @@ import {
   UseInterceptors,
   Body,
   UploadedFile,
+  Query,
 } from '@nestjs/common';
 import { ImageService } from './driver-info.service';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -15,8 +16,8 @@ export class ImageController {
   constructor(private readonly imageService: ImageService) {}
 
   @Get('url')
-  async getImageUrl(): Promise<string> {
-    return this.imageService.getImageUrl('cpdmZYnZfOU2uGXVQeEPmphqmIj1');
+  async getImageUrl(@Query('uid') uid: string): Promise<string> {
+    return this.imageService.getImageUrl(uid);
   }
 
   @Post()
@@ -45,16 +46,3 @@ export class ImageController {
     }
   }
 }
-
-// import { Controller, Get } from '@nestjs/common';
-// import { ImageService } from './driver-info.service';
-
-// @Controller('images')
-// export class ImageController {
-//   constructor(private readonly imageService: ImageService) {}
-
-//   @Get('url')
-//   async getImageUrl(): Promise<string> {
-//     return this.imageService.fetchImageUrl();
-//   }
-// }

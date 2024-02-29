@@ -53,6 +53,69 @@ const DriverProfileDetail = () => {
 
   const [drivingLicenseFront, setDrivingLicenseFront] = useState("");
   const [drivingLicenseBack, setDrivingLicenseBack] = useState("");
+  const [nicFront, setNicFront] = useState("");
+  const [nicBack, setNicBack] = useState("");
+
+  // ------ Upload NIC to the Firebase -------
+  const handleUploadNic = async (event, view) => {
+    const image = event.target.files[0];
+    if (!image) {
+      console.error("No image selected");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("photo", image, `${view}_view.jpg`);
+    formData.append("uid", documentId);
+    console.log("uploading NIC userID  "+documentId);
+
+    try {
+      const response = await axios.post(
+        `http://localhost:8000/nic/upload-${view}-view`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response.data.message);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+  // ---------------------------------------------------
+
+  // ------------ Get NIC from firebase  ------------------
+  useEffect(() => {
+    const fetchNICImageUrl = async () => {
+      try {
+        const id = documentId
+        const response = await axios.get(
+          'http://localhost:8000/nic/front-view/?uid='+id
+        );
+        console.log("get user"+documentId+"'s NIC");
+        setNicFront(response.data);
+        console.log(nicFront);
+      } catch (error) {
+        console.error("Error fetching NIC Front View URL:", error);
+        console.log("get user"+documentId+"'s NIC");
+      }
+      try {
+        const id = documentId
+        const response = await axios.get(
+          "http://localhost:8000/nic/back-view/?uid="+id
+        );
+        setNicBack(response.data);
+        console.log(nicBack);
+      } catch (error) {
+        console.error("Error fetching NIC Back View URL:", error);
+      }
+    };
+
+    fetchNICImageUrl();
+  }, []);
+  // --------------------------------------------------------
 
   // ------ Upload Driver's License to the Firebase -------
   const handleUpload = async (event, view) => {
@@ -64,7 +127,7 @@ const DriverProfileDetail = () => {
 
     const formData = new FormData();
     formData.append("photo", image, `${view}_view.jpg`);
-    formData.append("uid", "cpdmZYnZfOU2uGXVQeEPmphqmIj1");
+    formData.append("uid", documentId);
 
     try {
       const response = await axios.post(
@@ -83,12 +146,13 @@ const DriverProfileDetail = () => {
   };
   // ---------------------------------------------------
 
-  // ------------ Get Driver's License ------------------
+  // ------------ Get Driver's License from firebase ------------------
   useEffect(() => {
     const fetchDrivingLicenseImageUrl = async () => {
       try {
+        const id = documentId
         const response = await axios.get(
-          "http://localhost:8000/images/front-view/"
+          "http://localhost:8000/images/front-view/?uid="+id
         );
         setDrivingLicenseFront(response.data);
         console.log(drivingLicenseFront);
@@ -96,8 +160,9 @@ const DriverProfileDetail = () => {
         console.error("Error fetching Driving License Front View URL:", error);
       }
       try {
+        const id = documentId
         const response = await axios.get(
-          "http://localhost:8000/images/back-view/"
+          "http://localhost:8000/images/back-view/?uid="+id
         );
         setDrivingLicenseBack(response.data);
         console.log(drivingLicenseBack);
@@ -108,13 +173,14 @@ const DriverProfileDetail = () => {
 
     fetchDrivingLicenseImageUrl();
   }, []);
-   // --------------------------------------------------------
+  // --------------------------------------------------------
 
-   // ----------- Upload Profile Picture ---------------------
+  // ----------- Get Profile Picture from firebase ---------------------
   useEffect(() => {
     const fetchImageUrl = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/images/url");
+        const id = documentId
+        const response = await axios.get("http://localhost:8000/images/url/?uid="+id);
         setImageUrl(response.data);
         console.log(imageUrl);
       } catch (error) {
@@ -130,7 +196,7 @@ const DriverProfileDetail = () => {
   };
   // ----------------------------------------
 
-  // -------------- Upload Profile Picture ------------------
+  // -------------- Upload Profile Picture from firebase -----------------
   useEffect(() => {
     const handleUpload = async () => {
       if (!file) return;
@@ -138,7 +204,7 @@ const DriverProfileDetail = () => {
       const formData = new FormData();
       formData.append("photo", file);
       // formData.append('uid', documentId);
-      formData.append("uid", "cpdmZYnZfOU2uGXVQeEPmphqmIj1");
+      formData.append("uid", documentId);
       console.log(formData);
 
       try {
@@ -1886,12 +1952,14 @@ const DriverProfileDetail = () => {
                   <div className={styles.frnt}>
                     <div className={styles.frntViw}>Front view</div>
                     <div className={styles.div}>
-                      <button
+                      <a
+                        href={nicFront}
                         className={styles.viw}
-                        onClick={() => viewButtons("NIC Images/frontimage", 0)}
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         View
-                      </button>
+                      </a>
                       <button className={styles.but}>
                         <label htmlFor="fileInput0" className={styles.upld}>
                           <b> Upload </b>
@@ -1899,16 +1967,9 @@ const DriverProfileDetail = () => {
                             id="fileInput0"
                             type="file"
                             style={{ display: "none" }}
-                            onChange={(e) => {
-                              const file = e.target.files[0];
-                              uploaddriverimageToFirestore(
-                                file,
-                                documentId,
-                                "NIC Images/frontimage",
-                                fetchImageUrl,
-                                0
-                              );
-                            }}
+                            onChange={(event) =>
+                              handleUploadNic(event, "front")
+                            }
                           />
                         </label>
                         <img alt="" src={uplo} />
@@ -1918,12 +1979,14 @@ const DriverProfileDetail = () => {
                   <div className={styles.frnt}>
                     <div className={styles.frntViw}>Back view</div>
                     <div className={styles.div}>
-                      <button
+                      <a
+                        href={nicBack}
                         className={styles.viw}
-                        onClick={() => viewButtons("NIC Images/rearimage", 0)}
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         View
-                      </button>
+                      </a>
                       <button className={styles.but}>
                         <label htmlFor="fileInput1" className={styles.upld}>
                           <b> Upload </b>
@@ -1931,16 +1994,9 @@ const DriverProfileDetail = () => {
                             id="fileInput1"
                             type="file"
                             style={{ display: "none" }}
-                            onChange={(e) => {
-                              const file = e.target.files[0];
-                              uploaddriverimageToFirestore(
-                                file,
-                                documentId,
-                                "NIC Images/rearimage",
-                                fetchImageUrl,
-                                0
-                              );
-                            }}
+                            onChange={(event) =>
+                              handleUploadNic(event, "back")
+                            }
                           />
                         </label>
                         <img alt="" src={uplo} />
