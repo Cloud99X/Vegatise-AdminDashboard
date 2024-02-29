@@ -56,6 +56,346 @@ const DriverProfileDetail = () => {
   const [nicFront, setNicFront] = useState("");
   const [nicBack, setNicBack] = useState("");
 
+  const [VehicleImgFront, setVehicleImgFront] = useState("");
+  const [VehicleImgBack, setVehicleImgBack] = useState("");
+  const [VehicleImgSide, setVehicleImgSide] = useState("");
+
+  const [revenueLicenseFront, setRevenueLicenseFront] = useState("");
+  const [revenueLicenseBack, setRevenueLicenseBack] = useState("");
+
+  const [vehicleRegistrationFront, setVehicleRegistrationFront] = useState("");
+  const [vehicleRegistrationBack, setVehicleRegistrationBack] = useState("");
+
+  const [vehicleInsuranceFront, setVehicleInsuranceFront] = useState("");
+  const [vehicleInsuranceBack, setVehicleInsuranceBack] = useState("");
+
+  const [billingDocFront, setBillingDocFront] = useState("");
+  const [billingDocBack, setBillingDocBack] = useState("");
+
+  // ------ Upload Billing Documents to the Firebase -------
+  const handleUploadBillingDoc = async (event, view) => {
+    const image = event.target.files[0];
+    if (!image) {
+      console.error("No image selected");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("photo", image, `${view}_view.jpg`);
+    formData.append("uid", documentId);
+    console.log("uploading fetch billingDoc userID  " + documentId);
+
+    try {
+      const response = await axios.post(
+        `http://localhost:8000/billing-document/upload-${view}-view`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response.data.message);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+  // ---------------------------------------------------
+
+  // ------------ Get Billing Documents from firebase  ------------------
+  useEffect(() => {
+    const fetchBillingDocUrl = async () => {
+      try {
+        const id = documentId;
+        const response = await axios.get(
+          "http://localhost:8000/billing-document/front-view/?uid=" + id
+        );
+        console.log("get user" + documentId + "'s billingDoc");
+        setBillingDocFront(response.data);
+        console.log(billingDocFront);
+      } catch (error) {
+        console.error("Error fetching billingDoc Front View URL:", error);
+        console.log("get user" + documentId + "'s  billingDoc");
+      }
+      try {
+        const id = documentId;
+        const response = await axios.get(
+          "http://localhost:8000/billing-document/back-view/?uid=" + id
+        );
+        setBillingDocBack(response.data);
+        console.log(billingDocBack);
+      } catch (error) {
+        console.error("Error fetching billingDoc Back View URL:", error);
+      }
+    };
+
+    fetchBillingDocUrl();
+  }, []);
+  // --------------------------------------------------------
+
+  // ------ Upload Vehicle Insurance to the Firebase -------
+  const handleUploadVehicleInsurance = async (event, view) => {
+    const image = event.target.files[0];
+    if (!image) {
+      console.error("No image selected");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("photo", image, `${view}_view.jpg`);
+    formData.append("uid", documentId);
+    console.log("uploading fetch Vehicle Insurance userID  " + documentId);
+
+    try {
+      const response = await axios.post(
+        `http://localhost:8000/vehicle-insurance/upload-${view}-view`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response.data.message);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+  // ---------------------------------------------------
+
+  // ------------ Get Vehicle Insurance from firebase  ------------------
+  useEffect(() => {
+    const fetchVehicleInsuranceUrl = async () => {
+      try {
+        const id = documentId;
+        const response = await axios.get(
+          "http://localhost:8000/vehicle-insurance/front-view/?uid=" + id
+        );
+        console.log("get user" + documentId + "'s Vehicle Insurance");
+        setVehicleInsuranceFront(response.data);
+        console.log(vehicleInsuranceFront);
+      } catch (error) {
+        console.error(
+          "Error fetching Vehicle Insurance Front View URL:",
+          error
+        );
+        console.log("get user" + documentId + "'s  Vehicle Insurance");
+      }
+      try {
+        const id = documentId;
+        const response = await axios.get(
+          "http://localhost:8000/vehicle-insurance/back-view/?uid=" + id
+        );
+        setVehicleInsuranceBack(response.data);
+        console.log(vehicleInsuranceBack);
+      } catch (error) {
+        console.error("Error fetching Vehicle Insurance Back View URL:", error);
+      }
+    };
+
+    fetchVehicleInsuranceUrl();
+  }, []);
+  // --------------------------------------------------------
+
+  // ------ Upload Vehicle Registration to the Firebase -------
+  const handleUploadVehicleRegistration = async (event, view) => {
+    const image = event.target.files[0];
+    if (!image) {
+      console.error("No image selected");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("photo", image, `${view}_view.jpg`);
+    formData.append("uid", documentId);
+    console.log("uploading fetch Vehicle Registration userID  " + documentId);
+
+    try {
+      const response = await axios.post(
+        `http://localhost:8000/vehicle-registration/upload-${view}-view`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response.data.message);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+  // ---------------------------------------------------
+
+  // ------------ Get Vehicle Registration from firebase  ------------------
+  useEffect(() => {
+    const fetchVehicleRegistrationUrl = async () => {
+      try {
+        const id = documentId;
+        const response = await axios.get(
+          "http://localhost:8000/vehicle-registration/front-view/?uid=" + id
+        );
+        console.log("get user" + documentId + "'s Vehicle Registration");
+        setVehicleRegistrationFront(response.data);
+        console.log(vehicleRegistrationFront);
+      } catch (error) {
+        console.error(
+          "Error fetching Vehicle Registration Front View URL:",
+          error
+        );
+        console.log("get user" + documentId + "'s  Vehicle Registration");
+      }
+      try {
+        const id = documentId;
+        const response = await axios.get(
+          "http://localhost:8000/vehicle-registration/back-view/?uid=" + id
+        );
+        setVehicleRegistrationBack(response.data);
+        console.log(vehicleRegistrationBack);
+      } catch (error) {
+        console.error(
+          "Error fetching Vehicle Registration Back View URL:",
+          error
+        );
+      }
+    };
+
+    fetchVehicleRegistrationUrl();
+  }, []);
+  // --------------------------------------------------------
+
+  // ------ Upload Revenue License to the Firebase -------
+  const handleUploadRevenueLicense = async (event, view) => {
+    const image = event.target.files[0];
+    if (!image) {
+      console.error("No image selected");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("photo", image, `${view}_view.jpg`);
+    formData.append("uid", documentId);
+    console.log("uploading Revenue License userID  " + documentId);
+
+    try {
+      const response = await axios.post(
+        `http://localhost:8000/revenue-license/upload-${view}-view`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response.data.message);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+  // ---------------------------------------------------
+
+  // ------------ Get Revenue License from firebase  ------------------
+  useEffect(() => {
+    const fetchRevenueLicenseUrl = async () => {
+      try {
+        const id = documentId;
+        const response = await axios.get(
+          "http://localhost:8000/revenue-license/front-view/?uid=" + id
+        );
+        console.log("get user" + documentId + "'s Revenue License");
+        setRevenueLicenseFront(response.data);
+        console.log(revenueLicenseFront);
+      } catch (error) {
+        console.error("Error fetching Revenue License Front View URL:", error);
+        console.log("get user" + documentId + "'s  Revenue License");
+      }
+      try {
+        const id = documentId;
+        const response = await axios.get(
+          "http://localhost:8000/revenue-license/back-view/?uid=" + id
+        );
+        setRevenueLicenseBack(response.data);
+        console.log(revenueLicenseBack);
+      } catch (error) {
+        console.error("Error fetching Revenue License Back View URL:", error);
+      }
+    };
+
+    fetchRevenueLicenseUrl();
+  }, []);
+  // --------------------------------------------------------
+
+  // ------ Upload Vehicle Img to the Firebase -------
+  const handleUploadVehicleImg = async (event, view) => {
+    const image = event.target.files[0];
+    if (!image) {
+      console.error("No image selected");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("photo", image, `${view}_view.jpg`);
+    formData.append("uid", documentId);
+    console.log("uploading Vehicle Img userID  " + documentId);
+
+    try {
+      const response = await axios.post(
+        `http://localhost:8000/vehicle-image/upload-${view}-view`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response.data.message);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+  // ---------------------------------------------------
+
+  // ------------ Get Vehicle Img from firebase  ------------------
+  useEffect(() => {
+    const fetchVehicleImageUrl = async () => {
+      try {
+        const id = documentId;
+        const response = await axios.get(
+          "http://localhost:8000/vehicle-image/front-view/?uid=" + id
+        );
+        console.log("get user" + documentId + "'s Vehicle Image");
+        setVehicleImgFront(response.data);
+        console.log(VehicleImgFront);
+      } catch (error) {
+        console.error("Error fetching VehicleImg Front View URL:", error);
+        console.log("get user" + documentId + "'s vehicle image");
+      }
+      try {
+        const id = documentId;
+        const response = await axios.get(
+          "http://localhost:8000/vehicle-image/back-view/?uid=" + id
+        );
+        setVehicleImgBack(response.data);
+        console.log(VehicleImgBack);
+      } catch (error) {
+        console.error("Error fetching VehicleImg Back View URL:", error);
+      }
+      try {
+        const id = documentId;
+        const response = await axios.get(
+          "http://localhost:8000/vehicle-image/side-view/?uid=" + id
+        );
+        setVehicleImgSide(response.data);
+        console.log(VehicleImgSide);
+      } catch (error) {
+        console.error("Error fetching VehicleImg Side View URL:", error);
+      }
+    };
+
+    fetchVehicleImageUrl();
+  }, []);
+  // --------------------------------------------------------
+
   // ------ Upload NIC to the Firebase -------
   const handleUploadNic = async (event, view) => {
     const image = event.target.files[0];
@@ -67,7 +407,7 @@ const DriverProfileDetail = () => {
     const formData = new FormData();
     formData.append("photo", image, `${view}_view.jpg`);
     formData.append("uid", documentId);
-    console.log("uploading NIC userID  "+documentId);
+    console.log("uploading NIC userID  " + documentId);
 
     try {
       const response = await axios.post(
@@ -90,21 +430,21 @@ const DriverProfileDetail = () => {
   useEffect(() => {
     const fetchNICImageUrl = async () => {
       try {
-        const id = documentId
+        const id = documentId;
         const response = await axios.get(
-          'http://localhost:8000/nic/front-view/?uid='+id
+          "http://localhost:8000/nic/front-view/?uid=" + id
         );
-        console.log("get user"+documentId+"'s NIC");
+        console.log("get user" + documentId + "'s NIC");
         setNicFront(response.data);
         console.log(nicFront);
       } catch (error) {
         console.error("Error fetching NIC Front View URL:", error);
-        console.log("get user"+documentId+"'s NIC");
+        console.log("get user" + documentId + "'s NIC");
       }
       try {
-        const id = documentId
+        const id = documentId;
         const response = await axios.get(
-          "http://localhost:8000/nic/back-view/?uid="+id
+          "http://localhost:8000/nic/back-view/?uid=" + id
         );
         setNicBack(response.data);
         console.log(nicBack);
@@ -150,9 +490,9 @@ const DriverProfileDetail = () => {
   useEffect(() => {
     const fetchDrivingLicenseImageUrl = async () => {
       try {
-        const id = documentId
+        const id = documentId;
         const response = await axios.get(
-          "http://localhost:8000/images/front-view/?uid="+id
+          "http://localhost:8000/images/front-view/?uid=" + id
         );
         setDrivingLicenseFront(response.data);
         console.log(drivingLicenseFront);
@@ -160,9 +500,9 @@ const DriverProfileDetail = () => {
         console.error("Error fetching Driving License Front View URL:", error);
       }
       try {
-        const id = documentId
+        const id = documentId;
         const response = await axios.get(
-          "http://localhost:8000/images/back-view/?uid="+id
+          "http://localhost:8000/images/back-view/?uid=" + id
         );
         setDrivingLicenseBack(response.data);
         console.log(drivingLicenseBack);
@@ -179,8 +519,10 @@ const DriverProfileDetail = () => {
   useEffect(() => {
     const fetchImageUrl = async () => {
       try {
-        const id = documentId
-        const response = await axios.get("http://localhost:8000/images/url/?uid="+id);
+        const id = documentId;
+        const response = await axios.get(
+          "http://localhost:8000/images/url/?uid=" + id
+        );
         setImageUrl(response.data);
         console.log(imageUrl);
       } catch (error) {
@@ -1994,9 +2336,7 @@ const DriverProfileDetail = () => {
                             id="fileInput1"
                             type="file"
                             style={{ display: "none" }}
-                            onChange={(event) =>
-                              handleUploadNic(event, "back")
-                            }
+                            onChange={(event) => handleUploadNic(event, "back")}
                           />
                         </label>
                         <img alt="" src={uplo} />
@@ -2123,14 +2463,14 @@ const DriverProfileDetail = () => {
                       <div className={styles.miniDropdownContainer}>
                         <div className={styles.viewsTag}>Front View</div>
                         <div className={styles.uploadButtonContainer}>
-                          <button
+                          <a
+                            href={VehicleImgFront}
                             className={styles.nameTag}
-                            onClick={() =>
-                              viewButtons("Vehicle Images/frontimage", 0)
-                            }
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
                             View
-                          </button>
+                          </a>
                           <button className={styles.uploadBtn}>
                             <label htmlFor="fileInput4" className={styles.upld}>
                               <b> Upload </b>
@@ -2138,16 +2478,9 @@ const DriverProfileDetail = () => {
                                 id="fileInput4"
                                 type="file"
                                 style={{ display: "none" }}
-                                onChange={(e) => {
-                                  const file = e.target.files[0];
-                                  uploaddriverimageToFirestore(
-                                    file,
-                                    documentId,
-                                    "Vehicle Images/frontimage",
-                                    fetchImageUrl,
-                                    0
-                                  );
-                                }}
+                                onChange={(event) =>
+                                  handleUploadVehicleImg(event, "front")
+                                }
                               />
                             </label>
                             <img alt="" src={uplo} />
@@ -2157,14 +2490,14 @@ const DriverProfileDetail = () => {
                       <div className={styles.miniDropdownContainer}>
                         <div className={styles.viewsTag}>Back View</div>
                         <div className={styles.uploadButtonContainer}>
-                          <button
+                          <a
+                            href={VehicleImgBack}
                             className={styles.nameTag}
-                            onClick={() =>
-                              viewButtons("Vehicle Images/rearimage", 0)
-                            }
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
                             View
-                          </button>
+                          </a>
                           <button className={styles.uploadBtn}>
                             <label htmlFor="fileInput5" className={styles.upld}>
                               <b> Upload </b>
@@ -2172,16 +2505,9 @@ const DriverProfileDetail = () => {
                                 id="fileInput5"
                                 type="file"
                                 style={{ display: "none" }}
-                                onChange={(e) => {
-                                  const file = e.target.files[0];
-                                  uploaddriverimageToFirestore(
-                                    file,
-                                    documentId,
-                                    "Vehicle Images/rearimage",
-                                    fetchImageUrl,
-                                    0
-                                  );
-                                }}
+                                onChange={(event) =>
+                                  handleUploadVehicleImg(event, "back")
+                                }
                               />
                             </label>
                             <img alt="" src={uplo} />
@@ -2191,14 +2517,14 @@ const DriverProfileDetail = () => {
                       <div className={styles.miniDropdownContainer}>
                         <div className={styles.viewsTag}>Side View</div>
                         <div className={styles.uploadButtonContainer}>
-                          <button
+                          <a
+                            href={VehicleImgSide}
                             className={styles.nameTag}
-                            onClick={() =>
-                              viewButtons("Vehicle Images/sideimage", 0)
-                            }
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
                             View
-                          </button>
+                          </a>
                           <button className={styles.uploadBtn}>
                             <label htmlFor="fileInput6" className={styles.upld}>
                               <b> Upload </b>
@@ -2206,16 +2532,9 @@ const DriverProfileDetail = () => {
                                 id="fileInput6"
                                 type="file"
                                 style={{ display: "none" }}
-                                onChange={(e) => {
-                                  const file = e.target.files[0];
-                                  uploaddriverimageToFirestore(
-                                    file,
-                                    documentId,
-                                    "Vehicle Images/sideimage",
-                                    fetchImageUrl,
-                                    0
-                                  );
-                                }}
+                                onChange={(event) =>
+                                  handleUploadVehicleImg(event, "side")
+                                }
                               />
                             </label>
                             <img alt="" src={uplo} />
@@ -2341,9 +2660,26 @@ const DriverProfileDetail = () => {
                   <div className={styles.frnt}>
                     <div className={styles.frntViw}>Front view</div>
                     <div className={styles.div}>
-                      <button className={styles.viw}>View</button>
+                      <a
+                        href={revenueLicenseFront}
+                        className={styles.viw}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View
+                      </a>
                       <button className={styles.but}>
-                        <b className={styles.upld}>Upload</b>
+                        <label htmlFor="fileInput14" className={styles.upld}>
+                          <b> Upload </b>
+                          <input
+                            id="fileInput14"
+                            type="file"
+                            style={{ display: "none" }}
+                            onChange={(event) =>
+                              handleUploadRevenueLicense(event, "front")
+                            }
+                          />
+                        </label>
                         <img alt="" src={uplo} />
                       </button>
                     </div>
@@ -2351,9 +2687,26 @@ const DriverProfileDetail = () => {
                   <div className={styles.frnt}>
                     <div className={styles.frntViw}>Back view</div>
                     <div className={styles.div}>
-                      <button className={styles.viw}>View</button>
+                      <a
+                        href={revenueLicenseBack}
+                        className={styles.viw}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View
+                      </a>
                       <button className={styles.but}>
-                        <b className={styles.upld}>Upload</b>
+                        <label htmlFor="fileInput15" className={styles.upld}>
+                          <b> Upload </b>
+                          <input
+                            id="fileInput15"
+                            type="file"
+                            style={{ display: "none" }}
+                            onChange={(event) =>
+                              handleUploadRevenueLicense(event, "back")
+                            }
+                          />
+                        </label>
                         <img alt="" src={uplo} />
                       </button>
                     </div>
@@ -2473,14 +2826,14 @@ const DriverProfileDetail = () => {
                       <div className={styles.miniDropdownContainer}>
                         <div className={styles.viewsTag}>Document 1</div>
                         <div className={styles.uploadButtonContainer}>
-                          <button
+                          <a
+                            href={vehicleRegistrationFront}
                             className={styles.nameTag}
-                            onClick={() =>
-                              viewButtons("Vehicle Registration/doc1", 0)
-                            }
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
                             View
-                          </button>
+                          </a>
                           <button className={styles.uploadBtn}>
                             <label
                               htmlFor="fileInput10"
@@ -2491,16 +2844,12 @@ const DriverProfileDetail = () => {
                                 id="fileInput10"
                                 type="file"
                                 style={{ display: "none" }}
-                                onChange={(e) => {
-                                  const file = e.target.files[0];
-                                  uploaddriverimageToFirestore(
-                                    file,
-                                    documentId,
-                                    "Vehicle Registration/doc1",
-                                    fetchImageUrl,
-                                    0
-                                  );
-                                }}
+                                onChange={(event) =>
+                                  handleUploadVehicleRegistration(
+                                    event,
+                                    "front"
+                                  )
+                                }
                               />
                             </label>
                             <img alt="" src={uplo} />
@@ -2510,14 +2859,14 @@ const DriverProfileDetail = () => {
                       <div className={styles.miniDropdownContainer}>
                         <div className={styles.viewsTag}>Document 2</div>
                         <div className={styles.uploadButtonContainer}>
-                          <button
+                          <a
+                            href={vehicleRegistrationBack}
                             className={styles.nameTag}
-                            onClick={() =>
-                              viewButtons("Vehicle Registration/doc2", 0)
-                            }
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
                             View
-                          </button>
+                          </a>
                           <button className={styles.uploadBtn}>
                             <label
                               htmlFor="fileInput11"
@@ -2528,16 +2877,9 @@ const DriverProfileDetail = () => {
                                 id="fileInput11"
                                 type="file"
                                 style={{ display: "none" }}
-                                onChange={(e) => {
-                                  const file = e.target.files[0];
-                                  uploaddriverimageToFirestore(
-                                    file,
-                                    documentId,
-                                    "Vehicle Registration/doc2",
-                                    fetchImageUrl,
-                                    0
-                                  );
-                                }}
+                                onChange={(event) =>
+                                  handleUploadVehicleRegistration(event, "back")
+                                }
                               />
                             </label>
                             <img alt="" src={uplo} />
@@ -2657,17 +2999,14 @@ const DriverProfileDetail = () => {
                   <div className={styles.frnt}>
                     <div className={styles.frntViw}>Image1</div>
                     <div className={styles.div}>
-                      <button
+                      <a
+                        href={vehicleInsuranceFront}
                         className={styles.viw}
-                        onClick={() =>
-                          viewButtons(
-                            "Vehicle Insurance Documents/frontimage",
-                            0
-                          )
-                        }
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         View
-                      </button>
+                      </a>
                       <button className={styles.but}>
                         <label htmlFor="fileInput7" className={styles.upld}>
                           <b> Upload </b>
@@ -2675,16 +3014,9 @@ const DriverProfileDetail = () => {
                             id="fileInput7"
                             type="file"
                             style={{ display: "none" }}
-                            onChange={(e) => {
-                              const file = e.target.files[0];
-                              uploaddriverimageToFirestore(
-                                file,
-                                documentId,
-                                "Vehicle Insurance Documents/frontimage",
-                                fetchImageUrl,
-                                0
-                              );
-                            }}
+                            onChange={(event) =>
+                              handleUploadVehicleInsurance(event, "front")
+                            }
                           />
                         </label>
                         <img alt="" src={uplo} />
@@ -2694,17 +3026,14 @@ const DriverProfileDetail = () => {
                   <div className={styles.frnt}>
                     <div className={styles.frntViw}>Image2</div>
                     <div className={styles.div}>
-                      <button
+                      <a
+                        href={vehicleInsuranceBack}
                         className={styles.viw}
-                        onClick={() =>
-                          viewButtons(
-                            "Vehicle Insurance Documents/rearimage",
-                            0
-                          )
-                        }
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         View
-                      </button>
+                      </a>
                       <button className={styles.but}>
                         <label htmlFor="fileInput8" className={styles.upld}>
                           <b> Upload </b>
@@ -2712,16 +3041,9 @@ const DriverProfileDetail = () => {
                             id="fileInput8"
                             type="file"
                             style={{ display: "none" }}
-                            onChange={(e) => {
-                              const file = e.target.files[0];
-                              uploaddriverimageToFirestore(
-                                file,
-                                documentId,
-                                "Vehicle Insurance Documents/rearimage",
-                                fetchImageUrl,
-                                0
-                              );
-                            }}
+                            onChange={(event) =>
+                              handleUploadVehicleInsurance(event, "back")
+                            }
                           />
                         </label>
                         <img alt="" src={uplo} />
@@ -2837,31 +3159,24 @@ const DriverProfileDetail = () => {
                   <div className={styles.frnt}>
                     <div className={styles.frntViw}>Image1</div>
                     <div className={styles.div}>
-                      <button
+                      <a
+                        href={billingDocFront}
                         className={styles.viw}
-                        onClick={() =>
-                          viewButtons("Billing Documents/frontimage", 0)
-                        }
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         View
-                      </button>
+                      </a>
                       <button className={styles.but}>
-                        <label htmlFor="fileInput14" className={styles.upld}>
+                        <label htmlFor="fileInput16" className={styles.upld}>
                           <b> Upload </b>
                           <input
-                            id="fileInput14"
+                            id="fileInput16"
                             type="file"
                             style={{ display: "none" }}
-                            onChange={(e) => {
-                              const file = e.target.files[0];
-                              uploaddriverimageToFirestore(
-                                file,
-                                documentId,
-                                "Billing Documents/frontimage",
-                                fetchImageUrl,
-                                0
-                              );
-                            }}
+                            onChange={(event) =>
+                              handleUploadBillingDoc(event, "front")
+                            }
                           />
                         </label>
                         <img alt="" src={uplo} />
@@ -2871,31 +3186,24 @@ const DriverProfileDetail = () => {
                   <div className={styles.frnt}>
                     <div className={styles.frntViw}>Image2</div>
                     <div className={styles.div}>
-                      <button
+                      <a
+                        href={billingDocBack}
                         className={styles.viw}
-                        onClick={() =>
-                          viewButtons("Billing Documents/rearimage", 0)
-                        }
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         View
-                      </button>
+                      </a>
                       <button className={styles.but}>
-                        <label htmlFor="fileInput12" className={styles.upld}>
+                        <label htmlFor="fileInput18" className={styles.upld}>
                           <b> Upload </b>
                           <input
-                            id="fileInput12"
+                            id="fileInput18"
                             type="file"
                             style={{ display: "none" }}
-                            onChange={(e) => {
-                              const file = e.target.files[0];
-                              uploaddriverimageToFirestore(
-                                file,
-                                documentId,
-                                "Billing Documents/rearimage",
-                                fetchImageUrl,
-                                0
-                              );
-                            }}
+                            onChange={(event) =>
+                              handleUploadBillingDoc(event, "back")
+                            }
                           />
                         </label>
                         <img alt="" src={uplo} />

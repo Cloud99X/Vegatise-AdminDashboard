@@ -6,6 +6,11 @@ import * as admin from 'firebase-admin';
 import { DocumentStatusModule } from './documentStatus/status.module';
 import { DrivingLicenseModule } from './driving-license/driving-license.module';
 import { NicDocModule } from './NIC-doc/nic-doc.module';
+import { VehicleImgModule } from './vehicle-image/vehicle-image.module';
+import { RevenueLicenseDocModule } from './revenue-license/revenue-license.module';
+import { VehicleRegDocModule } from './vehicle-registration/vehicle-registration.module';
+import { VehicleInsuranceDocModule } from './vehicle-insurance/vehicle-insurance.module';
+import { BillingDocModule } from './billing-documents/billing-documents.module';
 
 @Module({
   imports: [
@@ -15,6 +20,11 @@ import { NicDocModule } from './NIC-doc/nic-doc.module';
     DocumentStatusModule,
     DrivingLicenseModule,
     NicDocModule,
+    VehicleImgModule,
+    RevenueLicenseDocModule,
+    VehicleRegDocModule,
+    VehicleInsuranceDocModule,
+    BillingDocModule,
   ],
   controllers: [],
   providers: [],
