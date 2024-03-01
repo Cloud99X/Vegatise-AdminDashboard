@@ -1010,7 +1010,7 @@ const DriverProfileDetail = () => {
   //   //fetchDriverInfo();
   // }, [documentId]);
 
-  const saveChanges = async () => {
+  const saveData = async () => {
     try {
       const db = getFirestore(firebaseApp);
 
@@ -1032,6 +1032,40 @@ const DriverProfileDetail = () => {
         VehicleInformationCollection,
         documentId
       );
+
+      const saveData = async () => {
+        const uid = FIREBASE_AUTH.currentUser.uid;
+        console.log(FIREBASE_AUTH.currentUser);
+        const mobNumber = FIREBASE_AUTH.currentUser.phoneNumber;
+        if (uid && mobNumber) {
+          await axios
+            .post(
+              'http://192.168.8.101:3000/personal-details/save-personal-details',
+              {
+                uid: uid,
+                name: name,
+                email: email,
+                gender: selectedGender,
+                dob: selectedDate,
+                mobileNumber: mobNumber,
+              },
+            )
+            .then(response => {
+              if (response.data.result === 'done') {
+                console.log('Response:', response.data);
+                console.log('Result:', response.data.result);
+                navigation.navigate('GettingStarted3');
+              } else {
+                console.error('Unsuccessful response. Status:', response.status);
+              }
+            })
+            .catch(err => {
+              console.log('Update Error:', err.message);
+            });
+        } else {
+          console.log('Data error');
+        }
+      };
 
       await updateDoc(personalInfoDocRef, {
         name: editedDriverInfo.name,
@@ -1683,7 +1717,9 @@ const DriverProfileDetail = () => {
           </div>
         </button>
 
-        <button className={styles.rectangleContainer}>
+        <button 
+        onPress={saveData}
+        className={styles.rectangleContainer}>
           <div className={styles.groupItem} />
           <div className={styles.saveChanges}>Save changes</div>
         </button>

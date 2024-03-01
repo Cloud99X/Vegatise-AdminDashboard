@@ -117,17 +117,17 @@ export class DriversDataService {
     }
   }
 
-  // async updatePersonalInfo(uid: string, updates: any): Promise<any> {
-  //   try {
-  //     const docRef = admin
-  //       .firestore()
-  //       .collection('PersonalInfomation')
-  //       .doc(uid);
-  //     await docRef.update(updates);
-  //     return 'done';
-  //   } catch (error) {
-  //     console.error('Error updating document:', error);
-  //     throw error;
-  //   }
-  // }
+  async updatePersonalInfo(uid: string, updates: any): Promise<any> {
+    try {
+      const docRef = admin
+        .firestore()
+        .collection('PersonalInfomation')
+        .doc(uid);
+      await docRef.update(updates);
+      return 'done';
+    } catch (error) {
+      console.error('Error updating document:', error);
+      throw error;
+    }
+  }
 }
