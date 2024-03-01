@@ -1010,7 +1010,7 @@ const DriverProfileDetail = () => {
   //   //fetchDriverInfo();
   // }, [documentId]);
 
-  const saveData = async () => {
+  const saveChanges = async () => {
     try {
       const db = getFirestore(firebaseApp);
 
@@ -1036,7 +1036,12 @@ const DriverProfileDetail = () => {
       const saveData = async () => {
         const uid = FIREBASE_AUTH.currentUser.uid;
         console.log(FIREBASE_AUTH.currentUser);
+        const name = FIREBASE_AUTH.currentUser.fullName;
+        const email = FIREBASE_AUTH.currentUser.email;
+        const gender = FIREBASE_AUTH.currentUser.gender;
+        const dob = FIREBASE_AUTH.currentUser.dob;
         const mobNumber = FIREBASE_AUTH.currentUser.phoneNumber;
+        const nic = FIREBASE_AUTH.currentUser.nic;
         if (uid && mobNumber) {
           await axios
             .post(
@@ -1048,6 +1053,7 @@ const DriverProfileDetail = () => {
                 gender: selectedGender,
                 dob: selectedDate,
                 mobileNumber: mobNumber,
+                nationalIdNumber: nic
               },
             )
             .then(response => {
