@@ -807,6 +807,92 @@ const DriverProfileDetail = () => {
     }
   };
 
+       /* const saveData = async () => {
+        const uid = FIREBASE_AUTH.currentUser.uid;
+        console.log(FIREBASE_AUTH.currentUser);
+        const name = FIREBASE_AUTH.currentUser.fullName;
+        const email = FIREBASE_AUTH.currentUser.email;
+        const selectedGender = FIREBASE_AUTH.currentUser.gender;
+        const selectedDate = FIREBASE_AUTH.currentUser.dob;
+        const mobNumber = FIREBASE_AUTH.currentUser.phoneNumber;
+        const nic = FIREBASE_AUTH.currentUser.nic;
+        if (uid && mobNumber) {
+          await axios
+            .post(
+              'http://192.168.8.101:3000/personal-details/save-personal-details',
+              {
+                uid: uid,
+                name: name,
+                email: email,
+                gender: selectedGender,
+                dob: selectedDate,
+                mobileNumber: mobNumber,
+                nationalIdNumber: nic
+              },
+            )
+            .then(response => {
+              if (response.data.result === 'done') {
+                console.log('Response:', response.data);
+                console.log('Result:', response.data.result);
+                navigation.navigate('GettingStarted3');
+              } else {
+                console.error('Unsuccessful response. Status:', response.status);
+              }
+            })
+            .catch(err => {
+              console.log('Update Error:', err.message);
+            });
+        } else {
+          console.log('Data error');
+        }
+      };*/
+
+      const saveData = async () => {
+        try {
+          // Fetch the uid from the backend
+          const response = await axios.get('http://192.168.8.100:3000/fetch-uid');
+          const uid = response.data.uid;
+      
+          // Get the user's current details
+          const currentUser = FIREBASE_AUTH.currentUser;
+          const name = currentUser.fullName;
+          const email = currentUser.email;
+          const selectedGender = currentUser.gender;
+          const selectedDate = currentUser.dob;
+          const mobNumber = currentUser.phoneNumber;
+          const nic = currentUser.nic;
+      
+          // Check if uid and mobile number are available
+          if (uid && mobNumber) {
+            // Post or update the personal details to the backend
+            const responseData = await axios.post(
+              'http://192.168.8.100:3000/personal-details/save-personal-details',
+              {
+                uid: uid,
+                name: name,
+                email: email,
+                gender: selectedGender,
+                dob: selectedDate,
+                mobileNumber: mobNumber,
+                nationalIdNumber: nic
+              }
+            );
+      
+            // Check the response from the backend
+            if (responseData.data.result === 'done') {
+              console.log('Personal details saved successfully');
+              navigation.navigate('GettingStarted3');
+            } else {
+              console.error('Unsuccessful response. Status:', responseData.status);
+            }
+          } else {
+            console.log('Data error: UID or mobile number is missing');
+          }
+        } catch (error) {
+          console.error('Error saving personal details:', error.message);
+        }
+      };
+
   const handleEditChange = (field, value) => {
     setEditedDriverInfo((prev) => ({ ...prev, [field]: value }));
   };
@@ -1032,46 +1118,6 @@ const DriverProfileDetail = () => {
         VehicleInformationCollection,
         documentId
       );
-
-      const saveData = async () => {
-        const uid = FIREBASE_AUTH.currentUser.uid;
-        console.log(FIREBASE_AUTH.currentUser);
-        const name = FIREBASE_AUTH.currentUser.fullName;
-        const email = FIREBASE_AUTH.currentUser.email;
-        const gender = FIREBASE_AUTH.currentUser.gender;
-        const dob = FIREBASE_AUTH.currentUser.dob;
-        const mobNumber = FIREBASE_AUTH.currentUser.phoneNumber;
-        const nic = FIREBASE_AUTH.currentUser.nic;
-        if (uid && mobNumber) {
-          await axios
-            .post(
-              'http://192.168.8.101:3000/personal-details/save-personal-details',
-              {
-                uid: uid,
-                name: name,
-                email: email,
-                gender: selectedGender,
-                dob: selectedDate,
-                mobileNumber: mobNumber,
-                nationalIdNumber: nic
-              },
-            )
-            .then(response => {
-              if (response.data.result === 'done') {
-                console.log('Response:', response.data);
-                console.log('Result:', response.data.result);
-                navigation.navigate('GettingStarted3');
-              } else {
-                console.error('Unsuccessful response. Status:', response.status);
-              }
-            })
-            .catch(err => {
-              console.log('Update Error:', err.message);
-            });
-        } else {
-          console.log('Data error');
-        }
-      };
 
       await updateDoc(personalInfoDocRef, {
         name: editedDriverInfo.name,

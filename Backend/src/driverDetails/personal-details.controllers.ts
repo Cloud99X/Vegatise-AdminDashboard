@@ -1,10 +1,13 @@
 import {
   Controller,
   Body,
+  Get,
+  Req,
   Post,
   Put,
   UploadedFile,
   UseInterceptors,
+  InternalServerErrorException,
 } from '@nestjs/common';
 import { PersonalDetailsService } from './personal-details.service';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -33,6 +36,7 @@ export class PersonalDetailsController {
     },
   ): Promise<{ result: string }> {
     const { uid, name, email, gender, dob, mobileNumber, nationalIdNumber } = requestBody;
+    try {
     const result = await this.service.savePersonalDetails(
       uid,
       name,
@@ -50,6 +54,10 @@ export class PersonalDetailsController {
 
     console.log(result1);
     return { result };
+    } catch (error) {
+      console.error('Error saving personal details:', error);
+      throw new InternalServerErrorException('Failed to save personal details');
+    }
   }
 
   @Put('update-email')
