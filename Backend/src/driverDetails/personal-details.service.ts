@@ -80,8 +80,7 @@ export class PersonalDetailsService {
         .doc(uid);
       await docRef.update(updates);
 
-      // Update document status if applicable
-      //await this.documentStatusService.updateDocumentStatus(uid, 'Personal Information', 'Updated');
+
 
       return 'done';
     } catch (error) {
@@ -98,8 +97,7 @@ export class PersonalDetailsService {
         .doc(uid);
       await docRef.update(updates);
 
-      // Update document status if applicable
-      //await this.documentStatusService.updateDocumentStatus(uid, 'Address and Routes', 'Updated');
+      
 
       return 'done';
     } catch (error) {
@@ -113,8 +111,7 @@ export class PersonalDetailsService {
       const docRef = admin.firestore().collection('VehicleInformation').doc(uid);
       await docRef.update(updates);
 
-      // Update document status if applicable
-     // await this.documentStatusService.updateDocumentStatus(uid, 'Vehicle Information', 'Updated');
+     
 
       return 'done';
     } catch (error) {

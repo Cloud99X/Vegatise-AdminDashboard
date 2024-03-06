@@ -859,29 +859,7 @@ const DriverProfileDetail = () => {
     setEditedDriverInfo((prev) => ({ ...prev, [field]: value }));
   };
 
-  //const handleApprovedClick1 = () => {
-  //  setStatus1("Approved"); // Update status state to 'Approved'
-  //};
 
-  //const handleRejectClick1 = () => {
-  // setStatus1("Rejected"); // Update status state to 'Rejected'
-  // };
-
-  // const handleApprovedClick2 = () => {
-  //   setStatus2("Approved");
-  //};
-
-  //  const handleRejectClick2 = () => {
-  //   setStatus2("Rejected");
-  // };
-
-  //const handleApprovedClick3 = () => {
-  //setStatus3("Approved");
-  //};
-
-  //const handleRejectClick3 = () => {
-  //setStatus3("Rejected");
-  //};
 
   const getInitials = (fullName) => {
     if (!fullName) return "";
@@ -891,172 +869,7 @@ const DriverProfileDetail = () => {
     return `${firstNameInitial}.${lastName}`;
   };
 
-  // const uploadImageToFirestore = async (file, documentId, fetchImageUrl) => {
-  //   try {
-  //     const storage = getStorage();
-  //     const storageRef = ref(
-  //       storage,
-  //       `${documentId}/Profile Photo/${file.name}`
-  //     );
-  //     const existingImageRef = ref(storage, `${documentId}/Profile Photo`);
-  //     const existingImageSnapshot = await listAll(existingImageRef);
-  //     existingImageSnapshot.items.forEach(async (item) => {
-  //       await deleteObject(item);
-  //     });
-  //     await uploadBytes(storageRef, file);
-  //     fetchImageUrl();
-  //   } catch (error) {
-  //     console.error("Error uploading image to Firestore:", error);
-  //   }
-  // };
 
-  // const handleImageUpload = async (event) => {
-  //   const file = event.target.files[0];
-  //   if (file) {
-  //     await uploadImageToFirestore(file, documentId, fetchImageUrl);
-  //   }
-  // };
-
-  // const fetchImageUrl = async () => {
-  //   try {
-  //     const storage = getStorage();
-  //     const userImagesFolder = `${documentId}/Profile Photo`;
-  //     const folderRef = ref(storage, userImagesFolder);
-  //     const items = await listAll(folderRef);
-  //     if (items && items.items.length > 0) {
-  //       const firstItem = items.items[0];
-  //       const firstItemUrl = await getDownloadURL(firstItem);
-  //       setImageUrl(firstItemUrl);
-  //     } else {
-  //       console.error("No items found in the folder.");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error retrieving images:", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchImageUrl();
-  // }, [documentId]);
-
-  // const uploaddriverimageToFirestore = async (
-  //   file,
-  //   documentId,
-  //   folderPath,
-  //   fetchImageUrl,
-  //   index
-  // ) => {
-  //   try {
-  //     const storage = getStorage();
-  //     const storageRef = ref(
-  //       storage,
-  //       `${documentId}/${folderPath}/${file.name}`
-  //     );
-  //     const existingImageRef = ref(storage, `${documentId}/${folderPath}`);
-  //     const existingImageSnapshot = await listAll(existingImageRef);
-
-  //     if (typeof index === "number" && index >= 0) {
-  //       const fileToDelete = existingImageSnapshot.items[index];
-  //       if (fileToDelete) {
-  //         await deleteObject(fileToDelete);
-  //       }
-  //     }
-  //     await uploadBytes(storageRef, file);
-  //     fetchImageUrl();
-  //   } catch (error) {
-  //     console.error("Error uploading image to Firestore:", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const fetchDriverInfo = async () => {
-  //     try {
-  //       const db = getFirestore(firebaseApp);
-
-  //       const personalInfoCollection = collection(db, "PersonalInfomation");
-  //       const personalInfoDocRef = doc(personalInfoCollection, documentId);
-  //       const personalInfoDocSnapshot = await getDoc(personalInfoDocRef);
-
-  //       // const nicNumberCollection = collection(db, "NIC Number");
-  //       // const nicNumberDocRef = doc(nicNumberCollection, documentId);
-  //       // const nicNumberDocSnapshot = await getDoc(nicNumberDocRef);
-
-  //       const driliCollection = collection(db, "Driving License");
-  //       const driliDocRef = doc(driliCollection, documentId);
-  //       const driliDocSnapshot = await getDoc(driliDocRef);
-
-  //       const vecoCollection = collection(db, "Vehicle Condition");
-  //       const vecoDocRef = doc(vecoCollection, documentId);
-  //       const vecoDocSnapshot = await getDoc(vecoDocRef);
-
-  //       const addressAndRoutesCollection = collection(db, "AddressAndRoutes");
-  //       const addressAndRoutesDocRef = doc(
-  //         addressAndRoutesCollection,
-  //         documentId
-  //       );
-  //       const addressAndRoutesDocSnapshot = await getDoc(
-  //         addressAndRoutesDocRef
-  //       );
-
-  //       const VehicleInformationCollection = collection(
-  //         db,
-  //         "VehicleInformation"
-  //       );
-  //       const VehicleInformationDocRef = doc(
-  //         VehicleInformationCollection,
-  //         documentId
-  //       );
-  //       const VehicleInformationDocSnapshot = await getDoc(
-  //         VehicleInformationDocRef
-  //       );
-
-  //       const utilityCollection = collection(db, "Utility Bill");
-  //       const utilityDocRef = doc(utilityCollection, documentId);
-  //       const utilityDocSnapshot = await getDoc(utilityDocRef);
-
-  //       if (
-  //         personalInfoDocSnapshot.exists() &&
-  //         //nicNumberDocSnapshot.exists() &&
-  //         addressAndRoutesDocSnapshot.exists() &&
-  //         VehicleInformationDocSnapshot.exists() &&
-  //         driliDocSnapshot.exists() &&
-  //         vecoDocSnapshot.exists()
-  //         //utilityDocSnapshot.exists()
-  //       ) {
-  //         const personalInfoData = personalInfoDocSnapshot.data();
-  //         //const nicNumberData = nicNumberDocSnapshot.data();
-  //         const addressAndRoutesData = addressAndRoutesDocSnapshot.data();
-  //         const VehicleInformationData = VehicleInformationDocSnapshot.data();
-  //         const utilityData = utilityDocSnapshot.data();
-  //         const driliData = driliDocSnapshot.data();
-  //         const vecoData = vecoDocSnapshot.data();
-
-  //         const mergedData = {
-  //           ...personalInfoData,
-  //           //...nicNumberData,
-  //           ...addressAndRoutesData,
-  //           ...VehicleInformationData,
-  //           ...driliData,
-  //           ...vecoData,
-  //           //...utilityData,
-  //         };
-
-  //         setDriverInfo(mergedData);
-  //       } else {
-  //         console.error("Document not found for ID:", documentId);
-  //         setDriverInfo(null);
-  //       }
-  //     } catch (error) {
-  //       console.error(
-  //         "Error fetching driver information for ID:",
-  //         documentId,
-  //         error
-  //       );
-  //     }
-  //   };
-
-  //   //fetchDriverInfo();
-  // }, [documentId]);
 
   const saveChanges = async () => {
   try {
@@ -1096,15 +909,15 @@ const DriverProfileDetail = () => {
 
     // Make separate API calls for each data structure
     const personalInfoResponse = await axios.put(
-      `http://localhost:8000/personal-details/update-personal-info/${documentId}`,
+      `http://localhost:8000/drivers-data/update-personal-info/${documentId}`,
       personalInfoDoc
     );
     const addressAndRoutesResponse = await axios.put(
-      `http://localhost:8000/personal-details/update-address-and-routes/${documentId}`,
+      `http://localhost:8000/drivers-data/update-address-and-routes/${documentId}`,
       addressAndRoutes
     );
     const vehicleInfoResponse = await axios.put(
-      `http://localhost:8000/personal-details/update-vehicle-information/${documentId}`,
+      `http://localhost:8000/drivers-data/update-vehicle-information/${documentId}`,
       vehicleInformation
     );
 

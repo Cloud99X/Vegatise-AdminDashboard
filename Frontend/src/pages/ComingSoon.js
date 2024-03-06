@@ -74,6 +74,12 @@ const ComingSoon = () => {
   // };
   //fetchPersonalInfo();
 
+  const filteredPersonalInfo = personalInfo.filter((driver) => {
+    const fullName = `${driver.name} ${driver.surname}`.toLowerCase();
+    return fullName.includes(searchTerm.toLowerCase());
+  });
+ 
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -233,7 +239,7 @@ const ComingSoon = () => {
               </tr>
             </thead>
             <tbody>
-              {personalInfo.map((driver, index) => (
+               {filteredPersonalInfo.map((driver, index) => (
                 <tr
                   key={index}
                   onClick={() => onTableRowClick(driver.id)}
