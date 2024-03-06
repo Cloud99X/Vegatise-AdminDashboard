@@ -232,7 +232,7 @@ const ComingSoon = () => {
               <tr style={{ backgroundColor: "white" }}>
                 <th className={styles.icontd}></th>
                 <th>Name</th>
-                <th>Email</th>
+                <th>Driver ID</th>
                 <th>Phone number</th>
                 <th>Status</th>
                 <th>Date Modified</th>
@@ -270,7 +270,7 @@ const ComingSoon = () => {
                     <img className={styles.icon} src="/image-53@2x.png" />
                     {driver.name}
                   </td>
-                  <td>{driver.email}</td>
+                  <td>{driver.DriverID}</td>
                   <td>{driver.mobileNumber}</td>
                   <td>{driver.status}</td>
                   <td>

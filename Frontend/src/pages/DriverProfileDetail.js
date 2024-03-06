@@ -881,7 +881,7 @@ const DriverProfileDetail = () => {
       gender: editedDriverInfo.gender,
       dateOfBirth: editedDriverInfo.dateOfBirth,
       NICNumber: editedDriverInfo.NICNumber,
-      // ... other personal information fields
+     
     };
 
     const addressAndRoutes = {
@@ -892,7 +892,7 @@ const DriverProfileDetail = () => {
       AvgKM: editedDriverInfo.AvgKM,
       AvgTravelRoute: editedDriverInfo.AvgTravelRoute,
       WorkAddress: editedDriverInfo.WorkAddress,
-      // ... other address and route fields
+      
     };
 
     const vehicleInformation = {
@@ -904,7 +904,7 @@ const DriverProfileDetail = () => {
       carColor: editedDriverInfo.carColor,
       identity: editedDriverInfo.identity,
       carUsage: editedDriverInfo.carUsage,
-      // ... other vehicle information fields
+     
     };
 
     // Make separate API calls for each data structure

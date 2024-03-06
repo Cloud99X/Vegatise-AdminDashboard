@@ -11,10 +11,10 @@ export class PersonalDetailsService {
     try {
       const collectionRef = admin.firestore().collection('PersonalInfomation');
       const snapshot = await collectionRef.get();
-      return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })); // Add ID to each document
+      return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })); 
     } catch (error) {
       console.error('Error retrieving driver information:', error);
-      throw error; // Re-throw for handling in frontend
+      throw error; 
     }
   }
 
@@ -29,11 +29,10 @@ export class PersonalDetailsService {
         return snapshot.data();
       } else {
         console.log('Document not found for UID:', uid);
-        // Handle the situation as needed (e.g., return an empty object or error)
       }
     } catch (error) {
       console.error('Error retrieving personal information:', error);
-      throw error; // Re-throw for handling in frontend
+      throw error; 
     }
   }
 
@@ -45,11 +44,11 @@ export class PersonalDetailsService {
         return snapshot.data();
       } else {
         console.log('Document not found for UID:', uid);
-        // Handle the situation as needed (e.g., return an empty object or error)
+        
       }
     } catch (error) {
       console.error('Error retrieving address and routes:', error);
-      throw error; // Re-throw for handling in frontend
+      throw error;
     }
   }
 
@@ -61,11 +60,11 @@ export class PersonalDetailsService {
         return snapshot.data();
       } else {
         console.log('Document not found for UID:', uid);
-        // Handle the situation as needed (e.g., return an empty object or error)
+        
       }
     } catch (error) {
       console.error('Error retrieving vehicle information:', error);
-      throw error; // Re-throw for handling in frontend
+      throw error; 
     }
   }
 
@@ -85,7 +84,7 @@ export class PersonalDetailsService {
       return 'done';
     } catch (error) {
       console.error('Error updating personal info:', error);
-      throw error; // Re-throw for handling in frontend
+      throw error; 
     }
   }
 
@@ -102,7 +101,7 @@ export class PersonalDetailsService {
       return 'done';
     } catch (error) {
       console.error('Error updating address and routes:', error);
-      throw error; // Re-throw for handling in frontend
+      throw error; 
     }
   }
 
@@ -116,7 +115,7 @@ export class PersonalDetailsService {
       return 'done';
     } catch (error) {
       console.error('Error updating vehicle info:', error);
-      throw error; // Re-throw for handling in frontend
+      throw error; 
     }
   }
 }
