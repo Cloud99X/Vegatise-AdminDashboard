@@ -807,46 +807,8 @@ const DriverProfileDetail = () => {
     }
   };
 
-       /* const saveData = async () => {
-        const uid = FIREBASE_AUTH.currentUser.uid;
-        console.log(FIREBASE_AUTH.currentUser);
-        const name = FIREBASE_AUTH.currentUser.fullName;
-        const email = FIREBASE_AUTH.currentUser.email;
-        const selectedGender = FIREBASE_AUTH.currentUser.gender;
-        const selectedDate = FIREBASE_AUTH.currentUser.dob;
-        const mobNumber = FIREBASE_AUTH.currentUser.phoneNumber;
-        const nic = FIREBASE_AUTH.currentUser.nic;
-        if (uid && mobNumber) {
-          await axios
-            .post(
-              'http://192.168.8.101:3000/personal-details/save-personal-details',
-              {
-                uid: uid,
-                name: name,
-                email: email,
-                gender: selectedGender,
-                dob: selectedDate,
-                mobileNumber: mobNumber,
-                nationalIdNumber: nic
-              },
-            )
-            .then(response => {
-              if (response.data.result === 'done') {
-                console.log('Response:', response.data);
-                console.log('Result:', response.data.result);
-                navigation.navigate('GettingStarted3');
-              } else {
-                console.error('Unsuccessful response. Status:', response.status);
-              }
-            })
-            .catch(err => {
-              console.log('Update Error:', err.message);
-            });
-        } else {
-          console.log('Data error');
-        }
-      };*/
-
+       
+//update edited details
       const saveData = async () => {
         try {
           // Fetch the uid from the backend
@@ -1097,71 +1059,75 @@ const DriverProfileDetail = () => {
   // }, [documentId]);
 
   const saveChanges = async () => {
-    try {
-      const db = getFirestore(firebaseApp);
+  try {
+    // Prepare data for each update
+    const personalInfoDoc = {
+      name: editedDriverInfo.name,
+      email: editedDriverInfo.email,
+      mobileNumber: editedDriverInfo.mobileNumber,
+      gender: editedDriverInfo.gender,
+      dateOfBirth: editedDriverInfo.dateOfBirth,
+      NICNumber: editedDriverInfo.NICNumber,
+      // ... other personal information fields
+    };
 
-      const personalInfoCollection = collection(db, "PersonalInfomation");
-      const personalInfoDocRef = doc(personalInfoCollection, documentId);
-      const timestamp = new Date();
+    const addressAndRoutes = {
+      Add1: editedDriverInfo.Add1,
+      Add2: editedDriverInfo.Add2,
+      City: editedDriverInfo.City,
+      Province: editedDriverInfo.Province,
+      AvgKM: editedDriverInfo.AvgKM,
+      AvgTravelRoute: editedDriverInfo.AvgTravelRoute,
+      WorkAddress: editedDriverInfo.WorkAddress,
+      // ... other address and route fields
+    };
 
-      const nicNumberCollection = collection(db, "NIC Number");
-      const nicNumberDocRef = doc(nicNumberCollection, documentId);
+    const vehicleInformation = {
+      carType: editedDriverInfo.carType,
+      carBrand: editedDriverInfo.carBrand,
+      carModel: editedDriverInfo.carModel,
+      carNumberPlate: editedDriverInfo.carNumberPlate,
+      yearOfMaking: editedDriverInfo.yearOfMaking,
+      carColor: editedDriverInfo.carColor,
+      identity: editedDriverInfo.identity,
+      carUsage: editedDriverInfo.carUsage,
+      // ... other vehicle information fields
+    };
 
-      const addressAndRoutesCollection = collection(db, "AddressAndRoutes");
-      const addressAndRoutesDocRef = doc(
-        addressAndRoutesCollection,
-        documentId
-      );
+    // Make separate API calls for each data structure
+    const personalInfoResponse = await axios.put(
+      `http://localhost:8000/personal-details/update-personal-info/${documentId}`,
+      personalInfoDoc
+    );
+    const addressAndRoutesResponse = await axios.put(
+      `http://localhost:8000/personal-details/update-address-and-routes/${documentId}`,
+      addressAndRoutes
+    );
+    const vehicleInfoResponse = await axios.put(
+      `http://localhost:8000/personal-details/update-vehicle-information/${documentId}`,
+      vehicleInformation
+    );
 
-      const VehicleInformationCollection = collection(db, "VehicleInformation");
-      const VehicleInformationDocRef = doc(
-        VehicleInformationCollection,
-        documentId
-      );
-
-      await updateDoc(personalInfoDocRef, {
-        name: editedDriverInfo.name,
-        email: editedDriverInfo.email,
-        mobileNumber: editedDriverInfo.mobileNumber,
-        gender: editedDriverInfo.gender,
-        dateOfBirth: editedDriverInfo.dateOfBirth,
-        timestamp: timestamp,
-      });
-
-      await updateDoc(nicNumberDocRef, {
-        NICNumber: editedDriverInfo.NICNumber,
-      });
-
-      await updateDoc(addressAndRoutesDocRef, {
-        Add1: editedDriverInfo.Add1,
-        Add2: editedDriverInfo.Add2,
-        City: editedDriverInfo.City,
-        Province: editedDriverInfo.Province,
-        AvgKM: editedDriverInfo.AvgKM,
-        AvgTravelRoute: editedDriverInfo.AvgTravelRoute,
-        WorkAddress: editedDriverInfo.WorkAddress,
-      });
-
-      await updateDoc(VehicleInformationDocRef, {
-        carType: editedDriverInfo.carType,
-        carBrand: editedDriverInfo.carBrand,
-        carModel: editedDriverInfo.carModel,
-        carNumberPlate: editedDriverInfo.carNumberPlate,
-        yearOfMaking: editedDriverInfo.yearOfMaking,
-        carColor: editedDriverInfo.carColor,
-        identity: editedDriverInfo.identity,
-        carUsage: editedDriverInfo.carUsage,
-      });
-
-      setDriverInfo(editedDriverInfo);
-
-      setIsEditing(false);
-      window.alert("Changes saved successfully!");
-    } catch (error) {
-      console.error("Error saving changes:", error);
-      window.alert("Error saving changes. Please try again.");
+    // Check individual responses for errors
+    if (personalInfoResponse.status !== 200) {
+      throw new Error("Error updating personal information");
     }
-  };
+    if (addressAndRoutesResponse.status !== 200) {
+      throw new Error("Error updating address and routes");
+    }
+    if (vehicleInfoResponse.status !== 200) {
+      throw new Error("Error updating vehicle information");
+    }
+
+    // Update local state and UI if successful
+    setDriverInfo(editedDriverInfo);
+    setIsEditing(false);
+    window.alert("Changes saved successfully!");
+  } catch (error) {
+    console.error("Error saving changes:", error);
+    window.alert("Error saving changes. Please try again.");
+  }
+};
 
   const viewButtons = useCallback(
     async (folderPath, index) => {
@@ -1770,7 +1736,7 @@ const DriverProfileDetail = () => {
         </button>
 
         <button 
-        onPress={saveData}
+        onClick={saveChanges}
         className={styles.rectangleContainer}>
           <div className={styles.groupItem} />
           <div className={styles.saveChanges}>Save changes</div>

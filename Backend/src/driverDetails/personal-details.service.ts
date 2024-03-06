@@ -1,100 +1,125 @@
 import { Injectable } from '@nestjs/common';
 import * as admin from 'firebase-admin';
-
+import { DocumentStatusService } from 'src/documentStatus/status.service';
 @Injectable()
 export class PersonalDetailsService {
-  async fetchUid(uidObject: { uid: string }): Promise<string> {
-    const { uid } = uidObject;
-    return uid;
-  }
-  async savePersonalDetails(
-    uid: string,
-    name: string,
-    dateOfBirth: string,
-    email: string,
-    nationalIdNumber: string,
-    gender: string,
-    phone: string,
-  ): Promise<string> {
+  constructor(private readonly documentStatusService: DocumentStatusService) {}
+
+  // GET methods
+
+  async getDriversInfo(): Promise<any[]> {
     try {
-      if (!uid) {
-        throw new Error('UID is missing');
-      }
-      const existingDetails = await this.getPersonalDetails(uid);
-
-      const updatedDetails = {
-        name: name || existingDetails.name,
-        dateOfBirth: dateOfBirth || existingDetails.dateOfBirth,
-        email: email || existingDetails.email,
-        nationalIdNumber: nationalIdNumber || existingDetails.nationalIdNumber,
-        gender: gender || existingDetails.gender,
-        phone: phone || existingDetails.phone,
-      };
-
-      const docRef = admin.firestore().collection('PersonalInformation').doc(uid);
-      // await docRef.set({name, dateOfBirth, email, nationalIdNumber, gender, phone});
-      await docRef.set(updatedDetails);
-      return 'Personal details saved successfully';
-
+      const collectionRef = admin.firestore().collection('PersonalInfomation');
+      const snapshot = await collectionRef.get();
+      return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })); // Add ID to each document
     } catch (error) {
-      console.error('Error saving personal details:', error);
-      throw error;
+      console.error('Error retrieving driver information:', error);
+      throw error; // Re-throw for handling in frontend
     }
   }
 
-  private async getPersonalDetails(uid: string): Promise<any> {
+  async getPersonalInfo(uid: string): Promise<any> {
     try {
-      const docRef = admin.firestore().collection('PersonalInformation').doc(uid);
+      const docRef = admin
+        .firestore()
+        .collection('PersonalInfomation')
+        .doc(uid);
       const snapshot = await docRef.get();
       if (snapshot.exists) {
         return snapshot.data();
       } else {
-        // Return an empty object if personal details don't exist yet
-        return {};
+        console.log('Document not found for UID:', uid);
+        // Handle the situation as needed (e.g., return an empty object or error)
       }
     } catch (error) {
-      console.error('Error fetching personal details:', error);
-      throw error;
+      console.error('Error retrieving personal information:', error);
+      throw error; // Re-throw for handling in frontend
     }
   }
 
-  async updateEmail(uid: string, newEmail: string): Promise<string> {
+  async getAddressAndRoutes(uid: string): Promise<any> {
     try {
-      // Implementation
-      return 'Email updated successfully';
+      const docRef = admin.firestore().collection('AddressAndRoutes').doc(uid);
+      const snapshot = await docRef.get();
+      if (snapshot.exists) {
+        return snapshot.data();
+      } else {
+        console.log('Document not found for UID:', uid);
+        // Handle the situation as needed (e.g., return an empty object or error)
+      }
     } catch (error) {
-      console.error('Error updating email:', error);
-      throw error;
+      console.error('Error retrieving address and routes:', error);
+      throw error; // Re-throw for handling in frontend
     }
   }
 
-  async updatePhoneNumber(uid: string, phoneNumber: string): Promise<string> {
+  async getVehicleInfo(uid: string): Promise<any> {
     try {
-      // Implementation
-      return 'Phone number updated successfully';
+      const docRef = admin.firestore().collection('VehicleInformation').doc(uid);
+      const snapshot = await docRef.get();
+      if (snapshot.exists) {
+        return snapshot.data();
+      } else {
+        console.log('Document not found for UID:', uid);
+        // Handle the situation as needed (e.g., return an empty object or error)
+      }
     } catch (error) {
-      console.error('Error updating phone number:', error);
-      throw error;
+      console.error('Error retrieving vehicle information:', error);
+      throw error; // Re-throw for handling in frontend
     }
   }
 
-  async updatePassword(uid: string, newPassword: string): Promise<string> {
+
+  // UPDATE methods
+
+  async updatePersonalInfo(uid: string, updates: any): Promise<string> {
     try {
-      // Implementation
-      return 'Password updated successfully';
+      const docRef = admin
+        .firestore()
+        .collection('PersonalInfomation')
+        .doc(uid);
+      await docRef.update(updates);
+
+      // Update document status if applicable
+      //await this.documentStatusService.updateDocumentStatus(uid, 'Personal Information', 'Updated');
+
+      return 'done';
     } catch (error) {
-      console.error('Error updating password:', error);
-      throw error;
+      console.error('Error updating personal info:', error);
+      throw error; // Re-throw for handling in frontend
     }
   }
 
-  async saveProfilePhoto(uid: string, buffer: Buffer, originalname: string, mimetype: string): Promise<string> {
+  async updateAddressAndRoutes(uid: string, updates: any): Promise<string> {
     try {
-      // Implementation
-      return 'Profile photo saved successfully';
+      const docRef = admin
+        .firestore()
+        .collection('AddressAndRoutes')
+        .doc(uid);
+      await docRef.update(updates);
+
+      // Update document status if applicable
+      //await this.documentStatusService.updateDocumentStatus(uid, 'Address and Routes', 'Updated');
+
+      return 'done';
     } catch (error) {
-      console.error('Error saving profile photo:', error);
-      throw error;
+      console.error('Error updating address and routes:', error);
+      throw error; // Re-throw for handling in frontend
+    }
+  }
+
+  async updateVehicleInfo(uid: string, updates: any): Promise<string> {
+    try {
+      const docRef = admin.firestore().collection('VehicleInformation').doc(uid);
+      await docRef.update(updates);
+
+      // Update document status if applicable
+     // await this.documentStatusService.updateDocumentStatus(uid, 'Vehicle Information', 'Updated');
+
+      return 'done';
+    } catch (error) {
+      console.error('Error updating vehicle info:', error);
+      throw error; // Re-throw for handling in frontend
     }
   }
 }

@@ -1,127 +1,62 @@
-import {
-  Controller,
-  Body,
-  Get,
-  Req,
-  Post,
-  Put,
-  UploadedFile,
-  UseInterceptors,
-  InternalServerErrorException,
-} from '@nestjs/common';
+import { Controller, Put, Body, Param, Get } from '@nestjs/common';
 import { PersonalDetailsService } from './personal-details.service';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { DocumentStatusService } from 'src/documentStatus/status.service';
-//import { Multer } from 'express';
 
-@Controller('personal-details')
-export class PersonalDetailsController {
-  constructor(
-    private readonly service: PersonalDetailsService,
-    private readonly docService: DocumentStatusService,
-  ) {}
 
-  // save personal information
-  @Post('save-personal-details')
-  async calculateDistance(
-    @Body()
-    requestBody: {
-      uid: string;
-      name: string;
-      email: string;
-      gender: string;
-      dob: string;
-      mobileNumber: string;
-      nationalIdNumber: string;
-    },
-  ): Promise<{ result: string }> {
-    const { uid, name, email, gender, dob, mobileNumber, nationalIdNumber } = requestBody;
-    try {
-    const result = await this.service.savePersonalDetails(
-      uid,
-      name,
-      email,
-      gender,
-      dob,
-      nationalIdNumber,
-      mobileNumber,
-    );
-    const result1 = await this.docService.updateDocumentStatus(
-      'In Review',
-      'PersonalInfo',
-      uid,
-    );
+@Controller('drivers-data')
+export class DriversDataController {
+  constructor(private readonly service: PersonalDetailsService) {}
 
-    console.log(result1);
-    return { result };
-    } catch (error) {
-      console.error('Error saving personal details:', error);
-      throw new InternalServerErrorException('Failed to save personal details');
-    }
+  @Put('update-personal-info/:uid')
+  async updatePersonalInfo(
+    @Param('uid') uid: string,
+    @Body() updates: any,
+  ): Promise<string> {
+    return this.service.updatePersonalInfo(uid, updates);
   }
 
-  @Put('update-email')
-  async updateEmail(
-    @Body()
-    requestBody: {
-      uid: string;
-      newEmail: string;
-    },
-  ): Promise<{ result: string }> {
-    const { uid, newEmail } = requestBody;
-    const result = await this.service.updateEmail(uid, newEmail);
-    return { result };
+  @Put('update-address-and-routes/:uid')
+  async updateAddressAndRoutes(
+    @Param('uid') uid: string,
+    @Body() updates: any,
+  ): Promise<string> {
+    return this.service.updateAddressAndRoutes(uid, updates);
   }
 
-  //update authentication phone number
-  @Put('update-phone-number')
-  async updatePhoneNumber(
-    @Body()
-    requestBody: {
-      uid: string;
-      phoneNumber: string;
-    },
-  ): Promise<{ result: string }> {
-    const { uid, phoneNumber } = requestBody;
-    const result = await this.service.updatePhoneNumber(uid, phoneNumber);
-    return { result };
+  @Put('update-vehicle-information/:uid')
+  async updateVehicleInformation(
+    @Param('uid') uid: string,
+    @Body() updates: any,
+  ): Promise<string> {
+    return this.service.updateVehicleInfo(uid, updates);
   }
 
-  //update password
-  @Put('update-password')
-  async updatePassword(
-    @Body()
-    requestBody: {
-      uid: string;
-      newPassword: string;
-    },
-  ): Promise<{ result: string }> {
-    const { uid, newPassword } = requestBody;
-    const result = await this.service.updatePassword(uid, newPassword);
-    return { result };
+
+
+ 
+
+
+
+  // GET methods
+
+  @Get('get-drivers-info')
+  async getDriversInfo(): Promise<any> {
+    return this.service.getDriversInfo();
   }
 
-  // @Post('save-profile-picture')
-  // @UseInterceptors(FileInterceptor('file'))
-  // async uploadFile(
-  //   @UploadedFile() file: Express.Multer.File,
-  //   @Body('uid') uid: string,
-  // ) {
-  //   try {
-  //     if (file && uid) {
-  //       const { buffer, originalname, mimetype } = file;
-  //       const downloadUrl = await this.service.saveProfilePhoto(
-  //         uid,
-  //         buffer,
-  //         originalname,
-  //         mimetype,
-  //       );
-  //       return { downloadUrl };
-  //     } else {
-  //       console.error('No file provided');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error uploading file:', error);
-  //   }
-  // }
+  @Get('get-personal-info/:uid')
+  async getPersonalInfo(@Param('uid') uid: string): Promise<any> {
+    return this.service.getPersonalInfo(uid);
+  }
+
+  @Get('get-address-and-routes/:uid')
+  async getAddressAndRoutes(@Param('uid') uid: string): Promise<any> {
+    return this.service.getAddressAndRoutes(uid);
+  }
+
+  @Get('get-vehicle-information/:uid')
+  async getVehicleInformation(@Param('uid') uid: string): Promise<any> {
+    return this.service.getVehicleInfo(uid);
+  }
+
+  
 }
