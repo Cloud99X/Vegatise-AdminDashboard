@@ -11,6 +11,8 @@ import { RevenueLicenseDocModule } from './revenue-license/revenue-license.modul
 import { VehicleRegDocModule } from './vehicle-registration/vehicle-registration.module';
 import { VehicleInsuranceDocModule } from './vehicle-insurance/vehicle-insurance.module';
 import { BillingDocModule } from './billing-documents/billing-documents.module';
+import { PersonalDetailsModule } from './driverDetails/personal-details.module';
+
 
 @Module({
   imports: [
@@ -25,6 +27,7 @@ import { BillingDocModule } from './billing-documents/billing-documents.module';
     VehicleRegDocModule,
     VehicleInsuranceDocModule,
     BillingDocModule,
+    PersonalDetailsModule,
   ],
   controllers: [],
   providers: [],
