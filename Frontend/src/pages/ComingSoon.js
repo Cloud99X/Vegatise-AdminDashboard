@@ -267,7 +267,7 @@ const ComingSoon = () => {
                       gap: "20px",
                     }}
                   >
-                    <img className={styles.icon} src={driver.profilePicture} />
+                    <img className={styles.icon} src="/image-53@2x.png" />
                     {driver.name}
                   </td>
                   <td>{driver.email}</td>
