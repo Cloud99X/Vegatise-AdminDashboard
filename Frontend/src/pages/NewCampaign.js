@@ -6,7 +6,8 @@ import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 
 const NewCampaign = () => {
   return (
-    <PageLayout activeSidebarItem="Analytics">
+    <div>
+      <PageLayout activeSidebarItem="Analytics">
       <section className={styles.pageLayout}>
         <div>
           <div className={styles.topic}>
@@ -17,7 +18,7 @@ const NewCampaign = () => {
               <b>Company Name</b>
             </span>
             <div className={styles.inputContainer}>
-              <InputGroup width="405px">
+              <InputGroup width="30vw">
                 <Input
                   variant="outline"
                   placeholder="Eg - Vegatise"
@@ -25,11 +26,11 @@ const NewCampaign = () => {
                 />
               </InputGroup>
             </div>
-            <span className={styles.label} style={{ top: "100px" }}>
+            <span className={styles.label} style={{ top: "37px" }}>
               <b>Campaign Duration</b>
             </span>
             <div className={styles.inputContainer}>
-              <InputGroup width="405px" top="20px">
+              <InputGroup width="30vw" top="-10px">
                 <Input
                   variant="outline"
                   placeholder="Eg - 3 months"
@@ -38,11 +39,11 @@ const NewCampaign = () => {
                 />
               </InputGroup>
             </div>
-            <span className={styles.label} style={{ top: "120px" }}>
+            <span className={styles.label} style={{ top: "37px" }}>
               <b>Design type</b>
             </span>
             <div className={styles.inputContainer}>
-              <InputGroup width="405px" top="40px">
+              <InputGroup width="30vw" top="-10px">
                 <Input
                   variant="outline"
                   placeholder="Partial Wrap"
@@ -51,11 +52,11 @@ const NewCampaign = () => {
                 />
               </InputGroup>
             </div>
-            <span className={styles.label} style={{ top: "140px" }}>
+            <span className={styles.label} style={{ top: "37px" }}>
               <b>Kms required</b>
             </span>
             <div className={styles.inputContainer}>
-              <InputGroup width="405px" top="60px">
+              <InputGroup width="30vw" top="-10px">
                 <Input
                   variant="outline"
                   placeholder="300 km"
@@ -64,11 +65,11 @@ const NewCampaign = () => {
                 />
               </InputGroup>
             </div>
-            <span className={styles.label} style={{ top: "160px" }}>
+            <span className={styles.label} style={{ top: "37px" }}>
               <b>Route preffered</b>
             </span>
             <div className={styles.inputContainer}>
-              <InputGroup width="405px" top="80px">
+              <InputGroup width="30vw" top="-10px">
                 <Input
                   variant="outline"
                   placeholder="colombo galle road"
@@ -77,11 +78,11 @@ const NewCampaign = () => {
                 />
               </InputGroup>
             </div>
-            <span className={styles.label} style={{ top: "180px" }}>
+            <span className={styles.label} style={{ top: "37px" }}>
               <b>Reward</b>
             </span>
             <div className={styles.inputContainer}>
-              <InputGroup width="405px" top="100px">
+              <InputGroup width="30vw" top="-10px">
                 <Input
                   variant="outline"
                   placeholder="15,000 /="
@@ -90,11 +91,11 @@ const NewCampaign = () => {
                 />
               </InputGroup>
             </div>
-            <span className={styles.label} style={{ top: "210px" }}>
+            <span className={styles.label} style={{ top: "37px" }}>
               <b>vegatise rewards</b>
             </span>
             <div className={styles.inputContainer}>
-              <InputGroup width="405px" top="120px">
+              <InputGroup width="30vw" top="-10px">
                 <Input
                   variant="outline"
                   placeholder="Air fresher Vegatise phone holder, etc..."
@@ -103,11 +104,11 @@ const NewCampaign = () => {
                 />
               </InputGroup>
             </div>
-            <span className={styles.label} style={{ top: "230px" }}>
+            <span className={styles.label} style={{ top: "37px" }}>
               <b>Bonus</b>
             </span>
             <div className={styles.inputContainer}>
-              <InputGroup width="405px" top="140px">
+              <InputGroup width="30vw" top="-10px">
                 <Input
                   variant="outline"
                   placeholder="Earn additional rewards by driving to selected hotspots"
@@ -116,21 +117,22 @@ const NewCampaign = () => {
                 />
               </InputGroup>
             </div>
-            <span className={styles.label} style={{ top: "260px" }}>
+            <span className={styles.label} style={{ top: "41px" }}>
               <b>Description</b>
             </span>
             <div className={styles.inputContainer} style={{ width: "834px" }}>
               <div className={styles.descCont}></div>
-              <InputGroup width="834px" top="160px" overflowWrap="break-word">
+              <InputGroup  top="-5px">
                 <Input
                   variant="outline"
+                  position="absolute"
                   placeholder="Daraz is an online e com store celebration there 11th consecutive anniversary....daraz ia an online e com store celebration there 11th consecutive anniversary....daraz ia an online e com store celebration there 11th consecutive anniversary....daraz ia an online e com store celebration there 11th consecutive anniversary....daraz ia an online e com store celebration there 11th consecutive anniversary....daraz ia an online e com store celebration there 11th consecutive anniversary....daraz ia an online e com store celebration there 11th consecutive anniversary...."
                   size="sm"
                   style={{
                     textAlign: "center",
                     top: "13px",
                     height: "122px",
-                    width: "100%",
+                    width: "834px",
                     overflowWrap: "break-word",
                   }}
                 />
@@ -179,7 +181,7 @@ const NewCampaign = () => {
                 <img alt="" src="/add.png" className={styles.add4} />
                 <img alt="" src="/rightView.png" className={styles.v4} />
               </div>
-              <div style={{ position: "relative", left: "65%", bottom: "10%" }}>
+              <div style={{ position: "absolute", left: "65%", top: "160%" }}>
                 <button className={styles.cancel}>
                   <span>cancel</span>
                 </button>
@@ -193,6 +195,7 @@ const NewCampaign = () => {
         </div>
       </section>
     </PageLayout>
+    </div>
   );
 };
 

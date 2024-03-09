@@ -2,52 +2,13 @@
     position: relative;
     flex-grow: 1;
   }
-  
-  .headerContainer {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    font-family: 'Poppins', 'sans-serif';
-  }
-  
-  .header {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .headerImage {
-    cursor: pointer;
-  }
-  
-  .headerImage1 {
-    width:33px;
-    height:33px;
-  }
-
-  .adminContainer {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-  }
-  
-  .admin {
-    font-size: 12px;
-  }
-  
-  .adminName {
-    font-size: 14px;
-    font-weight: 600;
-    color: rgba(0, 0, 0, 0.7);
-  }
 
   .topic {
     position: relative;
     font-size: 24px;
     font-family: 'Poppins';
-    top: 47px;
-    left: 10%;
+    top: 14px;
+    left: 5%;
     color: #3D3C3C
   }
 
@@ -55,22 +16,28 @@
     position: relative;
     font-family: 'Urbanist-SemiBold';
     font-size: 14px;
-    top: 80px;
-    left: 10%;
+    top: 47px;
+    left: 5%;
     color: #6B7280
   }
 
   .inputContainer {
     position: relative;
-    top: 90px;
-    left: 10%;
+    top: 57px;
+    left: 5%;
+    height: 59px;
+    margin-bottom: 20px;
+    border-color: #6B7280;
+   }
+
+   .inputContainer1 {
     margin-bottom: 20px;
     border-color: #6B7280;
    }
 
   .descCont {
     position: relative;
-    top: 175px;
+    top: 10px;
     border: 1px solid #D1D5DB;
     width: 100%;
     height: 42px;
@@ -82,8 +49,8 @@
     font-family: 'Urbanist-SemiBold';
     width: 123px;
     height: 24px;
-    left: 65%;
-    bottom: 690px;
+    left: 46%;
+    bottom: 850px;
    }
 
    .logoFrame {
@@ -91,8 +58,9 @@
     background-color: #FFF3F3;
     height: 168.7px;
     width: 171px;
-    left: 64%;
-    bottom: 670px;
+    left: 46%;
+    bottom: 830px;
+    border-radius: 8.43px;
    }
 
    .white {
@@ -102,12 +70,13 @@
     width:99.69px;
     top: 32px;
     left: 20%;
+    border-radius: 6.13px;
    }
 
    .nopic {
     position: relative;
-    width: 17.36px;
-    height: 17.36px;
+    width: 18.28px;
+    height: 18.28px;
     top: 40px;
     left: 40%
    }
@@ -120,26 +89,33 @@
     left: 80%;
    }
 
+   .v1 {
+    position: relative;
+    left: 5%;
+    top:5px
+   }
+
    .ImgTitle {
     position: relative;
     width: 115px;
     height: 22px;
-    left: 65%;
-    bottom: 630px;
+    left: 46%;
+    bottom: 750px;
    }
 
    .imgFrame {
-    position: relative;
+    position: absolute;
     background-color: #FFF3F3;
     height: 420px;
     width: 611px;
-    left: 65%;
-    bottom: 610px;
+    left: 46%;
+    bottom: 300px;
+    border-radius: 11.43px 0 0 0;
    }
 
    .frnt {
     position: relative;
-    top: 10px;
+    top: 15px;
     left: 5%
    }
 
@@ -154,21 +130,21 @@
    .back {
     position: relative;
     bottom: 160px;
-    left: 45%
+    left: 50%
    }
 
    .add2 {
     position: relative;
     width: 20px;
     height: 20px;
-    left: 60%;
+    left: 65%;
     bottom: 180px;
    }
 
    .v2 {
     position: relative;
-    left: 45%;
-    bottom: 170px
+    left: 50%;
+    bottom: 170px;
    }
 
    .left {
@@ -187,31 +163,31 @@
 
    .v3 {
     position: relative;
-    bottom: 140px
+    bottom: 140px;
+    left: 5%;
    }
 
    .right {
     position: relative;
     bottom: 320px;
-    left: 47%
+    left: 52%
    }
 
    .add4 {
     position: relative;
     width: 20px;
     height: 20px;
-    left: 68%;
+    left: 73%;
     bottom: 340px;
    }
 
    .v4 {
     position: relative;
-    left: 45%;
+    left: 50%;
     bottom: 320px
    }
 
    .cancel {
-    position: 'relative';
     width: 80px;
     height: 40px;
     border: 1PX SOLID #D1D5DB;
@@ -220,12 +196,12 @@
    }
 
    .confirm {
-    position: 'relative';
+    position: absolute;
     width: 80px;
     height: 40px;
     border: 1PX SOLID #D1D5DB;
     border-radius: 6px;
-    left: 140%;  
+    left: 100%;  
     color: white;
     background-color: #13368E;
    }
